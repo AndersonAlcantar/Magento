@@ -1,0 +1,51 @@
+.c-resume {
+    @include px-to-rem(margin-top, $gutter * 6);
+    @include px-to-rem(margin-bottom, $gutter * 6);
+}
+
+.c-resume__list {
+    @include px-to-rem(padding, 24px);
+    background-color: $c-neutro;
+    border-radius: 4px;
+    list-style-type: none;
+}
+
+.c-resume__item {
+    text-align: left;
+    @include px-to-rem(margin-bottom, $gutter * 2);
+    @include px-to-rem(margin-top, $gutter * 2);
+    &:first-of-type {
+        margin-top: 0;
+    }
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.c-resume__title {
+    font-weight: $f-bold;
+}
+
+.c-resume__value {
+
+}
+
+@media only screen and (min-width: 600px) {
+    .c-resume__list {
+        @include flexbox;
+        @include justify-content(space-around);
+        @include align-items(center);
+        flex-wrap: wrap;
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+    .c-resume__item {
+        flex: 1 1 auto;
+        margin: 0;
+        border-left: 1px solid $c-gray-2;
+        @include px-to-rem(padding-left, $gutter * 5);
+        &:first-of-type {
+            padding: 0;
+            border: none;
+        }
+    }
+}

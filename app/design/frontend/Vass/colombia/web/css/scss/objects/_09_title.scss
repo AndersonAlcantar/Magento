@@ -1,0 +1,157 @@
+//-*----------------------------------*
+//-  Objects: Styles for titles
+//-*----------------------------------*
+.o-title,
+.o-headline {
+    font-weight: $f-extra-light;
+
+    &.o-light {
+        font-weight: $f-light;
+    }
+}
+
+.o-hgroup {
+    text-align: center;
+}
+
+.o-hgroup__title {
+    font-weight: $f-light;
+    color: #000;
+}
+
+.o-title {
+    @include px-to-rem(margin-bottom, $gutter * 6);
+    @include px-to-rem(font-size, 28px);
+    text-align: center;
+    color: $c-gray-6;
+}
+
+.o-title__light {
+    font-weight: $f-light;
+}
+.o-title__bold {
+    color: $c-gray-5;
+    font-weight: $f-bold;
+}
+
+.title {
+    .o-layout__aside & {
+        @include flex(1 100%);
+        text-align: center;
+    }
+}
+
+.o-headline {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    color: $c-gray-6;
+}
+.o-headline_margin-bottom {
+    margin-bottom: 0;
+}
+.o-headline__line-height {
+    line-height: 1.3;
+}
+.o-headline_blue {
+    font-weight: $f-light;
+    color: $c-secondary;
+}
+.o-subheadline {
+    @include px-to-rem(font-size, 18px);
+}
+
+// header with image
+.o-header-img {
+    text-align: center;
+    @include px-to-rem(margin-bottom, $gutter * 5);
+}
+.o-header-img__brand {
+    @include px-to-rem(max-height, 48px);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+}
+.o-header-img__brand_w255 {
+    @include px-to-rem(width, 255px);
+    @include px-to-rem(max-height, 148px);
+}
+.o-header-img__brand_w207 {
+    @include px-to-rem(width, 207px);
+    @include px-to-rem(max-height, 294px);
+}
+.o-header-img__text {
+    @include px-to-rem(font-size, 20px);
+    font-weight: $f-light;
+    color: $c-gray-6;
+}
+.o-header-img__intro {
+    font-weight: $f-regular;
+    @include px-to-rem(font-size, 16px);
+}
+.o-header-img__intro_strong {
+    font-weight: $f-bold;
+    display: block;
+}
+.o-header-img__intro_dark-blue {
+    color: $c-secondary;
+}
+
+// title with icon over
+.o-title-ico {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(margin-bottom, $gutter * 2);
+    @include px-to-rem(font-size, 32px); 
+    font-weight: $f-light;
+    &::before {
+        @include px-to-rem(font-size, 58px); 
+    }
+}
+.o-title-ico__red {
+    &::before {
+        color: $c-red-error;
+        transform: rotate(180deg); 
+    }
+}
+
+
+
+@media (max-width: 739px) {
+    .o-headline {
+        @include px-to-rem(font-size, 28px);
+    }
+}
+
+@media (min-width: 740px) {
+    .o-headline {
+        @include px-to-rem(font-size, 30px);
+    }
+}
+//768
+@include media-query(medium-max) {
+    .o-hgroup__title {
+        font-size: $gutter * 4;
+    }
+
+    .o-hgroup__lead {
+        font-size: 14px;
+    }
+}
+
+@include media-query(medium) {
+    .o-header-img {
+        // @include px-to-rem(margin-bottom, $gutter * 5);
+    }
+    .o-header-img__text {
+        @include px-to-rem(font-size, 28px);
+    }
+    .o-header-img__text_font40 {
+        @include px-to-rem(font-size, 40px);
+    }    
+    .o-header-img__intro {
+        @include px-to-rem(font-size, 20px);
+    }
+
+    .o-hgroup__title {
+        font-size: $gutter * 5;
+    }
+}

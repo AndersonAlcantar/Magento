@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * @var \Vass\Checkout\ViewModel\Header $viewModelHeader
+ */
+$viewModelHeader = $block->getHeader();
+$url  = $viewModelHeader->getSeccion();
+
+$class_active = $viewModelHeader->getSeccionActive($url);
+
+/**echo '<pre>';
+print_r($class_active); 
+echo '</pre>';
+/** */
+
+
+?>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
+<div class="f-c-header-step" data-mage-init='{"modals": {} }'>
+ 
+  <div class="f-c-header-step__wrap">
+
+    <!-- Logo Movistar -->
+    <div class="f-c-header-step__brand">
+      <div class="f-c-header-step__brand-inner">
+
+      <!-- Imagen logo -->
+        <a
+          class="c-simple-header__brand"
+          href="/"
+          title="Ir a la página principal"
+          aria-label="store logo"
+        >
+          <img
+            class="c-simple-header__brand-img"
+            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>"
+            alt="Logo Movistar"
+          >
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Pasos del Header -->
+    <div class="f-c-header-step__content">
+
+      <ul class="o-list-steps">
+        <li class="o-list-steps__step <?= $class_active['cobertura']; ?>">
+          <span class="o-list-steps__txt">Valida tu cobertura</span>
+        </li>
+        <li class="o-list-steps__step <?= $class_active['services']; ?>">
+          <span class="o-list-steps__txt">Complementa tu plan</span>
+        </li>
+        <li class="o-list-steps__step <?= $class_active['data']; ?>">
+          <span class="o-list-steps__txt">Valida tu identidad</span>
+        </li>
+        <li class="o-list-steps__step <?= $class_active['agenda']; ?>">
+          <span class="o-list-steps__txt">Agenda tu instalación</span>
+        </li>
+        <li class="o-list-steps__step <?= $class_active['contrato']; ?>">
+          <span class="o-list-steps__txt">Firma tu contrato</span>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,239 @@
+.s-richtext {
+    color: $c-gray-4;
+    h1,
+    h2,
+    h3 {
+        font-weight: $f-regular;
+    }
+    // titles
+    h1 {
+        @include px-to-rem(margin-top, $gutter * 2);
+        @include px-to-rem(margin-bottom, $gutter * 3);
+        @include px-to-rem(font-size, 32px);
+        line-height: calc(40/32);
+        
+    }
+    h2 {
+        @include px-to-rem(margin-top, $gutter * 3);
+        @include px-to-rem(margin-bottom, $gutter);
+        @include px-to-rem(font-size, 24px);
+        line-height: calc(32/24);
+    }
+    h3 {
+        @include px-to-rem(margin-top, $gutter);
+        @include px-to-rem(margin-bottom, $gutter);
+        @include px-to-rem(font-size, 18px);
+        line-height: calc(28/18);
+    }
+
+    //- Etilos enlaces
+    a {
+      position:relative;
+      padding: 0;
+      color: $c-primary;
+      text-decoration: none;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: rgba($c-primary, 90%);
+      }
+    }
+  
+    mark {
+      padding: 2px $gutter;
+      border-radius: 40px;
+      color: inherit;
+      background-color: rgba($c-primary, .2);
+    }
+  
+    hr {
+      margin-top: $gutter * 4;
+      margin-bottom: $gutter * 4;
+      border: 0;
+      height: 1px; 
+      background-color: $c-gray-4;   
+    }
+  
+    //- Etilos bloques
+    p:not(:first-child),
+    p:not(:last-child) {
+      margin-top: $gutter * 3;
+      margin-bottom: $gutter * 3;
+    }
+
+    //- Etilos listas
+    ul,
+    ol {
+      @include px-to-rem(margin-left, $gutter * 4);
+      li {
+        @include px-to-rem(margin-bottom, $gutter);
+        @include px-to-rem(padding-left, $gutter);
+        &::marker {
+          color: $c-primary;
+        }
+      }
+    }
+  
+  
+    //- Etilos listas desordenadas
+    ul {
+      li {
+        &::marker {
+          content: $i-check;
+          font-family: $font-family-ico;
+          @include px-to-rem(font-size, 13px);
+        }
+      }
+    }
+
+    //imagenes 
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: $gutter * 4 auto;
+      &.left {
+        float: left;
+        margin-left: 0;
+        max-width: 45%;
+        margin-right: 40px;
+      }
+      &.right {
+        float: right;
+        margin-right: 0;
+        max-width: 45%;
+        margin-left: 40px;
+      }
+    }
+
+    // videos y mapas
+    iframe {
+      aspect-ratio: 16/9;
+      width: 100%;
+      height: auto;
+      @include px-to-rem(margin-top, $gutter * 4);
+      @include px-to-rem(margin-bottom, $gutter * 4);
+    }
+
+    // tablas
+    table {
+      width: 100%;
+      @include px-to-rem(margin-top, $gutter * 4);
+      @include px-to-rem(margin-bottom, $gutter * 4);
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba($color: $c-gray-7, $alpha: 0.5);
+      @include px-to-rem(border-radius, 10px);
+      border-collapse: inherit;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    tbody tr {
+      &:not(:nth-child(2n)) {
+        background-color: rgba($color: $c-gray-7, $alpha: 0.5);
+      }
+    }
+  
+    td,
+    th {
+      @include px-to-rem(padding, $gutter * 2);
+      line-height: 1.2;
+      tbody & {
+        @include px-to-rem(max-width, 240px);
+      }
+    }
+
+   
+    th {
+      color: $c-neutro;
+      background-color: $c-primary;
+
+      &:nth-child(2n) {
+        background-color: rgba($color: $c-primary, $alpha: 0.7);
+      }
+
+    }
+    
+
+
+    @include media-query(medium-max) {
+      table {
+        @include flexbox;
+      }
+
+      thead,
+      tr,
+      td,
+      th {
+        display: block;
+      }
+
+      thead {
+        @include px-to-rem(min-width, 100px);
+      }
+
+      td,
+      th {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
+        @include px-to-rem(max-height, 120px);
+        @include px-to-rem(min-height, 120px);
+      }
+
+      tbody {
+        @include flexbox;
+        overflow-x: auto;
+      }
+
+      td,
+      th {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      tr {
+        tbody & {
+          @include flex(1 0 auto);
+        }
+      }
+    }
+
+    @media screen and (max-width: 340px) {
+      table {
+        @include px-to-rem(max-width, 290px);
+      }
+    }
+
+    @include media-query(medium) {
+        h1 {
+            @include px-to-rem(font-size, 40px);
+            line-height: calc(40/40);
+        }
+        h2 {
+            @include px-to-rem(font-size, 32px);
+            line-height: calc(40/32);
+        }
+        h2 {
+            @include px-to-rem(font-size, 24px);
+            line-height: calc(32/24);
+        }
+    }
+  }
+
+.s-richtext-modals {
+
+  a {
+    color: $c-primary;
+  }
+
+  ol, 
+  ul {
+    padding: 15px;
+    li {
+      margin-bottom: $gutter;
+    }
+  }
+}

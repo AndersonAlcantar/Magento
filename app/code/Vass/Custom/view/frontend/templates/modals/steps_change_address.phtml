@@ -1,0 +1,492 @@
+<?php
+$helper = $this->helper('Vass\Service\Helper\Service');
+$regionList = $helper->getListDepartament();
+?>
+<div class="o-modal modal u-hidden" id="modal-steps_change_address" data-modal-type="modal-small">
+	<button class="o-modal__btn-close close-modal i-close" data-modal="modal-steps_change_address">
+		<span class="u-hidden">Cerrar</span>
+	</button>
+	<!-- ko scope: 'validate-entity-address' -->
+	<div class="o-modal__content">
+		<div class="o-modal__content_center o-modal__content_w735">
+			<!-------------------- HEADER PASO UNO -------------------->
+			<!-- ko if: stepOne -->
+			<header class="o-modal__header u-margin-bottom-8">
+				<h3 class="o-headline o-headline_blue">Agregar una dirección</h3>
+			</header>
+			<!-- /ko -->
+			<!-------------------- HEADER PASO DOS -------------------->
+			<!-- ko if: stepTwo -->
+			<header class="o-modal__header u-margin-bottom-16 o-modal__header_w455">
+				<h3 class="o-headline o-headline_blue o-headline_margin-bottom">Valida tu dirección</h3>
+				<p>Por favor verifica que la dirección y ubicación que hemos encontrado sea la correcta.</p>
+			</header>
+			<!-- /ko -->
+			<!-------------------- HEADER PASO TRES -------------------->
+			<!-- ko if: stepThree -->
+			<header class="o-modal__header u-margin-bottom-8 o-modal__header_w455">
+				<h3 class="o-headline o-headline_blue o-headline_margin-bottom">Tus datos</h3>
+			</header>
+			<!-- /ko -->
+			<!-------------------- PASO UNO -------------------->
+			<!--lista de pasos-->
+			<!-- ko if: stepOne -->
+			<div class="c-steps c-steps_w100">
+				<!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado-->
+				<ul class="c-steps__list">
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">1</span>
+								<span class="c-steps__name">Direccion nueva</span>
+							</div>
+						</div>
+					</li>
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<p class="c-steps__value">2</p>    
+								<span class="c-steps__name">Validación  dirección</span>
+							</div>                        
+						</div>
+					</li>
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">3</span>
+								<span class="c-steps__name">Confirmación dirección</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<fieldset class="c-form__fieldset c-form__fieldset_margin-top" data-bind="event: { input: validateOne }">
+				<div class="c-form__fieldset_grid">
+					<!-- select departamento -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select
+								id="department"
+								class="c-form__input c-form__select"
+								data-bind="value: department, valueUpdate: 'input', event: { change: changeDepartment }"
+								required
+							>
+								<option>Selecciona</option>
+								<?php foreach ($regionList as $region) : ?>
+									<option value="<?= $region['regionId'] ?>"><?= $region['name'] ?></option>
+								<?php endforeach ?>
+							</select>
+							<label for="department" class="c-form__label label">Selecciona tu departamento</label>
+						</div>
+					</div>
+					<!-- ciudad -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select
+								id="city"
+								class="c-form__input c-form__select"
+								data-bind="value: city, valueUpdate: 'input', event: { change: changeCity }"
+								disabled
+								required
+							>
+							</select>
+							<label for="city" class="c-form__label label">Ciudad</label>
+						</div>
+					</div>
+					<!-- barrio -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select
+								id="municipality"
+								class="c-form__input c-form__select"
+								data-bind="value: municipality, valueUpdate: 'input', event: { change: changeMunicipality }"
+								disabled
+								required
+							>
+							</select>
+							<label for="municipality" class="c-form__label label">Barrio</label>
+						</div>
+					</div>
+					<!-- ubicación --> 
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+
+							<span class="c-form__icon i-pin">
+								<span class="u-hidden">
+									Icono informativo
+								</span>
+							</span>
+
+							<input
+								id="user-ubication"
+								name="ubication"
+								class="c-form__input"
+								type="text"
+								autocomplete="off"
+								required
+							>
+
+							<label
+								class="c-form__label label"
+								for="user-ubication"
+							>
+								Ubicación
+							</label>
+
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="c-form__group_input c-form__box c-form__group_input_column">
+
+					<div class="c-form__group_input c-form__group_input_w100">
+						<!-- tipo de vía --> 
+						<div class="c-form__field">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select
+								id="type-road"
+								class="c-form__input c-form__select"
+								data-bind="value: typeRoad, valueUpdate: 'input'"
+							>
+								<option>Seleccione</option>
+								<option value="AA">Apartado Aereo</option>
+								<option value="AUTOP">Autopista</option>
+								<option value="AV">Avenida</option>
+								<option value="AC">Avenida Calle</option>
+								<option value="AK">Avenida Carrera</option>
+								<option value="CL">Calle</option>
+								<option value="KR">Carrera</option>
+								<option value="CT">Carretera</option>
+								<option value="DG">Diagonal</option>
+								<option value="KM">Kilometro</option>
+								<option value="OT">Otro</option>
+								<option value="TV">Transversal</option>
+							</select>
+							<label for="type" class="c-form__label label">Tipo de vía</label>
+						</div>
+						<!-- número --> 
+						<div class="c-form__field">
+							<input 
+								id="main-number"
+								class="c-form__input"
+								type="number"
+								autocomplete="off"
+								data-bind="value: mainNumber, valueUpdate: 'input'"
+							>
+							<label class="c-form__label label" for="main-number">
+								Número
+							</label>
+						</div>
+					</div>
+
+					<div class="c-form__group_input">
+						<div class="c-form__group_input">
+							<label class="label" for="first-number">
+								#
+							</label>
+							<input
+								id="first-number"
+								class="c-form__input_outline"
+								type="text"
+								autocomplete="off"
+								data-bind="value: firstNumber, valueUpdate: 'input'"
+							>
+						</div>
+						<div class="c-form__group_input">
+							<label class="label" for="second-number">
+								-
+							</label>
+							<input 
+								id="second-number"
+								class="c-form__input_outline"
+								type="text"
+								autocomplete="off"
+								data-bind="value: secondNumber, valueUpdate: 'input'"
+							>
+						</div>
+					</div>
+
+				</div>
+				<!-- complemento --> 
+				<div class="c-form__field">
+					<input
+						id="complement"
+						class="c-form__input"
+						type="text"
+						autocomplete="off"
+						data-bind="value: complement, valueUpdate: 'input'"
+					>
+					<label class="c-form__label label" for="complement">
+						Complemento
+					</label>
+				</div>
+
+				<footer class="o-modal__footer">
+					<button
+						id="submit-one"
+						class="o-btn o-btn_full o-btn_height56 o-btn_w270"
+						data-bind="click: validateAddress, enable: submitOne"
+					>
+						Continuar
+					</button>
+				</footer>
+
+			</fieldset>
+			<!-- /ko -->
+			<!-------------------- PASO DOS -------------------->
+			<!--lista de pasos-->
+			<!-- ko if: stepTwo -->			
+			<div class="c-steps c-steps_w100">
+				<!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado-->
+				<ul class="c-steps__list">
+					<li class="c-steps__item is-checked">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">1</span>
+								<span class="c-steps__name">Direccion nueva</span>
+							</div>
+						</div>
+					</li>
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<p class="c-steps__value">2</p>    
+								<span class="c-steps__name">Validación  dirección</span>
+							</div>                        
+						</div>
+					</li>
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">3</span>
+								<span class="c-steps__name">Confirmación dirección</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<fieldset class="c-form__fieldset c-form__fieldset_margin-top" data-bind="event: { input: validateTwo }">
+				<!-- ciudad -->
+				<div class="c-form__group_input">
+					<div class="c-form__box c-form__box_flexbox c-form__box_width100">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select
+								id="select-address"
+								class="c-form__input c-form__select"
+								data-bind="value: selectedAddress, valueUpdate: 'input'"
+							>
+							</select>
+							<label for="select-address" class="c-form__label c-form__label_overflow label">Confirmanos la selección de tu dirección</label>
+						</div>
+						<div class="o-circle-cta">
+							<button class="o-circle-cta__btn o-circle-cta__btn_with-txt i-pencil">
+								<span class="o-circle-cta__text">Editar</span>
+							</button>
+						</div>
+					</div>	
+				</div>
+				<p class="c-form__lead_gray4 u-text-center">¿No encuentras tu dirección? <a class="o-link" href="#">Sigue el Paso a Paso</a></p>
+
+				<footer class="o-modal__footer o-modal__footer_margin-top32 o-modal__footer_inline">
+					<button class="o-btn o-btn_secondary o-btn_w160 o-btn_height56" type="button" data-bind="click: backTwo">Volver</button>
+					<button
+						id="submit-two"
+						class="o-btn o-btn_full o-btn_w270_media o-btn_height56"
+						data-bind="click: selectAddress, enable: submitTwo"
+					>
+						Si, es correcta
+					</button>
+				</footer>
+			</fieldset>
+			<!-- /ko -->
+			<!-------------------- PASO TRES -------------------->
+			<!--lista de pasos-->
+			<!-- ko if: stepThree -->
+			<div class="c-steps c-steps_w100">
+				<!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado-->
+				<ul class="c-steps__list">
+					<li class="c-steps__item is-checked">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">1</span>
+								<span class="c-steps__name">Direccion nueva</span>
+							</div>
+						</div>
+					</li>
+					<li class="c-steps__item is-checked">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<p class="c-steps__value">2</p>    
+								<span class="c-steps__name">Validación  dirección</span>
+							</div>                        
+						</div>
+					</li>
+					<li class="c-steps__item">
+						<div class="c-steps__wrap">
+							<div class="c-steps__bullet">
+								<span class="c-steps__value">3</span>
+								<span class="c-steps__name">Confirmación dirección</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<fieldset class="c-form__fieldset c-form__fieldset_margin-top">
+				<div class="c-form__fieldset_grid">
+					<!-- select departamento -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select class="c-form__input c-form__select" required>
+								<option data-bind="text: getDepartment"></option>
+							</select>
+							<label for="department" class="c-form__label label">Selecciona tu departamento</label>
+						</div>
+					</div>
+
+					<!-- ciudad -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select class="c-form__input c-form__select" required>
+								<option data-bind="text: getCity"></option>
+							</select>
+							<label for="city" class="c-form__label label">Ciudad</label>
+						</div>
+					</div>
+
+					<!-- barrio -->
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+							<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+								<span class="u-hidden">Icono informativo</span>
+							</span>
+							<select class="c-form__input c-form__select" required>
+								<option data-bind="text: getMunicipality"></option>
+							</select>
+							<label for="municipality" class="c-form__label label">Barrio</label>
+						</div>
+					</div>
+
+					<!-- ubicación --> 
+					<div class="c-form__box">
+						<div class="c-form__field is-field-check">
+
+							<span class="c-form__icon i-pin">
+								<span class="u-hidden">
+									Icono informativo
+								</span>
+							</span>
+
+							<input
+								id="user-ubication"
+								name="ubication"
+								class="c-form__input"
+								type="text"
+								autocomplete="off"
+								required
+							>
+
+							<label
+								class="c-form__label label"
+								for="user-ubication"
+							>
+								Ubicación
+							</label>
+
+						</div>
+					</div>
+					
+				</div>
+
+				<?php
+				/* pendiente por confirmar, este input no esta en figma
+				<div class="c-form__box" >
+
+					<div class="c-form__group_input c-form__group_input_w100">
+						<!-- número --> 
+						<div class="c-form__field">
+							<input
+								id="number"
+								class="c-form__input"
+								type="number"
+								autocomplete="off"
+							>
+							<label class="c-form__label label" for="number">
+								Número
+							</label>
+						</div>
+
+					</div>
+				</div>
+				*/
+				?>
+
+				<div class="c-form__box" >
+					<div class="c-form__group_input c-form__group_input_w100">
+
+						<!-- complemento --> 
+						<div class="c-form__field">
+							<input
+								id="complement"
+								class="c-form__input"
+								type="text"
+								autocomplete="off"
+								data-bind="value: getComplement"
+							>
+
+							<label class="c-form__label label" for="complement">
+								Complemento
+							</label>
+						</div>
+
+					</div>
+				</div>
+				
+				<footer class="o-modal__footer o-modal__footer_inline o-modal__footer_margin-top32">
+					<button class="o-btn o-btn_secondary o-btn_w160 o-btn_height56" type="button" data-bind="click: backThree">Volver</button>
+					<button class="o-btn o-btn_full o-btn_w270_media o-btn_height56" type="submit" data-bind="click: confirmAddress">Confirmar dirección</button>
+				</footer>
+
+			</fieldset>
+			<!-- /ko -->
+		</div>
+	</div>
+	<!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"validate-entity-address": {
+					"component": "Vass_Custom/js/validate-entity-address"
+				}
+			}
+		}
+	}
+}
+</script>

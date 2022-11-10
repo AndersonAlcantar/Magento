@@ -1,0 +1,179 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Vass\Migration\Helper\Data'); 
+
+$menu= $helper->getMigration();
+
+$params = $helper->getMigrationParams();
+$data= $helper->getMigrationData();
+?>  
+
+<!-- When class .is-open is added it opens the whole menu -->
+<div class="c-menu-aside js-asidemenu-target">
+
+    <div class="c-menu-aside__action">
+        <div class="c-menu-aside__buttons">
+
+            <button
+                class="c-menu-aside__action-btn js-asidemenu-btn-wholemenu"
+                type="button"
+            >
+                <span
+                  class="c-menu-aside__action-txt i-chevron-left"
+                >
+                <?php echo $data['name']; ?>
+                </span>
+            </button>
+
+            <button 
+              class="c-menu-aside__btn-close i-close js-asidemenu-btn-hide-wholemenu"
+              type="button"
+            >
+              <span class="u-hidden">cerrar</span>
+            </button>
+
+        </div>
+    </div>
+
+    <div class="c-menu-aside__box">
+        <div class="c-menu-aside__canvas">
+            <nav class="c-menu-aside__navigation">
+                <!-- first level menu -->
+                <ul class="c-menu-aside__list">
+
+                <?php
+                
+                    foreach ($menu as $item) {                       
+                        
+
+                    if(isset($item['submenu'])){
+                        $class_active = '';
+                        if($params['page'] == $item['id'] ){
+                            $class_active = "is-open-submenu";
+                        }
+                ?>
+                        <li class="c-menu-aside__item js-asidemenu-target-submenu <?= $class_active; ?>"> 
+                            <span class="c-menu-aside__link i-after-chevron-right js-asidemenu-btn-submenu">  
+                                <?= $block->escapeHtml($item['name']); ?>
+                            </span>
+
+                            <!-- First Aside -->
+                            <div class="c-submenu-aside">
+
+                                <ul class="c-submenu-aside__list">
+                                    <?php
+                                    foreach ($item['submenu'] as $submenu) {                                        
+
+                                        if(isset($submenu['submenu'])){
+                                            $class_active_sec = '';
+                                            if($params['second'] == $submenu['id'] ){
+                                                $class_active_sec = "is-open-submenu-third";
+                                            }
+                                    ?>
+                                        <li class="c-submenu-aside__item js-asidemenu-target-thirdmenu <?= $class_active_sec; ?>">
+
+                                            <span class="c-submenu-aside__link i-after-chevron-right js-asidemenu-btn-thirdmenu">
+                                                <?= $block->escapeHtml($submenu['name']); ?>
+                                            </span>
+
+                                            <!-- Second aside -->
+                                            <div class="c-submenu-third-aside"> 
+
+                                                <ul class="c-submenu-third-aside__list">
+                                                    <?php 
+                                                    foreach ($submenu['submenu'] as $submenu_) {                                                        
+
+                                                        if(isset($submenu_['submenu'])){
+                                                            $class_active_third = '';
+                                                            if($params['third'] == $submenu_['id'] ){
+                                                                $class_active_third = "is-open-submenu-fourth";
+                                                            }
+                                                    ?>
+
+                                                    <li class="c-submenu-third-aside__item js-asidemenu-target-fourthmenu <?= $class_active_third; ?>">
+
+                                                        <span class="c-submenu-fourth-aside__link i-after-chevron-right js-asidemenu-btn-fourthmenu">
+                                                            <?= $block->escapeHtml($submenu_['name']); ?>
+                                                        </span>
+
+                                                        <!-- Third aside -->
+                                                        <div class="c-submenu-fourth-aside">
+
+                                                            <ul class="c-submenu-fourth-aside__list">
+
+                                                                <?php 
+                                                                foreach ($submenu_['submenu'] as $submenu__) {
+                                                                ?>
+                                                                <li class="c-submenu-fourth-aside__item">
+                                                                    <a
+                                                                        class="c-subsubmenu-fourth__link"
+                                                                        href="<?= $block->getBaseUrl()."legales/".$helper->getUrlEncode($item['name'],$submenu['name'],$submenu_['name'],$submenu__['name']).'.html' ?>"
+                                                                    >
+                                                                        <?= $block->escapeHtml($submenu__['name']); ?>
+                                                                    </a>     
+                                                                </li>
+                                                                <?php
+                                                                }
+                                                                ?>
+
+                                                            </ul>
+
+                                                        </div>                                                       
+
+                                                    </li>
+                                                    <?php 
+                                                        }else{
+                                                    ?>    
+                                                    <li class="c-submenu-third-aside__item">                                                        
+                                                        <a class="c-submenu-third-aside__link" href="<?= $block->getBaseUrl()."legales/".$helper->getUrlEncode($item['name'],$submenu['name'],$submenu_['name']).'.html' ?>">
+                                                            <?= $block->escapeHtml($submenu_['name']); ?>
+                                                        </a>
+                                                    </li>
+                                                    <?php
+
+                                                        }
+                                                    }
+                                                    ?>
+                                                </ul>
+
+                                            </div>
+
+                                        </li>
+                                        <?php
+                                        } else {
+                                        ?>
+                                        <li class="c-submenu-aside__item">
+                                            <a class="c-submenu-aside__link" href="<?= $block->getBaseUrl()."legales/".$helper->getUrlEncode($item['name'],$submenu['name']).'.html' ?>">
+                                                <?= $block->escapeHtml($submenu['name']); ?>
+                                            </a>     
+                                        </li>
+                                    <?php 
+                                        } 
+                                    }
+                                    ?>
+                               </ul>
+                            </div> 
+
+                        </li>
+                    <?php 
+                    } else {
+                    ?>
+                        <li class="c-menu-aside__item">
+                            <a class="c-menu-aside__link" href="<?= $block->getBaseUrl()."legales/".$helper->getUrlEncode($item['name']).'.html' ?>">
+                                <?= $block->escapeHtml($item['name']); ?>
+
+                            </a>
+                        </li>
+                <?php
+                    }
+                }
+                  ?> 
+                </ul>
+
+            </nav>
+        </div>
+    </div>
+
+</div>
+
+

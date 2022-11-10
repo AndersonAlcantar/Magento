@@ -1,0 +1,18 @@
+{
+    "vass_region_departament": {
+        "column": {
+            "id": true,
+            "zone": true,
+            "zone_info": true,
+            "zone_code": true,
+            "region_id": true,
+            "regional_divisions": true,
+            "region_code": true,
+            "region": true,
+            "post_sales_type": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

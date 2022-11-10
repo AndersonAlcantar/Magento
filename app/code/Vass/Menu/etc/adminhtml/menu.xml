@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">  
+    <menu>
+      <add id="Vass_Menu::vass_menu_index"
+            title="Menu"
+            module="Vass_Menu"
+            sortOrder="1"
+            parent="Vass_Config::menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+     <add id="Vass_Menu::vass_category"
+            title="Menu Categories"
+            module="Vass_Menu"
+            sortOrder="2"
+            action="category/menucategory/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+     <add id="Vass_Menu::vass_menuitems"
+            title="Menu Items"
+            module="Vass_Menu"
+            sortOrder="3"
+            action="menuitems/menuitems/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+       <add id="Vass_Menu::vass_marca"
+            title="Brands"
+            module="Vass_Menu"
+            sortOrder="4"
+            action="marcas/marcas/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+       <add id="Vass_Menu::vass_entretenimiento"
+            title="Entertainments"
+            module="Vass_Menu"
+            sortOrder="5"
+            action="entretenimientos/entretenimientos/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+       <add id="Vass_Menu::vass_redessociales"
+            title="Footer Social Networks"
+            module="Vass_Menu"
+            sortOrder="6"
+            action="redessociales/redessociales/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+       <add id="Vass_Menu::vass_drag_drop"
+            title="Sort Items Menu"
+            module="Vass_Menu"
+            sortOrder="6"
+            action="ordenar/ordenarmenu/index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Menu::vass_menu" />
+
+        <add id="Vass_Menu::vass_migration_index"
+            title="Migration Categories"
+            module="Vass_Migration"  
+            sortOrder="7"
+            action="migration/legales/Index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Migration::vass_Migration_index" />
+
+        <add id="Vass_Menu::vass_migrationsub_index"
+            title="Migration Sub-Categories"
+            module="Vass_Migration"  
+            sortOrder="8"
+            action="migration/legalesSub/Index"
+            parent="Vass_Menu::vass_menu_index"
+            resource="Vass_Migration::vass_Migration_index" />
+
+    </menu>
+</config>

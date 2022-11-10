@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <!-- <add 
+            id="Vass_ImportData::title" 
+            title="Vass Divipola" 
+            module="Vass_ImportData" 
+            sortOrder="12"
+            resource="Vass_ImportData::vass_importdata" /> -->
+         
+        <add 
+            id="Vass_ImportData::divipola" 
+            title="Divipola" 
+            module="Vass_ImportData" 
+            sortOrder="6" 
+            action="divipola/divipola/index" 
+            resource="Vass_ImportData::vass_importdata" 
+            parent="Vass_Fija::title"/>
+        <add 
+            id="Vass_ImportData::divipolalog" 
+            title="Divipola Logs" 
+            module="Vass_ImportData" 
+            sortOrder="6" 
+            action="divipola/divipolalog/index" 
+            resource="Vass_ImportData::vass_importdata" 
+            parent="Vass_Fija::title"/>    
+    </menu>
+</config>

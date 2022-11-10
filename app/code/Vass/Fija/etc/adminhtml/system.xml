@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vassfija" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Offerts</label>
+            <tab>vass</tab>
+            <resource>Vass_Fija::fija_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="decosnumber" translate="label" type="text" sortOrder="1" showInDefault="5" showInWebsite="1" showInStore="1">
+                    <label>Maximum Number of Decoders</label>
+                    <comment>Example : 5</comment>
+                </field>
+                <field id="baseportprice" translate="label" type="text" sortOrder="2" showInDefault="5" showInWebsite="1" showInStore="1">
+                    <label>BasePort Precio</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

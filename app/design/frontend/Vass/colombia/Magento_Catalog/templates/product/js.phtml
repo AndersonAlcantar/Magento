@@ -1,0 +1,82 @@
+<input type="hidden" id="variation_id" name="variation_id" readonly autocomplete="off" >
+<script>
+// <![CDATA[
+    require([
+            'jquery',
+            'mage/url'
+        ], function ($,url) {
+
+            var getUrlParameter = function getUrlParameter(sParam) {
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+                return false;
+            };
+
+            jQuery(".tablinks").click(function(){
+                jQuery(".tablinks").removeClass('active');
+                jQuery(this).addClass('active');
+                jQuery(".tabcontent").hide();
+                jQuery("#"+jQuery(this).data('tab')).css('display','flex');
+                //jQuery("#"+jQuery(this).data('tab')).fadeIn();
+                let purchase_type = "t";
+                if(jQuery(this).data('tab') === "credicell_tab"){
+                    purchase_type = "c";
+                    var serviceUrl = url.build('vass/custom/getstock');
+                    jQuery.post(serviceUrl,{type:'credicel',product_id:jQuery("#variation_id").val()})
+                    .done(function (msg) {
+                        if(msg.precio_credicel!=''&&jQuery(".credicell_tab").hasClass('active')){
+                            console.log(msg.precio_credicel);
+                            $('[data-dynamic="plazos"]').html('$ '+msg.precio_credicel/24);
+                            $('.regular-due-price').html('$ '+msg.precio_credicel);
+                        }
+                    })
+                    .fail(function (msg) {
+
+                    })
+                }
+                var serviceUrl = url.build('vass/custom/setpurchasetype');
+                    jQuery.post(serviceUrl,{type:purchase_type})
+                    .done(function (msg) {
+                        console.log(msg);
+                    })
+                    .fail(function () {
+    
+                    })
+                
+            })
+            jQuery(document).ready(function(){
+
+                var utm_source = getUrlParameter('utm_source');
+                var utm_medium = getUrlParameter('utm_medium');
+                var utm_campaign = getUrlParameter('utm_campaign');
+                var utm_content = getUrlParameter('utm_content');
+                if(utm_source!=''||utm_medium!=''||utm_campaign!=''||utm_content!=''){
+                    var serviceUrl = url.build('vass/custom/setpurchasetype');
+                    jQuery.post(serviceUrl,{utm_source:utm_source,utm_medium:utm_medium,utm_campaign:utm_campaign,utm_content:utm_content})
+                    .done(function (msg) {
+                        console.log(msg);
+                    })
+                    .fail(function () {
+    
+                    })
+                }
+            });
+            
+        });
+
+
+
+        
+
+        // ]]>
+</script>

@@ -1,0 +1,132 @@
+/* TODO: PASAR A SCSS */
+body {
+    &:not(.hogar-index-index) {
+        background-color: $c-gray-1;
+    }
+}
+
+// esto es para 404
+// .cuatro {
+//     #maincontent {
+//         position: relative;
+//         padding-top: 360px;
+
+//         .breadcrumbs {
+//             display: none;
+//         }
+
+//         .o-system-error {
+//             position: absolute;
+//             top: 0;
+//             left: 0;
+//             right: 0;
+//             width: 100%;
+//             min-width: 100%;
+//             height: 360px;
+//         }
+
+//         .o-system-error__img {
+//             width: 100%;
+//             height: 100%;
+//             object-fit: cover;
+//             object-position: center bottom;
+//         }
+//     }
+// }
+
+/* overwrite default styles */
+.page-layout-2columns-left #maincontent .column.main,
+.page-layout-2columns-left .sidebar-main.sidebar {
+    width: auto;
+    float: none;
+    padding: 0;
+    min-height: auto;
+}
+
+.product-image-wrapper {
+    padding: 0 !important;
+}
+
+.o-layout-noresults {
+    width: 100%;
+}
+
+.o-layout-2-columns {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+}
+
+/* LAYOUT */
+@media (max-width: 740px) {
+    .o-layout__aside {
+        @include px-to-rem(margin-bottom, $gutter * 5);
+    }
+
+    .o-layout-2-columns {
+        width: $canvas-with;
+        max-width: $canvas-max-with;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 740px) {
+    .o-layout__aside {
+        @include px-to-rem(margin-bottom, $gutter * 10);
+    }
+
+    // Layout for product detail
+    .o-layout__detail-product {
+        @include flexbox;
+        @include px-to-rem(column-gap, 30px);
+    }
+}
+
+@media (max-width: 1023px) {
+    .o-layout-2-columns {
+        @include flex-direction(column-reverse);
+        @include justify-content(center);
+        @include align-items(center);
+    }
+
+    .catalogsearch-result-index {
+        .o-layout__aside {
+            @include flexbox;
+            @include flex-direction(column);
+
+            .column.main {
+                order: 2;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .o-layout__aside {
+        @include flexbox;
+        @include justify-content(space-between);
+        @include flex-wrap(wrap);
+        @include px-to-rem(column-gap, $gutter * 3);
+
+        .banner {
+            @include flex(1 1 100%);
+        }
+        .sidebar.sidebar-main {
+            @include flex(1 1 20%);
+        }
+        .column.main {
+            @include flex(1 1 70%);
+        }
+        .information {
+            @include flex(1 1 100%);
+            order: 4;
+        }
+    }
+
+    .o-layout-2-columns {
+        width: 90% !important;
+        max-width: 1141px;
+        margin: 0 auto;
+    }
+}
+/* END LAYOUT */

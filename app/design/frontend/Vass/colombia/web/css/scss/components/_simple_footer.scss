@@ -1,0 +1,109 @@
+.c-footer-simple {
+    background-color: $c-secondary;
+}
+
+.c-footer-simple__list-ico,
+.c-footer-simple__list {
+    @include flexbox;
+}
+
+.c-footer-simple__list-ico {
+    list-style-type: none;
+    @include justify-content(space-evenly);
+    @include px-to-rem(column-gap, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 4);
+}
+.c-footer-simple__ico-item {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-to-rem(font-size, 14px);
+    color: $c-neutro;
+
+    &::before {
+        @include px-to-rem(font-size, 26px);
+        color: $c-blue-normal;
+    }
+}
+.c-footer-simple__divider {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include px-to-rem(padding-top, $gutter);
+    border-top: 1px solid $c-gray-2;
+}
+.c-footer-simple__copy-right {
+    text-align: center;
+    @include px-to-rem(font-size, 12px);
+    color: $c-gray-3;
+}
+.c-footer-simple__list {
+    flex-wrap: wrap;
+    @include justify-content(center);
+    list-style-type: none;
+}
+.c-footer-simple__item {
+    @include px-to-rem(font-size, 12px);
+    color: $c-gray-3;
+}
+.c-footer-simple__link {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+    &::after {
+        content: "";
+        display: block;
+        @include px-to-rem(height, 16px);
+        @include px-to-rem(width, 1px);
+        background-color: $c-gray-2;
+    }
+}
+.c-footer-simple__item {
+    @include px-to-rem(margin-left, $gutter);
+    &:last-of-type {
+        .c-footer-simple__link {
+            &::after {
+                display: none;
+            }
+        }
+    }
+    &:first-of-type {
+        margin-left: 0;
+    }
+}
+
+@include media-query(medium-max) {
+    .c-footer-simple__ico-item {
+        font-weight: $f-light;
+    }
+}
+
+@include media-query(medium) {
+    .c-footer-simple__list-ico {
+        @include px-to-rem(column-gap, $gutter * 5);
+    }
+
+    .c-footer-simple__ico-item {
+        @include flex-direction(row);
+        @include px-to-rem(column-gap, $gutter * 2);
+        @include align-items(center);
+        max-width: 138px;
+    }
+}
+
+@media only screen and (max-width: 944px) {
+    .c-footer-simple__divider {
+        @include flex-direction(column);
+        @include align-items(center);
+        @include px-to-rem(row-gap, $gutter);
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .c-footer-simple__list-ico {
+        justify-content: center;
+        flex-wrap: wrap;
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+    .c-footer-simple__ico-item {
+        width: 34%;
+    }
+}

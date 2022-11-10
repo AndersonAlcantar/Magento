@@ -1,0 +1,33 @@
+.u-download-link-ico {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 3);
+}
+
+.u-download-link-ico__ico {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    @include px-to-rem(padding, $gutter);
+    @include px-to-rem(border-radius, $gutter);
+    @include px-to-rem(font-size, 44px);
+    color: $c-on-primary-gray;
+    background: $c-neutro;
+}
+
+.u-download-link-ico__link {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+    text-decoration: none;
+    color: $c-primary;
+}
+
+.u-download-link-ico__txt {
+    text-decoration: underline;
+
+    &:hover {
+        text-decoration: none;
+    }
+}

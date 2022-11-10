@@ -1,0 +1,291 @@
+//-*------------------------------------*
+//-   .o- class Objects Botones y enlaces.
+//-*------------------------------------*
+
+*:focus {
+  outline: 0;
+}
+
+button {
+  line-height: inherit;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+  outline-width: 0;
+  border: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transition: all .4s;
+
+  &:focus {
+    outline-width: 0;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+a {
+  outline-width: 0;
+  cursor: pointer;
+  transition: all .4s;
+}
+
+
+/**
+ * Class: o-btn
+ * @modifiers
+ *  .o-btn Botón para acciones primarias
+ *  .o-btn_secondary Botón para acciones secundarias 
+ * @description  Botón acciones primarias y secundarias
+ * ♣ Estados: hover, focus
+ * @atom Botón
+ * @section 04. Botones y enlaces > Botones
+**/
+
+.o-btn {
+  @include inline-flex;
+  @include justify-content(center);
+  @include align-items(center);
+  padding: 13px 24px; 
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+  @include px-to-rem(font-size, 16px);
+  font-weight: $f-bold;
+  border-radius: 60px;
+  color: $c-neutro;
+  background-color: $c-blue-normal;
+  transition: all .4s ease-in;
+
+  &:after {
+    padding-left: $gutter; 
+    @include px-to-rem(font-size, 12px);
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    background-color: $c-blue-dark;
+  }
+
+  &:disabled {
+    background-color: $c-blue-inactive;
+  }
+}
+
+//- Modifires .o-btn
+
+.o-btn_primary_dark-blue {
+  color: $c-neutro;
+  background-color: $c-secondary;
+  border: 1px solid $c-secondary;
+  transition: all .4s ease-in;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $c-neutro;
+    border-color: $c-secondary;
+    background-color: $c-secondary;
+  }
+
+  &:disabled {
+    border-color: $c-gray-3;
+    background-color: $c-gray-3;
+  }
+
+}
+
+
+.o-btn_secondary {
+  color: $c-primary;
+  background-color: transparent;
+  border: 1px solid $c-primary;
+  transition: all .4s ease-in;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $c-neutro;
+    background-color: $c-blue-dark;
+  }
+
+  &:disabled {
+    color: $c-blue-inactive;
+    border: 1px solid $c-blue-inactive;
+  }
+
+}
+
+
+.o-btn_light {
+  border: 1px solid $c-primary;
+  color: $c-primary;
+  background-color: $c-neutro;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $c-neutro;
+    border-color: $c-neutro;
+    background-color: transparent;
+  }
+}
+
+// circular button with centered icon and no text
+.o-circle-cta {
+  @include px-to-rem(margin-top, 20px);
+}
+.o-circle-cta__btn {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(height, 32px);
+  @include px-to-rem(width, 32px);
+  background-color: $c-primary;
+  border-radius: 60px;
+  &::before {
+    color: $c-neutro;
+  }
+}
+.o-circle-cta__btn_with-txt {
+  color: transparent;
+}
+
+
+// button with icon on the left
+.o-btn-icon {
+  @include px-to-rem(column-gap, $gutter * 3);
+  &.is-loading {
+    &::before {
+      animation: spin 1s ease-in-out infinite;
+      -webkit-animation: spin 1s ease-in-out infinite;
+    }
+  }
+}
+.o-btn-icon_font26 {
+  &::before {
+    @include px-to-rem(font-size, 26px);
+  }
+}
+
+.o-btn_sm {
+  @include px-to-rem(padding-top, 10px);
+  @include px-to-rem(padding-bottom, 10px);
+}
+
+.o-btn_margin {
+  @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+.o-btn_full {
+  width: 100%;
+}
+
+.o-btn_w225 {
+  @include px-to-rem(max-width, 225px);
+}
+.o-btn_w270 {
+  @include px-to-rem(max-width, 270px);
+}
+.o-btn_w290 {
+  width: 100%;
+  @include px-to-rem(max-width, 290px);
+}
+
+.o-btn_w160 {
+  @include px-to-rem(min-width, 160px);
+} 
+
+.o-btn_w255 {
+  @include px-to-rem(min-width, 255px);
+}
+
+.o-btn_w287 {
+  @include px-to-rem(min-width, 287px);
+}
+
+.o-btn_w392 {
+  @include px-to-rem(max-width, 392px);
+}
+.o-btn_w350 {
+  @include px-to-rem(max-width, 350px);
+}
+.o-btn_height56 {
+  @include px-to-rem(min-height, 56px);
+}
+.o-btn_height60 {
+  @include px-to-rem(min-height, 60px);
+}
+.o-btn_height34 {
+  @include px-to-rem(max-height, 34px);
+}
+
+.o-btn-float {
+  position: fixed;
+  right: 0;
+  @include px-to-rem(bottom, 160px);
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(width, $gutter * 5);
+  @include px-to-rem(height, $gutter * 5);
+  @include px-to-rem(margin-right, $gutter * 7);
+  @include px-to-rem(margin-bottom, $gutter * 7);
+  @include px-to-rem(border-radius, 50px);
+  background: $c-primary;
+
+  &::before {
+    @include px-to-rem(font-size, $gutter * 3);
+  }
+
+  .register-index-index & {
+    display: none;
+  }
+}
+@media only screen and (min-width: 450px) {
+  .o-btn_w270_media {
+    @include px-to-rem(max-width, 270px);
+  }
+}
+@media only screen and (min-width: 600px) {
+  .o-circle-cta__btn{
+    @include px-to-rem(height, 41px);
+    @include px-to-rem(width, 41px);
+  }
+}
+
+@media only screen and (max-width: 601px) {
+  .o-circle-cta__btn_with-txt {
+    @include px-to-rem(column-gap, $gutter * 2);
+    width: 100%;
+    @include px-to-rem(max-width, 300px);
+    @include px-to-rem(min-height, 41px);
+    margin: 0 auto;
+    color: $c-neutro;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .o-circle-cta {
+    @include px-to-rem(margin-top, 0);
+  }
+  .o-circle-cta__text {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 739px) {
+  .o-btn_height40_mb {
+    @include px-to-rem(min-height, $gutter * 5);
+  }
+
+  .o-btn_w170_mb {
+    @include px-to-rem(min-width, 170px);
+  }
+}

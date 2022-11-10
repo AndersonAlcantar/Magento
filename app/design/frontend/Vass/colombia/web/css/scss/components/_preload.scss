@@ -1,0 +1,53 @@
+.c-preloader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 555;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    height: 100%;
+    background-color: $c-neutro;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease-in;
+    
+    .is-preload & {
+        opacity: 1;
+        background-color: rgba($color: $c-neutro, $alpha: 0.9);
+        visibility: visible;
+    }
+}
+.c-preloader_position {
+  position: relative;
+  z-index: 8;
+}
+.c-preloader__box {
+    display: grid;
+    place-items: center;
+    row-gap: 8px;
+}
+.c-preloader_z-index {
+  z-index: 2;
+}
+.c-preloader__circle {
+    @include px-to-rem(height, 53px);
+    @include px-to-rem(width, 53px);
+    border-radius: 50%;
+    border: 2px solid $c-primary;
+    border-top-color: rgba($color: $c-neutro, $alpha: 0.9);
+    box-sizing: border-box;
+    background: transparent;
+    animation: loading 1s linear infinite;
+  }
+  
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+    0% {
+      transform: rotate(360deg);
+    }
+  }

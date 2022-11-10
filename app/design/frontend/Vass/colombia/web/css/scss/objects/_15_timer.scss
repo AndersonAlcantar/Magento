@@ -1,0 +1,13 @@
+.o-timer {
+    @include px-to-rem(margin, $gutter * 2 0);
+    color: $c-gray-5;
+}
+
+
+.o-timer__txt {
+    @include px-to-rem(margin, $gutter * 2 0);
+    color: $c-red-error;
+}
+.o-timer_margin {
+    @include px-to-rem(margin, $gutter 0);
+}

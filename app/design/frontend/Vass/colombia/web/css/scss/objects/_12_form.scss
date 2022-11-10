@@ -1,0 +1,4 @@
+.o-result-search {
+    @include flexbox;
+    @include justify-content(space-between);
+}

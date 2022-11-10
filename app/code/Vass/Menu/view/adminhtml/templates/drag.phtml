@@ -1,0 +1,26 @@
+<div>
+    <div class="list" id="listType">
+
+    </div>
+    <div class="list" id="itemItemParent">
+
+    </div>
+    <div class="list" id="itemItemChild">
+
+    </div>
+    <div class="list" id="itemItemChildThree">
+
+    </div>
+</div>
+
+
+<script>
+    require([
+        "prototype"
+    ], function () {
+        window.urlCategory = '<?= /** @noEscape */ $block->getUrl('ordenar/ordenarmenu/category')?>';
+        window.urlItemParent = '<?= /** @noEscape */ $block->getUrl('ordenar/ordenarmenu/itemparent')?>';
+        window.urlItemChild = '<?= /** @noEscape */ $block->getUrl('ordenar/ordenarmenu/itemchild')?>';
+       // console.log(gpImageTagSaveUrl)
+    });
+</script>

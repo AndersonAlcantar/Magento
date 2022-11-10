@@ -1,0 +1,90 @@
+{
+    "vass_fija_email_blacklist": {
+        "column": {
+            "id": true,
+            "name": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_fija_offerttvdecos": {
+        "column": {
+            "id": true,
+            "status": true,
+            "decos": true,
+            "offert_id": true,
+            "price": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_fija_ciclos": {
+        "column": {
+            "id": true,
+            "dia": true,
+            "ciclo": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_banners_fija": {
+        "column": {
+            "id": true,
+            "banner_title": true,
+            "description": true,
+            "desktop_image": true,
+            "tablet_image": true,
+            "mobile_image": true,
+            "link": true,
+            "text_button": true,
+            "status": true,
+            "type": true,
+            "created_at": true,
+            "updated_at": true,
+            "scheduled": true,
+            "id_cat": true,
+            "id_subcat": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_fija_offerts": {
+        "column": {
+            "id": true,
+            "id_offert": true,
+            "name": true,
+            "title": true,
+            "subtitle": true,
+            "months": true,
+            "message_exclusive": true,
+            "price": true,
+            "discount": true,
+            "recommended": true,
+            "message_information": true,
+            "id_cat": true,
+            "id_subcat": true,
+            "components": true,
+            "order": true,
+            "normal_price": true,
+            "offert_image": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

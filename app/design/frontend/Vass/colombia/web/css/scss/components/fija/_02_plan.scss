@@ -1,0 +1,458 @@
+.f-c-plan__content {
+    @include px-to-rem(border-radius, $gutter);
+    @include px-to-rem(padding, $gutter * 2 14px);
+    background: $c-neutro;
+    box-shadow: 0px 8px 8px rgba(11, 39, 57, 0.1);
+
+    .is-plan-recommended & {
+        border: 2px solid $c-primary;
+    }
+}
+
+.f-c-plan__flag {
+    display: none;
+
+    .is-plan-recommended & {
+        display: block;
+        @include px-to-rem(font-size, 14px);
+        color: $c-neutro;
+        background-color: $c-primary;
+    }
+}
+
+.f-c-plan__title,
+.f-c-plan__value,
+.f-c-plan__price {
+    line-height: 1;
+}
+
+.f-c-plan__title {
+    font-weight: $f-regular;
+    color: $c-secondary;
+}
+
+.f-c-plan__value {
+    display: block;
+    color: $c-secondary;
+}
+
+.f-c-plan__tag,
+.f-c-plan__benefit-title {
+    @include px-to-rem(font-size, 14px);
+}
+
+.f-c-plan__tag {
+    display: inline-block;
+    margin-left: 0;
+}
+
+.f-c-plan__price {
+    color: $c-gray-5;
+}
+.f-c-plan__price-wrap {
+    @include flexbox;
+    @include justify-content(space-around);
+    @include align-items(center);
+    flex-wrap: wrap;
+    @include px-to-rem(column-gap, 2px);
+}
+.f-c-plan__price-normal {
+    @include px-to-rem(margin-right, $gutter);
+    @include px-to-rem(font-size, 12px);
+    text-decoration: line-through;
+    color: $c-on-primary-gray;
+}
+
+.f-c-plan__notify {
+    @include px-to-rem(border-radius, 6px);
+    @include px-to-rem(padding-top, 9px);
+    @include px-to-rem(padding-bottom, 9px);
+    line-height: 1.2;
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-5;
+    background: $c-gray-1;
+}
+.f-c-plan__notify_brand {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+}
+
+.f-c-plan__notify-img {
+    @include px-to-rem(height, 22px);
+}
+
+.f-c-plan__notify-text_bold {
+    @include px-to-rem(font-size, 14px);
+}
+
+.f-c-plan__benefits {
+    list-style: none;
+}
+
+.f-c-plan__benefit {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 2);
+    border-bottom: 1px solid $c-gray-2;
+    @include px-to-rem(padding, 12px 0);
+    line-height: 1.2;
+    text-align: left;
+    min-height: 63px;
+}
+.f-c-plan__benefit-img-wrap {
+    @include px-to-rem(min-width, $gutter * 2);
+}
+.f-c-plan__benefit-img {
+    @include px-to-rem(max-height, $gutter * 2);
+    @include px-to-rem(max-width, $gutter * 2);
+}
+.f-c-plan__benefit-img_brand {
+    @include px-to-rem(max-width, 40px);
+}
+
+.f-c-plan__benefit-description,
+.f-c-plan__benefit-link {
+    @include px-to-rem(font-size, 13px);
+}
+
+.f-c-plan__benefit-link {
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+// Button toggle list
+.f-c-plan__toggle-btn {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+    width: 100%;
+    @include px-to-rem(margin-top, $gutter * 3);
+    color: $c-primary;
+    cursor: pointer;
+
+    &::before {
+        transition: 0.5s ease-in-out;
+    }
+
+    &::after {
+        content: attr(data-text-up);
+    }
+
+    .is-benefits-down & {
+        &::before {
+            transform: rotate(180deg);
+        }
+
+        &::after {
+            content: attr(data-text-down);
+        }
+    }
+
+    &.u-hidden {
+        display: none;
+    }
+}
+
+// Content toggle list
+.f-c-plan__toggle-content {
+    overflow: hidden;
+    transition: all 0.7s;
+
+    .is-benefits-down & {
+        max-height: 1800px !important;
+    }
+}
+
+/*------------------------------------*\
+  Media querys Mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .f-c-plan-wrap {
+        @include px-to-rem(margin-top, $gutter * 3);
+        transform: none !important;
+    }
+
+    .f-c-plan-mb-0 {
+        margin-bottom: 0;
+    }
+
+    .f-c-plan-wrap {
+        @include flex-direction(column);
+        @include px-to-rem(row-gap, $gutter * 4);
+    }
+
+    .f-c-plan-arrow {
+        display: none;
+    }
+
+    .f-c-plan {
+        @include px-to-rem(max-width, 340px);
+        margin: 0 auto;
+    }
+
+    .f-c-plan__flag {
+        @include px-to-rem(border-radius, $gutter $gutter 0 0);
+    }
+
+    .f-c-plan__content {
+        .is-plan-recommended & {
+            @include px-to-rem(border-radius, 0 0 $gutter $gutter);
+        }
+    }
+
+    .f-c-plan__header {
+        position: relative;
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(flex-end);
+        @include px-to-rem(margin-bottom, $gutter * 2);
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: -$gutter * 4;
+            right: 0;
+            bottom: 0;
+            @include px-to-rem(left, -$gutter * 4);
+            margin: auto;
+            display: block;
+            @include px-to-rem(width, 1px);
+            @include px-to-rem(height, 44px);
+            background: $c-gray-3;
+        }
+    }
+
+    .f-c-plan__header-caption {
+        @include flex(1 1 45%);
+    }
+
+    .f-c-plan__header-price {
+        @include flex(1 1 55%);
+    }
+
+    .f-c-plan__title,
+    .f-c-plan__value,
+    .f-c-plan__price {
+        @include px-to-rem(margin-bottom, 12px);
+    }
+
+    .f-c-plan__title,
+    .f-c-plan__price,
+    .f-c-plan__price-dues {
+        @include px-to-rem(font-size, 14px);
+    }
+
+    .f-c-plan__value {
+        @include px-to-rem(font-size, 38px);
+    }
+
+    .f-c-plan__price-offer {
+        @include px-to-rem(margin-bottom, 12px);
+        @include px-to-rem(font-size, 28px);
+    }
+
+    .f-c-plan__notify {
+        @include px-to-rem(margin-top, $gutter * 2);
+        @include px-to-rem(margin-bottom, $gutter * 2);
+        @include px-to-rem(padding-right, 20px);
+        @include px-to-rem(padding-left, 20px);
+    }
+
+    .f-c-plan__notify-text {
+        .f-c-plan__notify_brand & {
+            @include px-to-rem(font-size, 13px);
+            color: $c-secondary;
+        }
+    }
+
+    .f-c-plan__benefit-header {
+        @include flexbox;
+        @include flex-wrap(wrap);
+        @include align-items(center);
+        @include px-to-rem(column-gap, $gutter);
+        @include px-to-rem(row-gap, $gutter);
+    }
+
+    .f-c-plan__toggle-btn {
+        @include px-to-rem(margin-top, $gutter * 2);
+        @include px-to-rem(font-size, 18px);
+    }
+
+    .f-c-plan__toggle-content {
+        .is-benefits-down & {
+            @include px-to-rem(margin, $gutter * 3 0 0);
+        }
+    }
+    .slashs-months{
+        display: none;
+    }
+}
+
+/*------------------------------------*\
+  Media querys Tablet y Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .f-c-plan-wrap {
+        @include px-to-rem(margin-top, $gutter * 6);
+        @include px-to-rem(padding, $gutter * 2 0);
+
+        &.is-plans-centered {
+            @include justify-content(center);
+        }
+    }
+
+    .f-c-plan-arrow {
+        right: -37px;
+        left: auto;
+        @include px-to-rem(width, 30px);
+        @include px-to-rem(height, 30px);
+        border-radius: 50%;
+        @include px-to-rem(font-size, 14px);
+        box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+        background: $c-neutro;
+        color: $c-primary;
+
+        &.swiper-button-next {
+            top: 43%;
+        }
+
+        &.swiper-button-disabled {
+            color: $c-gray-2;
+        }
+
+        &::after {
+            font-weight: $f-bold;
+        }
+    }
+
+    .f-c-plan__title {
+        @include px-to-rem(font-size, 18px);
+    }
+
+    .f-c-plan-slide,
+    .f-c-plan {
+        @include px-to-rem(max-width, 204px);
+    }
+
+    .f-c-plan {
+        position: relative;
+    }
+
+    .f-c-plan__flag {
+        .is-plan-recommended & {
+            position: absolute;
+            @include px-to-rem(top, -13px);
+            right: 0;
+            left: 0;
+            @include px-to-rem(max-width, 124px);
+            margin: 0 auto;
+            @include px-to-rem(border-radius, 2px);
+            @include px-to-rem(font-size, 14px);
+        }
+    }
+
+    .f-c-plan__content {
+        @include px-to-rem(padding-right, 6px);
+        @include px-to-rem(padding-left, 6px);
+    }
+
+    .f-c-plan__header,
+    .f-c-plan__notify {
+        @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+
+    .f-c-plan__notify {
+        @include px-to-rem(margin-top, $gutter * 3);
+    }
+
+    .f-c-plan__title,
+    .f-c-plan__value,
+    .f-c-plan__price {
+        @include px-to-rem(margin-bottom, $gutter);
+    }
+
+    .f-c-plan__value {
+        @include px-to-rem(font-size, $gutter * 7);
+    }
+
+    .f-c-plan__header-price {
+        @include px-to-rem(margin-top, $gutter * 3);
+    }
+
+    .f-c-plan__price {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(baseline);
+        @include px-to-rem(margin-bottom, $gutter);
+    }
+
+    .f-c-plan__price-offer {
+        margin-bottom: 0;
+        font-weight: $f-regular;
+        @include px-to-rem(font-size, 28px);
+    }
+
+    .f-c-plan__price-dues {
+        font-weight: $f-bold;
+        @include px-to-rem(font-size, 12px);
+        text-align: left;
+    }
+
+    .f-c-plan__notify {
+        @include px-to-rem(padding-right, $gutter);
+        @include px-to-rem(padding-left, $gutter);
+    }
+
+    .f-c-plan__notify-img {
+        @include px-to-rem(height, 19px);
+    }
+
+    .f-c-plan__notify-text {
+        .f-c-plan__notify_brand & {
+            @include px-to-rem(font-size, 12px);
+            color: $c-secondary;
+        }
+    }
+    .f-c-plan__notify-text_bold {
+        display: block;
+    }
+
+    .f-c-plan__benefits {
+        @include px-to-rem(padding-right, 12px);
+        @include px-to-rem(padding-left, 12px);
+    }
+
+    .f-c-plan__benefit {
+        &:first-of-type {
+            padding-top: 0;
+        }
+
+        &:last-of-type {
+            border: none;
+        }
+
+        &:nth-child(3) {
+            .is-list-hide & {
+                border: none;
+            }
+        }
+    }
+
+    .f-c-plan__toggle-btn {
+        @include px-to-rem(font-size, 14px);
+    }
+
+    .f-c-plan__toggle-content {
+        @include px-to-rem(margin, $gutter * 3 0 0);
+
+        &.is-list-hide + .f-c-plan__toggle-btn {
+            @include px-to-rem(margin-top, 4px);
+        }
+    }
+}

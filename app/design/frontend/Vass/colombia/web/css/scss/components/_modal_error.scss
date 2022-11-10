@@ -1,0 +1,12 @@
+.c-error-modal__paragraph {
+    margin: 0 auto;
+    @include px-to-rem(margin-bottom, $gutter * 5);
+    @include px-to-rem(max-width, 400px);
+}
+
+@media only screen and (min-width: 520px) {
+    .c-error-modal__paragraph {
+        margin: 0 auto;
+        @include px-to-rem(margin-bottom, $gutter * 6);
+    }
+}

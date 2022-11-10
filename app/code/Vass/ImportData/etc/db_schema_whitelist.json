@@ -1,0 +1,35 @@
+{
+    "vass_fija_divipola": {
+        "column": {
+            "id": true,
+            "trade_restriction_id": true,
+            "code": true,
+            "description": true,
+            "localityid": true,
+            "action": true,
+            "segmentid": true,
+            "sociallevel": true,
+            "divipola_status": true,
+            "record_date": true,
+            "final_date": true,
+            "id_divipola_log": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_fija_divipola_logs": {
+        "column": {
+            "id": true,
+            "action": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

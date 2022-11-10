@@ -1,0 +1,211 @@
+.c-footer {
+  @include px-to-rem(padding, $gutter * 5 0);
+  color: $c-neutro;
+  background-color: $c-secondary;
+}
+
+.c-footer__link {
+  display: block;
+  border-bottom: 1px solid $c-gray-2;
+  &:hover {
+    color: $c-primary;
+  }
+}
+.c-footer__link-text {
+  @include flexbox;
+  @include align-items(center);
+
+  &::after {
+    @include px-to-rem(font-size, 96px);
+    @include px-to-rem(margin-left, 5px);
+  }
+}
+
+.c-footer__brand {
+  position: relative;
+  border-bottom: 1px solid;
+  @include px-to-rem(padding-bottom, $gutter * 4);
+}
+
+.c-footer__img {
+  width: 188px;
+  transition: all 0.2s ease;
+}
+
+.c-footer__img_hover {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  opacity: 0;
+}
+
+.c-footer__title {
+  @include px-to-rem(font-size, $gutter * 2);
+}
+
+.c-footer__list {
+  color: $c-gray-3;
+
+  .is-dropdown-active & {
+    @include px-to-rem(margin-top, $gutter);
+  }
+}
+
+.c-footer__item {
+  display: block;
+  @include px-to-rem(margin-bottom, $gutter);
+  @include px-to-rem(font-size, 14px);
+
+  &:hover {
+    color: $c-neutro;
+  }
+}
+.c-footer__item_inline {
+  display: inline-block;
+  margin-bottom: 0;
+
+  &::after {
+    content: "|";
+    @include px-to-rem(padding, 0 6px);
+  }
+
+  // &:last-of-type {
+  //   &::after {
+
+  //   }
+  // }
+}
+
+.c-footer__bottom {
+  color: $c-gray-3;
+}
+
+.c-footer__ico {
+  @include px-to-rem(margin-right, $gutter);
+
+  &:hover {
+    color: $c-neutro;
+  }
+}
+
+@include media-query(medium-max) {
+  .c-footer__dropdown {
+    @include px-to-rem(padding, $gutter * 2 $gutter);
+    border-bottom: 1px solid;
+  }
+
+  .c-footer__title {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+
+    &::after {
+      @include px-to-rem(font-size, 12px);
+      color: $c-primary;
+    }
+  }
+}
+
+@include media-query(medium) {
+  .c-footer {
+    @include px-to-rem(padding, $gutter * 7 0 $gutter * 3 0);
+  }
+
+  .c-footer {
+    .register-index-index &,
+    .checkout-index-index & {
+      @include px-to-rem(padding-top, $gutter * 4);
+    }
+  }
+
+  .c-footer__grid {
+    @include px-to-rem(padding-top, $gutter * 4);
+    column-count: 3;
+  }
+
+  .c-footer__dropdown {
+    display: grid;
+    page-break-inside: avoid;
+    @include px-to-rem(width, 200px);
+    @include px-to-rem(margin-bottom, $gutter * 4);
+  }
+
+  .c-footer__list {
+    @include px-to-rem(margin-top, $gutter);
+
+    &:not(.c-footer__dropdown &) {
+      @include flexbox;
+      @include align-items(center);
+    }
+
+    &.o-dropdown__content {
+      max-height: initial;
+    }
+  }
+
+  .c-footer__title {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: $bp-big) {
+  .c-footer__item_inline {
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .c-footer__bottom {
+    @include px-to-rem(padding-top, $gutter * 5);
+  }
+
+  .c-footer__copy {
+    @include px-to-rem(font-size, 12px);
+  }
+
+}
+
+@media (max-width: 900px) {
+  .c-footer__list {
+
+    &:not(.c-footer__dropdown &) {
+      @include flex-wrap(wrap);
+    }
+      
+  }
+
+  .c-footer__social {
+    flex: 1 100%;
+    @include px-to-rem(margin-top, $gutter);
+  }
+}
+
+@include media-query(big) {
+  .c-footer__grid {
+    @include px-to-rem(padding-bottom, $gutter * 7);
+    column-count: 4;
+  }
+
+  .c-footer__bottom {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(baseline);
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(padding-top, $gutter * 2);
+    border-top: 1px solid;
+  }
+
+  .c-footer__copy {
+    @include px-to-rem(font-size, 14px);
+  }
+
+  .c-footer__social {
+    display: inline;
+    line-height: 1;
+  }
+}

@@ -1,0 +1,48 @@
+<div class="c-simple-header_bg">
+	<div class="o-canvas">
+
+		<header
+			id="checkout-header"
+			class="c-simple-header"
+		>
+
+			<a
+				href="/"
+				id="logo-checkout"
+				class="c-simple-header__brand"
+				title="Ir a la página principal"
+				aria-label="store logo"
+			>
+				<img
+					class="c-simple-header__brand-img"
+					src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg')) ?>"
+					alt="Logo Movistar"
+				>
+			</a>
+
+			<div
+				id="customer-menu"
+				class="c-simple-header__menu js-target-class"
+			>
+
+				<button
+					class="c-simple-header__button-user action i-after-inverted-triangle i-user js-btn-toggle-class"
+					data-class-is="active"
+				>
+						<span class="u-hidden">Icono usuario</span>
+				</button>
+
+				<ul data-target="dropdown" class="c-simple-header__list dropdown-options">
+					<li class="c-simple-header__item">
+						<a class="c-simple-header__link i-after-user-plus" href="/checkout/">
+							<span class="c-simple-header__link-text item">Ingresa aquí</span>
+						</a>
+					</li>
+				</ul>
+				
+			</div>
+
+		</header>
+
+	</div>
+</div>

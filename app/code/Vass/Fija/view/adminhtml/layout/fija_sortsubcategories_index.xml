@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" 
+xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Vass_Menu::css/style.css"/>
+    </head>
+   <body>
+       <referenceContainer name="content">
+                <container name="fija_ordernar" htmlTag="div">
+                    <uiComponent name="sort_elements_subcategories"/>
+                    <block name="drap_list" template="Vass_Fija::drag.phtml" />
+                </container>
+       </referenceContainer>
+   </body>
+</page>

@@ -1,0 +1,71 @@
+<?php $_product = $block->getProduct();
+
+$price= $_product->getPriceInfo()->getPrice('regular_price')->getValue();
+$sprice = $_product->getPriceInfo()->getPrice('final_price')->getValue();
+$_helper = $this->helper(Vass\Custom\Helper\Data::Class);
+$attributeSetName = $_helper->getAttributeSetName($_product->getAttributeSetId());
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$reviewFactory = $objectManager->create(Magento\Review\Model\Review::Class);
+$reviewFactory->getEntitySummary($_product, $_product->getStore()->getId());
+$ratingSummary = (int)$_product->getRatingSummary()->getRatingSummary();
+
+$_helperServices = $this->helper(Vass\Service\Helper\Service::Class);
+
+$displayContent = "";
+if($_product->getTypeId() == "configurable"):
+    $displayContent = "u-hidden";
+endif;
+?>
+
+<div class="c-card-detail" data-mage-init='{"modals": {}, "service":{} }'>
+
+    <header class="c-card-detail__header">
+        <div class="c-card-detail__caption">    
+            <h1
+                class="c-card-detail__title"
+                data-dynamic="name"
+            >
+                <?= $block->escapeHtml($_product->getName()) ?>
+            </h1>
+
+            <?php
+                $attrTextDctoValue =$_product->getResource()
+                ->getAttribute('text_dcto')->getFrontend()->getValue($_product);
+
+                ?>
+                <span data-dynamic="offer_text_dcto" class="c-card__tag"><?= $escaper->escapeHtml($attrTextDctoValue) ?></span>
+        </div>
+
+        <figure style="display: <?=$displayContent?> " class="c-card-detail__figure ecorating-data">
+            <img
+                src="<?= $block->getViewFileUrl('images/ecorating.svg') ?>"
+                alt="Logo ecorating"
+                class="c-card-detail__figure-img"
+            >
+
+            <figcaption class="c-card-detail__figure-caption">
+            
+                <?php
+                    $attrTextEcorating =$_product->getResource()
+                    ->getAttribute('ecorating')->getFrontend()->getValue($_product);
+                ?>
+                <strong ><span id="ecorating-value-name"> <?= $escaper->escapeHtml($attrTextEcorating) ?> </span> / 100</strong>
+                <strong>Eco Rating</strong>
+                <small>© 2021</small>
+
+
+            </figcaption>
+        </figure>
+        
+    </header>    
+
+    <div class="stock-status u-hidden">
+        <?php if ($_product->getIsSalable()) { ?>
+            <!-- <span class="stock in-stock"><?php //echo __('In Stock')?></span> -->
+        <?php } else { ?>
+            <!-- <span class="stock out-stock"><?php // echo __('Out Stock')?></span> -->
+        <?php } ?>
+    </div>   
+    
+</div>

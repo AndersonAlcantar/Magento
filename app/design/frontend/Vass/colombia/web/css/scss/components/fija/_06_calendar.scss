@@ -1,0 +1,91 @@
+.f-c-calendar {
+    @include px-to-rem(border-radius, $gutter);
+    @include px-to-rem(padding, $gutter * 3);
+    background-color: $c-neutro;
+}
+
+.f-c-calendar__toolbar {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+.f-c-calendar__title {
+    @include px-to-rem(font-size, 20px);
+    font-weight: $f-regular;
+    color: $c-gray-5;
+}
+
+.f-c-calendar__btn {
+    line-height: 1;
+    color: $c-primary;
+
+    &:hover,
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+.f-c-calendar__box {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    color: $c-gray-3;
+    list-style: none;
+}
+
+.f-c-calendar__grid {
+    @include px-to-rem(border-radius, $gutter);
+    border: 1px solid $c-gray-9;
+    overflow: hidden;
+}
+
+.f-c-calendar__grid_day {
+    @include px-to-rem(padding, $gutter * 2 0);
+    font-weight: $f-light;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.1s ease;
+
+    &:not(&:last-of-type) {
+        border-right: 1px solid $c-gray-9;
+    }
+
+    &.is-invalid {
+        background-color: $c-gray-1;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    &.is-select {
+        color: $c-neutro;
+        background-color: $c-primary;
+    }
+}
+
+/*------------------------------------*\
+  Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .f-c-calendar__header_day {
+        @include px-to-rem(padding, $gutter 0);
+        @include px-to-rem(font-size, 18px);
+    }
+
+    .f-c-calendar__grid {
+        @include px-to-rem(font-size, 20px);
+    }
+}
+
+/*------------------------------------*\
+  Media querys Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .f-c-calendar__header_day {
+        @include px-to-rem(padding, 0 $gutter * 2 $gutter * 2);
+    }
+
+    .f-c-calendar__grid {
+        @include px-to-rem(font-size, 28px);
+    }
+}

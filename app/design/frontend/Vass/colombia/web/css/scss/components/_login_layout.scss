@@ -1,0 +1,96 @@
+.register-index-index div.page-wrapper {
+    height: 100vh;
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(space-between);
+}
+
+.register-index-index #maincontent {
+    flex: 2 1 auto;
+}
+
+.register-index-index .columns,
+.column.main {
+    height: 100%;
+}
+.c-bg-login {
+    height: 100%;
+    background-color: $c-primary;
+
+    &__picture {
+        height: 100%;
+        @include flexbox;
+        @include align-items(flex-end);
+        @include justify-content(center);
+    }
+
+    &__box {
+        background-color: $c-neutro;
+        align-self: start;
+    }
+
+    .o-canvas {
+        height: 100%;
+    }
+}
+
+.c-bg-login__wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-bg-login__box {
+    display: flex;
+    align-items: center;
+    @include px-to-rem(max-width, 492px);
+    margin: auto;
+    @include px-to-rem(border-radius, $gutter * 2);
+    @include px-to-rem(padding, $gutter * 4 70px);
+    background: $c-neutro;
+}
+
+@include media-query(medium-max) {
+    .c-bg-login__wrap {
+        margin-bottom: $gutter * 10;
+    }
+}
+
+@include media-query(medium) {
+    .c-bg-login {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        &__picture {
+            @include justify-content(flex-end);
+        }
+
+        &__img {
+            height: auto;
+        }
+        &__box {
+            align-self: center;
+        }
+    }
+
+    .c-bg-login__wrap {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        height: 100%;
+    }
+
+    .c-bg-login__box {
+        @include px-to-rem(margin-top, $gutter * 7);
+        @include px-to-rem(margin-bottom, $gutter * 7);
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .c-bg-login__box {
+        min-height: 316px;
+        @include px-to-rem(padding-right, $gutter * 2);
+        @include px-to-rem(padding-left, $gutter * 2);
+    }
+}

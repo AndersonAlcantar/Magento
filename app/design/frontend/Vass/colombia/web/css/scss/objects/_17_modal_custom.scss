@@ -1,0 +1,181 @@
+.o-modal {
+    position: relative;
+    height: 100%;
+    max-width: 890px;
+    margin: auto;
+    @include px-to-rem(padding-top, 44px );
+    @include px-to-rem(padding-right, $gutter * 3);
+    @include px-to-rem(padding-left, $gutter * 2);
+    @include px-to-rem(padding-bottom, 44px );
+    @include px-to-rem(border-radius, 12px);
+    background-color: $c-neutro;
+    overflow: hidden;
+}
+// modifiers o-modal
+.o-modal_w500 {
+    @include px-to-rem(max-width, 500px);
+    margin: auto;
+}
+.o-modal_w711 {
+    @include px-to-rem(max-width, 711px);
+    @include px-to-rem(padding, 12px)
+}
+.o-modal__btn-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $gutter * 3 20px 0 0;
+
+    &::before {
+        @include px-to-rem(font-size, 14px);
+        color: $c-on-primary-gray;
+    }
+}
+
+.o-modal_pr16 {
+    @include px-to-rem(padding-right, $gutter * 2);
+}
+
+.o-modal__content {
+    max-height: 100%;
+    @include px-to-rem(padding, $gutter);
+    overflow-y: auto;
+    /* width */
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: transparent; 
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background-color: $c-gray-3; 
+        border-radius: 10px;
+    }
+}
+.o-modal__content_p0 {
+    padding: 0;
+}
+
+// modifiers o-modal__content
+.o-modal__content_center {
+    text-align: center;
+}
+.o-modal__content_w400 {
+    @include px-to-rem(max-width, 400px);
+    margin: auto;
+}
+
+.o-modal__content_w572 {
+    margin: 0 auto;
+    @include px-to-rem(max-width, 572px);
+}
+.o-modal__content_w735 {
+    margin: 0 auto;
+    @include px-to-rem(max-width, 735px);
+}
+
+//modifires
+.o-modal__header-marginb {
+    margin-top: 0;
+    @include px-to-rem(margin-bottom, $gutter * 5);
+}
+.o-modal__header_w455 {
+    @include px-to-rem(max-width, 455px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.o-modal__img {
+    width: 100%;
+    @include px-to-rem(max-width, 287px);
+}
+// modifiers o-modal__img
+.o-modal__img-small {
+    width: auto;
+    @include px-to-rem(min-width, 56px);
+    @include px-to-rem(margin-bottom, $gutter * 2);
+}
+.o-modal__img-ico {
+    &::before {
+        display: block;
+        color: $c-red-error;
+        @include px-to-rem(font-size, 59px);
+        transform: rotate(180deg);
+    }
+}
+.o-modal__text-box {
+    @include px-to-rem(max-height, 324px);
+    overflow-x: hidden;
+}
+
+// modifiers c-modal__text-box
+.o-modal__text-box_marginb {
+    @include px-to-rem(margin-bottom, $gutter);
+}
+.o-modal__text-box_text-left {
+    text-align: left;
+    color: $c-gray-6;
+    line-height: 1.1;
+}
+.o-modal__txt {
+    color: $c-gray-5;
+}
+.o-modal__subcontent {
+    @include px-to-rem(max-width, 400px);
+    margin: 0 auto;
+}
+.o-modal__footer {
+    @include px-to-rem(margin-top, $gutter * 5);
+}
+//Modifires o-modal__footer
+.o-modal__footer_margin-top32 {
+    @include px-to-rem(margin-top, $gutter * 4);
+}
+.o-modal__footer_flex {
+    @include flexbox;
+    @include justify-content(center);
+    @include flex-direction(column);
+    @include align-items(stretch);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(max-width, 270px);
+    margin: 0 auto;
+}
+.o-modal__footer_inline {
+    @include flexbox;
+    @include justify-content(center);
+    @include px-to-rem(column-gap, $gutter * 2);
+}
+
+// modifiers o-modal__btn
+.o-modal__btn-lh {
+    line-height: 1.4;
+}
+.o-modal__btn_w260 {
+    width: 100%;
+    @include px-to-rem(max-width, 260px);
+    @include px-to-rem(margin-top, $gutter * 4);
+}
+.o-modal__btn_margin0 {
+    margin-top: 0;
+}
+
+@media only screen and (min-width: 520px) {
+    .o-modal__footer {
+        @include px-to-rem(margin-top, $gutter * 6);
+    }
+    .o-modal__footer_margin-top32 {
+        @include px-to-rem(margin-top, $gutter * 4);
+    }
+}
+@media only screen and (max-width: 450px) {
+    .o-modal__footer_inline {
+        @include flex-direction(column);
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+}

@@ -1,0 +1,583 @@
+<?php
+/**
+ * @var \Vass\Fija\Cobertura\Index $data
+ */
+$data = $block->getData();
+
+/**
+ * @var \Vass\Checkout\ViewModel\Services $viewModelServices
+ */
+$viewModelServices = $block->getServices();
+$regionList  = $viewModelServices->getListDepartament();
+
+/**
+ * @var \Vass\Fija\ViewModel\Cobertura $viewModelCobertura
+ */
+$viewModelCobertura = $block->getCobertura();
+$sessionData = $viewModelCobertura->getSessionOffert();
+
+?>
+<section class="o-section" id="cobertura-component" data-mage-init='{"modals": {}}' >
+
+    <div class="o-layout-2-columns">
+        <div class="c-card-checkout-cta">
+            <button
+                type="button"
+                class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+            >
+                Resumen de tu compra
+            </button>
+        </div>
+         <!-- ko scope: 'regionList' -->
+        <form 
+            method="post" 
+            class="c-form c-form_w723 c-form_transparent c-form_relative" 
+            autocomplete="off" 
+            id="cobertura-form"
+            data-mage-init='{"validation": {}}' >
+            <header class="c-form__header">
+                <h2 class="c-form__title c-form__title_big u-text-left">
+                    ¡Consulta aquí tu cobertura!
+                </h2>
+            </header> 
+            <input
+                type="hidden"
+                id="nivelSocial"
+                name="nivelSocial"
+                data-bind="value:nivelSocial"
+                value=<?=$data['data']['divipola']?>
+            />
+            <input
+                type="hidden"
+                id="idLocal"
+                name="idLocal"
+                data-bind="value:idLocal"
+                value=<?=$data['data']['id']?>
+            />
+            <input
+                type="hidden"
+                id="idOffert"
+                name="idOffert"
+                data-bind="value:idOffert"
+                value=<?=$data['data']['id_offert']?>
+            />
+                <!-- Fieldset para datos personales -->
+                <fieldset class="c-form__fieldset c-form__field-container">
+                
+                    <div class="c-form__field-canvas">
+
+                        <!-- Campo celular -->
+                        <div class="c-form__box u-width-100"  >
+                            <div
+                                class="c-form__field"
+                                data-bind="attr: {class: numberFieldPhonClass()}"
+                            >
+                                <span class="c-form__icon i-phone">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+
+                                <input
+                                 type="number"
+                                 id="phone"
+                                 maxlength="10"
+                                 oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                 name="phone"
+                                 class="c-form__input required"
+                                 data-bind="value: phone, valueUpdate: 'keyup', event: {keyup: validateNumber}"
+                                 required
+                                />
+
+                                <label class="c-form__label label" for="phone">
+                                    Celular
+                                </label>
+                            </div>
+
+
+                            <small class="c-form__help-text c-form__help-text_phone">Al momento de agendar tu instalación te contactaremos a este número telefónico.</small>
+                            <span class="c-form__error-text">Mensaje de error</span>
+                        </div>
+
+                        <!-- Campo departamento -->
+                        <div class="c-form__box u-width-100">
+                            <div class="c-form__field" 
+                                data-bind="attr: {class: selectFieldDptoClass()}">
+                                <span class="c-form__icon i-pin">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <select data-bind="value: departament, valueUpdate: 'input', event: {change: changeDepartament}" 
+                                    id="departament" 
+                                    name="departament" 
+                                    class="c-form__input c-form__select required" 
+                                    required
+                                >
+                                    <option value="0">Selecciona</option>
+                                    <?php
+                                        foreach ($regionList as $region) {
+                                    ?>
+                                            <option value="<?=$region['regionId']?>" data-zone="<?=$region['zone']?>" ><?=$region['name']?></option>
+                                    <?php
+                                        }
+                                    ?>
+                                </select>
+                                <label for="departament" class="c-form__label label">Departamento</label>
+                            </div>
+
+                            <span class="c-form__error-text">Mensaje de error</span>
+                        </div>
+
+                    </div>
+
+                    <div class="c-form__field-canvas">
+
+                        <!-- Campo ciudad -->
+                        <div class="c-form__box u-width-100">
+                            <div class="c-form__field"
+                                data-bind="attr: {class: selectFieldCityClass()}"
+                            >
+                                <span class="c-form__icon i-pin">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <select data-bind="value: city,valueUpdate: 'input', event: {change: changeCity}"
+                                        id="city" 
+                                        name="city" 
+                                        class="c-form__input c-form__select required" 
+                                        required
+                                        disabled
+                                >                                    
+                                </select>
+                                <label for="city" class="c-form__label label">Ciudad</label>
+                            </div>
+                            <span class="c-form__error-text">Mensaje de error</span>
+                        </div>
+
+                        <!-- Campo municipio -->
+                        <div class="c-form__box u-width-100">
+                            <div class="c-form__field" data-bind="attr: {class: selectFieldMuniClass()}">
+                                <span class="c-form__icon i-pin">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <select data-bind="value: municipio,valueUpdate: 'input', event: {change: changeMunicipio}"
+                                    id="municipio"
+                                    name="municipio"
+                                    class="c-form__input c-form__select required"
+                                    required
+                                    disabled  >                                    
+                                </select>
+
+                                <label class="c-form__label label" for="municipio">
+                                    Municipio
+                                </label>
+                                <span class="c-form__error-text">Mensaje de error</span>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- Fin fieldset datos personales -->
+                               
+            <!-- Alerta direcciíon -->
+            <div class="is-active">
+
+                <div class="c-callout c-callout_sm c-callout_white i-information u-margin-top-0">
+                    <p class="c-callout__text">
+                        Digita tu dirección como aparece en tus recibos de servicios
+                        públicos, (luz, agua o gas), guíate de la imagen y
+                        diligencia los campos.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Fieldset para dirección -->
+            <fieldset class="c-form__fieldset">
+
+                <!--  Este bloque usa Alpine -->
+                <div class="c-form__field-canvas u-margin-top-32" x-data="targetCopyAddress()" >
+                    <div class="u-width-100">
+                        <!--  Campo dirección -->
+                        <div class="c-form__box">
+                            <div class="c-form__field"
+                                data-bind="attr: {class: selectFieldDirClass()}"
+                            >
+
+                                <span class="c-form__icon i-pin">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <select
+                                    id="direccion"
+                                    name="direccion"
+                                    class="c-form__input c-form__select required"
+                                    required
+                                    x-model="modelCopyAddress"
+                                    @change="changeAddressCopy"
+                                    data-bind="value:direccion,valueUpdate: 'input', event:{input:direccionTotal}"
+                                >   
+                                    <option value="0" selected>Seleccione</option>
+                                    <option value="AA">Apartado Aereo</option>
+                                    <option value="AUTOP">Autopista</option>
+                                    <option value="AV">Avenida</option>
+                                    <option value="AC">Avenida Calle</option>
+                                    <option value="AK">Avenida Carrera</option>
+                                    <option value="CL">Calle</option>
+                                    <option value="KR">Carrera</option>
+                                    <option value="CT">Carretera</option>
+                                    <option value="DG">Diagonal</option>
+                                    <option value="KM">Kilometro</option>
+                                    <option value="OT">Otro</option>
+                                    <option value="TV">Transversal</option>
+                                </select>
+        
+                                <label class="c-form__label label" for="direccion">
+                                    Dirección
+                                </label>
+
+                            </div>
+
+                            <span class="c-form__error-text">Tipo de documento no es valido</span>
+                        </div>
+
+                        <!-- Detalle de dirección -->
+                        <div
+                            class="c-form__field-address"
+                            
+                            id="otro-no"
+                        >
+
+                            <div class="c-form__box">
+                                <div class="c-form__field" 
+                                    data-bind="attr: {class: numberFieldUnoClass()}"
+                                >
+            
+                                    <input
+                                        type="text"
+                                        id="numone"
+                                        name="numone"
+                                        maxlength="10"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                        class="c-form__input required"
+                                        required
+                                        x-model="numberOneAddress"
+                                        @keyup="addSimbolPlus"
+                                        data-bind="value: numone, valueUpdate: 'keyup', event: {keyup: validateNumOne}"
+                                        
+                                    />
+            
+                                    <label class="c-form__label" for="numone">
+                                        Número
+                                    </label>
+                                </div>
+
+                                <span class="c-form__error-text">Mensaje de error</span>
+                            </div>
+
+                            <span>#</span>
+
+                            <div class="c-form__field"
+                                data-bind="attr: {class: numberFieldSecClass()}"
+                            >
+        
+                                <input
+                                    type="text"
+                                    id="numeroSecundario"
+                                    maxlength="10"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    name="numeroSecundario"
+                                    class="c-form__input required"
+                                    required
+                                    x-model="numberTwoAddress"
+                                    data-bind="value: numeroSecundario, valueUpdate: 'keyup', event: {keyup: validateNumeroSecundario}"
+                                />
+
+        
+                                <label class="c-form__label c-form__label_hide label" for="numeroSecundario">
+                                    Número secundario
+                                </label>
+                            </div>
+
+                            <span>-</span>
+
+                            <div class="c-form__field"
+                                data-bind="attr: {class: numberFieldPlacaClass()}"
+                            >
+        
+                                <input
+                                    type="text"
+                                    id="placa"
+                                    name="placa"
+                                    maxlength="10"
+                                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                    required
+                                    class="c-form__input required"
+                                    x-model="placaDireccion"
+                                    @keyup="addSimbolMinor"
+                                    data-bind="value: placa, valueUpdate: 'keyup', event: {keyup: validatePlaca}"
+                                />
+        
+                                <label class="c-form__label c-form__label_hide" for="placa">
+                                    Placa
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <!-- Campo dirección cuando es "Otro" o "Kilometro" -->
+                        <div
+                            class="c-form__box u-width-100 u-margin-top-24 u-hidden" id="otro-si"
+                            
+                        >
+
+                            <div class="c-form__field" 
+                                data-bind="attr: {class: numberFieldDetalleClass()}"
+                            >
+        
+                                <input
+                                    id="detalle_direccion"
+                                    name="detalle_direccion"
+                                    type="text"
+                                    required
+                                    class="c-form__input required"
+                                    x-model="numberOneAddress"
+                                    data-bind="value: detalle_direccion, valueUpdate: 'keyup', event: {keyup: validateDetalleDireccion}"
+                                />
+        
+                                <label class="c-form__label label" for="detalle_direccion">
+                                    Escribe tu dirección
+                                </label>
+                            </div>
+
+                            <span class="c-form__error-text">Mensaje de error</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Tarjeta recibo -->
+                    <div class="c-form__address">
+
+                        <figure class="c-form__address-header">
+                            <img
+                                src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>"
+                                alt="Logo Movistar"
+                                class="c-form__address-img"
+                            >
+                            <figcaption
+                                        
+                                class="u-text-light"
+                                :class="isSkeletonHide ? '' : 'u-skeleton'"
+                            >
+                                Recibo
+                            </figcaption>
+                        </figure>
+
+                        <div class="c-form__address-content">
+                            <p
+                                class="c-form__address-text"
+                                :class="isSkeletonHide ? '' : ' u-skeleton u-skeleton_double'"
+                            >
+                                <strong class="c-form__address-label">Dirección:</strong>
+                                <span  x-ref="copyAddress" x-text="modelCopyAddress">Calle</span>
+
+                                <span
+                                    x-ref="refNumberOneAddress"
+                                    x-text="numberOneAddress"
+                                >
+                                    127
+                                </span>
+
+                                <span
+                                    data-id="numero-secundario"
+                                    x-ref="refNumberTwoAddress"   
+                                    x-text="numberTwoAddress"
+                                >
+                                    67
+                                </span>
+
+                                <span
+                                    data-id="placa"
+                                    x-ref="refPlacaDireccion"
+                                    x-text="placaDireccion"
+                                >
+                                    67
+                                </span>
+                                <spam data-bind="text:direccion_total"></spam>
+                            </p>
+                        </div>
+
+                    </div> 
+                    <!-- Fin tarjeta recibo -->
+
+                </div>
+
+            </fieldset>
+            
+            <!-- Fin fieldset para dirección -->
+             <!-- para agregar el preload se agrega la clase .is-preload a la par de .c-form__field-container -->
+             <div class="c-preloader c-preloader_z-index">
+                <div class="c-preloader__box">
+                    <div class="c-preloader__circle"></div>
+                    <div class="c-preloader__text">Cargando datos</div>
+                </div>
+            </div>
+                           
+            <div class="c-form__actions c-form__actions_column">
+                <input name="context" type="hidden" value="checkout" />
+
+                <div class="c-form__checkbox">
+                    <input 
+                        id="politicas"
+                        name="politicas"
+                        data-bind="valueUpdate: 'input', event:{input:validateForm}" 
+                        class="c-form__checkbox-input" 
+                        value="politicas"
+                        type="checkbox" 
+                        
+                        >
+                    <label class="c-form__checkbox-label u-text-left">
+                        <span>
+                            Al presionar <strong>VER COBERTURA</strong> 
+                            aceptas las
+                            <a class="o-link open-modal" data-modal="modal-terms" href="javascript:void(0);">
+                                Póliticas de datos personales y envío de mensajes vía Whatsapp
+                            </a>
+                        </span>
+                    </label>
+                </div> 
+                <!--
+                    1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+                    2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+                -->
+                <button
+                    id="ver-cobertura"
+                    type="button"
+                    class="o-btn c-form__btn"
+                    data-modal="modal-address-divipola"
+                    data-bind="click: verifycateAddress"
+                    disabled
+                >
+                    Ver Cobertura
+                </button>
+                <button type="button" id="openModal-address" class="u-hidden open-modal" data-modal="modal-address-divipola"  >
+                <button type="button" id="openModal-error" class="u-hidden open-modal" data-modal="modal-error"  >
+            </div>
+        </form>
+        <!-- /ko -->                                
+        <!-- Detalle del producto -->
+        <div id="checkout-summary" class="c-card-summary__wrap">
+            <div class="c-card-summary c-card-summary_space-bottom js-target-summary" >
+                <h3 class="c-card-summary__title c-card-summary__title_border">Detalles del producto</h3>
+                <div>
+                    <?php 
+                        if(empty($data['data']['sinData'])) {
+                    ?>        
+                        <div class="c-card-summary__amount">
+                            <h4 class="mark" scope="row" >
+                            <?=$data['data']['category'].' '.$data['data']['subcategory'].' '.$data['data']['name']?>
+                            </h4>
+                        </div>
+                        <?php if($data['data']['discount'] > 0){?>
+                        <div class="c-card-summary__box">
+                            <div class="c-card-summary__amount c-card-summary__amount_before">
+                                
+                                <h4 class="mark" scope="row">
+                                    Antes
+                                </h4>
+
+                                <span class="c-card-summary__amount-trough">
+                                    <?= $viewModelServices->getFormatedPrice($data['data']['normal_price']) ?>
+                                </span>
+                            </div>
+                            <div class="c-card-summary__amount">
+                                <h4 class="mark" scope="row">
+                                    Ahora
+                                </h4>
+
+                                <strong class="amount">
+                                    <?=  $viewModelServices->getFormatedPrice($data['data']['now']) ?>
+                                </strong>
+                            </div>
+
+                            <ul class="c-card-summary__details">
+                                <li><strong><?=$data['data']['discount']?>% dto <?=$data['data']['months']?></strong></li>
+                                <?php 
+                                    if (!empty($sessionData['offert']['components'])) {
+                                        foreach ($sessionData['offert']['components'] as $key => $component) {
+                                            echo "<li>".$component['name']."</li>";
+                                        }
+                                    }
+                                ?>                                
+                            </ul>
+                        </div>
+
+                        <div class="c-card-summary__amount c-card-summary__total">
+                            <h4 class="mark" scope="row">
+                                <strong >Total</strong>
+                            </h4>
+                            <p class="amount" data-th="Total">
+                                <strong><?= $viewModelServices->getFormatedPrice($data['data']['now'])?></strong>
+                            </p>
+                        </div>
+                        <?php } else{?>
+                            <div class="c-card-summary__box">
+                            <div class="c-card-summary__amount">
+                                <h4 class="mark" scope="row">
+                                    Ahora
+                                </h4>
+                                <strong class="amount">
+                                    <?=$viewModelServices->getFormatedPrice($data['data']['price'])?>
+                                </strong>
+                            </div>
+                            <ul class="c-card-summary__details">
+                                <li><strong>RV_14885, <?=$data['data']['months']?></strong></li>
+                            </ul>
+                        </div>
+                            <div class="c-card-summary__amount c-card-summary__total">
+                                <h4 class="mark" scope="row">
+                                    <strong >Total</strong>
+                                </h4>
+                                <p class="amount" data-th="Total">
+                                    <strong><?= $viewModelServices->getFormatedPrice($data['data']['price'])?></strong>
+                                </p>
+                            </div>
+                        <?php }?>
+                    <?php }
+                    else {
+                        echo $data['data']['sinData'];
+                    } 
+                    ?>                     
+                </div>                           
+            </div>
+        </div>
+        <!-- Fin detalle del producto -->
+    </div>
+</section>
+
+<script type="text/x-magento-init">
+    {
+        "#cobertura-form": {
+            "validation": {}
+        },
+        "#cobertura-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "regionList": {
+                        "component": "Vass_Fija/js/regionList"                        
+                    }
+                }
+            }
+        }        
+    }
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Vass_Fija/js/dataOffert": {
+                "offert": <?php /* @escapeNotVerified */ echo json_encode($sessionData); ?>                
+            }
+        }
+    }
+</script>
+<script src="<?php echo $this->getViewFileUrl('js/fija/copy_address.js'); ?>"></script> 
+

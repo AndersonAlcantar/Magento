@@ -1,0 +1,38 @@
+<?php 
+
+/** @var $viewModel \Vass\Migration\ViewModel\Data */
+/*$viewModel = $block->getData();
+
+$data = $viewModel->getDataLegales();
+print_r($data); 
+*/
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Vass\Migration\Helper\Data'); 
+
+$data= $helper->getMigrationData();
+
+$breadcrumb = $helper->getMigrationBreadcrumb();
+?>
+
+<div class="c-menu-aside__content">
+    <nav class="c-breadcrumb">
+        <ul class="c-breadcrumb__list">
+            <li class="c-breadcrumb__item i-after-double-arrow-right">Inicio</li>
+            <?= $breadcrumb; ?>
+        </ul>
+    </nav>
+
+    <div class="s-richtext">
+        <h1><?php echo $data['name']; ?></h1>
+        <?php 
+        $imageUrl = $block->getBaseUrl()."media/wysiwyg/";
+        $str1 = 'src="{{media url=wysiwyg/';
+        $str2 = 'src="'.$imageUrl;
+        $data3 = str_replace($str1, $str2, ($data['page']));
+        $data4 = str_replace('}}"','"',$data3);
+        echo html_entity_decode($data4);      
+        ?>        
+    </div>
+</div>
+<script src="<?php echo $this->getViewFileUrl('js/legales/aside_menu.js'); ?>"></script>

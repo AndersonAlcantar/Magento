@@ -1,0 +1,354 @@
+
+<button id="openModalTermsAndConditions" data-modal="modal-terms_conditions"  class="open-modal u-hidden" type="button"></button>
+<button id="openModalError" data-modal="modal-error-general"  class="open-modal u-hidden" type="button">Error</button>
+<button id="openModalProcesingPersonalData" data-modal="modal-processing_personal_data"  class="open-modal u-hidden" type="button"></button>
+<div class="c-card-checkout-cta">
+    <a
+        href="<?= $escaper->escapeUrl('/checkout/opcionpago/') ?>"
+        class="i-arrow-left c-card-checkout-cta__link"
+    >
+        Volver
+    </a>
+    
+    <button
+        type="button"
+        class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+    >
+        Resumen de tu compra
+    </button>
+</div>
+
+<!-- ko scope: 'validate-shipping' -->
+<input type="hidden" name="typePurchase" id="typePurchase" value="cuotas" data-bind="value: typePurchase">
+<form method="post" id="formShipping" class="c-form c-form_w723 " data-bind="submit: sendFormSubmit, event: {change: validateForm}">
+
+    <header class="c-form__header">
+        <h2 class="c-form__title">Alistemos tu compra</h2>
+    </header>
+
+    <fieldset class="c-form__fieldset js-target-dropdown is-dropdown-active is-active">
+        
+        <h5
+            class="o-dropdown__btn o-dropdown__btn_border i-after-chevron-down js-btn-dropdown">
+            Información de entrega
+        </h5>
+
+        <div class="o-dropdown__content o-dropdown__content_border">
+
+            <div class="c-form__box">
+                <div class="c-form__radio">
+                    <input
+                        id="envio"
+                        name="envio"
+                        type="radio"
+                        value ="3173872341" 
+                        class="c-form__radio-input"
+                        checked
+                    />
+
+                    <div class="c-form__radio-box">
+                        <label
+                            class="c-form__radio-label i-truck-stroke"
+                            for="envio"
+                        >
+                            <div class="u-text-left">
+                                <p class="c-form__text_gray">Envio a Domicilio</p>
+                                <p class="o-text_gray4">El tiempo de entrega depende de tu ubicación</p>
+                            </div>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <!-- ko ifnot: productAvailable -->
+            <div class="c-callout i-close u-margin-bottom-24 u-hidden" id="not-available">
+                <p class="c-callout__text">
+                    No disponible: Estimado cliente el producto se encuentra agotado te enviaremos al detalle del equipo para revisar la disponibilidad para envio a domicilio.a ocurrido un error. Tus datos no se han actualizado
+                </p>
+            </div>
+            <!-- /ko -->
+        </div>
+
+    </fieldset>
+
+    <fieldset class="c-form__fieldset js-target-dropdown is-dropdown-active is-active">
+        <h5
+            class="o-dropdown__btn o-dropdown__btn_border i-after-chevron-down js-btn-dropdown">
+            Dirección de datos de entrega
+        </h5>
+
+        <div class="o-dropdown__content o-dropdown__content_border">
+
+            <div class="c-callout c-callout_white c-callout_w920 u-margin-bottom-40 c-callout_direction-column i-information">
+                <p class="c-callout__text">
+                    Recuerda que por tu seguridad, <strong>al momento de la entrega, debe estar presente el titular de la tarjeta</strong> de crédito/débito y presentar su cédula de identidad
+                </p>
+            </div>
+
+            <p class="c-form__lead c-form__lead_bold u-text-left">Datos del domicilio</p>
+            <div class="c-form__field-canvas">
+
+                <div class="c-form__box_margin">
+                    <div class="c-form__field" data-bind="attr: {class: nameFieldClass()}">
+
+                        <span class="c-form__icon i-user">
+                            <span class="u-hidden">
+                                Icono informativo
+                            </span>
+                        </span>
+
+                        <input 
+                            id="user-name" 
+                            name="username"
+                            class="c-form__input" 
+                            type="text" 
+                            autocomplete="off" 
+                            required=""
+                            data-bind="value: valueName, valueUpdate: 'keyup', event: {keyup: validateName()}"
+                            disabled
+                        >
+                        <!--
+                        <label class="c-form__label label" for="user-name">
+                            <span data-bind="i18n: 'Name'">Nombre</span>
+                            Nombre
+                        </label>
+                        -->
+
+                    </div>
+                    <span class="c-form__error-text">Mensaje de error</span>
+                </div>
+
+                <div class="c-form__box_margin">
+
+                    <div class="c-form__field" data-bind="attr: {class: numberFieldClass()}">
+
+                        <span class="c-form__icon i-phone">
+                            <span class="u-hidden">
+                                Icono informativo
+                            </span>
+                        </span>
+
+                        <input 
+                            id="user-phone" 
+                            name="username" 
+                            class="c-form__input" 
+                            type="tel" 
+                            autocomplete="off" 
+                            required=""
+                            data-bind="value: valueNumber, valueUpdate: 'keyup', event: {keyup: validateNumber()}"
+                            disabled
+                        >
+                        <!--
+                        <label class="c-form__label label" for="user-phone">
+                            <span data-bind="i18n: 'Phone number'">Celular</span>
+                            Celular
+                        </label>
+                        -->
+
+                    </div>
+
+                    <span class="c-form__error-text">Mensaje de error</span>
+                </div>
+
+            </div>
+
+            <p class="c-form__lead c-form__lead_bold u-text-left">Recibir mi envío en</p>
+            <div class="c-form__box">
+                <div class="c-form__field-white">
+                    <div class="c-form__wrap-field">
+                        <p class="c-form__label-icon i-pin">Dirección</p>
+                        <div class="c-form__text-box">
+                            <p class="c-form__text_gray" data-bind="text: getAddress"></p>
+                            <p class="c-form__text" data-bind="text: getDepartment"></p>
+                        </div>
+                    </div>
+                    <!--
+                    <button class="c-form__icon c-form__icon_blue c-form__icon_padding c-form__icon_margin-bott i-pencil" type="button"></button>
+                    -->
+                </div>
+            </div>
+
+            <div class="c-form__box">
+                <div class="c-form__field-white">
+                    <div class="c-form__wrap-field">
+                        <p class="c-form__label-icon i-home">Tipo de vivienda</p>
+                        <div class="c-form__text-box">
+                            <p class="c-form__text_gray" data-bind="text: getStreet"></p>
+                        </div>
+                    </div>
+                    <span class="c-form__icon c-form__icon_events c-form__icon_margin-top"></span>
+                </div>
+            </div>
+
+            <div class="c-form__box">
+                <!-- input correo electronico -->
+                <p class="c-form__lead c-form__lead_bold u-text-left">Correo electrónico</p>
+                <!-- Clase que indica el email check: is-email-check, se agrega a la par de c-form__field-white -->
+                <div class="c-form__box" data-bind="attr: {class: emailBoxClass()}">
+			        <div class="c-form__field-white" data-bind="attr: {class: emailFieldClass()}">
+                        <div class="c-form__wrap-field">
+                            <label class="c-form__label-icon i-mail">Correo electrónico</label>
+                            <input 
+                                class="c-form__input c-form__input_top c-form__input_color"
+                                type="email"
+                                data-bind="value: valueEmail, valueUpdate: 'keyup', event: {keyup: validateEmail()}"
+                                autocomplete="off"
+                                disabled
+                            >
+                        </div>
+                        <span class="c-form__icon c-form__icon_events c-form__icon_margin-top"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- input fecha -->
+            <p class="c-form__lead c-form__lead_bold u-text-left">Seleccione la fecha de entrega</p>
+            <div class="c-form__box">
+                <div class="c-form__field-white" data-bind="attr: {class: dateFieldClass()}">
+                    <div class="c-form__wrap-field">
+                        <label class="c-form__label-icon i-calendar">Fecha de entrega</label>
+
+                        <input type="text" 
+                        data-bind="datepicker: date, datepickerMinDate: minDate, datepickerMaxDate: maxDate,  value: valueDate, valueUpdate: 'input', event: {change: validateDate}"
+                        name="datepicker" 
+                        id="datepicker"  
+                        readonly="readonly"
+                        class="c-form__input c-form__input_top c-form__input_color">
+                    </div>
+                    <button class="c-form__icon c-form__icon_blue c-form__icon_events c-form__icon_margin-bott i-pencil"></button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset class="c-form__fieldset c-form__fieldset_margin js-target-dropdown is-dropdown-active">
+        
+        <h5
+            class="o-dropdown__btn o-dropdown__btn_border i-after-chevron-down js-btn-dropdown">
+            ¿Como quieres pagar tu dispositivo?
+        </h5>
+
+        <div class="o-dropdown__content o-dropdown__content_border">
+
+            <p class="c-form__lead c-form__lead_bold c-form__lead_gray u-text-left">Por favor indicanos como deseas pagar tu dispositivo</p>
+
+            <div class="c-form__radio">
+                <input
+                    id="pago"
+                    name="pago"
+                    type="radio"
+                    class="c-form__radio-input"
+                    checked
+                >
+    
+                <div class="c-form__radio-box">
+                    <label
+                        class="c-form__radio-label i-paper-movistar-dollar"
+                        for="pago"
+                    >
+                        <div class="u-text-left">
+                            <p class="c-form__text_gray">Financiado</p>
+                            <p class="o-text_gray4">A cuotas en mi factura</p>
+                        </div>
+                    </label>
+                </div>
+    
+            </div>
+
+            <div class="c-form__group">
+                <h6 class="c-form__lead c-form__lead_bold c-form__lead_gray u-text-left">¿En cuantas cuotas deseas pagarlo?</h6>
+                <div class="js-target-class is-active">
+                    <div class="c-callout c-callout_white i-information">
+                        <p class="c-callout__text">
+                            Ten en cuenta que el valor del equipo varía de acuerdo con la cantidad de cuotas que elijas para pagarlo. <strong>Para continuar selecciona la cantidad de cuotas que deseas pagar.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="c-chips">
+                <div class="c-chips__box"></div>
+            </div>
+            <div class="c-resume">
+                <ul class="c-resume__list">
+                    <li class="c-resume__item">
+                        <p class="c-resume__title">Cuota mensual</p>
+                        <p class="c-resume__value" data-bind="text: monthlyFee"></p>
+                    </li>
+                    <li class="c-resume__item">
+                        <p class="c-resume__title">Anticipo  Equipo + impuestos</p>
+                        <p class="c-resume__value" data-bind="text: firstPayment"></p>
+                    </li>
+                    <li class="c-resume__item">
+                        <p class="c-resume__title">Valor total</p>
+                        <p class="c-resume__value" data-bind="text: totalPrice"></p>
+                    </li>
+                </ul>
+            </div>
+            <!-- La clase .is-active a la par de js-target-class muestra la alerta, para ocultarla remueva el .is-active -->
+            <!-- ko if: dues -->
+                <div class="js-target-class is-active">
+                    <div class="c-callout c-callout__green i-check">
+                        <p class="c-callout__text">
+                        Haz seleccionado <span data-bind="text: dues"></span> cuotas para el pago de tu dispositivo
+                        </p>
+                        <button class="c-callout__btn i-after-close js-btn-toggle-class" type="button" data-class-is="is-active"></button>
+                    </div>
+                </div>
+            <!-- /ko -->
+
+        </div>
+
+    </fieldset>
+
+    <div class="c-form__checkbox-wrap">
+        <div class="c-form__checkbox is-disable">
+            <input
+                type="checkbox"
+                class="c-form__checkbox-input"
+                data-bind="checked: checkboxStatus"
+				disabled="disabled" 
+				checked 
+            >
+            <label class="c-form__checkbox-label"></label>
+        </div> 
+        <p class="c-form__checkbox-text"> 
+            Al continuar aceptas el 
+            <a data-bind="click: openModalProcesingPersonalData" class="o-link" href="#">tratamiento de datos personales</a>, los 
+            <a data-bind="click: openModalTermsAndConditions" class="o-link">términos y condiciones</a>
+            y posible consulta de información relativa al cumplimiento de tus obligaciones.
+        </p>
+    </div> 
+
+    <div class="c-form__actions u-margin-top-40">
+        <input name="context" type="hidden" value="checkout">
+
+        <button
+            type="submit"
+            class="o-btn c-form__btn o-btn_full o-btn_w225 o-btn_height56"
+            data-bind="enable: buttonSubmit, click: sendFormSubmit"
+        >
+            Comprar ahora
+        </button>
+    </div>
+    <div class="c-preloader">
+		<div class="c-preloader__box">
+			<div class="c-preloader__circle"></div>
+			<div class="c-preloader__text">Cargando datos</div>
+		</div>
+	</div>
+
+</form>
+<!-- /ko -->
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "validate-shipping": {
+                    "component": "Vass_Checkout/js/validate-shipping"
+                }
+            }
+        }
+    }
+}
+</script>

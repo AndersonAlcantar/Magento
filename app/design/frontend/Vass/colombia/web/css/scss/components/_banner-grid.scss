@@ -1,0 +1,10 @@
+.c-banner-grid {
+  display: block;
+  min-width: 100%;
+  @include px-to-rem(border-radius, 4px);
+  overflow: hidden;
+}
+
+.c-banner-grid_border-initial {
+  border-radius: 0;
+}

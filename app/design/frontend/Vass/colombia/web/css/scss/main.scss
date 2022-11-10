@@ -1,0 +1,96 @@
+@import
+  'settings/variables/var_color',
+  'settings/variables/var_path',
+  'settings/variables/var_font_typo',
+  'settings/variables/var_font_ico',
+  'settings/variables/var_gutter',
+  'settings/variables/var_canvas',
+  'settings/variables/var_breakpoint';
+
+@import
+  'tools/mix/mix_prefix_flex',
+  'tools/mix/mix_compute_px_to_rem',
+  'tools/mix/mix_font_family',
+  'tools/mix/mix_keyframes',
+  'tools/mix/mix_mediaquery',
+  'tools/mix/mix_canvas';
+
+@import
+  'tools/helpers/help_center',
+  'tools/helpers/help_clearfix',
+  'tools/helpers/help_aspect_ratio',
+  'tools/helpers/help_text_ellipsis',
+  'tools/helpers/help_hexadecimal-to-rbga',
+  'tools/helpers/help_offset',
+  'tools/helpers/help_truncate_chars';
+
+@import
+  'generic/normalize',
+  'generic/font_face',
+  'generic/swiper';
+
+@import
+  'objects/objects';
+
+@import
+  'utilities/utilities';
+
+
+@import
+  'scopes/scopes';
+
+@import
+  'components/header',
+  'components/breadcrumb',
+  'components/breadcrumb_custom',
+  'components/resultlist',
+  'components/card',
+  'components/card-detail',
+  'components/card-zig-zag',
+  'components/card-ico',
+  'components/card-summary',
+  'components/filter',
+  'components/list-ico',
+  'components/list_links',
+  'components/tabs',
+  'components/tabs_content',
+  'components/banner-intro',
+  'components/banner-grid',
+  'components/banner_top',
+  'components/banner_center',
+  'components/galery',
+  'components/especifications',
+  'components/section_ecorating',
+  'components/modal_pay_method',
+  'components/modal_stores',
+  'components/form',
+  'components/header_checkout',
+  'components/steps_header',
+  'components/footer',
+  'components/simple_footer',
+  'components/login_layout',
+  'components/horizontal_bars',
+  'components/float-button',
+  'components/modal_error',
+  'components/callout',
+  'components/card_info',
+  'components/radio-buttom-chips',
+  'components/resume',
+  'components/download_btn',
+  'components/figures_columns',
+  'components/definition-list',
+  'components/input-email.scss',
+  'components/footer',
+  'components/sorter',
+  'components/preload',
+  'components/menu_aside',
+  'components/pagebuilder';
+
+// Componentes Flujo la fija
+@import 
+  'components/fija/01_tabs',
+  'components/fija/02_plan',
+  'components/fija/03_card_benefit',
+  'components/fija/04_card_service',
+  'components/fija/05_header_steps',
+  'components/fija/06_calendar';

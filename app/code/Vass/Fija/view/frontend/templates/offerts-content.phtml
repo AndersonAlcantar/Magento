@@ -1,0 +1,770 @@
+<?php
+/** @var $viewModel \Vass\Fija\ViewModel\Offerts\MenuOfferts */
+  $viewModel = $block->getMenuOfferts();
+  $menu = $viewModel->getMenuCatOfferts();
+  $banner = $viewModel->getLastBanner();
+  $empty = $viewModel->getOffertEmpty();
+
+  if(isset($empty['offert'])){
+    $class_error = 'is-tab-active';
+  }else{
+    $class_error = 'is-content-tab-hide';
+  }
+
+?>
+<script>
+  let jsonBanners = '<?php echo json_encode($viewModel->getAllBanners()); ?>';
+</script>
+<a href="<?php echo ((isset($banner['link']))?$banner['link']:'#') ?>">
+  <picture class="c-banner-grid c-banner-grid_border-initial">
+    <!-- mobile -->
+    <?php
+    
+    if(isset($banner['mobile_image'])){
+      
+      echo '<source id="source_mobile_image"  srcset="'.$escaper->escapeHtml($viewModel->getMediaUrl()).'banners/'.  $escaper->escapeHtml($banner['mobile_image']).'" media="(max-width: 450px)" />';
+    }else{
+      echo '<source  srcset="'.$escaper->escapeHtml($this->getViewFileUrl('images/fija/banner/banner_mb.jpeg')).'" media="(max-width: 450px)" />';
+    }
+    ?>
+    <?php
+    if(isset($banner['desktop_image'])){
+      
+      echo '<img id="source_desktop_image" class="c-banner-intro__img"  src="'. $escaper->escapeHtml($viewModel->getMediaUrl()).'banners/'.  $escaper->escapeHtml($banner['desktop_image']).'"  alt="'.  $escaper->escapeHtml($banner['banner_title']).'"  />';
+    }else{
+      echo '<img  class="c-banner-intro__img"  src="'.$escaper->escapeHtml($this->getViewFileUrl('images/fija/banner/banner_dk.jpeg')).'"  alt="Banner beneficios movistar"  />';
+    }
+    ?>
+    
+
+    <!-- desktop -->
+    
+  </picture>
+</a>
+
+<section id="offert-content" class="o-section">
+  
+  <div class="o-canvas"> 
+
+    <header class="u-text-center">
+      <h2 class="o-headline u-margin-both-0">
+        Tu plan de fibra óptica con más beneficios
+      </h2>
+      <p
+        class="o-subheadline"
+      >
+        ¡Elige el plan que se adapte mejor a ti!
+      </p>
+    </header>
+
+  </div>
+
+  <!-- Componente: Tabs -->
+  <div class="f-c-tabs u-text-center js-tab-target">
+
+    <div class="o-canvas">
+      <!-- Tabs para planes -->
+      <!-- ko scope: 'regionList' -->
+      <div class="f-c-tabs__control">
+        <?php
+          $cont = 0;
+          foreach ($menu as $item) {
+            $class_active='';
+            if($cont == 0 && !isset($empty['offert'])){
+              $class_active = 'is-tab-active';
+            }
+
+            if($item['image'] !=''):
+        ?>
+        
+        <button data-bind="click: changeImageBanner.bind(this, '<?php echo $item['id'] ?>')" 
+          class="f-c-tabs__tab <?php echo $class_active; ?> f-c-tabs__tab_brand js-tab-cta"
+          data-tab-cta="tab-<?php echo $cont; ?>"
+        >
+          <span><?php echo $item['name']?></span>
+          <img
+            src="<?= $viewModel->getMediaUrl().'image/categoryoffert/'.$item['image']?>"
+            alt="Logo"
+            class="f-c-tabs__img"
+          />
+        </button>
+
+        <?php
+            else:          
+        ?>
+        <button data-bind="click: changeImageBanner.bind(this, '<?php echo $item['id'] ?>')" 
+          class="f-c-tabs__tab <?php echo $class_active; ?> js-tab-cta"
+          data-tab-cta="tab-<?php echo $cont; ?>"
+        >
+          <span><?php echo $item['name']?></span>
+        </button>
+
+        <?php
+            endif;
+            $cont++;
+          }
+        ?>
+      </div>
+      <!-- /ko -->
+      <!-- Tabs -->
+      <?php
+        $cont = 0;      
+
+        foreach ($menu as $item) {
+
+          $subcat = $viewModel->getMenuSubCatOfferts($item['id']);          
+
+          if($cont == 0 && !isset($empty['offert'])){
+            $class_hidden ='';
+          }else{
+            $class_hidden = 'is-content-tab-hide';
+          }
+          
+      ?>
+      <div class="f-c-tabs__content <?php echo $class_hidden; ?> js-tab-content" data-tab-content="tab-<?php echo $cont; ?>">
+        <!-- GRID PLANS CARD -->
+        <div class="js-subtab-target">
+          <?php
+            if(count($subcat) > 0){
+              $items_descip = array();
+          ?>
+
+          <?php
+              //foreach bottoms tabs
+              $contsub =0;
+              foreach ($subcat as $item_sub) {
+
+                $class_active ='is-content-tab-hide';
+                $name_tab = "tab-".$cont."-".$contsub;
+                if($contsub ==0 && !isset($empty['offert'])){
+                  $class_active = '';
+                  $name_tab = "tab-".$cont;
+                }
+
+                $items_descip = $viewModel->getMenuDescription($item_sub['id']); 
+                $nums_items = count($items_descip); 
+                if($nums_items > 0){
+          ?>
+          <!-- Iconos del plan -->
+          <div class="f-c-tabs__description js-subtab-content <?php echo $class_active;?>" data-tab-content="<?php echo $name_tab;?>">
+            <?php   
+                $i = 0;
+                foreach ($items_descip as $decrip): 
+            ?> 
+            <span class="f-c-tabs__ico o-text-ico <?php echo $decrip['class_name'];?>">
+              <?php echo $decrip['description'];?>
+            </span>
+            <?php
+                  if(++$i < $nums_items) {
+                    ?>
+                    <span class="f-c-tabs__divider i-close">
+                      <span class="|"></span>
+                    </span>
+
+                    <?php
+                  }
+                endforeach;
+            ?>
+          </div>
+          <?php
+                $contsub++;
+                }// if coutnt numitems
+              }// foreach tabs
+            }// count subcat
+          ?>
+          <!-- Sub tabs -->
+          <div class="f-c-tabs__subtabs">
+            <?php
+              //foreach bottoms tabs
+              $contsub =0;
+              foreach ($subcat as $item_sub) {
+                $class_active ='';
+                $name_tab = "tab-".$cont."-".$contsub;
+                if($contsub ==0){
+                  $class_active = 'is-tab-active';
+                  $name_tab = "tab-".$cont;
+                }
+                
+            ?>          
+            <button
+              class="f-c-tabs__btn o-btn o-btn_sm js-subtab-cta <?php echo $class_active; ?>"
+              data-tab-cta="<?php echo $name_tab; ?>"
+            >
+              <?php echo $item_sub['name']; ?>
+            </button>
+            <?php
+                $contsub++;
+              }// end foreach buttons tabs            
+            ?>            
+          </div>
+          
+          <?php
+          if(count($subcat)>0){
+          
+              //foreach bottoms tabs
+              $contsub =0;
+              foreach ($subcat as $item_sub) {
+
+                $name_tab = "tab-".$cont."-".$contsub;
+                $class_inactive = 'is-content-tab-hide';
+                if($contsub ==0 ){
+                  $class_inactive = '';
+                  $name_tab = "tab-".$cont;
+                }
+          ?>
+          <!-- Tabs <?php echo $name_tab;?> -->
+          <div class="u-position-relative js-slider-plan-product-wrap <?php echo $class_inactive; ?> js-subtab-content" data-tab-content="<?php echo $name_tab; ?>" >
+            <div class="swiper js-slider-plan-product">
+              <!-- Grid tarjeta de planes -->
+              <div class="f-c-plan-wrap js-plan-product-wrap swiper-wrapper">
+              <?php
+                $offerts = $viewModel->getOfferts($item['id'], $item_sub['id']);
+                
+                foreach ($offerts as $offerts_item) {
+                  $class_recomen = '';
+                  if($offerts_item->getRecommended() == 1){
+                    $class_recomen = 'is-plan-recommended';
+                  }
+                ?>
+                <div class="swiper-slide f-c-plan-slide">
+                  <!-- Componente: Plan -->
+                  <!-- is-plan-recommended -->
+                  <article class="f-c-plan js-target-class <?php echo $class_recomen; ?> ">
+                    <?php
+                    if($offerts_item->getRecommended() == 1){
+                    ?>
+                    <span class="f-c-plan__flag">🔥 Recomendado</span>
+                    <?php
+                    }
+                    ?>
+
+                    <div class="f-c-plan__content">
+                      <!-- Titulo y tag -->
+                      <header class="f-c-plan__header">
+                        <div class="f-c-plan__header-caption">
+                          <span class="f-c-plan__value"><?php echo $offerts_item->getTitle(); ?></span>
+                          <h3 class="f-c-plan__title"><?php echo $offerts_item->getSubtitle(); ?></h3>
+                          
+                          <?php
+                          if($offerts_item->getMessageExclusive() != ""){
+                          ?>
+                          <span class="f-c-plan__tag o-tag o-tag_success">
+                          <?php echo $offerts_item->getMessageExclusive(); ?>
+                          </span>
+                          <?php
+                          }
+                          ?>
+                        </div>
+
+                        <div class="f-c-plan__header-price">
+
+                          <?php
+                          if($offerts_item->getDiscount() !=0  && $offerts_item->getNormalPrice() != 0 ){
+                            
+                          ?>
+                          <div class="f-c-plan__price">
+                            <p class="f-c-plan__price-offer"><?= $viewModel->getFormatedPrice($offerts_item->getPrice()) ?></p>
+                            <span class="f-c-plan__price-dues"><?php echo ((!empty($offerts_item->getMonths()))?'<span class="slashs-months" >/</span>'.$offerts_item->getMonths():''); ?></span>
+                          </div>
+                          
+                          <div class="f-c-plan__price-wrap">
+                            <span class="f-c-plan__price-normal">
+                              Normal <?= $viewModel->getFormatedPrice($offerts_item->getNormalPrice()); ?>
+
+                            </span>
+
+                            <span class="f-c-plan__tag o-tag o-tag_warning">
+                            <?php echo $offerts_item->getDiscount(); ?>% dto
+                            </span>
+                          </div>
+
+                          <?php
+                          }else{
+                          ?>
+                          <div class="f-c-plan__price">
+                            <p class="f-c-plan__price-offer"><?= $viewModel->getFormatedPrice($offerts_item->getPrice())?></p>
+                            <span class="f-c-plan__price-dues"><?php echo ((!empty($offerts_item->getMonths()))?'<span class="slashs-months" >/</span>'.$offerts_item->getMonths():'') ?></span>
+                          </div>
+                          <?php
+                          }
+                          ?>
+                        </div>
+                      </header>
+                      
+                      <?php
+                      if($offerts_item->getMessageInformation() != ""||$offerts_item->getOffertImage()!= ""){
+                      ?>
+                      <!-- Mensaje con imagen -->
+                      <div class="f-c-plan__notify"  >
+                      <table style="width: 100%;" >
+                          <tr>
+
+                          <?php
+                              $width = 'width:50%';
+                            if(!empty($offerts_item->getOffertImage())&&empty($offerts_item->getMessageInformation())){
+                              $width = 'width:100%';
+                            }
+                            if(empty($offerts_item->getOffertImage())){
+                              $width = '';
+                            }
+                          
+                          ?>
+                            <td style="<?php echo $width ?>"  >
+
+                            <?php
+                              if(!empty($offerts_item->getOffertImage())){
+                                echo '<img class="img_mini_offer" src="'.$escaper->escapeHtml($viewModel->getMediaUrl()).'banners/'.  $escaper->escapeHtml($offerts_item->getOffertImage()).'" >';
+                              }
+                            ?>
+                            </td>
+                            <td>
+                            
+                            <?php
+                              if(!empty($offerts_item->getMessageInformation())){
+                                echo '<span class="f-c-plan__notify-text text_mini_offert">'.$offerts_item->getMessageInformation().'</span>';
+                              }
+                            ?>
+
+                            </td>
+                          </tr>
+                        </table>
+                        </div>
+                      <?php
+                      }
+                      ?>
+                         
+                      <a  class="o-btn o-btn_full" 
+                      href="<?php echo $viewModel->getOffertLinkDetails($offerts_item->getId()); ?>">
+                      ¡Lo quiero!</a>
+
+                      <!-- Mensaje con imagen -->
+                      <!--<figure class="f-c-plan__notify f-c-plan__notify_brand">
+                        <img
+                          src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/netflix_brand.png'))?>"
+                          alt="Logo Netflix"
+                          class="f-c-plan__notify-img"
+                        />
+
+                        <figcaption class="f-c-plan__notify-text">
+                          <strong class="f-c-plan__notify-text_bold"
+                            >Incluído</strong
+                          >
+                          2 pantallas HD
+                        </figcaption>
+                      </figure>-->
+
+                      <!-- Lista de beneficos -->
+                      <div class="f-c-plan__toggle-content js-plan-target">
+                        <ul class="f-c-plan__benefits js-plan-list-benefits">
+                          
+                          <?php
+                          $components = $viewModel->getComponents($offerts_item->getId());
+                          foreach ($components as $items_comp) {
+                          ?>
+                          <li class="f-c-plan__benefit js-plan-benefit">
+                            <div class="f-c-plan__benefit-img-wrap">
+                              <img
+                                class="f-c-plan__benefit-img"
+                                src="<?= $escaper->escapeHtml($viewModel->getMediaUrl()).
+                              'offert/offertcomponent/'.
+                              $escaper->escapeHtml($items_comp->getImage())?>"
+                                alt=""
+                              />
+                            </div>
+
+                            <header class="f-c-plan__benefit-header">
+                              <h4 class="f-c-plan__benefit-title">
+                                <?php echo $items_comp->getName(); ?>
+                              </h4>
+                              <?php if($items_comp->getDescription()!=""): ?>
+                              <p class="f-c-plan__benefit-description">
+                              <?php echo $items_comp->getDescription(); ?>
+                              </p>
+                              <?php endif; ?>
+                              <?php if($items_comp->getLink()!=""): ?>
+                              <a class="f-c-plan__benefit-link o-link" target="_blank" href="<?php echo $items_comp->getLink(); ?>"
+                                ><?php echo $items_comp->getLinkText(); ?></a>
+                              <?php endif; ?>
+                            </header>
+                          </li>
+
+                          <?php
+                          }
+                          ?>                          
+                        </ul>
+                        <?php
+                        $classmobile = '';
+                          if(count($components)>3){
+                            $classmobile = 'hidden_loquiero';
+                            ?>
+                          <a
+                            class="o-btn o-btn_full u-margin-top-24  <?php echo $classmobile ?>"
+                            href="<?php echo $viewModel->getOffertLinkDetails($offerts_item->getId()); ?>"
+                            >¡Lo quiero!</a
+                          >
+                            <?php
+                          }
+                            ?>
+                      </div>
+
+                      <!-- Botón que oculta o muestra los beneficios cuando son mas de 3 -->
+                      <span
+                        class="f-c-plan__toggle-btn i-chevron-down js-btn-toggle-class"
+                        data-class-is="is-benefits-down"
+                        data-text-up="Más beneficios"
+                        data-text-down="Menos beneficios"
+                      >
+                      </span>
+                    </div>
+                  </article>
+                </div>
+
+                <?php
+                }
+                ?>
+                
+              </div>
+            </div>
+
+            <button class="f-c-plan-arrow swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-plan-arrow swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+          <?php
+                $contsub++;
+              }//foreach
+            }else{
+          ?>
+          <div class="u-position-relative js-slider-plan-product-wrap js-subtab-content" data-tab-content="<?php echo "tab-".$cont; ?>" >
+            <div class="swiper js-slider-plan-product">
+              <!-- Grid tarjeta de planes -->
+              <div class="f-c-plan-wrap js-plan-product-wrap swiper-wrapper">
+              <?php
+                $offerts = $viewModel->getOfferts($item['id'],0);
+              
+                foreach ($offerts as $offerts_item) {
+                  $class_recomen = '';
+                  
+                  if($offerts_item->getRecommended() == 1){
+                    $class_recomen = 'is-plan-recommended';
+                  }
+                ?>
+                <div class="swiper-slide f-c-plan-slide">
+                  <!-- Componente: Plan -->
+                  <!-- is-plan-recommended -->
+                  <article class="f-c-plan js-target-class <?php echo $class_recomen; ?> ">
+                    <?php
+                    if($offerts_item->getRecommended() == 1){
+                    ?>
+                    <span class="f-c-plan__flag">🔥 Recomendado</span>
+                    <?php
+                    }
+                    ?>
+
+                    <div class="f-c-plan__content">
+                      <!-- Titulo y tag -->
+                      <header class="f-c-plan__header">
+                        <div class="f-c-plan__header-caption">
+                          <span class="f-c-plan__value"><?php echo $offerts_item->getTitle(); ?></span>
+                          <h3 class="f-c-plan__title"><?php echo $offerts_item->getSubtitle(); ?></h3>
+                          
+                          <?php
+                          if($offerts_item->getMessageExclusive() != ""){
+                          ?>
+                          <span class="f-c-plan__tag o-tag o-tag_success">
+                          <?php echo $offerts_item->getMessageExclusive(); ?>
+                          </span>
+                          <?php
+                          }
+                          ?>
+                        </div>
+
+                        <div class="f-c-plan__header-price">
+                          <?php
+                          if($offerts_item->getDiscount() !=0  && $offerts_item->getNormalPrice() != 0){
+                          ?>
+                          <div class="f-c-plan__price">
+                            <p class="f-c-plan__price-offer"><?= $viewModel->getFormatedPrice($offerts_item->getPrice())?></p>
+                            <span class="f-c-plan__price-dues"><?php echo ((!empty($offerts_item->getMonths()))?'<span class="slashs-months" >/</span>'.$offerts_item->getMonths():''); ?></span>
+                          </div>
+                          <span class="f-c-plan__price-normal">
+                            Normal <?= $viewModel->getFormatedPrice($offerts_item->getNormalPrice()); ?>
+                          </span>
+                          <span class="f-c-plan__tag o-tag o-tag_warning">
+                          <?php echo $offerts_item->getDiscount(); ?>% dto
+                          </span>
+                          <?php
+                          }else{
+                          ?>
+                          <div class="f-c-plan__price">
+                            <p class="f-c-plan__price-offer"><?= $viewModel->getFormatedPrice($offerts_item->getPrice()) ?></p>
+                            <span class="f-c-plan__price-dues"><?php echo ((!empty($offerts_item->getMonths()))?'<span class="slashs-months" >/</span>'.$offerts_item->getMonths():''); ?></span>
+                          </div>
+                          <?php
+                          }
+                          ?>
+                        </div>
+                      </header>
+
+                      <?php
+                      if($offerts_item->getMessageInformation() != ""||$offerts_item->getOffertImage()!= ""){
+                      ?>
+                      <!-- Mensaje con imagen -->
+                      <div class="f-c-plan__notify" >
+                      <table style="width: 100%;"  >
+                          <tr>
+
+                          <?php
+                              $width = 'width:50%';
+                            if(!empty($offerts_item->getOffertImage())&&empty($offerts_item->getMessageInformation())){
+                              $width = 'width:100%';
+                            }
+                            if(empty($offerts_item->getOffertImage())){
+                              $width = '';
+                            }
+                          
+                          ?>
+                            <td style="<?php echo $width ?>"  >
+
+                            <?php
+                              if(!empty($offerts_item->getOffertImage())){
+                                echo '<img class="img_mini_offer" src="'.$escaper->escapeHtml($viewModel->getMediaUrl()).'banners/'.  $escaper->escapeHtml($offerts_item->getOffertImage()).'" >';
+                              }
+                            ?>
+                            </td>
+                            <td>
+                            
+                            <?php
+                              if(!empty($offerts_item->getMessageInformation())){
+                                echo '<span class="f-c-plan__notify-text text_mini_offert">'.$offerts_item->getMessageInformation().'</span>';
+                              }
+                            ?>
+
+                            </td>
+                          </tr>
+                        </table>
+                        </div>
+                        </table>
+                      <?php
+                      }
+                      ?>
+
+                      <a class="o-btn o-btn_full" 
+                      href="<?php echo $viewModel->getOffertLinkDetails($offerts_item->getId()); ?>">
+                      ¡Lo quiero!</a>
+
+                      <!-- Mensaje con imagen -->
+                      <!--<figure class="f-c-plan__notify f-c-plan__notify_brand">
+                        <img
+                          src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/netflix_brand.png'))?>"
+                          alt="Logo Netflix"
+                          class="f-c-plan__notify-img"
+                        />
+
+                        <figcaption class="f-c-plan__notify-text">
+                          <strong class="f-c-plan__notify-text_bold"
+                            >Incluído</strong
+                          >
+                          2 pantallas HD
+                        </figcaption>
+                      </figure>-->
+
+                      <!-- Lista de beneficos -->
+                      <div class="f-c-plan__toggle-content js-plan-target">
+                        <ul class="f-c-plan__benefits js-plan-list-benefits">
+                          
+                          <?php
+                          $components = $viewModel->getComponents($offerts_item->getId());
+                          foreach ($components as $items_comp) {
+                          ?>
+                          <li class="f-c-plan__benefit js-plan-benefit">
+                            <img
+                              class="f-c-plan__benefit-img"
+                              src="<?= $escaper->escapeHtml($viewModel->getMediaUrl()).
+                            'offert/offertcomponent/'. 
+                            $escaper->escapeHtml($items_comp->getImage())?>"
+                              alt=""
+                            />
+
+                            <header class="f-c-plan__benefit-header">
+                              <h4 class="f-c-plan__benefit-title">
+                                <?php echo $items_comp->getName(); ?>
+                              </h4>
+                              <?php if($items_comp->getDescription()!=""): ?>
+                              <p class="f-c-plan__benefit-description">
+                              <?php echo $items_comp->getDescription(); ?>
+                              </p>
+                              <?php endif; ?>
+                              <?php if($items_comp->getLink()!=""): ?>
+                              <a class="f-c-plan__benefit-link o-link" target="_blank" href="<?php echo $items_comp->getLink(); ?>">
+                                <?php echo $items_comp->getLinkText(); ?>
+                              </a>
+                              <?php endif; ?>
+                            </header>
+                          </li>
+
+                          <?php
+                          }
+                          ?>                          
+                        </ul>
+                          <?php
+                          $classmobile = '';
+                          if(count($components)>3){
+                            $classmobile = 'hidden_loquiero';
+                            
+                            ?>
+                              <a
+                                class="o-btn o-btn_full u-margin-top-24 <?php echo $classmobile ?>"
+                                href="<?php echo $viewModel->getOffertLinkDetails($offerts_item->getId()); ?>"
+                                >¡Lo quiero!</a
+                              >
+                            <?php
+                          } ?>
+                      </div>
+                      <!-- Botón que oculta o muestra los beneficios cuando son mas de 3 -->
+                      <span
+                        class="f-c-plan__toggle-btn i-chevron-down js-btn-toggle-class"
+                        data-class-is="is-benefits-down"
+                        data-text-up="Más beneficios"
+                        data-text-down="Menos beneficios"
+                      >
+                      </span>
+                    </div>
+                  </article>
+                </div>
+
+                <?php
+                }
+                ?>
+                
+              </div>
+            </div>
+
+            <button class="f-c-plan-arrow swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-plan-arrow swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+          <?php
+            }
+          ?>
+
+
+          
+                  
+        </div>
+
+        
+
+      </div>
+      <?php
+          $cont++;
+        }
+      ?>
+      <div class="f-c-tabs__content <?= $class_error; ?> js-tab-content" data-tab-content="tab-empty">
+        <!-- Mensaje para cuando no hay planes en las tabs -->
+        <figure class="f-c-tabs__message ">
+          <img
+            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/plan/message_plans.svg'))?>"
+            alt=""
+            class="f-c-tabs__message-img"
+          >
+          <figcaption class="f-c-tabs__message-caption">
+            <p class="f-c-tabs__message-title">Estamos buscando las mejores ofertas para ti. </p>
+            <span class="f-c-tabs__message-txt">Navega más con Movistar</span>
+          </figcaption>
+        </figure> 
+      </div>      
+    </div>
+
+    <!-- Sección Beneficios -->
+
+      <?php
+        $cont = 0;
+        foreach ($menu as $item) {
+          if($cont == 0){
+            $class = 'is-tab-active';
+          }else{
+            $class = 'is-content-tab-hide';
+          }
+          $includedBenefits = $viewModel->getIncludedBenefits($item['id']);
+          if(count($includedBenefits)>0):
+      ?>
+      <div class="js-tab-content <?php echo $class; ?>" data-tab-content="tab-<?php echo $cont; ?>">
+        <div class="o-section__bg-withe u-padding-both-40">
+
+          <div class="o-canvas">
+
+            <div class="o-bg-gray u-padding-both-40">
+
+              <h3 class="o-title u-margin-bottom-0">Beneficios Incluídos en algunos Planes</h3>
+
+                <div class="f-c-benefits swiper js-swiper-benefits">
+                  <div class="f-c-benefits__wrapper swiper-wrapper">
+
+                  <?php                                    
+                  foreach ($includedBenefits as $benefit) {
+                  ?>
+
+                    <figure class="f-c-benefits__card swiper-slide">
+
+                      <img
+                        src="<?= $escaper->escapeHtml($viewModel->getMediaUrl()).
+                              'benefits/includedbenefits/'. 
+                              $escaper->escapeHtml($benefit->getImage())?>"
+                        alt="<?php echo $benefit->getImage(); ?>"
+                        class="f-c-benefits__card-img"
+                      >
+                      
+                      <figcaption class="f-c-benefits__card-caption">
+                        <?php echo $benefit->getDescription(); ?>
+                      </figcaption>
+
+                    </figure>
+                  
+                  <?php 
+                  }
+                  ?>
+                  </div>
+
+                  <!-- If we need pagination -->
+                  <div class="o-swiper-bullets swiper-pagination"></div>
+                </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    <?php
+      endif;
+    $cont++;
+      }
+      ?>
+
+  </div>
+
+</section>
+
+<script src="<?php echo $this->getViewFileUrl('js/fija/plan_product.js'); ?>"></script>
+<script type="text/x-magento-init">
+    {
+        "#offert-content": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "regionList": {
+                        "component": "Vass_Fija/js/regionList"
+                    }
+                }
+            }
+        }
+        
+    }
+</script>

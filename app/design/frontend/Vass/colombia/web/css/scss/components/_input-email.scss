@@ -1,0 +1,33 @@
+.c-input-email__title {
+    font-weight: $f-regular;
+    @include px-to-rem(font-size, 14px);
+}
+.c-input-email__box {
+    position: relative;
+    @include flexbox;
+    @include justify-content(space-between);
+    @include px-to-rem(padding-bottom, 8px);
+    border-bottom: 1px solid $c-gray-2;
+    &::before {
+        position: absolute;
+        top: 14px;
+        @include px-to-rem(font-size, 21px);
+        color: $c-primary;
+    }
+}
+
+.c-input-email__input {
+    width: 100%;
+    @include px-to-rem(padding-top, 16px);
+    @include px-to-rem(padding-left, 32px);
+    @include px-to-rem(padding-right, 32px);
+    @include px-to-rem(padding-bottom, 16px);
+    @include px-to-rem(font-size, 14px);
+    border: none;
+    color: $c-gray-5;
+}
+
+.c-input-email__box,
+.c-input-email__input {
+    background-color: transparent;
+}

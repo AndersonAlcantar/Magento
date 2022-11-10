@@ -1,0 +1,224 @@
+<?php
+
+/** @var $viewModel \Vass\Fija\ViewModel\DataCustomer */
+$viewModel = $block->getViewModel();
+
+?>
+
+<section class="o-section">
+    <!-- ko scope: 'agendarComponent' -->
+    <div class="o-layout-2-columns">
+
+        <div class="c-card-checkout-cta">
+            
+            <button
+                type="button"
+                class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+            >
+                Resumen de tu compra
+            </button>
+        </div>
+
+        <form method="post" class="c-form c-form_w723 c-form_transparent" id="agendar-form">
+            <header class="c-form__header u-text-left">
+                <h2 class="c-form__title c-form__title_big">
+                    ¡Elije la fecha para tu servicio!
+                </h2>
+                <p class="c-form__lead c-form__lead_gray">Selecciona una fecha y hora para tu instalación</p> 
+            </header>
+
+            <div class="f-c-calendar u-margin-bottom-24">
+                
+                <!-- Titulo y flechas del calendario -->
+                <header class="f-c-calendar__toolbar js-calendar-header" ids="0">
+
+                    <button class="f-c-calendar__btn js-calendar-btn-prevWeek i-chevron-left" type="button">
+                        <span class="u-hidden">Semana pasada</span>
+                    </button>
+
+                    <h3 class="f-c-calendar__title js-calendar-title"></h3>
+
+                    <button class="f-c-calendar__btn js-calendar-btn-nextWeek i-chevron-right" type="button">
+                        <span class="u-hidden">Semana siguiente</span>
+                    </button>
+
+                </header>
+
+                <!-- Dias de la semana -->
+                <ul class="f-c-calendar__box f-c-calendar__header js-calendar-weekList"></ul>
+
+                <!-- Dias de la semana númericos -->
+                <ul class="f-c-calendar__box f-c-calendar__grid js-calendar-boxContent"></ul>
+
+            </div>
+
+            <div class="c-form__box u-text-left">
+                <p class="c-form__text-list c-form__input_color">Rango Horario</p>
+
+                <div class="c-form__inputs-list c-form__inputs-list_column">
+                <div>                                  
+                    <label class="c-form__radio-button-label c-form__radio-button-label_light" for="m">
+                    <input class="c-form__radio-button" type="radio" id="m" name="horario">
+                    07:00 a.m. - 12:00 p.m
+                    </label>
+                </div>
+
+                <div>                                    
+                    <label class="c-form__radio-button-label c-form__radio-button-label_light" for="a">
+                    <input class="c-form__radio-button" type="radio" id="a" name="horario">
+                    12:00 p.m. - 07:00 p.m.
+                    </label>
+                </div>
+
+                </div>
+
+                <span class="c-form__error-text">Mensaje de error</span>
+            </div>
+
+            <div class="c-form__actions c-form__actions_right">
+                <input name="context" type="hidden" value="checkout" />
+
+                <!--
+                    1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+                    2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+                -->
+                <button
+                    type="submit"
+                    class="o-btn o-btn_height56 o-btn_height40_mb c-form__btn c-form__btn_full"
+                    disabled
+                    
+                >
+                    Continuar
+                </button>
+            </div>
+        </form>
+
+        <!-- Detalle del producto -->
+        <div
+            id="checkout-summary"
+            
+            class="c-card-summary__wrap"
+        >
+
+            <div
+                class="c-card-summary c-card-summary_space-bottom js-target-summary"
+                
+            >
+                <h3 class="c-card-summary__title c-card-summary__title_border">Detalles del producto</h3>
+
+                <div>
+
+                    <div class="c-card-summary__amount">
+                        <h4 class="mark" scope="row" >
+                            Plan Trío Megas
+                        </h4>
+                    </div>
+
+                    <div class="c-card-summary__box">
+                        <div class="c-card-summary__amount c-card-summary__amount_before">
+                            <h4 class="mark" scope="row">
+                                Antes
+                            </h4>
+
+                            <span class="c-card-summary__amount-trough">
+                                $130.990
+                            </span>
+                        </div>
+
+                        <div class="c-card-summary__amount">
+                            <h4 class="mark" scope="row">
+                                Ahora
+                            </h4>
+
+                            <strong class="amount">
+                                $67.495
+                            </strong>
+                        </div>
+
+                        <ul class="c-card-summary__details">
+                            <li><strong>RV_14885, 50% dto mes 2 - 4 - 6 - 8</strong></li>
+                            <li>Línea Básica (Voz Nacional 200 Mn LDI) </li>
+                            <li> TV (Plan IPTV Fibra Trío RV_14874)</li>
+                            <li>Internet Fibra (500 Mbps Trío BA)</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="c-card-summary__box">
+                      <h4 class="c-card-summary__subtitle">Detalle de instalación</h4>
+
+                      <table class="c-card-summary__table">
+                        <thead class="c-card-summary__table-head">
+                          <tr>
+                            <td>Dirección</td>
+                            <td>Municipio</td>
+                            <td>Ciudad</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="c-card-summary__table-row">
+                            <td class="c-card-summary__table-cell">TV CL 11A - 55 JULIO FLOREZ - SUBA APARTAMENTO 402</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="c-card-summary__amount c-card-summary__total">
+                        <h4 class="mark" scope="row">
+                            <strong >Total</strong>
+                        </h4>
+
+                        <p
+                            class="amount"
+                           
+                            data-th="Total"
+                        >
+                            <strong>$67.496</strong>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="c-card-summary__message i-information u-padding-bottom-32">
+                    <p>Recuerda que si tu plan tiene descuentos los verás reflejado en tu factura.
+                        Para los planes de Fibra Óptica el equipo Repetidor WiFi Base Port será facturado
+                        mensualmente por un valor de $4.000 IVA incluido por 48 meses
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Fin detalle del producto -->
+
+    </div>
+    <!-- /ko --> 
+</section>
+<script type="text/x-magento-init">
+    {
+        "#datos-personales-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "agendarComponent": {
+                        "component": "Vass_Fija/js/agendarComponent"
+                    }
+                }
+            }
+        }
+
+        
+    }
+</script>
+<!-- TODO: Remover libreria jquery de ser necesario -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
+</script>
+<!-- END TODO: Remover libreria jquery de ser necesario -->
+
+<script src="<?php echo $this->getViewFileUrl('js/ven/weekly_calendar_custom.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/fija/weekly_calendar.js'); ?>"></script>

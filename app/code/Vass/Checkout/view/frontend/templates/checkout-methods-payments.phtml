@@ -1,0 +1,167 @@
+<div class="c-card-checkout-cta">
+	<a
+		class="i-arrow-left c-card-checkout-cta__link"
+		href="<?= $escaper->escapeUrl('/checkout/lineas/') ?>"
+	>
+		Volver
+	</a>
+	
+	<button
+		type="button"
+		class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+		>
+			Resumen de tu compra
+		</button>
+</div>
+<button id="openModalError" data-modal="modal-error-general"  class="open-modal u-hidden" type="button">Error</button>
+<button id="alertAcceptTermsConditions" data-modal="modal-alert_accept_terms_conditions"  class="open-modal u-hidden" type="button">Error</button>
+<button id="openModalTermsAndConditions" data-modal="modal-terms_conditions"  class="open-modal u-hidden" type="button"></button>
+<button id="openModalProcesingPersonalData" data-modal="modal-processing_personal_data"  class="open-modal u-hidden" type="button"></button>
+<!-- ko scope: 'methods-payments' -->
+<form method="post" class="c-form c-form_w687" data-bind="event: { input: validateForm }">
+
+    <header class="c-form__header c-form_w365 u-box-align-center">
+        <h2
+            class="c-form__title"
+        >
+            ¿Qué deseas hacer?
+        </h2>
+
+        <p class="c-form__lead">Para continuar selecciona una opción</p>
+    </header>
+
+    <div class="c-form__group-radios c-form__group-radios_flex u-hidden">
+        <!-- ko if: productAccessory -->
+        <p class="c-form__lead c-form__lead_bold u-text-left">
+            Aceptar términos y condiciones
+        </p>
+        <!-- /ko -->
+        <!-- ko ifnot: productAccessory -->
+        <fieldset class="c-form__fieldset c-form__fieldset_m48">
+
+            <p class="c-form__lead c-form__lead_bold u-text-left">
+                ¿Con qué línea lo quieres?
+            </p>
+
+            <div class="c-form__radio c-form__radio_card">
+                <input
+                    id="3173872341"
+                    name="line"
+                    type="radio"
+                    value ="3173872341"
+                    class="c-form__radio-input"
+                    checked
+                />
+
+                <div class="c-form__radio-box">
+                    <label
+                        class="c-form__radio-label i-phone"
+                        for="3173872341"
+                    >
+                        <span class="o-text_default">Línea elegida</span>
+                        <span class="o-text o-text_primary" data-bind="text: valueLine"></span>
+                    </label>
+                </div>
+
+            </div>
+
+        </fieldset>
+
+        <fieldset class="c-form__fieldset">
+
+            <p class="c-form__lead c-form__lead_bold u-text-left">
+                ¿Cómo lo quieres pagar?
+            </p>
+            <!-- ko if: linePospaid -->
+            <div class="c-form__radio c-form__radio_card u-hidden">
+                <input
+                    id="cuote_one"
+                    name="cuote"
+                    type="radio"
+                    value="cuotas"
+                    class="c-form__radio-input"
+                    data-bind="checked: payOption"
+                />
+
+                <div class="c-form__radio-box">
+                    <label
+                        class="c-form__radio-label i-credit-card-stroke"
+                        for="cuote_one"
+                    >
+                        Pago a cuotas en mi factura
+                    </label>
+                </div>
+
+            </div>
+            <!-- /ko -->
+            <div class="c-form__radio c-form__radio_card u-hidden">
+                <input
+                    id="cuote_two"
+                    name="cuote"
+                    type="radio"
+                    value="contado"
+                    class="c-form__radio-input"
+                    data-bind="checked: payOption"
+                />
+
+                <div class="c-form__radio-box">
+                    <label
+                        class="c-form__radio-label i-credit-card-stroke"
+                        for="cuote_two"
+                    >
+                        Pago de contado con otros medios
+                    </label>
+                </div>
+
+            </div>
+
+        </fieldset>
+        <!-- /ko -->
+
+        <div class="c-form__checkbox-wrap u-margin-top-24">
+            <div class="c-form__checkbox">
+                <input
+                    type="checkbox"
+                    class="c-form__checkbox-input"
+                    data-bind="checked: checkboxStatus"
+                >
+                <label class="c-form__checkbox-label"></label>
+            </div>
+            <p class="c-form__checkbox-text">
+                Al continuar aceptas el
+                <a data-bind="click: openModalProcesingPersonalData" class="o-link" href="#">tratamiento de datos personales</a>, los
+                <a data-bind="click: openModalTermsAndConditions" class="o-link">términos y condiciones</a>
+                y posible consulta de información relativa al cumplimiento de tus obligaciones.
+            </p>
+        </div>
+
+        <div class="c-form__actions">
+            <input name="context" type="hidden" value="checkout">
+
+            <button
+                type="submit"
+                class="o-btn c-form__btn o-btn_height56 o-btn_full o-btn_w255"
+                data-bind="click: sendMethod, enable: enableSubmitMethod"
+            >
+                Continuar
+            </button>
+
+        </div>
+
+    </div>
+
+</form>
+<!-- /ko -->
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"methods-payments": {
+					"component": "Vass_Checkout/js/methods-payments"
+				}
+			}
+		}
+	}
+}
+</script>

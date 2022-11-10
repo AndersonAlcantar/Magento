@@ -1,0 +1,19 @@
+.o-tag {
+    @include px-to-rem(margin-left, $gutter * 2);
+    border-radius: 10px;
+    background-color: $c-secondary;
+    color: $c-neutro;
+    font-weight: $f-bold;
+    @include px-to-rem(font-size, 12px);
+    @include px-to-rem(padding, 2px 8px);
+}
+
+.o-tag_success {
+    color: $c-green-selected;
+    background-color: rgba($c-green-normal, 0.3);
+}
+
+.o-tag_warning {
+    color: $c-orange-80;
+    background-color: $c-orange-50;
+}

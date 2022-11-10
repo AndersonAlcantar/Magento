@@ -1,0 +1,91 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Vass\Menu\Helper\Data'); 
+
+$menu= $helper->getMenu(2);
+
+?>            
+            <ul class="c-main-menu__list">
+            <?php
+            foreach ($menu as $item) {
+
+              if(isset($item['submenu'])){
+
+            ?>
+              <li class="c-main-menu__item js-btn-main-menu">
+                <a class="c-main-menu__link i-after-chevron-down js-sibling-btn"><?php echo $item['name']; ?></a>
+                <div class="c-megamenu">
+                  <div class="c-megamenu__header">
+                    <a class="c-megamenu__header-btn i-chevron-left js-return-megamenu"><?php echo $item['name']; ?></a>
+                  </div>
+                  <nav class="c-submenu">
+                    <ul class="c-submenu__list">
+
+                      <?php
+                        foreach ($item['submenu'] as $submenu) {
+                          if(isset($submenu['submenu'])){
+                      ?>
+                      <li class="c-submenu__item">
+                        <div class="c-sumenu-third-level__item-wrap js-target-dropdown">
+                          <span class="c-sumenu-third-level__link o-dropdown__btn js-btn-dropdown i-after-chevron-down <?php echo $submenu['class']; ?>" href="#" ><?php echo $submenu['name']; ?></span>
+                          <div class="o-dropdown__content">
+                            <ul class="c-submenu-fourth-level__list">
+
+                              <?php
+                              foreach ($submenu['submenu'] as $submenu_) {
+                              ?>
+                              <li class="c-submenu-fourth-level__item">
+                                <a href="<?= $block->escapeHtmlAttr(($submenu_['link']) ?  : '#')?>" class="c-submenu-fourth-level__link">
+                                  <?= $block->escapeHtml($submenu_['name']); ?>
+                                </a>
+                              </li>
+                              <?php
+                              }
+                              ?>                           
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <?php
+                          }else{
+                      ?>
+                      <li class="c-submenu__item"> 
+                        <div class="c-submenu__item-wrap"> 
+                          <a href="<?= $block->escapeHtmlAttr(($submenu['link']) ?  : '#')?>" class="c-submenu__link <?= $block->escapeHtmlAttr($submenu['class']); ?>">
+                            <?= $block->escapeHtml($submenu['name']); ?> 
+                            <?php if ($submenu['discount_text']!=''): ?>  
+                              <span class="o-tag">
+                                <?= $block->escapeHtml($submenu['discount_text']); ?>
+                              </span> 
+                            <?php endif; ?> 
+                          </a>
+                          <span class="c-sumenu-third-level__paragraph">
+                            <?= $block->escapeHtml($submenu['description']); ?>
+                          </span>
+                        </div>
+                      </li>
+                      <?php
+                          }
+                        }
+                      ?>                    
+                    </ul>
+                  </nav>
+                </div>
+              </li>
+            <?php
+              }else{
+            ?>
+              <li class="c-main-menu__item">
+                <a class="c-main-menu__link c-main-menu__link_display" href="<?= $block->escapeHtmlAttr(($item['link']) ?  : '#')?>">
+                  <?= $block->escapeHtml($item['name']); ?>
+                </a>
+              </li>
+
+            <?php
+              }
+            }
+            ?>
+              
+              
+              
+            </ul>

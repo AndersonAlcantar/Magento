@@ -1,0 +1,1066 @@
+/*---------------------------------------------*\
+  #font-face 
+  $font-family-ico: "movistar-ico" !default;
+\*---------------------------------------------*/
+
+// fuentes
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/Telefonica-ExtraLight.eot");
+    src: url("#{$path-font-movistar}/Telefonica-ExtraLight.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/Telefonica-ExtraLight.woff2")
+            format("woff2"),
+        url("#{$path-font-movistar}/Telefonica-ExtraLight.woff") format("woff"),
+        url("#{$path-font-movistar}/Telefonica-ExtraLight.ttf")
+            format("truetype"),
+        url("#{$path-font-movistar}/Telefonica-ExtraLight.svg#Telefonica-ExtraLight")
+            format("svg");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/Telefonica-Light.eot");
+    src: url("#{$path-font-movistar}/Telefonica-Light.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/Telefonica-Light.woff2") format("woff2"),
+        url("#{$path-font-movistar}/Telefonica-Light.woff") format("woff"),
+        url("#{$path-font-movistar}/Telefonica-Light.ttf") format("truetype"),
+        url("#{$path-font-movistar}/Telefonica-Light.svg#Telefonica-Light")
+            format("svg");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/Telefonica-Regular.eot");
+    src: url("#{$path-font-movistar}/Telefonica-Regular.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/Telefonica-Regular.woff2") format("woff2"),
+        url("#{$path-font-movistar}/Telefonica-Regular.woff") format("woff"),
+        url("#{$path-font-movistar}/Telefonica-Regular.ttf") format("truetype"),
+        url("#{$path-font-movistar}/Telefonica-Regular.svg#Telefonica-Regular")
+            format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/TelefonicaCap-Regular.eot");
+    src: url("#{$path-font-movistar}/TelefonicaCap-Regular.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/TelefonicaCap-Regular.woff2")
+            format("woff2"),
+        url("#{$path-font-movistar}/TelefonicaCap-Regular.woff") format("woff"),
+        url("#{$path-font-movistar}/TelefonicaCap-Regular.ttf")
+            format("truetype"),
+        url("#{$path-font-movistar}/TelefonicaCap-Regular.svg#TelefonicaCap-Regular")
+            format("svg");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/Telefonica-RegularItalic.eot");
+    src: url("#{$path-font-movistar}/Telefonica-RegularItalic.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/Telefonica-RegularItalic.woff2")
+            format("woff2"),
+        url("#{$path-font-movistar}/Telefonica-RegularItalic.woff")
+            format("woff"),
+        url("#{$path-font-movistar}/Telefonica-RegularItalic.ttf")
+            format("truetype"),
+        url("#{$path-font-movistar}/Telefonica-RegularItalic.svg#Telefonica-RegularItalic")
+            format("svg");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Telefonica";
+    src: url("#{$path-font-movistar}/Telefonica-Bold.eot");
+    src: url("#{$path-font-movistar}/Telefonica-Bold.eot?#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font-movistar}/Telefonica-Bold.woff2") format("woff2"),
+        url("#{$path-font-movistar}/Telefonica-Bold.woff") format("woff"),
+        url("#{$path-font-movistar}/Telefonica-Bold.ttf") format("truetype"),
+        url("#{$path-font-movistar}/Telefonica-Bold.svg#Telefonica-Bold")
+            format("svg");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+//- Icommon Font Ico
+@font-face {
+    font-family: "#{$font-family-ico}";
+    src: url("#{$path-font}/#{$font-family-ico}.eot?9m8kyr");
+    src: url("#{$path-font}/#{$font-family-ico}.eot?9m8kyr#iefix")
+            format("embedded-opentype"),
+        url("#{$path-font}/#{$font-family-ico}.ttf?9m8kyr") format("truetype"),
+        url("#{$path-font}/#{$font-family-ico}.woff?9m8kyr") format("woff"),
+        url("#{$path-font}/#{$font-family-ico}.svg?9m8kyr##{$font-family-ico}")
+            format("svg");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.i-,
+[class^="i-"],
+[class*=" i-"],
+.ag-o-ico {
+    &:before {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: "#{$font-family-ico}" !important;
+        speak: never;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+.i-after-,
+[class^="i-after-"],
+[class*="i-after-"] {
+    &:after {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: "#{$font-family-ico}" !important;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.ico-,
+[class^="ico-"],
+[class*=" ico-"] {
+    &:before {
+        content: "";
+        position: relative;
+        top: -1px;
+        display: inline-block;
+        vertical-align: middle;
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        background-color: transparent;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+// V 1.0
+
+/**
+* @icon .i-arrow-down 
+* @markup
+*   <span class="i-arrow-down "></span>
+*/
+.i-arrow-down {
+    &:before {
+        content: $i-arrow-down;
+    }
+}
+.i-after-arrow-down {
+    &::after {
+        content: $i-arrow-down;
+    }
+}
+
+/**
+* @icon .i-arrow-left
+* @markup
+*   <span class="i-arrow-left"></span>
+*/
+.i-arrow-left {
+    &:before {
+        content: $i-arrow-left;
+    }
+}
+
+/**
+* @icon .i-arrow-right
+* @markup
+*   <span class="i-arrow-right"></span>
+*/
+.i-arrow-right {
+    &:before {
+        content: $i-arrow-right;
+    }
+}
+
+/**
+* @icon .i-arrow-up
+* @markup
+*   <span class="i-arrow-up"></span>
+*/
+.i-arrow-up {
+    &:before {
+        content: $i-arrow-up;
+    }
+}
+
+/**
+* @icon .i-camera
+* @markup
+*   <span class="i-camera"></span>
+*/
+.i-camera {
+    &:before {
+        content: $i-camera;
+    }
+}
+
+/**
+* @icon .i-card
+* @markup
+*   <span class="i-card"></span>
+*/
+.i-card {
+    &:before {
+        content: $i-card;
+    }
+}
+
+/**
+* @icon .i-chevron-down
+* @markup
+*   <span class="i-chevron-down"></span>
+*/
+.i-chevron-down {
+    &:before {
+        content: $i-chevron-down;
+    }
+}
+
+/**
+* @icon .i-after-chevron-down
+* @markup
+*   <span class="i-after-chevron-down"></span>
+*/
+.i-after-chevron-down {
+    &:after {
+        content: $i-chevron-down;
+    }
+}
+
+/**
+* @icon .i-chevron-left
+* @markup
+*   <span class="i-chevron-left"></span>
+*/
+.i-chevron-left {
+    &:before {
+        content: $i-chevron-left;
+    }
+}
+
+/**
+* @icon .i-chevron-right
+* @markup
+*   <span class="i-chevron-right"></span>
+*/
+.i-chevron-right {
+    &:before {
+        content: $i-chevron-right;
+    }
+}
+/**
+* @icon .i-after-chevron-right
+* @markup
+*   <span class="i-after-chevron-right"></span>
+*/
+.i-after-chevron-right {
+    &:after {
+        content: $i-chevron-right;
+    }
+}
+
+/**
+* @icon .i-chevron-up
+* @markup
+*   <span class="i-chevron-up"></span>
+*/
+.i-chevron-up {
+    &:before {
+        content: $i-chevron-up;
+    }
+}
+
+/**
+* @icon .i-close
+* @markup
+*   <span class="i-close"></span>
+*/
+.i-close {
+    &:before {
+        content: $i-close;
+    }
+}
+/**
+* @icon .i-after-close
+* @markup
+*   <span class="i-after-close"></span>
+*/
+.i-after-close {
+    &:after {
+        content: $i-close;
+    }
+}
+
+/**
+* @icon .i-electronics
+* @markup
+*   <span class="i-electronics"></span>
+*/
+.i-electronics {
+    &:before {
+        content: $i-electronics;
+    }
+}
+
+/**
+* @icon .i-facebook
+* @markup
+*   <span class="i-facebook"></span>
+*/
+.i-facebook {
+    &:before {
+        content: $i-facebook;
+    }
+}
+
+/**
+* @icon .i-gamepad
+* @markup
+*   <span class="i-gamepad"></span>
+*/
+.i-gamepad {
+    &:before {
+        content: $i-gamepad;
+    }
+}
+
+/**
+* @icon .i-headphones
+* @markup
+*   <span class="i-headphones"></span>
+*/
+.i-headphones {
+    &:before {
+        content: $i-headphones;
+    }
+}
+
+/**
+* @icon .i-home
+* @markup
+*   <span class="i-home"></span>
+*/
+.i-home {
+    &:before {
+        content: $i-home;
+    }
+}
+
+/**
+* @icon .i-instagram
+* @markup
+*   <span class="i-instagram"></span>
+*/
+.i-instagram {
+    &:before {
+        content: $i-instagram;
+    }
+}
+
+/**
+* @icon .i-laptop
+* @markup
+*   <span class="i-laptop"></span>
+*/
+.i-laptop {
+    &:before {
+        content: $i-laptop;
+    }
+}
+
+/**
+* @icon .i-lock
+* @markup
+*   <span class="i-lock"></span>
+*/
+.i-lock {
+    &:before {
+        content: $i-lock;
+    }
+}
+
+/**
+* @icon .i-menu
+* @markup
+*   <span class="i-menu"></span>
+*/
+.i-menu {
+    &:before {
+        content: $i-menu;
+    }
+}
+
+/**
+* @icon .i-microphone
+* @markup
+*   <span class="i-microphone"></span>
+*/
+.i-microphone {
+    &:before {
+        content: $i-microphone;
+    }
+}
+
+/**
+* @icon .i-mouse
+* @markup
+*   <span class="i-mouse"></span>
+*/
+.i-mouse {
+    &:before {
+        content: $i-mouse;
+    }
+}
+
+/**
+* @icon .i-optical-fiber
+* @markup
+*   <span class="i-optical-fiber"></span>
+*/
+.i-optical-fiber {
+    &:before {
+        content: $i-optical-fiber;
+    }
+}
+
+/**
+* @icon .i-paper-value
+* @markup
+*   <span class="i-paper-value"></span>
+*/
+.i-paper-value {
+    &:before {
+        content: $i-paper-value;
+    }
+}
+
+/**
+* @icon .i-pc
+* @markup
+*   <span class="i-pc"></span>
+*/
+.i-pc {
+    &:before {
+        content: $i-pc;
+    }
+}
+
+/**
+* @icon .i-phone-arrow-up
+* @markup
+*   <span class="i-phone-arrow-up"></span>
+*/
+.i-phone-arrow-up {
+    &:before {
+        content: $i-phone-arrow-up;
+    }
+}
+
+/**
+* @icon .i-phone-dollar-center
+* @markup
+*   <span class="i-phone-dollar-center"></span>
+*/
+.i-phone-dollar-center {
+    &:before {
+        content: $i-phone-dollar-center;
+    }
+}
+
+/**
+* @icon .i-phone-dollar
+* @markup
+*   <span class="i-phone-dollar"></span>
+*/
+.i-phone-dollar {
+    &:before {
+        content: $i-phone-dollar;
+    }
+}
+
+/**
+* @icon .i-phone
+* @markup
+*   <span class="i-phone"></span>
+*/
+.i-phone {
+    &:before {
+        content: $i-phone;
+    }
+}
+
+/**
+* @icon .i-plane
+* @markup
+*   <span class="i-plane"></span>
+*/
+.i-plane {
+    &:before {
+        content: $i-plane;
+    }
+}
+
+/**
+* @icon .i-play-square
+* @markup
+*   <span class="i-play-square"></span>
+*/
+.i-play-square {
+    &:before {
+        content: $i-play-square;
+    }
+}
+
+/**
+* @icon .i-plus-circle
+* @markup
+*   <span class="i-plus-circle"></span>
+*/
+.i-plus-circle {
+    &:before {
+        content: $i-plus-circle;
+    }
+}
+
+/**
+* @icon .i-shopping-cart
+* @markup
+*   <span class="i-shopping-cart"></span>
+*/
+.i-shopping-cart {
+    &:before {
+        content: $i-shopping-cart;
+    }
+}
+
+/**
+* @icon .i-twitter
+* @markup
+*   <span class="i-twitter"></span>
+*/
+.i-twitter {
+    &:before {
+        content: $i-twitter;
+    }
+}
+
+/**
+* @icon .i-user
+* @markup
+*   <span class="i-user"></span>
+*/
+.i-user {
+    &:before {
+        content: $i-user;
+    }
+}
+
+/**
+* @icon .i-whatsapp
+* @markup
+*   <span class="i-whatsapp"></span>
+*/
+.i-whatsapp {
+    &:before {
+        content: $i-whatsapp;
+    }
+}
+
+/**
+* @icon .i-bullhorn
+* @markup
+*   <span class="i-bullhorn"></span>
+*/
+.i-bullhorn {
+    &:before {
+        content: $i-bullhorn;
+    }
+}
+
+/**
+* @icon .i-covid
+* @markup
+*   <span class="i-covid"></span>
+*/
+.i-covid {
+    &:before {
+        content: $i-covid;
+    }
+}
+
+/**
+* @icon .i-comment-lines
+* @markup
+*   <span class="i-comment-lines"></span>
+*/
+.i-comment-lines {
+    &:before {
+        content: $i-comment-lines;
+    }
+}
+
+/**
+* @icon .i-support
+* @markup
+*   <span class="i-support"></span>
+*/
+.i-support {
+    &:before {
+        content: $i-support;
+    }
+}
+
+/**
+* @icon .i-headset
+* @markup
+*   <span class="i-headset"></span>
+*/
+.i-headset {
+    &:before {
+        content: $i-headset;
+    }
+}
+
+/**
+* @icon .i-cloud
+* @markup
+*   <span class="i-cloud"></span>
+*/
+.i-cloud {
+    &:before {
+        content: $i-cloud;
+    }
+}
+
+/**
+* @icon .i-play-circle
+* @markup
+*   <span class="i-play-circle"></span>
+*/
+.i-play-circle {
+    &:before {
+        content: $i-play-circle;
+    }
+}
+
+/**
+* @icon .i-building
+* @markup
+*   <span class="i-building"></span>
+*/
+.i-building {
+    &:before {
+        content: $i-building;
+    }
+}
+
+/**
+* @icon .i-paper-dollar
+* @markup
+*   <span class="i-paper-dollar"></span>
+*/
+.i-paper-dollar {
+    &:before {
+        content: $i-paper-dollar;
+    }
+}
+
+// V 1.1
+
+/**
+* @icon .i-search
+* @markup
+*   <span class="i-search"></span>
+*/
+.i-search {
+    &:before {
+        content: $i-search;
+    }
+}
+
+// V 1.2
+
+/**
+* @icon .i-bars-triangle
+* @markup
+*   <span class="i-bars-triangle"></span>
+*/
+.i-bars-triangle {
+    &:before {
+        content: $i-bars-triangle;
+    }
+}
+
+/**
+* @icon .i-sorter
+* @markup
+*   <span class="i-sorter"></span>
+*/
+.i-sorter {
+    &:before {
+        content: $i-sorter;
+    }
+}
+.i-after-sorter {
+    &::after {
+        content: $i-sorter;
+    }
+}
+
+/**
+* @icon .i-credit-card
+* @markup
+*   <span class="i-credit-card"></span>
+*/
+.i-credit-card {
+    &:before {
+        content: $i-credit-card;
+    }
+}
+
+/**
+* @icon .i-truck
+* @markup
+*   <span class="i-truck"></span>
+*/
+.i-truck {
+    &:before {
+        content: $i-truck;
+    }
+}
+
+/**
+* @icon .i-badge-percent
+* @markup
+*   <span class="i-badge-percent"></span>
+*/
+.i-badge-percent {
+    &:before {
+        content: $i-badge-percent;
+    }
+}
+
+/**
+* @icon .i-lock-fill
+* @markup
+*   <span class="i-lock-fill"></span>
+*/
+.i-lock-fill {
+    &:before {
+        content: $i-lock-fill;
+    }
+}
+
+// V 1.3
+
+.i-truck-stroke {
+    &::before {
+        content: $i-truck-stroke;
+    }
+}
+
+.i-home-stroke {
+    &::before {
+        content: $i-home-stroke;
+    }
+}
+
+.i-information {
+    &::before {
+        content: $i-information;
+    }
+}
+
+.i-after-information {
+    &::after {
+        content: $i-information;
+    }
+}
+
+.i-paper {
+    &::before {
+        content: $i-paper;
+    }
+}
+
+.i-movistar-money {
+    &::before {
+        content: $i-movistar-money;
+    }
+}
+
+// V 1.4
+
+.i-processor {
+    &::before {
+        content: $i-processor;
+    }
+}
+
+.i-batery {
+    &::before {
+        content: $i-batery;
+    }
+}
+
+.i-ram {
+    &::before {
+        content: $i-ram;
+    }
+}
+
+.i-dimensions {
+    &::before {
+        content: $i-dimensions;
+    }
+}
+
+.i-frontal-camera {
+    &::before {
+        content: $i-frontal-camera;
+    }
+}
+
+.i-rear-camera {
+    &::before {
+        content: $i-rear-camera;
+    }
+}
+
+// V 1.5
+
+.i-phone-key {
+    &:before {
+        content: $i-phone-key;
+    }
+}
+
+.i-download {
+    &:before {
+        content: $i-download;
+    }
+}
+
+.i-mail {
+    &:before {
+        content: $i-mail;
+    }
+}
+
+.i-paper-movistar {
+    &:before {
+        content: $i-paper-movistar;
+    }
+}
+
+.i-car {
+    &:before {
+        content: $i-car;
+    }
+}
+
+.i-credential {
+    &:before {
+        content: $i-credential;
+    }
+}
+
+.i-credit-card-stroke {
+    &:before {
+        content: $i-credit-card-stroke;
+    }
+}
+
+.i-eye {
+    &:before {
+        content: $i-eye;
+    }
+}
+
+.i-eye-slash {
+    &:before {
+        content: $i-eye-slash;
+    }
+}
+
+.i-check-square {
+    &:before {
+        content: $i-check-square;
+    }
+}
+
+.i-calendar {
+    &:before {
+        content: $i-calendar;
+    }
+}
+
+.i-pin {
+    &:before {
+        content: $i-pin;
+    }
+}
+
+.i-pencil {
+    &:before {
+        content: $i-pencil;
+    }
+}
+
+.i-after-pencil {
+    &:after {
+        content: $i-pencil;
+    }
+}
+
+.i-check {
+    &:before {
+        content: $i-check;
+    }
+}
+
+.i-inverted-triangle {
+    &:before {
+        content: $i-inverted-triangle;
+    }
+}
+.i-after-inverted-triangle {
+    &::after {
+        content: $i-inverted-triangle;
+    }
+}
+
+.i-user-plus {
+    &::before {
+        content: $i-user-plus;
+    }
+}
+
+.i-after-user-plus {
+    &::after {
+        content: $i-user-plus;
+    }
+}
+
+.i-telephone {
+    &::before {
+        content: $i-telephone;
+    }
+}
+
+// V 1.8
+.i-close-square {
+    &::before {
+        content: $i-close-square;
+    }
+}
+
+// V 1.9
+.i-phone-message {
+    &:before {
+        content: $i-phone-message;
+    }
+}
+.i-pin-way {
+    &:before {
+        content: $i-pin-way;
+    }
+}
+.i-lock-code {
+    &:before {
+        content: $i-lock-code;
+    }
+}
+
+// V 2.0
+.i-load-arrow {
+    &:before {
+        content: $i-load-arrow;
+    }
+}
+.i-pencil-strong {
+    &:before {
+        content: $i-pencil-strong;
+    }
+}
+.i-paper-movistar-dollar {
+    &:before {
+        content: $i-paper-movistar-dollar;
+    }
+}
+
+// V 2.1
+.i-paperclip {
+    &:before {
+        content: $i-paperclip;
+    }
+}
+// V 2.1
+.i-paperclip {
+    &:before {
+        content: $i-paperclip;
+    }
+}
+
+.i-calendar-strong {
+    &:before {
+        content: $i-calendar-strong; 
+    }
+}
+.i-clip {
+    &:before {
+        content: $i-clip; 
+    }
+}
+
+// V 2.2
+.i-double-arrow-right {
+    &:before {
+      content: $i-double-arrow-right; 
+    }
+}
+.i-after-double-arrow-right {
+    &:after {
+        content: $i-double-arrow-right; 
+    }
+}

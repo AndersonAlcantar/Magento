@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Magento\Search\Controller\Ajax\Suggest" type="Vass\Custom\Controller\Ajax\Suggest" />
+	<preference for="Magento\Checkout\CustomerData\DefaultItem" type="Vass\Custom\CustomerData\DefaultItem" />
+	<preference for="Magento\Catalog\Controller\Product\View" type="Vass\Custom\Controller\Product\View" />
+	<preference for="Magento\ImportExport\Controller\Adminhtml\Import\Start" type="Vass\Custom\Controller\Adminhtml\Import\Start" />
+	<preference for="Magento\ImportExport\Controller\Adminhtml\Import\Validate" type="Vass\Custom\Controller\Adminhtml\Import\Validate" />
+	<preference for="Magento\CatalogImportExport\Model\Import\Product\Validator" type="Vass\Custom\Model\Import\Product\Validator" />
+	<preference for="Magento\CatalogImportExport\Model\Import\Product" type="Vass\Custom\Model\Import\Product\Product" />
+	<preference for="Magento\Framework\Pricing\PriceCurrencyInterface" type="Vass\Custom\Model\PriceCurrency" />
+	<preference for="Magento\Catalog\Model\Config" type="Vass\Custom\Model\Sorter\Config" />
+	<preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Vass\Custom\Block\Product\ProductList\Toolbar" />
+	<preference for="Magento\Checkout\Controller\Cart\Add" type="Vass\Custom\Controller\Checkout\Cart\Add" />
+	<preference for="Magento\Elasticsearch\SearchAdapter\Query\Builder\MatchQuery" type="Vass\Custom\SearchAdapter\Query\Builder\MatchQuery" />
+</config>

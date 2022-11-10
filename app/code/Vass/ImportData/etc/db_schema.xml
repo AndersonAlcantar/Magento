@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Created By : MagentoExplore
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="vass_fija_divipola" resource="default" engine="innodb" comment="Vass ImportData Divipola table">
+      <column xsi:type="int" name="id"   unsigned="false" nullable="false" identity="true" comment="Divipola ID" />
+      <column xsi:type="varchar" name="trade_restriction_id" nullable="false" length="255" comment="Trade Restriction Id" />
+      <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Code" />
+      <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Description" />
+      <column xsi:type="int" name="localityid" nullable="false" comment="Localityid Id" />
+      <column xsi:type="varchar" name="action" nullable="false" comment="Action" length="255" />
+      <column xsi:type="varchar" name="segmentid" nullable="false" comment="Segment ID" length="255" />
+      <column xsi:type="varchar" name="sociallevel" nullable="false" comment="Social Level" length="255" />
+      <column xsi:type="varchar" name="divipola_status" nullable="false" comment="Status File" length="255" />
+      <column xsi:type="varchar" name="record_date" nullable="false" comment="Record Date" length="255"  />
+      <column xsi:type="varchar" name="final_date" nullable="false" comment="Final Date"  length="255" />
+      <column xsi:type="int" name="id_divipola_log" nullable="false" comment="Id Divipola Log" default="0"  />
+      <column xsi:type="boolean" name="status" nullable="false" comment="status" default="0"  />
+      <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+      <column name="updated_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>      
+   </table>
+
+
+   <table name="vass_fija_divipola_logs" resource="default" engine="innodb" comment="Vass ImportData Divipola Logs">
+      <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="Offerts Additionals ID" />
+      <column xsi:type="varchar" name="action" nullable="false" comment="Action" default="pending" length="255"  />
+      <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+      <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>      
+   </table>
+
+
+</schema>

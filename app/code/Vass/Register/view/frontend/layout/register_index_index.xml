@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<title>Registro de Usuario</title>
+	</head>
+	<body>
+		<referenceContainer name="header.container">
+			<block class="Magento\Theme\Block\Html\Footer" name="header-wrapper" template="Vass_Register::register-header.phtml" />
+			<referenceBlock name="navigation.sections" remove="true" />
+		</referenceContainer>
+		<referenceContainer name="content">
+			<block class="Vass\Register\Block\Register" name="register" template="Vass_Register::register-content.phtml" />
+			<referenceBlock name="div.sidebar.additional" remove="true" />
+			<referenceBlock name="page.main.title" remove="true" />
+		</referenceContainer>
+		<referenceContainer name="footer-container">
+			<block class="Magento\Theme\Block\Html\Footer" name="footer" template="Vass_Checkout::checkout-footer.phtml" />
+		</referenceContainer>
+		<referenceContainer name="header.panel" remove="true" />
+
+		<referenceContainer name="menu.top.header" remove="true" />
+		<referenceContainer name="header.wrapper" remove="true" />
+		<referenceContainer name="header.search" remove="true" />
+
+		
+	</body>
+</page>

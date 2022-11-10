@@ -1,0 +1,779 @@
+<?php
+
+/**
+* @var \Vass\Fija\ViewModel\Offerts\Services $viewModelServices
+*/
+$viewModelServices = $block->getServices();
+$msg = $viewModelServices->getMsg();
+
+$sessionData = $viewModelServices->getSessionOffert();
+
+
+
+?>
+
+<section class="o-section" id="cross-selling-service-component">
+  <!-- ko scope: 'crossSellingServices' -->
+  <div class="o-layout-2-columns">
+
+    <div class="c-card-checkout-cta">
+      <button
+        type="button"
+        class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+      >
+        Resumen de tu compra
+      </button>
+    </div>
+    
+    <form class="c-form_w723 u-width-100 u-text-center js-tab-target" id="cross-selling-service-form">
+
+      <header class="c-form__header u-text-left">
+        <h2 class="c-form__title c-form__title_big">
+          ¡Complementa tu plan!
+        </h2>
+        <p class="c-form__lead c-form__lead_gray">Elige los servicios adicionales que quieres incluir en tu plan</p> 
+      </header> 
+
+      <!-- SERVICIOS COMPLEMENTARIOS TRIO -->
+      <div class="f-c-tabs__control">
+      <?php if($viewModelServices->isOffertCrossSellingItems()):?>
+        <button class="f-c-tabs__tab js-tab-cta is-tab-active" type="button" data-tab-cta="tab-1">
+          Todos
+        </button>
+        <?php endif;?>
+
+        <?php 
+        $count = 2;
+        $countSub = 0;
+
+        foreach($viewModelServices->getOffertCrossSellingCategories() as $cat){ 
+          if($viewModelServices->isOffertCrossSellingItems($countSub) == true){?>
+        <button class="f-c-tabs__tab js-tab-cta" type="button" data-tab-cta="tab-<?php echo $count; ?>">
+          <?php echo $cat['label']; ?>
+        </button>
+        <?php
+        }
+        $countSub++;
+        $count++;}?>
+      </div>
+
+      <div class="f-c-tabs__content f-c-tabs__content_pb0 js-tab-content" data-tab-content="tab-1">
+        <div class="u-position-relative js-slider-plan-product-wrap">
+          <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+            <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+            <?php foreach($viewModelServices->getOffertCrossSellingItems() as $item) {
+              if($item->getType() == "1"):?>
+
+              <article class="f-c-service-card f-c-service-card-flag swiper-slide option-service-<?= $item->getId();?>-<?= $item->getType();?>">
+                <?php if($item->getRelationType() == "0"): ?>
+                  <span class="f-c-service-card__flag">Servicio incluído</span> 
+                <?php endif; ?>
+
+                <div class="f-c-service-card__inner">
+
+                  <header class="f-c-service-card__header">
+                    <figure class="f-c-service-card__figure">
+                      <img                            
+                          src="<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>"
+                          alt="Logo Netflix"
+                          class="f-c-service-card__img"
+                      >
+                    </figure>
+                  </header>
+                  
+                  <footer class="f-c-service-card__footer">
+                    <p class="f-c-service-card__txt">
+                      <?php echo $item->getDescription(); ?>
+                    </p>
+                    <span
+                        class="f-c-service-card__btn o-btn open-modal service-<?php echo $item->getId();?>"
+                        data-modal="modal-servicios"
+                        data-bind="event: {click: getServiceOptions.bind($data, <?php echo $item->getId();?>, '<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>', '<?= $item->getType();?>')}"
+                      >
+                        Activar
+                      </span>
+                  </footer>
+
+                </div>
+              </article>
+              <?php else:?>
+
+              <article class="f-c-service-card swiper-slide option-service-<?= $item->getId();?>-<?= $item->getType();?>">
+              <?php if($item->getRelationType() == "0"): ?>
+                  <span class="f-c-service-card__flag">Servicio incluído</span> 
+                <?php endif; ?>
+                <div class="f-c-service-card__inner">
+
+                  <header class="f-c-service-card__header">
+
+                    <div class="f-c-service-card__header-inner">
+                      <figure class="f-c-service-card__figure">
+                        <img
+                          src="<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>"
+                          alt="Logo Netflix"
+                          class="f-c-service-card__img"
+                        >
+                      </figure>
+                    </div>
+
+                    <p class="f-c-service-card__txt">
+                      <?php echo $item->getDescription(); ?>
+                    </p>
+                    
+                  </header>
+                  
+                  <footer class="f-c-service-card__footer">
+                    <div class="f-c-service-card__amount">
+                      <?php if($item->getSpecialPrice()):?>
+                        <span class="f-c-service-card__price-offert"><?php echo $viewModelServices->getFormatedPrice($item->getSpecialPrice()); ?></span>
+                        <span class="f-c-plan__price-normal">Normal <?php echo $viewModelServices->getFormatedPrice($item->getNormalPrice()); ?></span>
+                      <?php else:?>
+                        <span class="f-c-service-card__price-offert"><?php echo $viewModelServices->getFormatedPrice($item->getNormalPrice()); ?></span>
+                      <?php endif?>
+                    </div>
+                    <button class="f-c-service-card__btn o-btn o-btn_secondary" style="display: none" data-bind="event:{ click: unselectModalOptions.bind($data, <?= $item->getId();?>, '<?= $item->getType();?>')}">Desactivar</button>
+                    <span
+                      class="f-c-service-card__btn o-btn open-modal service-<?php echo $item->getId();?>"
+                      data-bind="event: {click: selectModalOptions.bind($data, <?php echo $item->getId();?>, '<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>',  '<?php echo $item->getType();?>', '<?php if($item->getSpecialPrice()){echo $item->getSpecialPrice();}else{echo $item->getNormalPrice();} ?>')}"
+                    >
+                      Activar
+                    </span>
+                  </footer>
+
+                </div>
+              </article>
+
+            <?php endif; } ?>
+            </div>
+
+            <!-- If we need pagination -->
+            <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+          </div>
+          <button class="f-c-service-swiper__btn swiper-button-next">
+            <span class="u-hidden">Slide siguiente</span>
+          </button>
+          <button class="f-c-service-swiper__btn swiper-button-prev">
+            <span class="u-hidden">Slide siguiente</span>
+          </button>
+        </div>
+
+      </div>
+
+      <?php 
+        $count = 2;
+        $count_child = 0;
+        foreach($viewModelServices->getOffertCrossSellingCategories() as $cat){ ?>
+        <div class="f-c-tabs__content f-c-tabs__content_pb0 js-tab-content is-content-tab-hide" data-tab-content="tab-<?php echo $count; ?>">
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+              <?php foreach($viewModelServices->getOffertCrossSellingItems($count_child) as $item) {
+                if($item->getType() == "1"):?>
+
+                <article class="f-c-service-card f-c-service-card-flag swiper-slide option-service-<?= $item->getId();?>-<?= $item->getType();?>">
+                  <?php if($item->getRelationType() == "0"): ?>
+                    <span class="f-c-service-card__flag">Servicio incluído</span> 
+                  <?php endif; ?>
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+                      <figure class="f-c-service-card__figure">
+                        <img                            
+                            src="<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                        >
+                      </figure>
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <p class="f-c-service-card__txt">
+                        <?php echo $item->getDescription(); ?>
+                      </p>
+                        <button class="f-c-service-card__btn o-btn o-btn_secondary" style="display: none" data-bind="event:{ click: unselectModalOptions.bind($data, <?= $item->getId();?>, '<?= $item->getType();?>')}">Desactivar</button>
+                      <span
+                          class="f-c-service-card__btn o-btn open-modal service-<?php echo $item->getId();?>"
+                          data-modal="modal-servicios"
+                          data-bind="event: {click: getServiceOptions.bind($data, <?php echo $item->getId();?>, '<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>', '<?= $item->getType();?>')}"
+                        >
+                          Activar
+                        </span>
+                    </footer>
+
+                  </div>
+                </article>
+                <?php else:?>
+
+                <article class="f-c-service-card swiper-slide option-service-<?= $item->getId();?>-<?= $item->getType();?>">
+                  <?php if($item->getRelationType() == "0"): ?>
+                      <span class="f-c-service-card__flag">Servicio incluído</span> 
+                  <?php endif; ?>
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        <?php echo $item->getDescription(); ?>
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <?php if($item->getSpecialPrice()):?>
+                          <span class="f-c-service-card__price-offert"><?php echo $viewModelServices->getFormatedPrice($item->getSpecialPrice()); ?></span>
+                          <span class="f-c-plan__price-normal">Normal <?php echo $viewModelServices->getFormatedPrice($item->getNormalPrice()); ?></span>
+                        <?php else:?>
+                          <span class="f-c-service-card__price-offert"><?php echo $viewModelServices->getFormatedPrice($item->getNormalPrice()); ?></span>
+                        <?php endif?>
+                      </div>
+                      <button class="f-c-service-card__btn o-btn o-btn_secondary" style="display: none" data-bind="event:{ click: unselectModalOptions.bind($data, <?= $item->getId();?>, '<?= $item->getType();?>')}">Desactivar</button>
+                      <span
+                        class="f-c-service-card__btn o-btn open-modal service-<?php echo $item->getId();?>"
+                        data-bind="event: {click: selectModalOptions.bind($data, <?php echo $item->getId();?>, '<?= $escaper->escapeHtml($viewModelServices->getMediaUrl()).'crossselling/offertcrossselling/'.$escaper->escapeHtml($item->getImage()); ?>',  '<?php echo $item->getType();?>', '<?php if($item->getSpecialPrice()){echo $item->getSpecialPrice();}else{echo $item->getNormalPrice();} ?>')}"
+                      >
+                        Activar
+                      </span>
+                    </footer>
+
+                  </div>
+                </article>
+
+              <?php endif; } ?>
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+      </div>
+        <?php 
+        $count++;
+        $count_child++;}?>
+      <!-- FIN SERVICIOS COMPLEMENTARIOS TRIO -->
+
+      <!-- SERVICIOS COMPLEMENTARIOS DÚO -->
+      <?php /*
+        <div class="f-c-tabs__control">
+          <button class="f-c-tabs__tab js-tab-cta is-tab-active" type="button" data-tab-cta="tab-1">
+            Todos
+          </button>
+          <button class="f-c-tabs__tab js-tab-cta" type="button" data-tab-cta="tab-3">
+            Internet
+          </button>
+          <button class="f-c-tabs__tab js-tab-cta" type="button" data-tab-cta="tab-4">
+            Telefonía
+          </button>
+        </div>
+
+        <div class="f-c-tabs__content f-c-tabs__content_pb0 js-tab-content" data-tab-content="tab-1">
+
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/block.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Seguridad Total Multidispositivos
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$16.950</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/decos.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Decos adicionales IPTV
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$11.424</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+            
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="f-c-tabs__content f-c-tabs__content_pb0  is-content-tab-hide js-tab-content" data-tab-content="tab-3">
+
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/block.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Seguridad Total Multidispositivos
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$16.950</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+            
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="f-c-tabs__content f-c-tabs__content_pb0  is-content-tab-hide js-tab-content" data-tab-content="tab-4">
+
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/block.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Seguridad Total Multidispositivos
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$16.950</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/decos.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Decos adicionales IPTV
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$11.424</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+            
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+        </div>
+      */ ?>
+      <!-- FIN SERVICIOS COMPLEMENTARIOS DÚO -->
+
+      <!-- SERVICIOS COMPLEMENTARIOS NAKED -->
+      <?php /*
+        <div class="f-c-tabs__control">
+          <button class="f-c-tabs__tab js-tab-cta is-tab-active" type="button" data-tab-cta="tab-1">
+            Todos
+          </button>
+          <button class="f-c-tabs__tab js-tab-cta" type="button" data-tab-cta="tab-3">
+            Internet
+          </button>
+        </div>
+
+        <div class="f-c-tabs__content f-c-tabs__content_pb0 js-tab-content" data-tab-content="tab-1">
+
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/block.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Seguridad Total Multidispositivos
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$16.950</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+            
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="f-c-tabs__content f-c-tabs__content_pb0  is-content-tab-hide js-tab-content" data-tab-content="tab-3">
+
+          <div class="u-position-relative js-slider-plan-product-wrap">
+            <div class="f-c-service-swiper u-padding-bottom-32 swiper js-slider-services">
+              <div class="f-c-service-wrap u-padding-both-24 js-plan-product-wrap swiper-wrapper">
+
+                <article class="f-c-service-card swiper-slide">
+
+                  <div class="f-c-service-card__inner">
+
+                    <header class="f-c-service-card__header">
+
+                      <div class="f-c-service-card__header-inner">
+                        <figure class="f-c-service-card__figure">
+                          <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/block.png'))?>"
+                            alt="Logo Netflix"
+                            class="f-c-service-card__img"
+                          >
+                        </figure>
+                      </div>
+
+                      <p class="f-c-service-card__txt">
+                        Seguridad Total Multidispositivos
+                      </p>
+                      
+                    </header>
+                    
+                    <footer class="f-c-service-card__footer">
+                      <div class="f-c-service-card__amount">
+                        <span class="f-c-service-card__price-offert">$16.950</span>
+                        <span class="f-c-plan__price-normal">Normal $60.990</span>
+                      </div>
+                    </footer>
+
+                  </div>
+                </article>
+            
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="o-swiper-bullets o-swiper-bullets_primary swiper-pagination"></div>  
+            </div>
+
+            <button class="f-c-service-swiper__btn swiper-button-next">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+            <button class="f-c-service-swiper__btn swiper-button-prev">
+              <span class="u-hidden">Slide siguiente</span>
+            </button>
+          </div>
+
+        </div>
+      */ ?>
+      <!-- FIN SERVICIOS COMPLEMENTARIOS NAKED -->
+
+      <div class="c-form__actions c-form__actions_margin-top16 c-form__actions_right">
+        <!--
+            1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+            2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+        -->
+        <button
+            type="submit"
+            class="o-btn c-form__btn c-form__btn_full o-btn_height56 o-btn_height40_mb"
+            data-bind="event: {click: nextStep}"            
+            
+        >
+            Continuar
+        </button>
+        </div>
+
+    </form>
+
+    <!-- Detalle del producto -->
+    <div id="checkout-summary" class="c-card-summary__wrap" >
+
+        <div class="c-card-summary c-card-summary_space-bottom js-target-summary">
+
+            <h3 class="c-card-summary__title c-card-summary__title_border">Resúmen de tu compra</h3>
+
+            <div>
+
+                <div class="c-card-summary__amount">
+                    <h4 class="mark" scope="row" >
+                      <?=$sessionData['offert']['name']?>
+                    </h4>
+                </div>
+
+                <div class="c-card-summary__box">
+                    <div class="c-card-summary__amount c-card-summary__amount_before">
+                        <h4 class="mark" scope="row">
+                            Antes
+                        </h4>
+                        <span class="c-card-summary__amount-trough">
+                          <?=$viewModelServices->getFormatedPrice($sessionData['offert']['normal_price'])?>
+                        </span>
+                      </div>
+
+                    <div class="c-card-summary__amount">
+                        <h4 class="mark" scope="row">
+                            Ahora
+                        </h4>
+                        <strong class="amount">
+                          <?=$viewModelServices->getFormatedPrice($sessionData['offert']['price'])?>
+                        </strong>
+                    </div>
+
+                    <ul class="c-card-summary__details">
+                        <li><strong><?=$sessionData['offert']['discount']?>% dto <?=$sessionData['offert']['months']?></strong></li>
+                        <?php 
+                            if (!empty($sessionData['offert']['components'])) {
+                                foreach ($sessionData['offert']['components'] as $key => $component) {
+                                    echo "<li>".$component['name']."</li>";
+                                }
+                            }
+                        ?> 
+                    </ul>
+                </div>
+
+                <div class="c-card-summary__box">
+                  <h4 class="c-card-summary__subtitle">Detalle de instalación</h4>
+                  <table class="c-card-summary__table">
+                    <thead class="c-card-summary__table-head">
+                      <tr>
+                        <td>Dirección</td>
+                        <td>Municipio</td>
+                        <td>Ciudad</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="c-card-summary__table-row">
+                        <td class="c-card-summary__table-cell" id="direcc"></td>
+                        <td class="c-card-summary__table-cell" id="munic"></td>
+                        <td class="c-card-summary__table-cell" id="city"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="c-card-summary__box" data-bind="visible: displayCross">
+
+                  <ul class="u-list-style-none">
+                    <!-- ko foreach: getCrossOptionsSelectedSidebar()-->
+                      <li class="o-item-selected">
+
+                        <button type="button" class="o-item-selected__close i-close" data-bind="event:{ click: $parent.unselectModalOptions.bind($data, id, service_type )}">
+                          <span class="u-hidden">Botón eliminar</span>
+                        </button>
+
+                        <figure class="o-item-selected__figure">
+                          <img
+                            alt="Logo HBO"
+                            class="o-item-selected__img"
+                            data-bind="attr:{src: img_path}"
+                          >
+                          <figcaption class="o-item-selected__lead" data-bind="text: $parent.formatnumber(final_price)"></figcaption>
+                        </figure>
+
+                      </li>
+                    <!--/ko-->
+                  </ul>
+
+                </div>
+
+                <div class="c-card-summary__amount c-card-summary__total">
+                    <h4 class="mark" scope="row">
+                        <strong >Total</strong>
+                    </h4>
+
+                    <p class="amount" data-th="Total">
+                      <strong id="priceTotal" data-bind="text: formatnumber(finalPrice)"></strong>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Fin detalle del producto -->
+
+  </div>
+  <!-- /ko --> 
+</section>
+<script type="text/x-magento-init">
+    {
+        "#cross-selling-service-form": {
+            "validation": {}
+        },
+        "#cross-selling-service-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "crossSellingServices": {
+                        "component": "Vass_Fija/js/crossSellingServices"
+                    }
+                }
+            }
+        }        
+    }
+</script>

@@ -1,0 +1,109 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+               <item name="categoryoffert_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Categoryoffert\Grid\Collection</item>
+               <item name="subcategory_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Subcategory\Grid\Collection</item>
+               <item name="categorydescription_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Categorydescription\Grid\Collection</item>
+               <item name="offert_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Offert\Grid\Collection</item>
+               <item name="emailblacklist_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Emailblacklist\Grid\Collection</item>
+               <item name="offertadditional_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Offertadditional\Grid\Collection</item>
+               <item name="offertcomponent_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Offertcomponent\Grid\Collection</item>
+               <item name="includedbenefits_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\IncludedBenefits\Grid\Collection</item>
+               <item name="offertcrossselling_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\OffertCrossSelling\Grid\Collection</item>
+               <item name="crosssellingbundleoptions_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\CrosssellingBundleOptions\Grid\Collection</item>
+               <item name="sort_elements_subcategories" xsi:type="string">Vass\Fija\Model\ResourceModel\Categoryoffert\Grid\Collection</item>
+               <item name="sort_elements_sortofferts" xsi:type="string">Vass\Fija\Model\ResourceModel\Offert\Grid\Collection</item>
+               <item name="offerttvdecos_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Offerttvdecos\Grid\Collection</item>
+               <item name="ciclos_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Ciclos\Grid\Collection</item> 
+               <item name="banners_listing_data_source" xsi:type="string">Vass\Fija\Model\ResourceModel\Banners\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+   <virtualType name="Vass\Fija\Model\ResourceModel\Categoryoffert\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_categories</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Categoryoffert</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Subcategory\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_subcategories</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Subcategory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Categorydescription\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_categories_description</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Categorydescription</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Offert\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offerts</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Offert</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Fija\Model\ResourceModel\Emailblacklist\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_email_blacklist</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Emailblacklist</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Offertadditional\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offerts_additionals</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Offertadditional</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Fija\Model\ResourceModel\Offertcomponent\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offerts_components</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Offertcomponent</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\IncludedBenefits\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_includedbenefits</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\IncludedBenefits</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Offerttvdecos\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offerttvdecos</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Offerttvdecos</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\OffertCrossSelling\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offertcrossselling</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\OffertCrossSelling</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\CrosssellingBundleOptions\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_offertcrossselling_bundle</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\CrosssellingBundleOptions</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Ciclos\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_ciclos</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Ciclos</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Vass\Fija\Model\ResourceModel\Banners\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_banners_fija</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Fija\Model\ResourceModel\Banners</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Vass\Fija\Model\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">Vass\Fija\Model\Session\Storage</argument>
+        </arguments>
+    </type>
+</config>

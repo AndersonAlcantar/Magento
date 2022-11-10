@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vassproductos" translate="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Products</label>
+            <tab>vass</tab>
+            <resource>Vass_Cuotas::cuotas_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="cuotas" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set product quotas</label>
+                    <comment>Number of installments for the sale of a product.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="productoSugeridos" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of suggested products</label>
+                    <comment>Number of suggested products by brand.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="productoSugeridosSearch" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of suggested products in search</label>
+                    <comment>Number of products suggested in search results.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="attributesFeatured" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Featured Attributes</label>
+                    <source_model>Vass\Config\Model\Config\Source\AttributesFeatured</source_model>
+                </field>
+                <field id="tooltip_retiro" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tooltip "Retiro en Tienda" </label>
+                    <comment>Text for tooltip option  "Retiro en Tienda".</comment>                    
+                </field>
+                <field id="tooltip_envio" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tooltip "Envio gratis" </label>
+                    <comment>Text for tooltip option  "Envio gratis".</comment>                    
+                </field>
+            </group>
+        </section>
+
+        <section id="tipodoc" translate="label" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Customers Documents</label>
+            <tab>vass</tab>
+            <resource>Vass_Customers::tipodoc_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="tipodocumentos" translate="label" type="multiselect" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Document Types</label>
+                    <source_model>Vass\Config\Model\Config\Source\TypesOfDocuments</source_model>
+                </field>
+            </group>
+        </section>
+
+        <section id="vasscheckout" translate="label" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Checkout</label>
+            <tab>vass</tab>
+            <resource>Vass_Cuotas::cuotas_config</resource>
+            <group id="buttonsocial" translate="label" type="text" sortOrder="10" showInDefault="2" showInWebsite="0" showInStore="2">
+                <label>Button Social Configuration</label>
+                <field id="icon_button" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Class CSS</label>
+                </field>
+                <field id="href_button" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Link</label>
+                   <comment>Example Whatsapp link = https://web.whatsapp.com/send?phone=+57XXXXXXXXXX</comment>
+                </field>
+            </group>
+            <group id="envioconfiguration" translate="label" type="text" sortOrder="10" showInDefault="2" showInWebsite="0" showInStore="2">
+                <label>Envio Configuration</label>
+                <field id="enable_retiro" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Enabled "Retiro en tienda"</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        
+      
+    </system>
+</config>

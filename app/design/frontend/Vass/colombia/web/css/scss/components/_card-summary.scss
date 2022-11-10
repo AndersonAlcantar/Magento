@@ -1,0 +1,352 @@
+.c-header-wrap {
+    .checkout-index-index &,
+    .checkout-lineas-index &,
+    .checkout-opcionpago-index & {
+        height: auto;
+    }
+}
+
+// Call to actions para mobile y tablet
+.c-card-checkout-cta {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex(1 1 100%);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(margin-top, $gutter * 3);
+}
+
+.c-card-checkout-cta__link {
+    @include px-to-rem(font-size, 18px);
+    text-decoration: underline;
+    color: $c-gray-5;
+
+    &::before {
+        display: inline-block;
+        @include px-to-rem(margin-right, $gutter);
+        @include px-to-rem(font-size, 12px);
+    }
+}
+
+.c-card-checkout-cta__btn {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include flex-direction(row-reverse);
+    @include px-to-rem(border-radius, 4px);
+    @include px-to-rem(padding, $gutter $gutter * 2);
+    @include px-to-rem(font-size, 18px);
+    font-weight: 300;
+    color: $c-gray-6;
+    background: $c-neutro;
+
+    &::before {
+        color: $c-primary;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &.is-summary-show {
+        @include px-to-rem(margin-bottom, $gutter * 4);
+
+        &::before {
+            transform: rotate(180deg);
+        }
+    }
+}
+// Fin Call to actions para mobile y tablet
+
+.c-card-summary {
+    max-height: 0;
+    @include px-to-rem(border-radius, 4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    background: $c-neutro;
+    
+    &.is-summary-show {
+        @include px-to-rem(padding, $gutter * 2 $gutter * 4 $gutter * 4 $gutter * 4);
+        @include px-to-rem(max-height, 1000px);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .title {
+        display: block;
+        @include px-to-rem(margin-bottom, $gutter * 3);
+        @include px-to-rem(font-size, 20px);
+        font-weight: 300;
+    }
+
+    .items-in-cart {
+        .title {
+            display: none;
+        }
+    }
+
+    // Lista de elementos
+    .minicart-items {
+        list-style: none;
+    }
+
+    .product-item {
+        .product {
+            @include flexbox;
+            @include align-items(flex-start);
+            @include px-to-rem(column-gap, $gutter * 2);
+            color: $c-gray-6;
+
+            .product-image-container {
+                width: auto !important;
+                height: auto !important;
+
+                img {
+                    @include px-to-rem(max-width, 84px);
+                    height: auto;
+                    aspect-ratio: 1/1;
+                }
+            }
+        }
+    }
+
+    .product-item-details {
+        .product-item-name {
+            display: block;
+            @include px-to-rem(margin-bottom, $gutter);
+        }
+
+        .details-qty,
+        .subtotal {
+            display: none;
+        }
+    }
+
+    .product.options {
+        .toggle {
+            display: none;
+        }
+
+        .content {
+            display: block !important;
+
+            .subtitle {
+                display: none;
+            }
+
+            .item-options {
+                color: $c-gray-5;
+                .label {
+                    display: none;
+                }
+
+                .values {
+                    @include px-to-rem(font-size, 14px);
+                }
+            }
+        }
+    }
+}
+.c-card-summary_padding16 {
+   @include px-to-rem(padding-bottom, $gutter * 2);
+}
+.c-card-summary_margin-top {
+    margin-top: 0;
+}
+
+.c-card-summary_space-bottom {
+    @include px-to-rem(padding-bottom, 1px);
+}
+
+.c-card-summary__title {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    font-weight: $f-light;
+    @include px-to-rem(font-size, 20px);
+    color: $c-gray-6;
+}
+
+.c-card-summary__title_ico {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 4);
+    &::before {
+        @include px-to-rem(font-family, 17px);
+        color: $c-primary;
+    }
+}
+
+.c-card-summary__title_border {
+    border-bottom: 1px solid $c-gray-2;
+    @include px-to-rem(padding-bottom, $gutter * 3);
+}
+
+.c-card-summary__box {
+    display: block;
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    border-bottom: 1px solid $c-gray-2;
+    @include px-to-rem(padding-bottom, $gutter * 3);
+}
+.c-card-summary__box_border-bottom {
+    border-bottom: none;
+}
+
+.c-card-summary__amount {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(margin-bottom, $gutter);
+    color: $c-gray-6;
+
+    h4 {
+        @include px-to-rem(margin-right, $gutter);
+    }
+}
+.c-card-summary__amount_before {
+    font-weight: $f-regular;
+    @include px-to-rem(font-size, 13px);
+
+    h4 {
+        font-weight: $f-regular;
+    }
+}
+.c-card-summary__amount_blue {
+    color: $c-primary;
+}
+.c-card-summary__amount_indent {
+    @include px-to-rem(margin-right, $gutter * 3);
+}
+
+.c-card-summary__amount-trough {
+    text-decoration: line-through;
+}
+
+.c-card-summary__details {
+    @include px-to-rem(font-size, 13px);
+    list-style: none;
+}
+
+.c-card-summary__total {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    text-transform: uppercase;
+}
+
+.c-card-summary__total_margin0 {
+    margin: 0;
+}
+
+.c-card-summary__message {
+    @include flexbox;
+    @include align-items(baseline);
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-6;
+
+    &::before {
+        @include px-to-rem(margin-right, $gutter);
+        color: $c-yellow-5;
+    }
+}
+.c-card-summary__footer {
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include px-to-rem(row-gap, $gutter);
+    @include px-to-rem(margin-top, $gutter * 3);
+}
+
+.c-card-summary__subtitle {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(margin-bottom, $gutter * 2);
+    font-weight: $f-regular;
+
+    &::after {
+        color: $c-primary;
+    }
+}
+
+.c-card-summary__table {
+    @include px-to-rem(font-size, 12px);
+}
+
+.c-card-summary__table-head {
+    font-weight: $f-bold;
+}
+
+.c-card-summary__table-row {
+    vertical-align: baseline;
+}
+
+.c-card-summary__table-cell {
+    @include px-to-rem(max-width, 100px);
+    @include px-to-rem(padding-top, $gutter);
+    @include px-to-rem(padding-right, $gutter * 2);
+}
+
+@media screen and (max-width: 599px) {
+    .c-card-summary__wrap {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 739px) {
+    .c-card-checkout-cta {
+        order: 1;
+        width: 100%;
+    }
+
+    .c-card-checkout-cta__btn {
+        flex: 1 1 100%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .c-card-summary {
+        @include px-to-rem(max-width, 350px);
+        @include px-to-rem(min-width, 350px);
+    }
+}
+
+@media screen and (min-width: 740px) {
+    .c-card-checkout-cta {
+        order: 1;
+        width: 90%;
+        max-width: $canvas-max-with;
+        margin: 0 auto;
+    }
+
+    .c-card-checkout-cta__btn {
+        @include px-to-rem(min-width, 345px);
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .c-card-summary {
+        @include px-to-rem(margin-bottom, $gutter * 4);
+        
+        &.is-summary-show {
+            @include px-to-rem(margin-bottom, $gutter * 3);
+        }
+    }
+}
+
+@media screen and (min-width: 1023px) {
+    .c-card-checkout-cta {
+        order: initial;
+        @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+
+    .c-card-checkout-cta__btn {
+        display: none;
+    }
+
+    .c-card-summary {
+        max-height: max-content;
+        @include px-to-rem(padding, $gutter * 2 $gutter * 4 $gutter * 4 $gutter * 4);
+        visibility: visible;
+        opacity: 1;
+    }
+    .c-card-summary_margin-top {
+        margin-top: 0;
+    }
+}

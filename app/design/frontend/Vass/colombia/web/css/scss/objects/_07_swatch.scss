@@ -1,0 +1,37 @@
+.o-swatch {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  @include align-items(center);
+  @include px-to-rem(column-gap, 12px);
+  @include px-to-rem(row-gap, 12px);
+}
+
+.o-swatch-brand {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(width, $gutter * 7);
+  @include px-to-rem(height, $gutter * 7);
+  border-radius: $gutter;
+  background-color: $c-gray-1;
+  transition: all .2s ease-in-out;
+
+  &::before {
+    @include px-to-rem(font-size, 36px);
+  }
+
+  &:hover {
+    color: $c-neutro;
+    background-color: $c-blue-normal;
+  }
+}
+
+.swatch-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}

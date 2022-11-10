@@ -1,0 +1,28 @@
+
+.c-btn-download {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 4);
+}
+.c-btn-download__icon {
+    display: grid;
+    place-items: center;
+    background-color: $c-neutro;
+    @include px-to-rem(min-height, 66px);
+    @include px-to-rem(max-width, 50px);
+    &::before {
+        @include px-to-rem(font-size, 50px);
+        color: $c-primary;
+        background-color: $c-neutro;
+    }
+}
+.c-btn-download__button {
+
+}
+@media only screen and (max-width: 500px) {
+    .c-btn-download {
+        @include flex-direction(column);
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+}

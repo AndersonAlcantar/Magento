@@ -1,0 +1,84 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get(Vass\Menu\Helper\Data::Class);
+
+
+$menu = $helper->getMenu(3);
+$footer_link = $helper->getMenu(4);
+$redes = $helper->getListRedes();
+
+?>
+
+
+    <div class="o-canvas">
+        <!-- Telefónica brand-->
+        
+        <span class="c-footer__link" href="#">
+          <p class="c-footer__link-text glyph-after-telefonica">Una marca de </p>
+        </span>
+        <div>
+          <div class="c-footer__grid">
+
+            <?php
+            foreach ($menu as $item) {
+                ?>
+            <div class="c-footer__dropdown js-target-dropdown">
+              <h6 class="c-footer__title i-after-chevron-down o-dropdown__btn js-btn-dropdown">
+                <?= $escaper->escapeHtml($item['name']) ?></h6>
+              <nav class="c-footer__list o-dropdown__content">
+                <?php
+                if (isset($item['submenu'])) {
+                    foreach ($item['submenu'] as $submenu) {
+                    # code...
+                        echo '<a class="c-footer__item" href="'.$escaper->escapeHtmlAttr($submenu['link']).'">'.$escaper->escapeHtml($submenu['name']).'</a>';
+                    }
+
+                }
+                ?>
+              </nav>
+            </div>
+                <?php
+            }
+            ?>
+
+            
+          </div>
+          <div class="c-footer__bottom">
+            <span class="c-footer__copy">© 2021 Movistar. Todos los derechos reservados.</span>
+            <nav class="c-footer__list">
+              <?php
+                foreach ($footer_link as $item) {
+                  ?>
+                <a class="c-footer__item c-footer__item_inline" 
+                href="<?= $escaper->escapeHtml($item['link'])?>" 
+                title=""><?= $escaper->escapeHtml($item['name']) ?></a>
+                    <?php
+                }
+              ?> 
+
+              <div class="c-footer__social">
+                <?php
+                  foreach ($redes as $item) {
+                ?>
+                    <a class="c-footer__ico <?= $escaper->escapeHtml($item->getClass()) ?>" 
+                    href="<?= $escaper->escapeHtml($item->getLink())?>" title="">
+                    <span class="u-hidden"><?= $escaper->escapeHtml($item->getName()) ?></span></a>
+                <?php
+                }
+                ?>    
+              </div>
+
+            </nav>
+
+          </div>
+        </div>
+      </div>
+
+<script src="<?php echo $this->getViewFileUrl('js/general/toggle_class.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/general/menu_header.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/general/dropdown.js'); ?>"></script>
+<script type="module" src="<?php echo $this->getViewFileUrl('js/swiper_sliders.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/active_slide_detail_product.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/tabs.js'); ?>"></script>
+<script src="<?php echo $this->getViewFileUrl('js/play_video_galery.js'); ?>"></script>

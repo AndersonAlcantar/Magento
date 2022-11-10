@@ -1,0 +1,35 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isDisplayed() -->
+<div class="c-card-summary__amount c-card-summary__box_border-bottom" id="descuento">
+        <strong>Descuento</strong>
+        <p>$1,000</p>
+</div>
+<div class="c-card-summary__amount" id="descuento">
+    <strong>IVA</strong>
+    <p>$3,000</p>
+</div>
+<div class="c-card-summary__box c-card-summary__amount">
+
+    <h4 class="mark" scope="row">
+        <strong data-bind="i18n: title"></strong>
+    </h4>
+    <p
+        class="amount"
+        data-bind="attr: {'data-th': $t(title)}"
+    >
+        <strong>
+            <span
+                class="c-card-summary__amount_blue price"
+                data-bind="text: getValue()"
+            >
+            </span>
+        </strong>
+    </p>
+
+</div>
+<!-- /ko -->

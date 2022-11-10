@@ -1,0 +1,470 @@
+.product-info-main {
+    background: $c-neutro;
+}
+
+.c-card-detail__header {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include px-to-rem(row-gap, $gutter);
+}
+
+.c-card-detail__figure {
+    @include flexbox;
+    @include flex(1 100%);
+    @include align-items(flex-start);
+    @include px-to-rem(column-gap, $gutter);
+}
+
+.c-card-detail__figure-img {
+    @include px-to-rem(min-width, $gutter * 4);
+}
+
+.c-card-detail__figure-caption {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, 2px);
+    @include px-to-rem(font-size, 14px);
+    line-height: 1;
+}
+
+.c-card-detail__title {
+    line-height: 1;
+    font-weight: $f-light;
+    color: $c-secondary;
+}
+
+.swatch-opt {
+    .product-info-main & {
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(baseline);
+        @include px-to-rem(column-gap, $gutter * 4);
+        @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+}
+
+.swatch-attribute-label,
+.c-card-detail__label {
+    .product-info-main & {
+        display: inline-block;
+        @include px-to-rem(margin-bottom, 12px);
+        font-weight: $f-bold;
+        color: $c-gray-6;
+    }
+}
+
+.swatch-attribute {
+    .product-info-main & {
+        @include flex(1 1 50%);
+
+        &.color {
+            order: 2;
+
+            .swatch-attribute-selected-option {
+                @include px-to-rem(margin-left, $gutter);
+                color: $c-gray-3;
+            }
+        }
+
+        &.capacidad {
+            order: 1;
+        }
+    }
+}
+
+.c-card__schema {
+    .product-info-main & {
+        @include justify-content(flex-start);
+        margin-top: 0;
+    }
+}
+.c-card__schema-color {
+    &::before {
+        transition: all 0.2s ease-in;
+    }
+
+    &.selected {
+        .product-info-main & {
+            position: relative;
+            pointer-events: none;
+
+            &::before {
+                content: "";
+                position: absolute;
+                @include px-to-rem(top, -6px);
+                right: 0;
+                bottom: 0;
+                @include px-to-rem(left, -6px);
+                @include px-to-rem(width, 28px);
+                @include px-to-rem(height, 28px);
+                border: 1px solid $c-primary;
+                @include px-to-rem(border-radius, 50px);
+            }
+        }
+    }
+}
+
+.c-card-detail__price {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+}
+
+.c-card-detail__number {
+    @include px-to-rem(margin-bottom, $gutter);
+    @include px-to-rem(font-size, 40px);
+    font-weight: $f-regular;
+    line-height: 1;
+    color: $c-gray-6;
+}
+
+.c-card-detail__price-inner {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 3);
+}
+
+.c-card-detail__credit-cards {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, 12px);
+    list-style: none;
+}
+
+.c-card-detail__credit-card {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(center);
+    @include px-to-rem(max-width, 28px);
+}
+
+.c-card-detail__img-card {
+    width: 100%;
+}
+
+.c-card-detail__dues,
+.c-card-detail__options,
+.c-card-detail__btn {
+    @include px-to-rem(margin-bottom, $gutter * 5);
+}
+
+.c-card-detail__btn {
+    &.u-hidden {
+        position: absolute;
+    }
+}
+
+.c-card-detail__btn_margin-bottom0 {
+    margin-bottom: 0;
+}
+
+.c-card-detail__dues-number {
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-5;
+}
+
+.c-card-detail__dues-price {
+    color: $c-gray-6;
+}
+
+.c-card-detail__options {
+    @include flexbox;
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+    @include px-to-rem(column-gap, $gutter * 2);
+    list-style: none;
+}
+
+.c-card-detail__option {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(flex-start);
+    @include px-to-rem(font-size, 14px);
+    line-height: 1;
+
+    &::before {
+        @include px-to-rem(font-size, $gutter * 2);
+        @include px-to-rem(margin-right, $gutter);
+    }
+}
+.c-card-detail__option_success {
+    color: $c-green-selected;
+
+    .c-card-detail__option-tag {
+        font-weight: $f-bold;
+    }
+}
+
+.c-card-detail__option_disabled {
+    color: $c-gray-3;
+
+    .c-card-detail__option-tag {
+        text-decoration: line-through;
+    }
+}
+
+.c-card-detail__option-text {
+    @include px-to-rem(margin-bottom, 4px);
+}
+
+.c-card-detail__info {
+    @include px-to-rem(margin-left, $gutter * 2);
+    color: inherit;
+}
+
+.c-card-detail__btn {
+    @include flexbox;
+    width: 100%;
+    @include px-to-rem(max-width, 287px);
+    margin-right: auto;
+    margin-top: 0;
+    margin-left: auto;
+}
+
+@media (max-width: 739px) {
+    .product-info_media {
+        .o-layout__detail-product & {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .c-card-detail {
+        @include px-to-rem(padding, $gutter * 5 0);
+        background-color: $c-gray-1;
+    }
+
+    .product-add-form {
+        @include px-to-rem(padding, $gutter * 4 $gutter * 2);
+    }
+
+    .c-card-detail__caption {
+        text-align: center;
+    }
+
+    .c-card-detail__header,
+    .c-card-detail__figure {
+        @include justify-content(center);
+    }
+
+    .c-card-detail__header {
+        @include px-to-rem(padding, 0 $gutter * 2);
+    }
+    
+}
+
+@media (min-width: 740px) {
+    .o-layout__detail-product {
+        width: 90%;
+        @include px-to-rem(max-width, 1125px);
+        margin: 0 auto;
+    }
+
+    .product-info-main {
+        width: 100% !important;
+        @include px-to-rem(border-radius, 17px);
+        float: none !important;
+    }
+
+    .c-card-detail__header {
+        flex-wrap: wrap;
+        @include justify-content(space-between);
+        @include px-to-rem(margin-bottom, $gutter * 3);
+        @include px-to-rem(column-gap, $gutter * 3);
+
+    }
+
+    .c-card-detail__caption {
+        @include px-to-rem(max-width, 295px);
+    }
+
+    .c-card-detail__figure {
+        @include flex(0 1 auto);
+    }
+
+    .c-card-detail__title {
+        .o-layout__detail-product & {
+            margin-bottom: 0;
+        }
+    }
+}
+
+@media (max-width: 1023px) {
+    .c-card-detail__title {
+        @include px-to-rem(font-size, 28px);
+    }
+
+    .swatch-attribute {
+        .product-options-wrapper & {
+            &.capacidad {
+                position: relative;
+                order: 1;
+
+                .swatch-attribute-selected-option {
+                    position: relative;
+                    @include flexbox;
+                    @include justify-content(space-between);
+                    @include align-items(center);
+                    @include px-to-rem(padding, 2px $gutter * 2);
+                    @include px-to-rem(border-radius, 50px);
+                    border: 1px solid $c-gray-2;
+                    font-weight: $f-bold;
+
+                    &::before {
+                        content: $i-chevron-down;
+                        display: block;
+                        order: 1;
+                        font-family: $font-family-ico;
+                        @include px-to-rem(font-size, 14px);
+                        color: $c-primary;
+                        line-height: 1;
+                        background-color: $c-neutro;
+                        transition: all 0.2s ease-in-out;
+                    }
+                }
+
+                .swatch-attribute-options {
+                    position: absolute;
+                    top: 100%;
+                    bottom: auto;
+                    width: 100%;
+                    max-height: 0;
+                    @include px-to-rem(margin-top, $gutter);
+                    @include px-to-rem(padding, 0 10px 4px 10px);
+                    @include px-to-rem(border-radius, 4px);
+                    background: $c-neutro;
+                    box-shadow: 0px 4px 4px rgb(0 0 0 / 20%);
+                    transition: all 0.2s ease-in-out;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+
+                .swatch-option.text {
+                    border-bottom: 1px solid $c-gray-1;
+                    @include px-to-rem(padding, $gutter 0);
+                    @include px-to-rem(font-size, 14px);
+                    color: $c-gray-5;
+                    transition: all 0.2s ease-in-out;
+
+                    &.selected {
+                        color: $c-primary;
+                    }
+                }
+
+                &.is-dropdown-capacity-active {
+                    .swatch-attribute-selected-option {
+                        &::before {
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    .swatch-attribute-options {
+                        @include px-to-rem(max-height, 1000px);
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 740px) and (max-width: 1023px) {
+    .product-info-main {
+        @include px-to-rem(padding, $gutter * 3 $gutter * 2);
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-info-main {
+        @include px-to-rem(padding, $gutter * 5 50px);
+    }
+
+    .c-card-detail__title {
+        @include px-to-rem(font-size, 38px);
+    }
+
+    .c-card-detail__shipping {
+        @include flexbox;
+        @include flex-wrap(wrap);
+        @include justify-content(space-between);
+        @include align-items(center);
+    }
+
+    .c-card-detail__options {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: $gutter * 4;
+            bottom: 0;
+            left: 0;
+            display: block;
+            @include px-to-rem(width, 1px);
+            @include px-to-rem(height, 44px);
+            margin: auto;
+            background: $c-gray-2;
+        }
+    }
+
+    .c-card-detail__option {
+        @include flex(1 1 50%);
+        @include justify-content(flex-start);
+        @include px-to-rem(font-size, $gutter * 2);
+    }
+
+    .swatch-attribute {
+        .product-options-wrapper & {
+            &.capacidad {
+                @include px-to-rem(min-width, 225px);
+                @include px-to-rem(margin-right, $gutter * 2);
+                border-right: 1px solid $c-gray-2;
+
+                .swatch-attribute-selected-option {
+                    display: none;
+                }
+
+                .swatch-attribute-options {
+                    @include flexbox;
+                    @include flex-wrap(wrap);
+                    @include px-to-rem(column-gap, $gutter);
+                    @include px-to-rem(row-gap, $gutter);
+                }
+
+                .swatch-option.text {
+                    border: 1px solid $c-gray-4;
+                    @include px-to-rem(border-radius, 50px);
+                    @include px-to-rem(padding, 4px 12px);
+                    @include px-to-rem(font-size, 14px);
+                    line-height: 1;
+                    color: $c-gray-5;
+                    transition: all 0.2s ease-in-out;
+                    cursor: pointer;
+
+                    &.selected {
+                        border-color: $c-primary;
+                        color: $c-primary;
+                        pointer-events: none;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.swatch-attribute {
+    &:not(.product-options-wrapper &) {
+        &.capacidad {
+            display: none;
+            background-color: red;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .c-card-detail__options {
+        justify-content: center;
+    }
+}

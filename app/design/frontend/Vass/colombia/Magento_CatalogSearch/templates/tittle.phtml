@@ -1,0 +1,19 @@
+<?php 
+    $qSearch =  $block->getRequest()->getParam('q');
+    $_productCollection = $block->getLoadedProductCollection();
+?>
+
+<!-- esto es para 404 -->
+<!-- <figure class="o-system-error">
+    <img class="o-system-error__img" src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/Banner.png'))?>">
+</figure> -->
+
+<div class="title">
+    <h2 class="o-headline o-light">
+        <?php if ( $_productCollection->count() ) : ?>
+            <?= $block->escapeHtml('Resultado de búsqueda para:') ?>  <?= $block->escapeHtml($qSearch)?>
+        <?php else: ?>
+            <?= $block->escapeHtml('¡Ups! No hay resultados para ') ?>  "<?= $block->escapeHtml($qSearch)?>"
+        <?php endif; ?> 
+    </h2>
+<div>

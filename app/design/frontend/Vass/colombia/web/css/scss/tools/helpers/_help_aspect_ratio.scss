@@ -1,0 +1,61 @@
+//*----------------------------------------------------*\
+//  Aspect Ratio Mixin
+//*----------------------------------------------------*/
+
+/**
+ * Caja con aspect ratio amigable con el responsive. 
+ * calcula (alto/ancho) * 100%
+ * Si el ancho cambia, también lo hace la altura, y el elemento mantiene el aspect ratio.
+ *
+ * @mixin
+ * @section Helpers
+ * @param $width 
+ * @param $height
+ * @example
+ *  .foo {
+ *    @include aspect-ratio-box(16, 9);
+ *  }
+ *  // El @include se traducirá en:
+ *     .foo {
+ *        content: '';
+ *          position: relative;
+ *          overflow: hidden;
+ *     }
+ *     .foo:after {
+ *        content: '';
+ *        display: block;
+ *        width: 100%;
+ *        padding-top: 56,25%;
+ *     }
+ */
+@mixin aspect-ratio-box($width, $height) {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+}
+/**
+ * Use para cambiar el valor del aspect radio en un breakpoint específco.
+ *
+ * @mixin
+ * @section Helpers
+ * @param $width 
+ * @param $height
+ * @example
+ *    .foo {
+ *      @include aspect-ratio-change(16, 9);
+ *    }
+ *  // El @include se traducirá en:
+ *     .foo:before {
+ *        padding-top: 56,25%;
+ *     }
+ */
+@mixin aspect-ratio-change($width, $height) {
+  &:before {
+    padding-top: ($height / $width) * 100%;
+  }
+}

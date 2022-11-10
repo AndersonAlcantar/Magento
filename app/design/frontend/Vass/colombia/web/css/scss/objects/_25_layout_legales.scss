@@ -1,0 +1,27 @@
+.legales-index-index {
+    .column.main {
+        
+    }
+    .page-wrapper {
+        height: 100vh;
+        @include flexbox;
+        @include flex-direction(column);
+        @include justify-content(space-between);
+    }
+    .container {
+        flex: 2;
+    }
+}
+
+
+
+@include media-query(wide) {
+    .legales-index-index {
+        .column.main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            @include px-to-rem(column-gap, $gutter * 3);
+            @include canvas;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<div class="o-modal o-modal_w711 modal  u-hidden" id="modal-terms_conditions" data-modal-type="modal-small" >     
+    <button class="o-modal__btn-close close-modal i-close" data-modal="modal-terms_conditions">
+        <span class="u-hidden">Cerrar</span>
+    </button>
+    <div class="o-modal__content o-modal__content_center o-modal__content_w572">
+
+        <header class="o-modal__header">
+            <img 
+                class="o-modal__img o-modal__img-small" 
+                alt="Logo Movistar" 
+                src="<?= $this->getViewFileUrl('images/brand-movistar.svg') ?>">
+            <h3 class="o-headline o-headline_blue">
+                Términos y condiciones:
+                <br>
+                compra de equipos
+            </h3>
+        </header>
+
+        <div class="o-modal__text-box o-modal__text-box_text-left s-richtext-modals">
+            <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('terms_and_conditions_reno_repo')->toHtml();?>
+
+            <ul class="o-list-file">
+                <li>
+                    <a
+                        href="<?php echo $this->getViewFileUrl('files/33417_FO_Solicitud_Servicio_Movil.pdf'); ?>"
+                        download
+                        class="o-list-file__item"
+                        title="Descargar Solicitud Servicio Movil"
+                    >
+                        <figure class="u-text-center">
+                            <img
+                                class="o-list-file__img"
+                                src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/modals/pdf.svg'))?>"
+                                alt="Descargar T&C"
+                            />
+                            <figcaption
+                                class="o-list-file__caption"
+                            >
+                                Solicitud servicio móvil
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="<?php echo $this->getViewFileUrl('files/33716_FO_Solicitud_Servicio_Fijo.pdf'); ?>"
+                        download
+                        class="o-list-file__item"
+                        title="Descargar Solicitud Servicio Fijo"
+                    >
+                        <figure class="u-text-center">
+                            <img
+                                class="o-list-file__img"
+                                src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/modals/pdf.svg'))?>"
+                                alt="Descargar T&C"
+                            />
+
+                            <figcaption
+                                class="o-list-file__caption"
+                            >
+                                Solicitud servicio fijo
+                            </figcaption>
+                        </figure>
+                    </a>
+                </li>
+            </ul>
+            
+        </div>
+
+        <footer class="o-modal__footer u-text-center">
+            <button
+                data-modal="modal-terms_conditions"
+                class="o-modal__btn o-modal__btn_w260 o-modal__btn_margin0 o-btn o-btn_height56 close-modal"
+            >
+                Cerrar
+            </button>
+        </footer> 
+    </div>
+
+</div>
+
+

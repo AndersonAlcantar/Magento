@@ -1,0 +1,120 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="checkout.root" remove="true" />
+			
+		<referenceContainer name="main">
+			<block name="checkout.customer.lines" template="Vass_Checkout::checkout-contract.phtml"/>
+            <block class="Magento\Checkout\Block\Onepage" name="checkout-summary" template="Vass_Checkout::onepage.phtml" cacheable="false">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="checkout" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Magento_Checkout/onepage</item>
+                                </item>
+                                <item name="children" xsi:type="array">
+                                    <item name="sidebar" xsi:type="array">
+                                        <item name="component" xsi:type="string">Magento_Checkout/js/view/sidebar</item>
+                                        <item name="displayArea" xsi:type="string">sidebar</item>
+                                        <item name="config" xsi:type="array">
+                                            <item name="template" xsi:type="string">Magento_Checkout/sidebar</item>
+                                        </item>
+                                        <item name="children" xsi:type="array">
+                                            <item name="summary" xsi:type="array">
+                                                <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary</item>
+                                                <item name="displayArea" xsi:type="string">summary</item>
+                                                <item name="config" xsi:type="array">
+                                                    <item name="template" xsi:type="string">Magento_Checkout/summary</item>
+                                                </item>
+                                                <item name="children" xsi:type="array">
+                                                    <item name="itemsBefore" xsi:type="array">
+                                                        <item name="component" xsi:type="string">uiComponent</item>
+                                                        <item name="children" xsi:type="array">
+                                                            <!-- merge your components here -->
+                                                        </item>
+                                                    </item>
+                                                    <item name="cart_items" xsi:type="array">
+                                                        <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/cart-items</item>
+                                                        <item name="children" xsi:type="array">
+                                                            <item name="orden" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/orden</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="title" xsi:type="string" translate="true">No. de orden</item>
+                                                                </item>
+                                                            </item>
+                                                            <item name="details" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/item/details</item>
+                                                            </item>
+                                                        
+                                                        </item>
+                                                    </item>
+                                                    <item name="itemsAfter" xsi:type="array">
+                                                        <item name="component" xsi:type="string">uiComponent</item>
+                                                        <item name="children" xsi:type="array">
+                                                            <!-- merge your components here -->
+                                                        </item>
+                                                    </item>
+                                                    <item name="totals" xsi:type="array">
+                                                        <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/totals</item>
+                                                        <item name="displayArea" xsi:type="string">totals</item>
+                                                        <item name="config" xsi:type="array">
+                                                            <item name="template" xsi:type="string">Magento_Checkout/summary/totals</item>
+                                                        </item>
+                                                        <item name="children" xsi:type="array">
+                                                            <!-- sort order for this totals is configured on admin panel-->
+                                                            <!-- Stores->Configuration->SALES->Sales->General->Checkout Totals Sort Order -->
+                                                            <item name="shipping" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/shipping</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="title" xsi:type="string" translate="true">Envio</item>
+                                                                    <item name="notCalculatedMessage" xsi:type="string" translate="true">Gratis</item>
+                                                                </item>
+                                                            </item>
+                                                            <item name="grand-total" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/grand-total</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="title" xsi:type="string" translate="true">Valor orden</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                    <item name="message" xsi:type="array">
+                                                        <item name="component" xsi:type="string">Vass_Checkout/js/contract/summary/item/details/message</item>
+                                                        <item name="displayArea" xsi:type="string">item_message</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="checkoutProvider" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Vass\Checkout\Block\ButtonSocial"  name="checkout.button.social" template="Vass_Checkout::checkout-button-social.phtml"/>
+            <block   name="checkout.error.general" template="Vass_Custom::modals/error_general.phtml"/>
+            <block   name="checkout.terms_conditions" template="Vass_Custom::modals/terms_conditions.phtml"/>
+            <block   name="checkout.processing_personal_data" template="Vass_Custom::modals/processing_personal_data.phtml"/>
+		</referenceContainer>
+
+		<referenceContainer name="footer-container">
+			<block class="Magento\Theme\Block\Html\Footer" name="footer" template="Vass_Checkout::checkout-footer.phtml" />
+		</referenceContainer>
+		<referenceBlock name="minicart" remove="true"/>
+		<referenceContainer name="header.container" htmlClass="checkout-header">
+			<referenceBlock name="menu.top.header" remove="true"/>
+			<referenceBlock name="header.wrapper" remove="true"/>
+			<referenceBlock name="header.search" remove="true"/>
+			<block name="checkout-header"  template="Vass_Checkout::checkout-header.phtml">
+                <arguments>
+					<argument name="header" xsi:type="object">Vass\Checkout\ViewModel\Html\Header</argument>
+				</arguments>
+            </block>
+		</referenceContainer>
+	</body>
+</page>

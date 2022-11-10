@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="Vass_Fija::title" 
+            title="Vass Fija" 
+            module="Vass_Fija" 
+            sortOrder="12"
+            resource="Vass_Fija::vass_fija" />
+         <add 
+            id="Vass_Fija::categoryoffert" 
+            title="Categories Offerts" 
+            module="Vass_Fija" 
+            sortOrder="1" 
+            action="categoryoffert/categoryoffert/index" 
+            resource="Vass_Fija::vass_fija"
+            parent="Vass_Fija::title" />
+         <add 
+            id="Vass_Fija::subcategory" 
+            title="Subcategories" 
+            module="Vass_Fija" 
+            sortOrder="2" 
+            action="subcategory/subcategory/index" 
+            resource="Vass_Fija::vass_fija"
+            parent="Vass_Fija::title"/>    
+        <add 
+            id="Vass_Fija::categorydescription" 
+            title="Categories Description" 
+            module="Vass_Fija" 
+            sortOrder="3" 
+            action="categorydescription/categorydescription/index" 
+            resource="Vass_Fija::vass_fija"
+            parent="Vass_Fija::title" /> 
+        <add 
+            id="Vass_Fija::offert" 
+            title="Manage Offert" 
+            module="Vass_Fija" 
+            sortOrder="4"
+            action="offert/offert/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+
+         <add 
+            id="Vass_Fija::emailblacklist" 
+            title="Domain Mail BlackList" 
+            module="Vass_Fija" 
+            sortOrder="4"
+            action="emailblacklist/emailblacklist/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+        <!--<add 
+            id="Vass_Fija::offertadditional" 
+            title="Offert Additional" 
+            module="Vass_Fija" 
+            sortOrder="5" 
+            action="offertadditional/offertadditional/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>    -->
+
+        <add id="Vass_Fija::offertcomponent" 
+            title="Offert Component" 
+            module="Vass_Fija" 
+            sortOrder="5" 
+            action="offertcomponent/offertcomponent/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+        <add id="Vass_Fija::includedbenefits" 
+            title="Common Included Benefits" 
+            module="Vass_Fija" 
+            sortOrder="6" 
+            action="includedbenefits/includedbenefits/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+        <add id="Vass_Fija::offertcrossselling" 
+            title="Offerts Cross-Selling" 
+            module="Vass_Fija" 
+            sortOrder="7" 
+            action="offertcrossselling/offertcrossselling/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+        <add id="Vass_Fija::crosssellingbundleoptions" 
+            title="Cross-Selling bundle Options" 
+            module="Vass_Fija" 
+            sortOrder="7" 
+            action="crosssellingbundleoptions/crosssellingbundleoptions/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+       <add id="Vass_Fija::fija_drag_drop"
+            title="Sort Elements Categories"
+            module="Vass_Menu"
+            sortOrder="7"
+            action="fija/sortsubcategories/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+       <add id="Vass_Fija::fija_sort_offerts"
+            title="Sort Elements Offerts"
+            module="Vass_Menu"
+            sortOrder="7"
+            action="fija/sortofferts/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+        <add id="Vass_Fija::fija_offerttvdecos"
+            title="Offert Tv Decos"
+            module="Vass_Menu"
+            sortOrder="8"
+            action="offerttvdecos/offerttvdecos/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/>
+            <add 
+            id="Vass_Fija::ciclos" 
+            title="Cierre Ciclos Manuales" 
+            module="Vass_Fija" 
+            sortOrder="9" 
+            action="ciclos/ciclos/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/> 
+            <add 
+            id="Vass_Fija::banners" 
+            title="Banners Fija" 
+            module="Vass_Fija" 
+            sortOrder="10" 
+            action="banners/banners/index" 
+            resource="Vass_Fija::vass_fija" 
+            parent="Vass_Fija::title"/> 
+    </menu>
+</config>

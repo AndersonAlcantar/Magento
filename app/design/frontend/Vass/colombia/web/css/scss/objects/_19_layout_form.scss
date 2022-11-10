@@ -1,0 +1,123 @@
+.o-layout-form__wrap-header,
+.o-layout-form__body {
+    display: grid;
+    grid-template-columns: 11% 78% 11%;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-areas: 
+    ". element .";
+}
+.o-layout-form__wrap-header {
+    background-color: $c-secondary;
+}
+
+.o-layout-form__header {
+    grid-area: element;
+    @include px-to-rem(max-width, 940px);
+    @include px-to-rem(margin-top, $gutter * 8);
+    @include px-to-rem(margin-bottom, $gutter * 39);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: $c-neutro;
+}
+.o-layout-form__body {
+    grid-area: element;
+}
+.o-layout-form__form {
+    grid-column-start: 2;
+    @include px-to-rem(padding, 50px 84px);
+    margin-top: -273px;
+    background-color: $c-neutro;
+    @include px-to-rem(border-radius, 17px);
+}
+
+.o-layout-form__title {
+    font-weight: $f-bold;
+    transition: all 0.4s ease-in;
+}
+.o-layout-form__paragraph {
+    @include px-to-rem(font-size, 28px);
+    transition: all 0.4s ease-in;
+}
+
+.o-layout-form__box {
+    position: relative;
+    @include flexbox;
+    @include justify-content(flex-end);
+    @include align-items(flex-end);
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+//modifires o-layout-form__box
+.o-layout-form__box_center {
+    @include align-items(center);
+}
+
+.o-layout-form__element {
+    display: block;
+}
+
+//modifires o-layout-form__element
+.o-layout-form__element_left {
+    transition: all 0.4s ease-in;
+}
+.o-layout-form__element_right {
+    position: relative;
+    right: -8px;
+    height: 85%;
+}
+.o-layout-form__footer {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    @include px-to-rem(margin-top, $gutter * 4);
+    @include px-to-rem(margin-bottom, $gutter * 7);
+    text-align: center;
+}
+
+
+
+// max-width:768
+@include media-query(medium-max) {
+    .o-layout-form__title {
+        @include px-to-rem(font-size, 24px);
+    }
+    .o-layout-form__paragraph {
+        @include px-to-rem(font-size, 16px);
+    }
+    .o-layout-form__form {
+        @include px-to-rem(padding, 25px 19px);
+    }
+}
+
+@media only screen and(max-width: 934px) {
+    .o-layout-form__header {
+        @include px-to-rem(margin-bottom, $gutter * 16);
+    }
+    .o-layout-form__form {
+        margin-top: -60px;
+    }
+    .o-layout-form__element_left {
+        @include px-to-rem(height, 54px);
+    }
+
+}
+
+@media only screen and(max-width: 480px) {
+    .o-layout-form__header {
+        @include px-to-rem(margin-bottom, $gutter * 5);
+    }
+    .o-layout-form__title {
+        @include px-to-rem(font-size, 18px);
+    }
+    .o-layout-form__paragraph {
+        @include px-to-rem(font-size, 14px);
+    }
+    .o-layout-form__form {
+        margin-top: -30px;
+    }
+    .o-layout-form__element_left {
+        @include px-to-rem(height, 29px);
+    }
+}

@@ -1,0 +1,26 @@
+<div>
+    <div class="list" id="sortElementsCats">
+
+    </div>
+    <div class="list" id="sortElementsSubs">
+
+    </div>
+    <div class="list" id="sortElementsOfferts">
+
+    </div>
+   
+</div>
+
+
+<script>
+    require([
+        "prototype"
+    ], function () {
+        window.urlCategory = '<?= /** @noEscape */ $block->getUrl('fija/sortsubcategories/category')?>';
+        window.subCategory = '<?= /** @noEscape */ $block->getUrl('fija/sortsubcategories/subcategory')?>';
+        window.subOffert = '<?= /** @noEscape */ $block->getUrl('fija/sort/offert')?>';
+        window.getElements = '<?= /** @noEscape */ $block->getUrl('fija/sortsubcategories/getelements')?>';
+        console.log(window);
+       // console.log(gpImageTagSaveUrl)
+    });
+</script>

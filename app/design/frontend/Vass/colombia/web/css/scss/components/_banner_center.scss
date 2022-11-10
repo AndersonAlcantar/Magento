@@ -1,0 +1,29 @@
+.c-banner-center {
+	text-align: center;
+	margin: 0 auto;
+	@include px-to-rem(margin-top, $gutter * 5);
+	@include px-to-rem(margin-bottom, $gutter * 9);
+	@include px-to-rem(max-width, 730px);
+}
+.c-banner-center__figure {
+	@include px-to-rem(margin-bottom, $gutter * 4);
+}
+
+.c-banner-center__title {
+	@include px-to-rem(margin-bottom, $gutter * 3);
+	@include px-to-rem(font-size, 28px);
+	font-weight: $f-regular;
+	color: $c-secondary;
+}
+
+.c-banner-center__paragraph {
+	color: $c-gray-5;
+}
+
+.c-banner-center__cta {
+	@include px-to-rem(margin-top, $gutter * 3);
+	color: $c-blue-normal;
+	&:hover {
+		opacity: 0.9;
+	}
+}

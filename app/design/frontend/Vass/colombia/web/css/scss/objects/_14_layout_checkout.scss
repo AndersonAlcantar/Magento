@@ -1,0 +1,99 @@
+.checkout-envio-index,
+.checkout-index-index,
+.checkout-lineas-index,
+.checkout-opcionpago-index,
+.checkout-contrato-index,
+.checkout-recogerpagoacuotas-index,
+.checkout-recogerpagounico-index,
+.checkout-enviopagounico-index,
+.checkout-enviopagoacuotas-index {
+    .page-wrapper {
+        height: 100vh;
+        @include flexbox;
+        @include flex-direction(column);
+        @include justify-content(space-between);
+
+        .c-footer {
+            margin-top: auto;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.checkout-envio-index,
+.checkout-index-index,
+.checkout-lineas-index,
+.checkout-opcionpago-index,
+.checkout-contrato-index,
+.checkout-recogerpagoacuotas-index,
+.checkout-recogerpagounico-index,
+.checkout-enviopagounico-index,
+.checkout-enviopagoacuotas-index {
+    .column.main {
+        @include flexbox;
+        @include flex-wrap(wrap);
+        @include justify-content(space-between);
+        @include px-to-rem(padding-bottom, $gutter * 6);
+    }
+}
+
+@media only screen and (max-width: 740px) {
+    .checkout-envio-index,
+    .checkout-index-index,
+    .checkout-lineas-index,
+    .checkout-opcionpago-index,
+    .checkout-contrato-index,
+    .checkout-recogerpagoacuotas-index,
+    .checkout-recogerpagounico-index,
+    .checkout-enviopagounico-index,
+    .checkout-enviopagoacuotas-index {
+        .column.main {
+            width: $canvas-with;
+            max-width: $canvas-max-with;
+            margin: 0 auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+    .checkout-envio-index,
+    .checkout-index-index,
+    .checkout-lineas-index,
+    .checkout-opcionpago-index,
+    .checkout-contrato-index,
+    .checkout-recogerpagoacuotas-index,
+    .checkout-recogerpagounico-index,
+    .checkout-enviopagounico-index,
+    .checkout-enviopagoacuotas-index {
+        .column.main {
+            @include flex-direction(column-reverse);
+            @include justify-content(center);
+            @include align-items(center);
+        }
+    }
+}
+
+@include media-query(wide) {
+    .checkout-envio-index,
+    .checkout-index-index,
+    .checkout-lineas-index,
+    .checkout-opcionpago-index,
+    .checkout-contrato-index,
+    .checkout-recogerpagoacuotas-index,
+    .checkout-recogerpagounico-index,
+    .checkout-enviopagounico-index,
+    .checkout-enviopagoacuotas-index {
+        .column.main {
+            width: 90% !important;
+            max-width: $canvas-max-with;
+            margin: 0 auto;
+            @include px-to-rem(padding-top, $gutter * 3);
+        }
+    }
+
+    .checkout-index-index {
+        .column.main {
+            padding-top: 24px;
+        }
+    }
+}

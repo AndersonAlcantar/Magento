@@ -1,0 +1,110 @@
+.c-card-zig-zag-wrap {
+    @include px-to-rem(margin, $gutter * 5 0);
+    list-style: none;
+}
+
+.c-card-zig-zag__img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.c-card-zig-zag__caption {
+    @include px-to-rem(padding, $gutter * 3 $gutter * 2);
+    text-align: center;
+}
+
+.c-card-zig-zag__title {
+    font-weight: $f-extra-light;
+    line-height: 1;
+    color: $c-secondary;
+}
+
+.c-card-zig-zag__text {
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-5;
+}
+
+/*------------------------------------*\
+  Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .c-card-zig-zag {
+        @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+
+    .c-card-zig-zag__title {
+        @include px-to-rem(margin-bottom, 12px);
+    }
+}
+
+/*------------------------------------*\
+  Media querys intermediates
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .c-card-zig-zag {
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(center);
+        @include px-to-rem(column-gap, $gutter * 4);
+
+        &:nth-child(even) {
+            @include flex-direction(row-reverse);
+        }
+    }
+
+    .c-card-zig-zag__figure {
+        @include flex(1 1 60%);
+    }
+
+    .c-card-zig-zag__caption {
+        @include flex(flex, 1 1 40%);
+    }
+
+    .c-card-zig-zag__caption {
+        text-align: left;
+    }
+
+    .c-card-zig-zag__title,
+    .c-card-zig-zag__text {
+        @include px-to-rem(max-width, 210px);
+
+        .c-card-zig-zag {
+            &:nth-child(even) & {
+                margin-left: auto;
+            }
+        }
+    }
+
+    .c-card-zig-zag__title {
+        @include px-to-rem(font-size, 38px);
+        @include px-to-rem(margin-bottom, 20px);
+    }
+}
+
+/*------------------------------------*\
+  Media querys desktop
+\*------------------------------------*/
+@media screen and (min-width: 1024px) {
+    .c-card-zig-zag {
+        @include px-to-rem(height, 500px);
+    }
+
+    .c-card-zig-zag__caption,
+    .c-card-zig-zag__figure {
+        @include flex(1 1 50%);
+    }
+
+    .c-card-zig-zag__figure {
+        height: 100%;
+    }
+
+    .c-card-zig-zag__title,
+    .c-card-zig-zag__text {
+        @include px-to-rem(max-width, 340px);
+        margin-top: 0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,71 @@
+<section id="confronta-component" class="o-section">
+  <div class="o-canvas">
+    <header class="c-form__header c-form__header_w728 u-text-left">
+      <h2 class="c-form__title c-form__title_big">
+        ¡Para continuar queremos validar tu identidad!
+      </h2>
+      <p class="c-form__lead c-form__lead_gray">
+        A continuación deberás responder unas preguntas de seguridad que nos permitirán validar si eres tú quien está realizando esta compra.
+      </p> 
+    </header> 
+<!-- ko scope: 'regionList' -->
+    <form data-bind="afterRender: getCustomerInfo" id="questions-form" action="">
+      <fieldset class="c-form__fieldset c-form__field-container">
+        <ol id="questionList" class="c-form__ordered-list c-form__ordered-list_num-sm c-form-content-white">
+            <!-- se agrega la clase .is-error a la par de .c-form__item-list para mostrar el estado de error en la pregunta -->
+
+        </ol>
+      </fieldset>
+        <!-- Alerta -->
+        <div style="display:none" id="alert_validacion" class="js-target-class is-active u-margin-top-40 " >
+            <div id="alert_container" class="c-callout c-callout_w730 c-callout__green i-check">
+                <p id="msg_validacion" class="c-callout__text">
+                    
+                </p>
+                <button
+                    class="c-callout__btn i-after-close js-btn-toggle-class"
+                    type="button"
+                    data-class-is="is-active"
+                ></button>
+            </div>
+        </div>
+            
+      <div class="c-form__actions c-form__actions_right">
+        <button
+            data-bind="click: sendAnswer"
+            type="button"
+            class="o-btn c-form__btn c-form__btn_full"
+        >
+          Enviar información
+        </button>
+      </div>
+
+    </form>
+    <!-- /ko -->
+  </div>
+  <div class="c-preloader">
+    <div class="c-preloader__box">
+        <div class="c-preloader__circle"></div>
+        <div class="c-preloader__text">Cargando datos</div>
+    </div>
+</div>
+</section>
+<!-- para agregar el preload se agrega la clase .is-preload a la par de .c-form__field-container -->
+
+<script type="text/x-magento-init">
+    {
+        "#cobertura-form": {
+            "validation": {}
+        },
+        "#confronta-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "regionList": {
+                        "component": "Vass_Fija/js/regionList"
+                    }
+                }
+            }
+        }
+        
+    }
+</script>

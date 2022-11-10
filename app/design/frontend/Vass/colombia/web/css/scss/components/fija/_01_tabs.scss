@@ -1,0 +1,242 @@
+.f-c-tabs {
+    position: relative;
+    @include px-to-rem(padding-top, $gutter * 4);
+    text-align: center;
+    background-color: $c-gray-1;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        @include px-to-rem(height, 68px);
+        background-color: $c-neutro;
+    }
+}
+
+// Contenedor de tabs
+.f-c-tabs__control {
+    position: relative;
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(border-radius, 10px);
+    @include px-to-rem(padding, 6px);
+    background: $c-neutro;
+    box-shadow: 0px 3.92795px 10.8019px rgb(56 100 166 / 12%);
+    overflow: auto;
+}
+
+.f-c-tabs__tab {
+    @include flex(1 1 auto);
+    @include px-to-rem(border-radius, 10px);
+    line-height: 1;
+    font-weight: $f-bold;
+    color: $c-secondary;
+    background: $c-gray-1;
+
+    &:hover,
+    &.is-tab-active {
+        color: $c-neutro;
+        background-color: $c-secondary;
+    }
+}
+
+.f-c-tabs__tab_brand {
+    display: inline-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(row-gap, 4px);
+}
+
+.f-c-tabs__content {
+    @include px-to-rem(padding-bottom, $gutter * 7);
+    transition: all 0.2s ease-in-out;
+}
+.f-c-tabs__content_pb0 {
+    padding-bottom: 0;
+}
+
+.f-c-tabs__ico {
+    @include px-to-rem(min-width, 60px);
+    font-weight: $f-bold;
+    color: $c-secondary;
+}
+
+.f-c-tabs__divider {
+    display: inline-block;
+    @include px-to-rem(margin, 0 $gutter * 2);
+    @include px-to-rem(font-size, 12px);
+    transform: rotate(45deg);
+    color: $c-blue-normal;
+}
+
+.f-c-tabs__btn {
+    border: none;
+    color: $c-secondary;
+    background-color: $c-neutro;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.is-tab-active {
+        color: $c-neutro;
+        background-color: $c-secondary;
+    }
+
+    &:first-of-type {
+        @include px-to-rem(margin-right, $gutter);
+    }
+}
+
+.f-c-tabs__message {
+  @include flexbox;
+  @include align-items(center);
+}
+
+.f-c-tabs__message-caption {
+  position: relative;
+  text-align: left;
+}
+
+.f-c-tabs__message-title {
+  font-weight: $f-extra-light;
+}
+
+.f-c-tabs__message-txt {
+  font-weight: $f-light;
+}
+
+/*------------------------------------*\
+  Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .f-c-tabs__control,
+    .f-c-tabs__description {
+        @include px-to-rem(margin-bottom, $gutter * 3);
+    }
+
+    .f-c-tabs__tab {
+        @include px-to-rem(max-width, 118px);
+        @include px-to-rem(min-height, $gutter * 5);
+        margin: 0 auto;
+        @include px-to-rem(padding, 3px 4px);
+    }
+
+    .f-c-tabs__tab_brand {
+        @include flex-direction(column);
+        @include px-to-rem(font-size, 12px);
+    }
+
+    .f-c-tabs__subtabs {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 8px;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/*------------------------------------*\
+  Media querys Tablet a Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .f-c-tabs__control,
+    .f-c-tabs__description {
+        @include px-to-rem(margin-bottom, $gutter * 4);
+    }
+    
+    .f-c-tabs__tab {
+        @include px-to-rem(padding, 13px $gutter);
+    }
+    
+    .f-c-tabs__tab_brand {
+        @include px-to-rem(min-width, 200px);
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .f-c-tabs__message {
+      @include px-to-rem(max-width, 320px);
+      margin: 36px auto 0 auto;
+    }
+
+    .f-c-tabs__message-img {
+      @include px-to-rem(width, 260px);
+    }
+
+    .f-c-tabs__message-caption {
+      @include px-to-rem(top, $gutter * 2);
+      left: -103px;
+      @include px-to-rem(min-width, 170px);
+    }
+
+    .f-c-tabs__message-title {
+      @include px-to-rem(font-size, 18px);
+      @include px-to-rem(line-height, $gutter * 3);
+    }
+
+    .f-c-tabs__message-txt {
+      @include px-to-rem(font-size, 14px);
+    }
+}
+
+@media screen and (min-width: 990px) {
+  .f-c-tabs__message {
+    @include justify-content(center);
+    @include px-to-rem(max-width, 720px);
+    margin: 72px 0 0 350px;
+  }
+
+  .f-c-tabs__message-img {
+    @include px-to-rem(max-width, 480px);
+  }
+
+  .f-c-tabs__message-caption {
+    @include px-to-rem(top, $gutter * 4);
+    left: -180px;
+    @include align-self(center);
+    @include px-to-rem(min-width, 380px);
+  }
+
+  .f-c-tabs__message-title {
+    @include px-to-rem(font-size, $gutter * 5);
+    @include px-to-rem(line-height, $gutter * 6);
+  }
+
+  .f-c-tabs__message-txt {
+    @include px-to-rem(font-size, 22px);
+  }
+}
+
+@media screen and (max-width: 1023px) {
+    .f-c-tabs__control {
+        @include flexbox;
+    }
+
+    .f-c-tabs__img {
+        @include px-to-rem(max-height, $gutter * 2);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .f-c-tabs__control {
+        display: inline-flex;
+        margin-top: 0;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .f-c-tabs__tab {
+        @include px-to-rem(min-width, 114px);
+    }
+
+    .f-c-tabs__img {
+        @include px-to-rem(max-height, 26px);
+    }
+}

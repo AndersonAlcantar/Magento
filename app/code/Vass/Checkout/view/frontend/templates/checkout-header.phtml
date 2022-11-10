@@ -1,0 +1,79 @@
+<?php
+$viewModel = $block->getHeader();
+$steps = $viewModel->getSteps();
+$isLoggedIn = $viewModel->isLoggedIn();
+$currentUrl = $block->getRequest()->getUriString();
+if (!$isLoggedIn && $currentUrl != $block->getUrl('checkout')) {
+	header('Location: /checkout/');
+	die;
+}
+switch ($currentUrl) :
+	case $block->getUrl('checkout/enviopagounico'):
+	case $block->getUrl('checkout/enviopagoacuotas'):
+	case $block->getUrl('checkout/recogerpagoacuotas'):
+	case $block->getUrl('checkout/recogerpagounico'):
+		$stepsCheck = [true, false, false];
+		break;
+	case $block->getUrl('checkout/contrato'):
+		$stepsCheck = [true, true, false];
+		break;
+	default:
+		$stepsCheck = [false, false, false];
+endswitch;
+?>
+<div class="c-simple-header_bg" data-mage-init='{"modals": {}}'>
+	<div class="o-canvas">
+		<header class="c-simple-header" id="checkout-header">
+			<a class="c-simple-header__brand" id="logo-checkout" href="/" title="" aria-label="store logo">
+				<img class="c-simple-header__brand-img" src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>" alt="">
+			</a>
+			<?php if ($steps) : ?>
+				<!--lista de pasos-->
+				<div class="c-steps">
+					<!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado-->
+					<ul class="c-steps__list">
+						<li class="c-steps__item c-steps__item_variation <?= $stepsCheck[0] ? 'is-checked' : '' ?>">
+							<div class="c-steps__wrap">
+								<div class="c-steps__bullet">
+									<span class="c-steps__value">1</span>
+									<span class="c-steps__name">Validación</span>
+								</div>
+							</div>
+						</li>
+						<li class="c-steps__item c-steps__item_variation <?= $stepsCheck[1] ? 'is-checked' : '' ?>">
+							<div class="c-steps__wrap">
+								<div class="c-steps__bullet">
+									<p class="c-steps__value">2</p>	
+									<span class="c-steps__name">Datos de envío</span>
+								</div>						
+							</div>
+						</li>
+						<li class="c-steps__item c-steps__item_variation <?= $stepsCheck[2] ? 'is-checked' : '' ?>">
+							<div class="c-steps__wrap">
+								<div class="c-steps__bullet">
+									<span class="c-steps__value">3</span>
+									<span class="c-steps__name">Medios de Pago</span>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			<?php endif ?>
+			<div class="c-simple-header__menu js-target-class <?= $isLoggedIn ? '' : 'active' ?>">
+				<button
+					class="c-simple-header__button-user action i-after-inverted-triangle i-user js-btn-toggle-class"
+					data-class-is="active"
+				>
+						<span class="u-hidden">User</span>
+				</button>
+				<ul data-target="dropdown" class="c-simple-header__list dropdown-options">
+					<li class="c-simple-header__item">
+						<a class="c-simple-header__link i-after-user-plus" <?php if (!$isLoggedIn) echo 'href=/register/' ?>>
+							<span class="c-simple-header__link-text item"><?= $isLoggedIn ? $isLoggedIn : 'Regístrate' ?></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</header>
+	</div>
+</div>

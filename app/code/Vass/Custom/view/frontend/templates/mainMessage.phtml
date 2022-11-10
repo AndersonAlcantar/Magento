@@ -1,0 +1,14 @@
+<?php
+$request = $this->getRequest();
+
+$routeName = $request->getRouteName();
+
+if($routeName!='catalogsearch'){
+?>
+    <div class="o-hgroup">
+        <h3 class="o-hgroup__title">Celulares al mejor precio</h3>
+        <p class="o-hgroup__lead">Los mejores celulares en Movistar para disfrutar de grandes experiencias con tu celu favorito</p>
+    </div>
+<?php 
+}
+?>

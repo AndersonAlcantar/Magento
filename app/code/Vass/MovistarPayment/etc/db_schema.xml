@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="sales_order" resource="sales" engine="innodb" comment="Sales Order">
+		<column xsi:type="float" name="offer_price" precision="12" scale="4" unsigned="true" nullable="true" comment="Service OfferFee Value" />
+		<column xsi:type="varchar" name="shipping_type" nullable="true" length="20" comment="Shipping Type" />
+	</table>
+	<table name="sales_order_grid" resource="sales" engine="innodb" comment="Sales Order">
+		<column xsi:type="float" name="offer_price" precision="12" scale="4" unsigned="true" nullable="true" comment="Service OfferFee Value" />
+		<column xsi:type="varchar" name="shipping_type" nullable="true" length="20" comment="Shipping Type" />
+	</table>
+	<table name="quote" resource="checkout" engine="innodb" comment="Quote">
+		<column xsi:type="float" name="offer_price" precision="12" scale="4" unsigned="true" nullable="true" comment="Service OfferFee Value" />
+		<column xsi:type="varchar" name="shipping_type" nullable="true" length="20" comment="Shipping Type" />
+	</table>
+	<table name="sales_invoice" resource="sales" engine="innodb" comment="Sales Invoice">
+		<column xsi:type="float" name="offer_price" precision="12" scale="4" unsigned="true" nullable="true" comment="Service OfferFee Value" />
+		<column xsi:type="varchar" name="shipping_type" nullable="true" length="20" comment="Shipping Type" />
+	</table>
+</schema>

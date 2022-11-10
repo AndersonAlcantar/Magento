@@ -1,0 +1,122 @@
+.o-list-steps {
+    @include flexbox;
+    @include justify-content(center);
+    list-style: none;
+    counter-reset: my-sec-counter;
+}
+
+.o-list-steps__step {
+    position: relative;
+    @include flexbox;
+    @include flex-direction(column);
+    @include align-items(center);
+    @include px-to-rem(font-size, 12px);
+
+    &::before {
+        content: counter(my-sec-counter);
+        counter-increment: my-sec-counter;
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
+        @include px-to-rem(min-width, $gutter * 4);
+        @include px-to-rem(min-height, $gutter * 4);
+        border: 2px solid $c-gray-4;
+        border-radius: 50%;
+        font-weight: $f-bold;
+        @include px-to-rem(font-size, 14px);
+        color: $c-gray-4;
+        background-color: $c-neutro;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        display: block;
+        @include px-to-rem(height, 4px);
+        margin: auto 0;
+        @include px-to-rem(border-radius, 2px);
+        background: $c-gray-2;
+    }
+
+    &:last-of-type {
+        &::after {
+            display: none;
+        }
+    }
+
+    &.is-current {
+        &::before {
+            border-color: $c-primary;
+            color: $c-neutro;
+            background-color: $c-primary;
+        }
+    }
+
+    &.is-check {
+        &::before {
+            content: $i-check-square;
+            border-color: transparent;
+            font-family: #{$font-family-ico};
+            @include px-to-rem(font-size, 34px);
+            line-height: 1;
+            color: $c-primary;
+            background-color: transparent;
+        }
+
+        &::after {
+            background-color: $c-primary;
+        }
+    }
+}
+
+.o-list-steps__txt {
+    color: $c-blue-dark-80;
+}
+
+/*------------------------------------*\
+    Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .o-list-steps {
+        @include px-to-rem(column-gap, $gutter * 5);
+    }
+
+    .o-list-steps__step {
+        @include justify-content(center);
+
+        &::after {
+            top: 0;
+            right: -100%;
+            @include px-to-rem(width, 34px);
+        }
+    }
+
+    .o-list-steps__txt {
+        display: none;
+    }
+}
+
+/*------------------------------------*\
+    Media querys Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .o-list-steps {
+        @include px-to-rem(column-gap, 62px);
+    }
+
+    .o-list-steps__step {
+        @include px-to-rem(max-width, 62px);
+
+        &::after {
+            top: -40px;
+            left: 100%;
+            @include px-to-rem(width, 60px);
+        }
+    }
+
+    .o-list-steps__step {
+        @include px-to-rem(row-gap, 4px);
+        text-align: center;
+    }
+}

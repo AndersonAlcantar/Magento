@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <update handle="1column"/>
+    <referenceContainer name="columns" htmlClass="o-layout__aside o-canvas">
+        <container name="mainMessage" htmlTag="div" htmlClass="banner"  before="bannerCategory">
+            <block class="Magento\Framework\View\Element\Template" template="Vass_Custom::mainMessage.phtml" name="main.message" before="-"/>
+        </container>
+        <container name="bannerCategory" htmlTag="div" htmlClass="banner" before="main">
+            <block class="Magento\Framework\View\Element\Template" template="Vass_Custom::banner/slide.phtml" name="category.banner.slide" before="-"/>
+        </container>
+        <container name="div.sidebar.main" htmlTag="div" htmlClass="sidebar sidebar-main" after="bannerCategory">
+            <container name="sidebar.main" as="sidebar_main" label="Sidebar Main"/>
+        </container>
+        <container name="div.sidebar.additional" htmlTag="div" htmlClass="sidebar sidebar-additional u-hidden" after="div.sidebar.main">
+            <container name="sidebar.additional" as="sidebar_additional" label="Sidebar Additional"/>
+        </container>
+
+        <container name="informationCategory" htmlTag="div" htmlClass="information" after="main">
+            <block class="Magento\Framework\View\Element\Template" template="Vass_Custom::category/information.phtml" name="category.information" before="-"/>
+        </container>
+       
+    </referenceContainer>
+   
+</layout>

@@ -1,0 +1,56 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\State
+ */
+?>
+<?php $_filters = $block->getActiveFilters() ?>
+<?php if (!empty($_filters)): ?>
+<div class="c-filter__current filter-current">
+    <p class="c-filter__options-title block-subtitle filter-current-subtitle"
+            role="heading"
+            aria-level="2"
+            data-count="<?= /* @noEscape */ count($_filters) ?>"><?= $block->escapeHtml(__('Filtro')) ?></p>
+    <ol class="c-filter__items items">
+        <?php foreach ($_filters as $_filter): ?>
+            <li class="c-filter__item-active item">
+                <span class="c-filter__label filter-label"><?= $block->escapeHtml(__($_filter->getName())) ?></span>
+                <div class="c-filter__wrap-value">
+                    <span class="c-filter__value filter-value">
+                        <?= $block->escapeHtml($block->stripTags($_filter->getLabel())) ?>
+                    </span>
+                    <?php
+                    $clearLinkUrl = $_filter->getClearLinkUrl();
+                    $currentFilterName = $block->escapeHtmlAttr(__($_filter->getName()) . " " .
+                        $block->stripTags($_filter->getLabel()));
+                    if ($clearLinkUrl):
+                        ?>
+                        <a class="action previous" href="<?= $block->escapeUrl($_filter->getRemoveUrl()) ?>"
+                        title="<?= $block->escapeHtmlAttr(__('Previous')) ?>">
+                            <span><?= $block->escapeHtml(__('Previous')) ?></span>
+                        </a>
+                        <a class="action remove"
+                        title="<?= $block->escapeHtmlAttr($_filter->getFilter()->getClearLinkText()) ?>"
+                        href="<?= $block->escapeUrl($clearLinkUrl) ?>">
+                            <span><?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></span>
+                        </a>
+                    <?php else: ?>
+                        <a class="c-filter__remove-btn i-close action remove" 
+                            href="<?= $block->escapeUrl($_filter->getRemoveUrl()) ?>"
+                        title="<?= /* @noEscape */ $block->escapeHtmlAttr(__('Remover')) . " " . $currentFilterName ?>">
+                            <span class="u-hidden"><?= $block->escapeHtml(__('Eliminar filtro')) ?></span>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+</div>
+<?php endif; ?>

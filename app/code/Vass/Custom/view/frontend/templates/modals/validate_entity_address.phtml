@@ -1,0 +1,78 @@
+<button id="openCloseValidateAdress" class="open-close-modal u-hidden" 
+                    data-modal-open="modal-steps_change_address" 
+                    data-modal-close="modal-validate_entity_address">Continuar
+                </button>
+<button id="closeValidateAdress" class="close-modal u-hidden" data-modal="modal-validate_entity_address">Cancelar Solicitud</button>
+<div class="o-modal modal  u-hidden" id="modal-validate_entity_address" data-modal-type="modal-large" >   
+    <button class="o-modal__btn-close close-modal i-close" data-modal="modal-validate_entity_address">
+        <span class="u-hidden">Cerrar</span>
+    </button>
+    <div class="o-modal__content">
+        <div class="o-modal__content_center o-modal__content_w572" data-bind="scope: 'validate-register'">
+            <header>
+                <h3 class="o-headline o-headline_blue u-margin-bottom-0">
+                    Validación de identidad
+                </h3>
+            </header>
+
+            <div class="o-modal__text-box o-modal__text-box_marginb">
+                <p>          
+                    Por tu seguridad, hemos <strong>generado un código SMS</strong> enviado al número que registraste.
+                </p>
+            </div>
+            <div class="o-modal__subcontent">
+                <button
+                    class="o-btn o-btn_height34 o-btn_w255 o-btn_sm o-btn_primary_dark-blue o-btn_margin js-timer-btn"
+                    type="button"
+                    data-bind="click: generateCodeSms"
+                >
+                    Enviar código SMS
+                </button>
+                <div data-bind="attr: { class: statusValidateCodeClass() }">
+                    <div class="c-form__code">
+                        <input id="codeOne" data-bind="value: codeOne, valueUpdate: 'input', event: {input: validateCodeOne}" class="c-form__code-number" type="number">
+                        <input id="codeTwo" data-bind="value: codeTwo, valueUpdate: 'input', event: {input: validateCodeTwo}" class="c-form__code-number" type="number">
+                        <input id="codeThree" data-bind="value: codeThree, valueUpdate: 'input', event: {input: validateCodeThree}" class="c-form__code-number" type="number">
+                        <input id="codeFour" data-bind="value: codeFour, valueUpdate: 'input', event: {input: validateCodeFour}" class="c-form__code-number" type="number">
+                    </div>
+                    <span class="c-form__error-text c-form__error-text_center">El codigo de verificacion SMS es incorrecto</span>
+                </div>
+                <div class="o-timer o-timer_margin">
+                    <!-- ko if: viewTimerSeconds -->
+                    <p class="js-timer-txt">
+                        Valido por
+                        <span class="o-text o-text_primary">
+                                00:<span class="js-timer-seconds" data-bind="text: maxSecond">60</span>
+                                segundos
+                        </span>
+                    </p>
+                    <!-- /ko -->
+                    <!-- ko if: viewTimerAlert -->
+                    <p class="o-timer__txt js-timer-message">
+                        Haz click nuevamente en el botón enviar código SMS para generar un nuevo código
+                    </p>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <footer class="o-modal__footer o-modal__footer_flex u-margin-top-16">
+                <button class="o-btn o-btn_height56 o-btn_full o-btn_w270"  data-bind="click: openCloseValidateAdress ,enable: viewTimerSeconds, click: validateCode">Continuar
+                </button>
+                <button class="o-btn o-btn_height56 o-btn_full o-btn_w270 o-btn_secondary" data-bind="click: closeValidateAdress">Cancelar Solicitud</button>
+                <a class="o-link" href="#">¿Necesitas ayuda en tu compra?</a>
+            </footer> 
+        </div>
+    </div>
+</div> 
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"validate-register": {
+					"component": "Vass_Checkout/js/validate-entity-address"
+				}
+			}
+		}
+	}
+}
+</script>

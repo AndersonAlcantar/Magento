@@ -1,0 +1,152 @@
+<?php
+
+/**
+* @var \Vass\Fija\ViewModel\Offerts\Services $viewModelServices
+*/
+$viewModelServices = $block->getServices();
+?>
+<div
+    id="modal-servicios"
+    class="o-modal o-modal_w500 modal u-hidden"
+    data-modal-type="modal-large"
+>   
+<!-- ko scope: 'crossSellingServicesModal' -->
+    <button
+        class="o-modal__btn-close close-modal i-close"
+        data-modal="modal-servicios"
+        data-bind="click: clearModalData"
+    >
+        <span class="u-hidden">Cerrar</span>
+    </button>
+
+    <div class="o-modal__content">
+
+    <div class="o-message o-message_w340">
+
+        <figure class="o-modal__header u-margin-bottom-16">
+            <img 
+                class="o-modal__img" 
+                alt="Logo Movistar" 
+                src="<?= $this->getViewFileUrl('images/fija/servicios_complementarios.svg') ?>"
+            >
+        </figure>
+
+        <div>
+
+            <header
+                class="
+                    o-message__header
+                    u-margin-bottom-16
+                "
+            >
+                <h2 class="o-message__title o-message__title_bold o-message__title_fs18">
+                    ¡Personaliza los paquetes que tenemos para tí!
+                </h2>
+            </header>
+
+
+            <!-- ko if: getModalDecosOptions()-->
+            <fieldset class="c-form__fieldset u-width-100">
+
+                <div class="c-form__radio c-form__radio_mb0">
+                        <input
+                        name="deco"
+                        type="radio"
+                        value="deco"
+                        class="c-form__radio-input"
+                        id="deco"
+                        data-bind="checked: hasDecos"
+                    />
+
+                    <div class="c-form__radio-box">
+                        <label
+                            class="c-form__radio-label"
+                            for="deco"
+                        >
+                            Deco adicional IPTV
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="c-chips c-chips_border">
+                    <div class="c-chips__box c-chips__box_evenly">
+                        <!-- ko foreach: getModalDecosOptions()-->
+                        <div class="c-chips__item c-chips__item_sm">
+                            <input
+                                value=""
+                                class="c-chips__input"
+                                name="cuota"
+                                type="radio"
+                                id=""
+                                data-bind="value: '$' + price, enable: $parent.hasDecos, checked: $parent.optionValuePrice, attr: {'id': 'chip' + id}"
+                            />
+                            <label class="c-chips__label" for="chip" data-bind="text: decos + ' Deco', attr:{'for': 'chip' + id} ">1 Deco</label>
+                        </div>
+                        <!--/ko-->
+                    </div>
+                </div>
+            </fieldset>
+            <!--/ko-->
+
+            <fieldset class="c-form__fieldset u-width-100">
+                <!-- ko if: !getModalDecosOptions()-->
+                <div class="c-card-summary__amount">
+                    <h4 class="o-text_gray5">Nombre del plan</h4>
+                    <span class="c-card-summary__amount_indent o-bold o-text_gray5">Valor</span>
+                </div>
+                <!--/ko-->
+
+                <fieldset class="c-form__fieldset c-form__fieldset_fs16 u-width-100">
+                <!-- ko foreach: getModalOptions()-->
+                
+                    <div class="c-form__radio c-form__radio_border c-form__radio_p0 c-form__radio_mb0">
+                        <input name="service_option" id="service_option_uno" type="radio" class="c-form__radio-input" data-bind="value: normal_price, event:{ click: $parent.changuePriceBundleOption(normal_price)}" value="">
+                        <div class="c-form__radio-box">
+                            <label class="c-form__radio-label c-form__radio-label_between" for="service_option_uno" >
+                                <span class="c-form__radio-label-text" data-bind="text: name"></span>
+                                <span class="c-form__radio-label-value" data-bind="text: $parent.formatnumber(normal_price)"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                
+                <!--/ko-->
+                </fieldset>
+            </fieldset>
+           
+            <div class="c-card-summary__amount u-margin-top-8">
+                <h4 class="o-text_gray5">Valor</h4>
+                <span class="o-text_gray5 option_value_price o-bold" id="priceModal" data-bind="text: formatnumber(optionValuePrice)"></span>
+            </div>
+            
+            <!--ko foreach: optionsComponent()--> 
+            <div class="o-message__actions u-margin-top-32" >
+                <a
+                    class="o-btn o-btn_w255 o-btn_height56 o-btn_height40_mb o-message__btn"
+                    data-bind="event: {click: $parent.selectModalOptions.bind($data, id, img_path, service_type, $parent.optionValuePrice, $parent)}"
+                >
+                    Agregar paquetes
+                </a>
+            </div>
+            <!-- /ko -->
+        </div>
+
+    </div>
+        
+    </div>
+<!-- /ko -->         
+</div>
+<script type="text/x-magento-init">
+    {
+        "#modal-servicios": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "crossSellingServicesModal": {
+                        "component": "Vass_Fija/js/crossSellingServices"
+                    }
+                }
+            }
+        }
+        
+    }
+</script>

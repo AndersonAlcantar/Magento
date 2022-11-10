@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+
+<?php if ($block->canShowBlock()): ?>
+    <div class="c-filter">
+        <div class="c-filter__title">
+            <strong><?= $block->escapeHtml(__('Filtrar')) ?></strong>
+            <button class="c-filter__close i-close js-btn-remove-class">
+                <span class="u-hidden">Cerrar filtros</span>
+            </button>
+        </div>
+
+        <div class="c-filter__content">
+            <?= $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()): ?>
+                <div class="c-filter__cta block-actions filter-actions">
+                    <a
+                        href="<?= $block->escapeUrl($block->getClearUrl()) ?>"
+                        class="c-filter__clear-btn i-close action clear filter-clear"
+                    >
+                        <span><?= $block->escapeHtml(__('Limpiar todo')) ?></span>
+                    </a>
+                </div>
+            <?php endif; ?>
+
+            <?php $wrapOptions = false; ?>
+            
+            <?php foreach ($block->getFilters() as $filter): ?>
+
+                <?php if (!$wrapOptions): ?>
+
+                    <div class="c-filter__options" id="narrow-by-list">
+
+                    <?php $wrapOptions = true;
+                endif; ?>
+                <?php if ($filter->getItemsCount()): ?>
+                    <dl class="c-filter__list js-target-dropdown is-dropdown-active">
+                        <dt
+                            role="heading"
+                            aria-level="3"
+                            class="c-filter__options-title o-dropdown__btn i-after-chevron-down js-btn-dropdown"
+                        >
+                        <?php if ($filter->getName() != "Category") {
+                            echo $block->escapeHtml(__($filter->getName()));
+                        }else{
+                            echo $block->escapeHtml(__("Categorias"));
+                        }
+                        ?>
+                        
+                        </dt>
+                        <dd
+                            class="c-filter__list-content o-dropdown__content"
+                        >
+                            <?= /* @noEscape */ $block->getChildBlock('renderer')->render($filter) ?>
+                        </dd>
+                    </dl>
+                <?php endif;
+                ?>
+
+            <?php endforeach; ?>
+
+                <?php if ($wrapOptions): ?>
+                    </div>
+                <?php endif; ?>
+
+        </div>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+
+     <add id="Vass_Banners::banners"
+		title="Vass Banners" module="Vass_Banners" 
+		sortOrder="10" resource="Vass_Banners::banners"/>
+
+      <add id="Vass_Banners::vass_banners_top"
+            title="Banner Top"
+            module="Vass_Banners"
+            sortOrder="1"
+            action="vassbanners/banner/top/id/1"
+            parent="Vass_Banners::banners"
+            resource="Vass_Banners::vass_banners"/>
+
+      <add id="Vass_Banners::vass_banners_middle"
+            title="Banner Middle"
+            module="Vass_Banners"
+            sortOrder="1"
+            action="vassbanners/banner/middle/id/2"
+            parent="Vass_Banners::banners"
+            resource="Vass_Banners::vass_banners"/>
+
+            
+		
+ 
+    </menu>
+</config>

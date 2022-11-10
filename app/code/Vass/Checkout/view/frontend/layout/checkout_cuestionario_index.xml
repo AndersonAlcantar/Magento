@@ -1,0 +1,28 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="checkout.root" remove="true" />
+			
+		<referenceContainer name="main">
+			<block name="checkout.confronta" template="Vass_Checkout::checkout-confronta.phtml">
+                <arguments>
+                    <argument name="services" xsi:type="object">Vass\Checkout\ViewModel\Services</argument>
+                </arguments>
+            </block>
+            <block class="Vass\Checkout\Block\ButtonSocial"  name="checkout.button.social" template="Vass_Checkout::checkout-button-social.phtml"/>
+            <block   name="checkout.error.general" template="Vass_Custom::modals/error_general.phtml"/>
+            <block   name="checkout.terms_conditions" template="Vass_Custom::modals/terms_conditions.phtml"/>
+			<block   name="checkout.attention_alert" template="Vass_Custom::modals/attention_alert.phtml"/>
+
+		</referenceContainer>
+
+		<referenceContainer name="footer-container">
+			<block class="Magento\Theme\Block\Html\Footer" name="footer" template="Vass_Checkout::checkout-footer.phtml" />
+		</referenceContainer>
+		<referenceBlock name="minicart" remove="true"/>
+		<referenceContainer name="header.container" htmlClass="checkout-header">
+			<referenceBlock name="menu.top.header" remove="true"/>
+			<referenceBlock name="header.wrapper" remove="true"/>
+			<referenceBlock name="header.search" remove="true"/>
+    	</referenceContainer>
+	</body>
+</page>

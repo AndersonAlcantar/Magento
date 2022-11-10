@@ -1,0 +1,51 @@
+<?php
+$request = $this->getRequest();
+
+$routeName = $request->getRouteName();
+?>
+
+<?php
+if($routeName!='catalogsearch'){
+?>
+<section class="o-section">
+    <div class="o-canvas">
+
+        <h3 class="o-title o-title__bold">Grandes razones para comprar un celular en Movistar</h3>
+
+        <ul class="c-list-ico">
+
+            <li class="c-list-ico__item">
+                <div class="c-list-ico__content">
+                    <h4 class="c-list-ico__title i-badge-percent">Exclusivo Online</h4>
+                    <p class="c-list-ico__text">a todo Colombia lorem ipsum dolor sit amet</p>
+                </div>
+            </li>
+
+            <li class="c-list-ico__item">
+                <div class="c-list-ico__content">
+                    <h4 class="c-list-ico__title i-truck">Envío GRATIS</h4>
+                    <p class="c-list-ico__text">Recíbelo en tu dirección preferida sin gastos adicionales.</p>
+                </div>
+            </li>
+
+            <li class="c-list-ico__item">
+                <div class="c-list-ico__content">
+                    <h4 class="c-list-ico__title i-credit-card">Multiples formas de pago</h4>
+                    <p class="c-list-ico__text">Hasta 20% de devolucion con tarjeta de credito Movistar</p>
+                </div>
+            </li>
+
+            <li class="c-list-ico__item">
+                <div class="c-list-ico__content">
+                    <h4 class="c-list-ico__title i-lock-fill">Compra segura</h4>
+                    <p class="c-list-ico__text">Lorem ipsum dolor sit amep adipsim</p>
+                </div>
+            </li>
+        
+        </ul>
+
+    </div>
+</section>
+<?php
+}
+?>

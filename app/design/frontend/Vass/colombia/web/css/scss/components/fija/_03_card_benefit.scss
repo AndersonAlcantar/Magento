@@ -1,0 +1,93 @@
+.f-c-benefits {
+    .swiper-pagination-bullet {
+        &.swiper-pagination-bullet-active {
+            border-color: $c-primary;
+            background-color: $c-primary;
+        }
+    }
+}
+
+.f-c-benefits__card-caption {
+    @include px-to-rem(margin-top, $gutter * 2);
+    line-height: 1.4;
+}
+
+
+/*------------------------------------*\
+  Media querys Mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+
+    .f-c-benefits__card {
+        max-height: 0;
+        @include px-to-rem(padding, $gutter * 3 $gutter * 8 $gutter * 2);
+        transition: all .2s ease-in;
+
+        &.swiper-slide-active {
+            @include px-to-rem(max-height, 2000px);
+        }
+    }
+
+    .f-c-benefits__card-img {
+        @include px-to-rem(max-height, $gutter * 6);
+    }
+
+    .f-c-benefits__card-caption {
+        @include px-to-rem(max-width, 210px);
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+}
+
+
+
+/*------------------------------------*\
+  Media querys Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .f-c-benefits {
+        position: relative;
+        @include px-to-rem(margin-top, $gutter * 4);
+        @include px-to-rem(padding, 0 $gutter * 2);
+
+        &.is-swiper {
+            @include px-to-rem(padding-bottom, $gutter * 4)
+        }
+    }
+
+    .f-c-benefits__card {
+        height: auto;
+        @include px-to-rem(border-radius, $gutter);
+        @include px-to-rem(padding, $gutter * 3 $gutter);
+        background: $c-neutro;
+    }
+
+    .f-c-benefits__card-img {
+        @include px-to-rem(max-width, 102px);
+        @include px-to-rem(max-height, $gutter * 5);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .f-c-benefits__wrapper {
+        .is-centered & {
+            @include justify-content(center);
+        }
+    }
+}
+
+/*------------------------------------*\
+  Media querys Tablet
+\*------------------------------------*/
+@media (min-width: 740px) and (max-width: 1024px) {
+    .f-c-benefits {
+        @include px-to-rem(padding-bottom, $gutter * 4);
+    }
+
+    .f-c-benefits__card-slide,
+    .f-c-benefits__card {
+        @include px-to-rem(min-width, 202px);
+        @include px-to-rem(max-width, 202px);
+    }
+}

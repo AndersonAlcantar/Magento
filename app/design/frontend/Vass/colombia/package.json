@@ -1,0 +1,21 @@
+{
+  "author": "Magento Commerce Inc.",
+  "description": "Magento node modules dependencies for local development",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "glob-parent": "^5.1.0",
+    "gulp": "^4.0.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "lodash": "^4.17.11",
+    "lodash.template": "^4.4.0",
+    "minimatch": "^3.0.1",
+    "sass": "~1.32.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

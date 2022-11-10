@@ -1,0 +1,12 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<referenceBlock name="checkout.root" remove="true" />
+		<referenceContainer name="content">
+			<block class="Vass\Checkout\Block\OrderData" name="checkout.thankpage" template="Vass_Checkout::checkout-thankpage.phtml" cacheable="false" />
+			<block class="Vass\Checkout\Block\ButtonSocial" name="checkout.button.social" template="Vass_Checkout::checkout-button-social.phtml" />
+		</referenceContainer>
+		<referenceContainer name="header.container" htmlClass="checkout-header">
+			<referenceBlock name="header.search" remove="true" />
+		</referenceContainer>
+	</body>
+</page>

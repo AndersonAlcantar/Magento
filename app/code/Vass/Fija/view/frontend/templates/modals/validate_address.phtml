@@ -1,0 +1,396 @@
+<div
+    id="modal-error"
+    class="o-modal o-modal_w500 modal u-hidden"
+    data-modal-type="modal-large"
+>
+
+    <button
+        class="o-modal__btn-close close-modal i-close"
+        data-modal="modal-error"
+    >
+        <span class="u-hidden">Cerrar</span>
+    </button>
+
+    <div class="o-modal__content">
+
+        <div class="o-message o-message_error">
+            <header
+                class="
+                    o-message__header
+                    o-message_w340
+                    u-margin-bottom-40
+                    i-close-square
+                "
+            >
+                <h2 class="o-message__title o-message__title_bold u-margin-bottom-16">
+                    ¡Lo sentimos!
+                </h2>
+
+                <!-- ERROR plan no cuenta con cobertura -->
+                <div id="sin-plan" class="error_msg u-hidden">
+
+                    <p class="o-message__txt u-margin-bottom-16 u-text-regular">
+                        El plan que elegiste no cuenta con cobertura en la dirección ingresada.
+                    </p>
+
+                    <p class="o-message__txt u-text-regular">
+                        Sin embargo, tenemos otros planes disponibles para ti,
+                        elige el que más te guste haciendo clic en <a href="/hogar" class="o-link">ver más ofertas</a>
+                    </p>
+
+                </div>
+
+                <!-- ERROR fallo en la verificación de cobertura -->
+                <div id="error-verificacion-cobertura" class="error_msg u-hidden">
+
+                    <p class="o-message__txt u-text-regular">
+                        Hubo un fallo en la verificación de tu cobertura.
+                    </p>
+
+                </div>
+
+                <!-- ERROR no existen planes para cobertura -->
+                <div id="no-hay-planes" class="error_msg u-hidden">
+
+                    <p class="o-message__txt u-text-regular">
+                        No existen planes disponibles para tu cobertura.
+                    </p>
+
+                </div>
+
+            </header>
+
+            <!--
+                TO DO: Variación de los botones dependiendo del error
+                    1. Plan sin cobertura y No planes disponibles: reintentar | ver mas ofertas
+                    2. Fallo verificación: cancelar | reintentar
+            -->
+            <div class="o-message__actions">
+                <a id="reintentar_btn"  href="#" class="o-btn o-btn_secondary o-message__btn close-modal u-hidden btn_cobertura" data-modal="modal-error">Reintentar</a>
+                <a id="mas_ofertas_btn" href="/hogar" class="o-btn o-message__btn u-hidden btn_cobertura">Ver más ofertas</a>
+                <a id="cancelar_btn" href="#" class="o-btn o-btn_secondary o-message__btn close-modal u-hidden btn_cobertura" data-modal="modal-error">Cancelar</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div
+    id="modal-address-divipola"
+    class="o-modal o-modal_w500 o-modal_pr16 modal u-hidden"
+    data-modal-type="modal-large"
+>
+    <!-- ko scope: 'regionList' -->
+    <button
+        class="o-modal__btn-close close-modal i-close"
+        data-modal="modal-address-divipola"
+    >
+        <span class="u-hidden">Cerrar</span>
+    </button>
+
+    <div class="o-modal__content o-modal__content_p0">
+        <div class="c-preloader">
+            <div class="c-preloader__box">
+                <div class="c-preloader__circle"></div>
+                <div class="c-preloader__text">Cargando datos</div>
+            </div>
+        </div>
+        <div class="o-message o-message_w340">
+
+            <figure class="o-modal__header u-margin-bottom-16">
+                <img
+                    class="o-modal__img"
+                    alt="Logo Movistar"
+                    src="<?= $this->getViewFileUrl('images/fija/map.svg') ?>"
+                >
+            </figure>
+
+            <!-- TO DO BE: Mostrar y ocultar el contenido con la clase u-hidden dependiendo el paso -->
+            <!-- PRIMER PASO -->
+            <div id="primer-paso">
+                <div class="c-steps c-steps_w124 u-margin-bottom-16 u-box-align-center">
+                    <!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado -->
+                    <ul class="c-steps__list">
+                        <li class="c-steps__item">
+                            <div class="c-steps__wrap">
+                                <div class="c-steps__bullet">
+                                    <span class="c-steps__value">1</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="c-steps__item">
+                            <div class="c-steps__wrap">
+                                <div class="c-steps__bullet">
+                                    <p class="c-steps__value">2</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <header
+                    class="
+                        o-message__header
+                        u-margin-bottom-16
+                    "
+                >
+                    <h2 class="o-message__title o-message__title_bold o-message__title_fs18">
+                        ¡Selecciona una de las direcciones que encontramos para tí!
+                    </h2>
+                </header>
+
+                <!-- Tarjeta recibo -->
+                <div class="c-form__address u-margin-bottom-16">
+
+                    <figure class="c-form__address-header">
+                        <img
+                            src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>"
+                            alt="Logo Movistar"
+                            class="c-form__address-img"
+                        >
+                        <figcaption class="u-text-light u-skeleton">Recibo</figcaption>
+                    </figure>
+
+                    <div class="c-form__address-content">
+                        <p class="c-form__address-text u-skeleton u-skeleton_double">
+                            <strong class="c-form__address-label">Dirección:</strong>
+                        </p>
+                    </div>
+
+                </div>
+                <!-- Fin tarjeta recibo -->
+
+                <fieldset class="c-form__fieldset u-width-100" id="direcciones">
+                </fieldset>
+
+                <!--
+                    TO DO BE: Variación de los botones dependiendo del error
+                        1. Plan sin cobertura y No planes disponibles: reintentar | ver mas ofertas
+                        2. Fallo verificación: cancelar | reintentar
+                -->
+                <div class="o-message__actions">
+                    <p class="o-text o-text_fs14 u-margin-top-24 u-margin-bottom-16">
+                        Si ninguna dirección coincide,
+                        <a data-bind="click: editAddress" class="o-link o-link_fs14 ">haz clic aquí para editar</a>
+                    </p>
+                    <a
+                        href="#"
+                        class="o-btn o-btn_w255 o-btn_height56 o-btn_height40_mb o-message__btn"
+                        data-bind="click: pasoSegundo"
+                    >
+                        Confirmar dirección
+                    </a>
+                </div>
+            </div>
+            <!-- FIN PRIMER PASO -->
+
+            <!-- SEGUNDO PASO -->
+            <div id="segundo-paso" class="u-hidden">
+               <div class="c-steps c-steps_w124 u-margin-bottom-16 u-box-align-center">
+                   <!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado -->
+                   <ul class="c-steps__list">
+                       <li class="c-steps__item is-checked">
+                           <div class="c-steps__wrap">
+                               <div class="c-steps__bullet">
+                                   <span class="c-steps__value">1</span>
+                               </div>
+                           </div>
+                       </li>
+                       <li class="c-steps__item">
+                           <div class="c-steps__wrap">
+                               <div class="c-steps__bullet">
+                                   <p class="c-steps__value">2</p>
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+
+               <header
+                   class="
+                       o-message__header
+                       u-margin-bottom-16
+                   "
+               >
+                    <h2 class="o-message__title o-message__title_bold o-message__title_fs18">
+                       ¡Tu dirección si tiene cobertura!
+                   </h2>
+
+                   <p class="o-message__txt o-message__txt_lh u-text-regular">
+                       Por favor complementa tu dirección agregando los detalles de tu residencia.
+                   </p>
+               </header>
+
+               <!-- TO DO BE: Quitar el skeleton cuando se selecciona dirección
+                       1. Se quita o se agrega a la etiqueta figcaption la clase u-skeleton
+                       2. Se quita o se agrega a la clase c-form__address-text las clases u-skeleton u-skeleton_double
+               -->
+               <!-- Tarjeta recibo -->
+               <div class="c-form__address">
+
+                   <figure class="c-form__address-header">
+                       <img
+                           src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>"
+                           alt="Logo Movistar"
+                           class="c-form__address-img"
+                       >
+                       <figcaption class="u-text-light">Recibo</figcaption>
+                   </figure>
+
+                   <div class="c-form__address-content">
+                       <p class="c-form__address-text">
+                           <strong class="c-form__address-label">Dirección: <span id="direccionElegida"></span></strong>
+                       </p>
+                   </div>
+
+               </div>
+               <!-- Fin tarjeta recibo -->
+
+               <fieldset class="c-form__fieldset u-width-100">
+
+                   <div class="c-form__field-canvas c-form__field-canvas_row c-form_wrap u-margin-top-16 u-border-top">
+
+                       <!-- Campo tipo residencia -->
+                       <div id="tipos" class="c-form__box c-form__box-address-detail u-width-100">
+                           <div
+                               class="c-form__field is-field-check"
+
+                           >
+                               <span class="c-form__icon c-form__icon_select i-inverted-triangle">
+                                   <span class="u-hidden"> Icono informativo </span>
+                               </span>
+
+                               <select id="tipo" name="tipo" class="c-form__input c-form__select"
+                                    data-bind="value: tipo,valueUpdate: 'input', event: {change: changeTipo}">
+                                    <option>Seleccione</option>
+                                    <option value="Apartamento">Apartamento</option>
+                                    <option value="Edificio">Edificio</option>
+                                    <option value="Casa">Casa</option>
+                                    <option value="Conjunto">Conjunto</option>
+                                </select>
+
+                               <label class="c-form__label label" for="tipo">
+                                   Tipo de residencia
+                               </label>
+                           </div>
+
+                           <span class="c-form__error-text">Mensaje de error</span>
+                       </div>
+
+                       <!-- Campo detalle -->
+                       <div id="detalles" class="c-form__box c-form__box-address-detail u-width-100">
+
+                           <div
+                               class="c-form__field"
+                           >
+                               <span class="c-form__icon c-form__icon_select i-inverted-triangle">
+                                   <span class="u-hidden"> Icono informativo </span>
+                               </span>
+
+                               <select
+                                    id="detalle"
+                                    name="detalle"
+                                    class="c-form__input c-form__select"
+                               >
+
+                               </select>
+
+                               <label class="c-form__label label" for="tipo">
+                                   Detalle
+                               </label>
+                           </div>
+
+                           <span class="c-form__error-text">Mensaje de error</span>
+                       </div>
+
+                   </div>
+
+               </fieldset>
+                <div class="o-message__actions">
+                    <a
+                        href="#"
+                        data-bind="click: verifyOrch"
+                        class="o-btn o-btn_w255 o-btn_height56 o-btn_height40_mb o-message__btn"
+                    >
+                        Continuar
+                    </a>
+                </div>
+            </div>
+            <!-- FIN SEGUNDO PASO -->
+
+            <!-- Términos y condiciones -->
+            <div id="tyc" class="u-hidden">
+               <div class="c-steps c-steps_w124 u-margin-bottom-16 u-box-align-center">
+                   <!--al agregar la clase .is-checked al li .c-steps__item se marca el bullet como completado -->
+                   <ul class="c-steps__list">
+                       <li class="c-steps__item is-checked">
+                           <div class="c-steps__wrap">
+                               <div class="c-steps__bullet">
+                                   <span class="c-steps__value">1</span>
+                               </div>
+                           </div>
+                       </li>
+                       <li class="c-steps__item">
+                           <div class="c-steps__wrap">
+                               <div class="c-steps__bullet">
+                                   <p class="c-steps__value">2</p>
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+
+               <header
+                   class="
+                       o-message__header
+                       u-margin-bottom-16
+                   "
+               >
+                    <h2 class="o-message__title o-message__title_bold o-message__title_fs18">
+                       Términos y Condiciones
+                   </h2>
+
+                   <p class="o-message__txt u-text-regular">
+
+                   </p>
+               </header>
+
+               <!-- TO DO BE: Quitar el skeleton cuando se selecciona dirección
+                       1. Se quita o se agrega a la etiqueta figcaption la clase u-skeleton
+                       2. Se quita o se agrega a la clase c-form__address-text las clases u-skeleton u-skeleton_double
+               -->
+
+
+               <fieldset class="c-form__fieldset u-width-100">
+
+                    <div class="c-form__field-canvas c-form__field-canvas_row u-margin-top-16 u-border-top">
+
+                       <!-- Campo tipo residencia -->
+                    </div>
+
+               </fieldset>
+
+               <div class="o-message__actions">
+                   <a href="#" class="o-btn o-message__btn">Aceptar y Confirmar</a>
+               </div>
+            </div>
+            <!-- FIN TYC -->
+        </div>
+
+    </div>
+    <!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#cobertura-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "regionList": {
+                        "component": "Vass_Fija/js/regionList"
+                    }
+                }
+            }
+        }
+    }
+    </script>

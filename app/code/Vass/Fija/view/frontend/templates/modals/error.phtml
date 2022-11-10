@@ -1,0 +1,76 @@
+<div
+    id="modal-error"
+    class="o-modal o-modal_w500 modal u-hidden"
+    data-modal-type="modal-large"
+>   
+
+    <button
+        class="o-modal__btn-close close-modal i-close"
+        data-modal="modal-error"
+    >
+        <span class="u-hidden">Cerrar</span>
+    </button>
+
+    <div class="o-modal__content">
+
+        <div class="o-message o-message_error">
+            <header
+                class="
+                    o-message__header
+                    o-message_w340
+                    u-margin-bottom-40
+                    i-close-square
+                "
+            >
+                <h2 class="o-message__title o-message__title_bold u-margin-bottom-16">
+                    ¡Lo sentimos!
+                </h2>
+
+                <!-- ERROR plan no cuenta con cobertura -->
+                <div>
+
+                    <p class="o-message__txt u-margin-bottom-16 u-text-regular">
+                        El plan que elegiste no cuenta con cobertura en la dirección ingresada.
+                    </p>
+    
+                    <p class="o-message__txt u-text-regular">
+                        Sin embargo, tenemos otros planes disponibles para ti,
+                        elige el que más te guste haciendo clic en <a href="#" class="o-link">ver más ofertas</a>
+                    </p>
+
+                </div>
+
+                <!-- ERROR fallo en la verificación de cobertura -->
+                <div class="u-hidden">
+
+                    <p class="o-message__txt u-text-regular">
+                        Hubo un fallo en la verificación de tu cobertura.
+                    </p>
+
+                </div>
+
+                <!-- ERROR no existen planes para cobertura -->
+                <div class="u-hidden">
+
+                    <p class="o-message__txt u-text-regular">
+                        No existen planes disponibles para tu cobertura.
+                    </p>
+
+                </div>
+
+            </header>
+    
+            <!--
+                TO DO: Variación de los botones dependiendo del error
+                    1. Plan sin cobertura y No planes disponibles: reintentar | ver mas ofertas
+                    2. Fallo verificación: cancelar | reintentar
+            -->
+            <div class="o-message__actions">
+                <a href="#" class="o-btn o-btn_secondary o-message__btn">Reintentar</a>
+                <a href="#" class="o-btn o-message__btn">Ver más ofertas</a>
+            </div>
+        </div>
+        
+    </div>
+           
+</div>

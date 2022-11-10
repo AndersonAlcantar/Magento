@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="offert" frontName="offert">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="categoryoffert" frontName="categoryoffert">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="subcategory" frontName="subcategory">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="categorydescription" frontName="categorydescription">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="offertcomponent" frontName="offertcomponent">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="includedbenefits" frontName="includedbenefits">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="offertcrossselling" frontName="offertcrossselling">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="crosssellingbundleoptions" frontName="crosssellingbundleoptions">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="divipola" frontName="divipola">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="fija" frontName="fija">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="emailblacklist" frontName="emailblacklist">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="offerttvdecos" frontName="offerttvdecos">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="ciclos" frontName="ciclos">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+        <route id="banners" frontName="banners">
+            <module name="Vass_Fija" before="Magento_Adminhtml"/>
+        </route>
+    </router>
+</config>

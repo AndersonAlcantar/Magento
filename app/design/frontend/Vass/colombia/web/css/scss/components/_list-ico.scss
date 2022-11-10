@@ -1,0 +1,65 @@
+.c-list-ico {
+  @include flexbox;
+  @include px-to-rem(row-gap, 70px);
+}
+
+.c-list-ico__item {
+  @include flexbox;
+  @include justify-content(center);
+  color: #6B6B6B;
+}
+
+.c-list-ico__content {
+  @include px-to-rem(max-width, 230px);
+  text-align: center;
+}
+
+.c-list-ico__title {
+  @include flexbox;
+  @include flex-direction(column);
+  @include align-items(center);
+  @include px-to-rem(margin-bottom, $gutter);
+  font-weight: $f-bold;
+  @include px-to-rem(font-size, 20px);
+
+  &::before {
+    @include px-to-rem(margin-bottom, 22px);
+    @include px-to-rem(font-size, 55px);
+    color: $c-primary;
+  }
+}
+
+.c-list-ico__text {
+  @include px-to-rem(padding, 0 $gutter * 2);
+}
+
+.c-card-grid {
+  width: 100%;
+}
+
+
+@media (max-width: 719px) {
+  .c-list-ico {
+    @include flex-direction(column);
+  }
+}
+
+@media (min-width: 720px) {
+  .c-list-ico {
+    @include justify-content(space-between);
+    @include align-items(baseline);
+    @include flex-wrap(wrap);
+    text-align: center;
+    list-style: none;
+  }
+  
+  .c-list-ico__item {
+    @include flex(1 1 45%);
+  }
+}
+
+@media (min-width: 1023px) {
+    .c-list-ico__item {
+      @include flex(0 1 auto);
+  }
+}

@@ -1,0 +1,63 @@
+.c-section-eco-bg {
+    background-color: $c-neutro;
+    @include px-to-rem(padding-bottom, $gutter * 6);
+}
+.c-section-eco {
+    @include px-to-rem(margin-bottom, $gutter * 13);
+}
+.c-section-eco__title {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    color: $c-secondary;
+    @include px-to-rem(font-size, 28px);
+}
+.c-section-eco__paragraph {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    color: $c-on-primary-gray;
+}
+.c-section-eco__btn {
+    @include px-to-rem(max-height, 40px);
+    width: 100%;
+    @include px-to-rem(max-width, 350px);
+}
+
+.c-section-eco__desc,
+.c-section-eco__num {
+    @include px-to-rem(font-size, 28px);
+    font-weight: $f-bold;
+}
+
+.c-section-eco__img {
+    @include px-to-rem(min-height, 90px);
+}
+
+@include media-query(medium) {
+    .c-section-eco {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        @include px-to-rem(column-gap, $gutter * 20);
+    }
+    .c-section-eco__wrap {
+        max-width: fit-content;
+        margin-left: auto;
+        @include px-to-rem(margin-right, $gutter * 3);
+    }
+}
+
+@include media-query(medium-max) {
+    .c-section-eco__content {
+        @include px-to-rem(margin-bottom, $gutter * 8);    
+    }
+    .c-section-eco__percent {
+        @include flexbox;
+        @include flex-direction(column);
+        @include justify-content(center);
+        @include align-items(center);
+    }
+    .c-section-eco__cta {
+        text-align: center;
+    }
+    .c-section-eco__btn {
+        @include px-to-rem(max-width, 297px);
+    }
+    
+}

@@ -1,0 +1,113 @@
+.o-message {
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+    @include align-self(center);
+    text-align: center;
+    height: 100%;
+    margin: auto;
+}
+.o-message_w340 {
+    @include px-to-rem(max-width, 350px);
+    margin: 0 auto;
+}
+
+.o-message__header {
+    @include px-to-rem(margin-bottom, $gutter * 6);
+
+    &::before {
+        display: block;
+        @include px-to-rem(margin-bottom, $gutter * 2);
+        @include px-to-rem(font-size, $gutter * 7);
+
+        .o-message_success & {
+            color: $c-green-normal;
+        }
+
+        .o-message_error & {
+            color: $c-red-error;
+        }
+    }
+}
+
+.o-message__title,
+.o-message__txt {
+    font-weight: $f-light;
+}
+
+.o-message__txt_lh {
+    line-height: 16px;
+}
+
+.o-message__txt_regular {
+    font-weight: $f-regular
+}
+
+.o-message__txt {
+    .o-message_w340 & {
+        @include px-to-rem(padding-right, $gutter * 2);
+        @include px-to-rem(padding-left, $gutter * 2);
+    }
+}
+
+.o-message__title {
+    @include px-to-rem(margin-bottom, $gutter);
+    @include px-to-rem(font-size, $gutter * 5);
+    font-weight: $f-light;
+    line-height: 1;
+}
+
+.o-message__title_bold {
+    font-weight: $f-bold;
+    @include px-to-rem(font-size, 22px);
+}
+
+.o-message__btn {
+    width: 100%;
+}
+
+.o-message__actions {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 2);
+    @include px-to-rem(row-gap, $gutter * 2);
+    width: 100%;
+}
+
+@media screen and (max-width: 940px) {
+    .o-message__title {
+        @include px-to-rem(font-size, $gutter * 4);
+    }
+    .o-message__title_fs18 {
+        @include px-to-rem(font-size, 18px);
+    }
+
+    .o-message__header {
+        @include px-to-rem(margin-bottom, $gutter * 2);
+
+        &::before {
+            @include px-to-rem(margin-bottom, $gutter * 4);
+        }
+    }
+
+    .o-message__txt {
+        @include px-to-rem(font-size, 14px);
+    }
+}
+
+@media screen and (min-width: 502px) {
+    .o-message__btn {
+        .o-message__actions & {
+            @include px-to-rem(max-width, 194px);
+        }
+    }
+}
+
+@include media-query(medium) {
+    .o-message_height450 {
+        @include px-to-rem(min-height, 450px);
+    }
+}

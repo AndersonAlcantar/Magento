@@ -1,0 +1,319 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+/**
+ * @var \Vass\Custom\ViewModel\Services $viewModelServices
+ */
+$_product = $block->getProduct();
+$viewModelServices = $block->getServices();
+$productTypeId = $_product->getTypeId();
+$amountInventory = 0;
+$productQty = 0;
+if($productTypeId == "simple"){
+    $productSku = $_product->getSku();
+    $checkAvailability= $viewModelServices->getCheckAvailability($productSku);
+    $amountInventory = $checkAvailability["amountInventory"];
+    $productQty = $_product->getQuantityAndStockStatus()["qty"];
+}
+
+$regulardueprice = 0;
+$helperConfig = $this->helper(Vass\Config\Helper\Data::Class);
+$cuotas = $helperConfig->getCuotas();
+$tooltipRetiro = $helperConfig->getParamConfig('vassproductos/general/tooltip_retiro');
+$tooltipEnvio = $helperConfig->getParamConfig('vassproductos/general/tooltip_envio');
+$recogertienda  = $helperConfig->getParamConfig('vasscheckout/envioconfiguration/enable_retiro');
+
+
+$buttonTitle = __('Add to Cart'); 
+
+
+?>
+
+    <?php
+    $price = $_product->getPriceInfo()->getPrice('regular_price')->getValue();
+    $sprice = $_product->getPriceInfo()->getPrice('final_price')->getValue();
+    
+    ?>
+
+    <div>
+        <div class="fieldset">
+            <div>
+                <div>
+                    <div id="tarjeta_tab">
+
+                        <div class="detail-price-product">
+
+                            <div class="c-card-detail__shipping shipping_container">
+
+                                <div>
+                                    <p class="c-card-detail__label">Desde:</p>
+                                    <div class="c-card-detail__price">  
+                                        <p data-dynamic="price" class="c-card-detail__number">
+                                            $
+                                            <?=$escaper->escapeHtml(number_format($sprice, 0, ",", "."))?>
+                                        </p>
+                                        <div class="c-card-detail__price-inner">
+                                            <?php if ($price>$sprice) { ?>
+                                                <span  data-dynamic="price_previus" class="c-card__price-previous">
+                                                    Antes: <?=$escaper->escapeHtml(number_format($price,0, ",", "."))?>
+                                                </span>
+                                            <?php  } ?>
+                                            <ul class="c-card-detail__credit-cards">
+                                                <li class="c-card-detail__credit-card">
+                                                    <img
+                                                        src="<?= $block->getViewFileUrl('images/visa.svg');  ?>"
+                                                        alt="Tarjeta credito Visa"
+                                                        class="c-card-detail__img-card"
+                                                    >
+                                                </li>
+                                                <li class="c-card-detail__credit-card">
+                                                    <img
+                                                        src="<?= $block->getViewFileUrl('images/mastercard.svg');  ?>"
+                                                        alt="Tarjeta credito Mastercard"
+                                                        class="c-card-detail__img-card"
+                                                    >
+                                                </li>
+                                                <li class="c-card-detail__credit-card">
+                                                    <img
+                                                        src="<?= $block->getViewFileUrl('images/american.svg');  ?>"
+                                                        alt="Tarjeta credito American Express"
+                                                        class="c-card-detail__img-card"
+                                                    >
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php if ($cuotas >= 1): $dueprice = round(($sprice) / $cuotas, 2); ?>
+                                    <input type="hidden" id="cuotas" value="<?=$cuotas?>">
+                                    <div class="c-card-detail__dues">
+                                        <p class="c-card-detail__dues-number">
+                                            Hasta
+                                            <strong><?=$escaper->escapeHtml($cuotas)?> cuotas</strong>
+                                            por:
+                                        </p>
+                                        <h3 class="c-card-detail__dues-price" >
+                                            <span data-dynamic="plazos" ><?= "$ ". $escaper->escapeHtml(number_format(abs($dueprice), 0, ",", "."))?></span>
+                                            mes
+                                        </h3>
+                                        <a class="o-link open-modal" data-modal="modal-financing"> Ver otros medios de pago</a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <ul class="c-card-detail__options">
+                            <?php
+                            $classOptionHomeStroke = "c-card-detail__option_success";
+                            $classOptionTruckStroke = "c-card-detail__option_success";
+                            if($productTypeId == "simple"):
+                                if(!$checkAvailability || $amountInventory <= 0):
+                                    $classOptionHomeStroke = "c-card-detail__option_success";
+                                    $classOptionTruckStroke = "c-card-detail__option_disabled";
+                                elseif($amountInventory >= 1):
+                                    $classOptionTruckStroke = "c-card-detail__option_success";
+                                    $classOptionHomeStroke = "c-card-detail__option_disabled";
+                                endif;
+
+                                if($productQty <= 0):
+                                    $classOptionHomeStroke = "c-card-detail__option_disabled";
+                                    $classOptionTruckStroke = "c-card-detail__option_disabled";
+                                endif;
+                            endif;
+                            ?>
+                            <li id="home-stroke" class="c-card-detail__option <?=$classOptionHomeStroke?> i-home-stroke">
+                                <div>
+                                    <p class="c-card-detail__option-text">Retiro en tienda</p>
+                                    <span class="c-card-detail__option-tag"><?= $amountInventory <= 0 && $productQty >= 1 ? "Disponible" : "No disponible" ?></span>
+                                </div>
+
+                                <div class="o-tooltip">
+
+                                    <button
+                                        class="c-card-detail__info o-tooltip__btn i-information"
+                                        type="button"
+                                    >
+                                        <span class="u-hidden">Icono información</span>
+                                    </button>
+
+                                    <span class="o-tooltip__text o-tooltip__text_right">
+                                        <?= $tooltipRetiro ?>
+                                    </span>
+
+                                </div>   
+                            </li>
+
+                            <li id="truck-stroke" class="c-card-detail__option <?=$classOptionTruckStroke?> i-truck-stroke">
+                                <div>
+                                    <p class="c-card-detail__option-text">Envío gratis</p>
+                                    <span class="c-card-detail__option-tag"><?= $amountInventory >= 1 && $productQty >= 1 ? "Disponible" : "No disponible" ?></span>
+                                </div>
+
+                                <div class="o-tooltip">
+
+                                    <button
+                                        class="c-card-detail__info o-tooltip__btn i-information"
+                                        type="button"
+                                    >
+                                        <span class="u-hidden">Icono información</span>
+                                    </button>
+
+                                    <span class="o-tooltip__text">
+                                        <?= $tooltipEnvio ?>
+                                    </span>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div id="container-button-buy">
+                            <?php
+                                if($productTypeId == "simple"):
+                                    if($productQty >= 1):
+                                        if(!$checkAvailability || $amountInventory <= 0):
+                            ?>
+                                        <input type="hidden" name="typePurchase"  value="store" />
+                                        <button
+                                                class="c-card-detail__btn o-btn o-btn_height56 o-btn_full o-btn_w287 open-modal"
+                                                data-modal="modal-stores"
+                                                type="button"
+                                            >
+                                            Compra y Recoge
+                                        </button>
+                            <?php
+                                        elseif ($amountInventory >= 1):
+                            ?>
+                                        <input type="hidden" name="typePurchase"  value="shipping" />
+                                            <button
+                                                class="c-card-detail__btn o-btn o-btn_height56 o-btn_full o-btn_w287"
+                                                type="submit"
+                                            >
+                                                Comprar Ahora
+                                            </button>
+
+                            <?php
+                                        endif;
+                                        
+                                    else:
+                            ?>
+                                        <button
+                                            class="c-card-detail__btn o-btn o-btn_height56 o-btn_full o-btn_w287"
+                                            disabled=""
+                                        >
+                                            Sin Stock
+                                        </button>
+                            <?php
+                                    endif;
+                                endif;
+                            ?>
+                        </div>
+                        <div class="actions actions-custom">
+                            <div class="d-flex justify-content-center w-100 m-0">
+                            <div class="actions">
+                                <!--<button
+                                  type="submit"
+                                  title="<?= $block->escapeHtmlAttr($buttonTitle)  ?>"
+                                  class="action primary tocart u-hidden"
+                                  id="product-addtocart-button"
+                                  disabled
+                                >
+                                  <span><?= $block->escapeHtml($buttonTitle)  ?></span>
+                                </button>-->
+                            </div>
+                            <?=  $block->getChildHtml('', true) ?>
+                            </div>
+                        </div>
+
+                        <div class="c-tabs-content js-tab-target">
+
+                          <header class="c-tabs-content__actions">
+                            <button
+                                data-tab-cta="financiacion_factura"
+                                class="c-tabs-content__action js-tab-cta is-tab-active"
+                                type="button"
+                            >
+                                Financiación a tu factura
+                            </button>
+
+                            <button
+                                data-tab-cta="financiacion_tdc"
+                                class="c-tabs-content__action js-tab-cta"
+                                type="button"
+                            >
+                                Financiación 0% con TDC
+                            </button>
+                          </header>
+
+                          <div class="c-tabs-content__wrap">
+
+                            <div data-tab-content="financiacion_factura" class="c-tabs-content__inner js-tab-content">
+
+                                <ul class="c-tabs-content__list">
+    
+                                <li class="c-tabs-content__item">
+                                    <span class="c-tabs-content__ico i-paper"></span>
+    
+                                    <div>
+                                    <h5 class="c-tabs-content__title">
+                                        Paga con tu factura
+                                    </h5>
+                                    <p>Financia tu equipo en tu factura Movistar</p>
+                                    </div>
+                                </li>
+    
+                                <li class="c-tabs-content__item">
+                                    <span class="c-tabs-content__ico i-movistar-money"></span>
+    
+                                    <div>
+                                    <h5 class="c-tabs-content__title">
+                                        Movistar Money
+                                    </h5>
+                                    <p>Financia tu celular 0% de interés a crédito.</p>
+                                    </div>
+                                </li>
+    
+                                </ul>
+
+                            </div>
+
+                            <div data-tab-content="financiacion_tdc" 
+                            class="c-tabs-content__inner is-content-tab-hide js-tab-content">
+
+                              <div class="c-tabs-content__brands">
+                                  <img class="c-tabs-content__brands-sm"
+                                   class="o-img" src="<?= $block->getViewFileUrl('images/tdc01.png') ?>" alt="">
+                                   
+                                  <img class="c-tabs-content__brands-xl" 
+                                  class="o-img" src="<?= $block->getViewFileUrl('images/tdc02.png') ?>" alt="">
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                          <a class="c-tabs-content__link o-link open-modal " data-modal="modal-financing">Ver más información de pago</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="c-preloader"> 
+            <div class="c-preloader__box"> 
+                <div class="c-preloader__circle"></div> 
+                <div class="c-preloader__text">Cargando datos</div> 
+            </div>
+         </div>
+    </div>
+
+
+
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>

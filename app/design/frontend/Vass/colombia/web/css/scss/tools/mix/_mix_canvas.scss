@@ -1,0 +1,6 @@
+@mixin canvas {
+    width: $canvas-with !important; //90%
+    @include px-to-rem(max-width, $canvas-max-with); //1108px
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,0 +1,257 @@
+<?php 
+/**
+ * @var \Vass\Checkout\ViewModel\Services $viewModelServices
+ */
+$viewModelServices = $block->getServices();
+$regionList  = $viewModelServices->getListDepartament(2);
+?>
+<button id="openModalTermsAndConditions" data-modal="modal-terms_conditions"  class="open-modal u-hidden" type="button"></button>
+<button id="openModalError" data-modal="modal-error-general"  class="open-modal u-hidden" type="button">Error</button>
+<button id="alertAcceptTermsConditions" data-modal="modal-alert_accept_terms_conditions"  class="open-modal u-hidden" type="button">Error</button>
+<button id="openModalProcesingPersonalData" data-modal="modal-processing_personal_data"  class="open-modal u-hidden" type="button"></button>
+<div class="c-card-checkout-cta">
+    <a
+        href="<?= $escaper->escapeUrl('/checkout/opcionpago/') ?>"
+        class="i-arrow-left c-card-checkout-cta__link"
+    >
+        Volver
+    </a>
+    
+    <button
+        type="button"
+        class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+    >
+        Resumen de tu compra
+    </button>
+</div>
+<!-- ko scope: 'customer-purchase' -->
+<input type="hidden" name="typePurchase" id="typePurchase" value="unico" data-bind="value: typePurchase">
+<form method="post" id="select-store" class="c-form c-form_w723" data-bind="submit: sendFormSubmit, event: {change: statusButtonPurchases}">
+
+    <header class="c-form__header">
+        <h2 class="c-form__title">Alistemos tu compra</h2>
+    </header>
+
+    <fieldset class="c-form__fieldset js-target-dropdown is-dropdown-active is-active">
+        
+        <h5
+            class="o-dropdown__btn o-dropdown__btn_border i-after-chevron-down js-btn-dropdown">
+            Información de entrega
+        </h5>
+
+        <div class="o-dropdown__content o-dropdown__content_border">
+            <div class="c-form__box">
+                <div class="c-form__radio c-form__radio_card">
+                    <input
+                        id="envio"
+                        name="envio"
+                        type="radio"
+                        value ="3173872341" 
+                        class="c-form__radio-input"
+                        checked
+                    />
+        
+                    <div class="c-form__radio-box">
+                        <label
+                            class="c-form__radio-label i-home-stroke"
+                            for="envio"
+                        >
+                            <div class="u-text-left">
+                                <p class="c-form__text_gray">Recoger en tienda</p>
+                                <p class="o-text_gray4">Entrega inmediata</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- Para ocultar callout agregar la clase .is-callout-hidden a la par de .c-callout -->
+            <!-- ko ifnot: productAvailable -->
+            <div class="c-callout i-close u-margin-bottom-24 is-callout-hidden" id="not-available">
+                <p class="c-callout__text">
+                    No disponible: Estimado cliente el producto se encuentra agotado te enviaremos al detalle del equipo para revisar la disponibilidad para envio a domicilio.a ocurrido un error. Tus datos no se han actualizado
+                </p>
+            </div>
+            <!-- /ko -->
+            <div class="c-callout c-callout_white u-margin-top-32 i-information">
+                <p class="c-callout__text">
+                    Recuerda para reclamar tu compra debes presentar tu documento de identidad, solo el comprador puede reclamar el producto
+                </p>
+            </div>
+            <div class="c-form__wrap-field c-form__wrap-field_margin c-form__wrap-field_align">
+                <div class="c-form__field-container c-form__field-container_relative">
+                    <p class="c-form__lead c-form__lead_gray c-form__lead_bold  c-form__lead_font u-text-left">Elije el Centro de Experiencia para recoger tu equipo</p>
+
+                    <!-- Select Departamento -->
+                    <div class="c-form__box">
+                        <div class="c-form__field is-field-check">
+                            <span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+                                <span class="u-hidden">Icono informativo</span>
+                            </span>
+                            <select data-bind="value: departament,valueUpdate: 'input', event: {input: changeDepartament()}" 
+                                    id="departament" 
+                                    name="departament" 
+                                    class="c-form__input c-form__select" 
+                                    required
+                                    
+                            >
+                                <option>Selecciona</option>
+                                <?php
+                                    foreach ($regionList as $region) {
+                                ?>
+                                        <option value="<?=$region['regionId']?>"><?=$region['name']?></option>
+                                <?php
+                                    }
+                                ?>
+                            </select>
+                            <label for="departament" class="c-form__label label">Departamento</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Select Ciudad -->
+                    <div class="c-form__box">
+                        <div class="c-form__field">
+                            <span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+                                <span class="u-hidden">Icono informativo</span>
+                            </span>
+                            <select data-bind="value: city,valueUpdate: 'input', event:{input: changeCity}"
+                                    id="city" 
+                                    name="city" 
+                                    class="c-form__input c-form__select" 
+                                    required
+                            >
+                                <option>Selecciona</option>
+                            </select>
+                            <label for="city" class="c-form__label label">Ciudad</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Centro de experiencia -->
+                    <div id="contentExperienceCenter"  class="c-form__box c-form__box_margin">
+                        <div class="c-form__field">
+                            <span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+                                <span class="u-hidden">Icono informativo</span>
+                            </span>
+                            <select data-bind="value: centroExperiencia, valueUpdate: 'input', event:{input: changeCentroExperiencia}"
+                                    id="centro_experiencia" 
+                                    name="centro_experiencia" 
+                                    class="c-form__input c-form__select" 
+                                    required
+                            >
+                                <option>Selecciona</option>
+                            </select>
+                            <label for="centro_experiencia" class="c-form__label label">Centro de experiencia</label>
+                        </div>
+                        <span class="c-form__error-text" id ="text-error">No hay equipo vuelve a intentarlo</span>
+                    </div>
+
+                    <!-- para agregar el preload se agrega la clase .is-preload a la par de .c-form__field-container -->
+                    <div class="c-preloader">
+                        <div class="c-preloader__box">
+                            <div class="c-preloader__circle"></div>
+                            <div class="c-preloader__text">Cargando datos</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+                <div class="c-card-info">
+                    <header class="c-card-info__header i-home-stroke">Información de la tienda</header>
+                    <ul class="c-card-info__list">
+                        <li class="c-card-info__item">
+                            <p class="c-card-info__item-title">Tienda</p>
+                            <p class="c-card-info__item-text" data-bind="text:centerExperienceText">C.C Parque La Colina - Suba</p>
+                            <a class="c-card-info__item-link o-link" target="_blank" data-bind="attr:{href: centerExperienceGoogleMap}">Ver en Google Maps</a>
+                        </li>
+                        <li class="c-card-info__item">
+                            <p class="c-card-info__item-title">Dirección</p>
+                            <p class="c-card-info__item-text" data-bind="text:centerExperienceAddress" >AV. Boyaca con 145 Centro Comercial Parque La Colina - Local 1 - 106</p>
+                        </li>
+                        <li class="c-card-info__item">
+                            <p class="c-card-info__item-title">Horario de atención</p>
+                            <p class="c-card-info__item-text" data-bind="text:experienceCenterworkHour">Lunes a Sábado: 10:00 am - 8:00pm Domingos y Festivos: 11:00 am - 7:00pm</p>
+                        </li>
+                    </ul>
+                </div>               
+            </div>
+            <div class="o-dropdown__content o-dropdown__content_border">
+
+                <div class="c-form__group c-form__group_margin-both-0">
+                    <h6 class="c-form__lead c-form__lead_bold c-form__lead_gray u-text-left">Por favor indicanos como deseas pagar tu dispositivo</h6>
+                    <div class="c-form__radio c-form__radio_card">
+                        <input
+                            id="pago"
+                            name="pago"
+                            type="radio"
+                            class="c-form__radio-input"
+                            checked
+                        />
+            
+                        <div class="c-form__radio-box">
+                            <label
+                                class="c-form__radio-label i-credit-card-stroke"
+                                for="pago"
+                            >
+                                <div class="u-text-left">
+                                    <p class="c-form__text_gray">De contado</p>
+                                    <p class="o-text_gray4" id="total-amount"></p>
+                                </div>
+                            </label>
+                        </div>
+            
+                    </div>
+                </div>
+                <!-- La clase .is-active a la par de js-target-class muestra la alerta, para ocultarla remueva el .is-active -->
+            </div>
+        </div>
+
+    </fieldset>
+
+
+    <div class="c-form__checkbox-wrap">
+        <div class="c-form__checkbox is-disable">
+            <input
+                type="checkbox"
+                class="c-form__checkbox-input"
+                data-bind="checked: isActiveTerms"
+				disabled="disabled" 
+				checked 
+            >
+            <label class="c-form__checkbox-label"></label>
+        </div> 
+        <p class="c-form__checkbox-text">
+            Al continuar aceptas el
+            <a data-bind="click: openModalProcesingPersonalData" class="o-link" href="#">tratamiento de datos personales</a>, los
+            <a data-bind="click: openModalTermsAndConditions" class="o-link">términos y condiciones</a>
+            y posible consulta de información relativa al cumplimiento de tus obligaciones.
+        </p>
+    </div>
+
+	<div class="c-form__actions u-text-right">
+		<input name="context" type="hidden" value="checkout">
+
+		<button
+			type="submit"
+
+			class="o-btn c-form__btn o-btn_full o-btn_w225 o-btn_height56"
+			data-bind="enable: enabledButtonPurchases, click: sendFormSubmit"
+		>
+			Comprar ahora
+		</button>
+
+	</div>
+</form>
+<!-- /ko -->
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"customer-purchase": {
+					"component": "Vass_Checkout/js/customer-purchase-recoger-tienda"
+				}
+			}
+		}
+	}
+}
+</script>

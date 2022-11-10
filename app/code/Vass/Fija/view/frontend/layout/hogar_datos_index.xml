@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<title>Datos Personales</title>
+	</head>
+	<body>
+		<referenceContainer name="content">
+			<block class="Vass\Fija\Block\DataCustomer" name="data_customer" template="Vass_Fija::offerts-data-customer.phtml">
+				<arguments>
+					<argument name="view_model_data_customer" xsi:type="object">Vass\Fija\ViewModel\DataCustomer</argument>
+				</arguments>
+			</block>
+			<referenceBlock name="div.sidebar.additional" remove="true" />
+			<referenceBlock name="page.main.title" remove="true" />	
+			<block name="cobertura.terms_conditions" template="Vass_Fija::modals/terms_conditions.phtml"/>
+			<block name="cobertura.validate" template="Vass_Fija::modals/validate_address.phtml"/>
+			<block name="cobertura.errormodal" template="Vass_Fija::modals/error.phtml"/>
+		</referenceContainer>
+
+		<referenceContainer name="header.container" htmlClass="checkout-header">
+			<referenceBlock name="menu.top.header" remove="true"/>
+			<referenceBlock name="header.wrapper" remove="true"/>
+			<referenceBlock name="header.search" remove="true"/>
+			<block name="header-pasos"  template="Vass_Fija::html/header.phtml">
+				<arguments>
+					<argument name="header" xsi:type="object">Vass\Fija\ViewModel\Header</argument>					
+				</arguments>
+			</block>
+		</referenceContainer>
+
+	</body>
+</page>

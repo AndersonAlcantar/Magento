@@ -1,0 +1,5 @@
+// Combina el opacity y el color exadecimal para dar un color en rgba
+
+@mixin rgba-background($hexcolor, $opacity) {
+    background-color: rgba($hexcolor, $opacity); 
+  }

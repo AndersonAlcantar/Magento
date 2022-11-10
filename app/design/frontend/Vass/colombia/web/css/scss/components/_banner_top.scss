@@ -1,0 +1,54 @@
+.c-banner-top {
+  @include px-to-rem(margin-top, $gutter * 6);
+}
+.c-banner-top__picture {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.c-banner-top__file {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  aspect-ratio: 2.17/1;
+}
+.c-banner-top__caption {
+  @include px-to-rem(margin-top, $gutter * 4);
+  width: $canvas-with; 
+  @include px-to-rem(max-width, $canvas-max-with);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-banner-top__title {
+  @include px-to-rem(margin-bottom, $gutter * 2);
+  @include px-to-rem(font-size, 24px);
+  font-weight: $f-regular;
+  color: $c-secondary;
+}
+.c-banner-top__text {
+  color: $c-gray-5;
+}
+
+//max-width: 1023px
+@include media-query(wide-max) {
+  .c-banner-top__header {
+    text-align: center;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .c-banner-top {
+    display: grid;
+    grid-template-areas: "item";
+  }
+  .c-banner-top__img {
+    grid-area: item;
+  }
+  .c-banner-top__caption {
+    grid-area: item;
+    align-self: center;
+    max-width: 25%;
+    @include px-to-rem(margin-left, $gutter * 12);
+  }
+}

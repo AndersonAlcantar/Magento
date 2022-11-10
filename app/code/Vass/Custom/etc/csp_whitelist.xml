@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright  Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <!--CDN-->
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+
+                <!--Google-->
+                <value id="google-analytics" type="host">www.google-analytics.com</value>
+
+                <!--Functions-->
+                <value id="trustedshops" type="host">*.trustedshops.com</value>
+                <value id="usercentrics" type="host">*.usercentrics.eu</value>
+
+                <value id="adobedtm" type="host">*.adobedtm.com</value>
+                <value id="adobe" type="host">*.adobe.com </value>
+                <value id="authorize" type="host">*.authorize.net</value>
+                <value id="braintreegateway" type="host">*.braintreegateway.com</value>
+                <value id="paypal" type="host">*.paypal.com</value>
+                <value id="unpkg" type="host">unpkg.com</value>
+                
+                
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

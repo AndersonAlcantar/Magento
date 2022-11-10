@@ -1,0 +1,83 @@
+<?php
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+$customer = $block->getLayout()->createBlock(Magento\Customer\Block\Account\Customer::Class);
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get(Vass\Menu\Helper\Data::Class);
+
+
+// url base
+$url_base = $helper->getBaseUrl();
+
+// url parse
+$urlInterface = $objectManager->get(Magento\Framework\UrlInterface::Class);
+$url_parts = $helper->getUrlParts($urlInterface->getCurrentUrl());
+
+//liks config
+$link_mimovistar = $helper->getConfigValue('vassmenu/general/link_mimovistar');
+$link_recarga = $helper->getConfigValue('vassmenu/general/link_recarga');
+
+$enable_search = $helper->getConfigValue('vassmenu/general/enable_search');
+$class_search = "u-hidden";
+if ($enable_search) {
+    $class_search = "";
+}
+$title_menu = '';
+$seccion = $url_parts[0];
+if ($seccion == 'pymes') {
+    $title_menu = 'Pymes';
+} elseif($seccion == 'empresas') {
+    $title_menu = 'Empresas';
+} else {
+    $title_menu = 'Personas';
+}
+
+?>
+              <a class="c-main-menu__figure_url" href="<?= $escaper->escapeHtml($url_base)?>">
+                <figure class="c-main-menu__figure">
+                  <img class="c-main-menu__img" 
+                    src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/brand-movistar.svg'))?>" alt="">
+                </figure>
+              </a>
+              <nav class="c-main-menu__nav">
+                
+                <div class="c-main-menu__header">
+                  <button class="c-menu-top-burger i-after-chevron-down js-btn-toggle-class" 
+                    type="button" data-class-is="is-open-menu-top">Ir a <?= $escaper->escapeHtml($title_menu)?>
+                  </button>
+                </div>
+                <div class="c-main-menu__wrap-list">
+                  <?php
+                  if ($url_parts[0] == 'pymes') {
+                      echo $block->getLayout()->createBlock(Magento\Framework\View\Element\Template::Class)
+                      ->setTemplate("Vass_Menu::menu/pymes.phtml")->toHtml();
+                  }elseif($url_parts[0] == 'empresas'){
+                      echo $block->getLayout()->createBlock(Magento\Framework\View\Element\Template::Class)
+                      ->setTemplate("Vass_Menu::menu/empresas.phtml")->toHtml();
+                  }else{
+                      echo $this->getLayout()->createBlock(Magento\Framework\View\Element\Template::Class)
+                      ->setTemplate("Vass_Menu::menu/personas.phtml")->toHtml();
+                  }
+                  ?>
+              
+                <a class="o-btn o-btn_secondary c-main-menu__btn" href="<?= $escaper->escapeHtml($link_mimovistar)?>">
+                  Mi Movistar
+                </a>
+                <a class="o-btn c-main-menu__btn" href="<?= $escaper->escapeHtml($link_recarga)?>">Recargas</a>
+                <a class="i-user o-btn c-main-menu__btn c-main-menu__btn_display o-btn_primary_dark-blue" href="">
+                  Ingresar a Mi Movistar
+                </a>
+                </div>
+              </nav>
+              <div class="c-main-menu__icons">
+                <!-- Class for hidde search icon -> u-hidden-->
+                  <a class="c-main-menu__search <?= $escaper->escapeHtml($class_search) ?> i-search" href="#">
+                    <span class="u-hidden">Buscador</span>
+                  </a>
+                <button class="c-main-menu-burger i-menu js-toggle-main-menu-mb" type="button">
+                  <span class="u-hidden">Menu</span>
+                </button>
+              </div>
+

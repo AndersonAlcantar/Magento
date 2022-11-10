@@ -1,0 +1,117 @@
+.pages {
+  width: 100%;
+  float: none;
+
+  // Label paginator
+  .label.pages-label {
+    display: none;
+  }
+
+  .items.pages-items {
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(padding, $gutter * 4 0);
+    @include px-to-rem(column-gap, $gutter * 2);
+    list-style: none;
+  }
+}
+
+// Buttons of paginator
+.item.pages-item-previous,
+.item.pages-item-next {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(width, $gutter * 3);
+  @include px-to-rem(height, $gutter * 3);
+  border-radius: 50%;
+  @include px-to-rem(font-size, 14px);
+  line-height: 1;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+  color: $c-blue-normal;
+  background: $c-neutro;
+
+  .action {
+    display: block;
+
+    &::before {
+      font-family: $font-family-ico;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+.item.pages-item-previous {
+  .action {
+    &::before {
+      content: $i-chevron-left;
+    }
+  }
+}
+.item.pages-item-next {
+  .action {
+    &::before {
+      content: $i-chevron-right;
+    }
+  }
+}
+
+.items.pages-items {
+  .item {
+    .page {
+      @include flexbox;
+      @include justify-content(center);
+      @include align-items(center);
+      @include px-to-rem(width, $gutter * 3);
+      @include px-to-rem(height, $gutter * 3);
+      border: 1px solid $c-gray-2;
+      border-radius: 50%;
+      @include px-to-rem(font-size, 14px);
+      color: $c-gray-5;
+      transition: all .2s ease-in-out;
+
+      .label {
+        display: none;
+      }
+
+      &:hover {
+        color: $c-blue-normal;
+        border-color: $c-blue-normal;
+      }
+
+    }
+
+    &.current {
+      .page {
+        color: $c-blue-normal;
+        border-color: $c-blue-normal;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 720px) {
+  .item.pages-item-next {
+    @include px-to-rem(margin-left, $gutter);
+  }
+  
+  .item.pages-item-previous {
+    @include px-to-rem(margin-right, $gutter);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .item.pages-item-next {
+    @include px-to-rem(margin-left, $gutter * 3);
+  }
+  
+  .item.pages-item-previous {
+    @include px-to-rem(margin-right, $gutter * 3);
+  }
+  
+}

@@ -1,0 +1,30 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+               <item name="divipola_listing_data_source" xsi:type="string">Vass\ImportData\Model\ResourceModel\Divipola\Grid\Collection</item>
+               <item name="divipolalog_listing_data_source" xsi:type="string">Vass\ImportData\Model\ResourceModel\Divipolalog\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Vass\ImportData\Model\ResourceModel\Divipola\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_divipola</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\ImportData\Model\ResourceModel\Divipola</argument>
+        </arguments>
+    </virtualType>
+     <virtualType name="Vass\ImportData\Model\ResourceModel\Divipolalog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_fija_divipola_logs</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\ImportData\Model\ResourceModel\Divipolalog</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\ImportExport\Model\Import\SampleFileProvider">
+        <arguments>
+            <argument name="samples" xsi:type="array">
+                <item name="divipolaimport" xsi:type="string">Vass_ImportData</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,441 @@
+<?php
+$helper = $this->helper('Vass\Config\Helper\Data');
+$values = $helper->getParamConfig('tipodoc/general/tipodocumentos');
+$values = explode(',', $values);
+?>
+<div class="c-bg-login" data-bind="scope: 'validate-register'">
+
+	<div class="o-canvas">
+
+		<div class="c-bg-login__wrap">
+
+			<figure class="c-bg-login__picture">
+				<img
+					src="<?php echo $block->getViewFileUrl('images/layout-login-bg/mujer.png') ?>"
+					alt="Mujer haciendo un corazón con la mano y sonriendo"
+					class="c-bg-login__img"
+				>
+			</figure>
+		
+			<div class="u-hidden" id="register-steps">
+		
+				<div class="c-bg-login__box">
+				<!-- FORMULARIO PASO 1 -->
+				<!-- ko if: stepOne -->
+					<form class="c-form u-padding-both-0 u-text-center" data-bind="submit: function() {return false}">
+							
+							<header class="c-form__header">
+								<h1 class="c-form__headline c-form__headline_fw300">Regístrate</h1>
+							</header>
+
+							<!-- Pasos del formulario -->
+							<div class="c-horizontal-bars">
+								<div class="c-horizontal-bars__box">
+									<span class="c-horizontal-bar__element is-active">
+										<span class="u-hidden">Paso 1</span>
+									</span>
+									<span class="c-horizontal-bar__element">
+										<span class="u-hidden">Paso 2</span>
+									</span>
+									<span class="c-horizontal-bar__element">
+										<span class="u-hidden">Paso 3</span>
+									</span>
+								</div>
+							</div>
+			
+							<fieldset
+								class="c-form__fieldset"
+							>
+
+								<!-- Tipo documento -->
+								<div data-bind="attr: { class: statusValidateTypeBoxDocumentClass() }">
+									<div data-bind="attr: { class: statusValidateTypeFieldDocumentClass() }">
+										<span
+											class="c-form__icon c-form__icon_select i-inverted-triangle"
+											type="button"
+										>
+											<span class="u-hidden">
+												Icono informativo
+											</span>
+										</span>
+										<select
+											id="document-type"
+											data-bind="value: valueDocumentType, click: validateDocument"
+											class="c-form__input c-form__select"
+										>
+											<option value="">Documento</option>
+											<?php foreach ($values as $value) : ?>
+												<option value=<?= $block->escapeHtmlAttr($value) ?>><?= $block->escapeHtml($value) ?></option>
+											<?php endforeach ?>
+										</select>
+										<label for="document-type" class="c-form__label">Tipo de documento</label>
+									</div>
+									<span class="c-form__error-text">Tipo de documento no es válido</span>
+								</div>
+								<!--  Número de documento -->
+								<div data-bind="attr: { class: statusValidateNumberBoxClass() }">
+									<!-- Clase que indica el campo check: is-field-check, se agrega a la par de c-form__field -->
+									<div data-bind="attr: { class: statusValidateNumberFieldClass() }">
+										<span class="c-form__icon i-credential">
+											<span class="u-hidden">
+												Icono informativo
+											</span>
+										</span>
+										<input
+											type="number"
+											id="documento"
+											name="documento"
+											class="c-form__input"
+											data-bind="value: valueDocument, valueUpdate: 'input', event: {input: validateDocument}"
+											autocomplete="off"
+										>
+										<label
+											class="c-form__label label"
+											for="documento"
+										>
+											Número de documento
+										</label>
+									</div>
+									<span class="c-form__error-text">El documento que ingresaste no tiene productos</span>
+								</div>
+							</fieldset>
+
+							<!-- Call to actions form -->
+							<div>
+								<button
+									id="document-submit"
+									type="button"
+									class="o-btn c-form__btn o-btn_height56 o-btn_height40_mb"
+									data-bind="enable: enableSubmitDocument, click: sendDocument"
+								>
+									Siguiente
+								</button>
+
+								<div class="u-margin-top-16">
+									<p class="o-txt">¿Ya tienes cuenta?</p>
+									<a class="o-link" href="/checkout/">Ingresa aquí</a>
+								</div>
+							</div>
+					</form>
+					<!-- /ko -->
+					<!-- FORMULARIO PASO 2 CÓDIGO VERIFICACIÓN -->
+					<!-- ko if: stepTwo -->
+					<form class="c-form u-padding-both-0 u-text-center" data-bind="submit: function() {return false}">
+						<header class="c-form__header">
+							<h1 class="c-form__headline c-form__headline_fw300">Regístrate</h1>
+						</header>
+						<!-- Pasos del formulario -->
+						<div class="c-horizontal-bars">
+							<div class="c-horizontal-bars__box">
+								<span class="c-horizontal-bar__element">
+									<span class="u-hidden">Paso 1</span>
+								</span>
+								<span class="c-horizontal-bar__element is-active">
+									<span class="u-hidden">Paso 2</span>
+								</span>
+								<span class="c-horizontal-bar__element">
+									<span class="u-hidden">Paso 3</span>
+								</span>
+							</div>
+						</div>
+						<fieldset
+							class="c-form__fieldset"
+						>
+
+							<!--  Número de celular -->
+							<div data-bind="attr: { class: statusValidateNumberBoxClass() }">
+								<!-- Clase que indica el campo check: is-field-check, se agrega a la par de c-form__field -->
+								<div data-bind="attr: { class: statusValidateNumberFieldClass() }">
+
+									<span class="c-form__icon i-phone">
+										<span class="u-hidden">
+											Icono informativo
+										</span>
+									</span>
+									<!-- ko ifnot: statusValidateNumber -->
+										<input
+											id="celular"
+											name="celular"
+											class="c-form__input"
+											type="number"
+											autocomplete="off"
+											data-bind="value: valueNumber, valueUpdate: 'input', event: {input: validateNumberInput}"
+										>
+										<label
+											class="c-form__label"
+											for="celular"
+										>
+											Número de celular
+										</label>
+									<!-- /ko -->
+									<!-- ko if: statusValidateNumber -->
+									<p data-bind="text: valueNumber"></p>
+									<!-- /ko -->
+								</div>
+								<span class="c-form__error-text">Verifica tu número nuevamente</span>
+							</div>
+							<!-- Código verificación -->
+							<!-- ko if: statusValidateNumber -->
+							<div data-bind="attr: { class: statusValidateCodeClass() }">
+								<div class="c-form__code">
+									<input id="codeOne" data-bind="value: codeOne, valueUpdate: 'input', event: {input: validateCodeOne}" class="c-form__code-number" type="number">
+									<input id="codeTwo" data-bind="value: codeTwo, valueUpdate: 'input', event: {input: validateCodeTwo}" class="c-form__code-number" type="number">
+									<input id="codeThree" data-bind="value: codeThree, valueUpdate: 'input', event: {input: validateCodeThree}" class="c-form__code-number" type="number">
+									<input id="codeFour" data-bind="value: codeFour, valueUpdate: 'input', event: {input: validateCodeFour}" class="c-form__code-number" type="number">
+								</div>
+								<span class="c-form__error-text u-padding-top-16 u-box-align-center">El código de verificación SMS es incorrecto</span>
+							</div>
+							<div class="o-timer">
+								  <!-- ko if: viewTimerSeconds -->
+								<p class="js-timer-txt">
+									Valido por
+									<span class="o-text o-text_primary">
+											00:<span class="js-timer-seconds" data-bind="text: maxSecond">60</span>
+											segundos
+									</span>
+								</p>
+								<!-- /ko -->
+								<!-- ko if: viewTimerAlert -->
+								<p class="o-timer__txt js-timer-message">
+									Haz click nuevamente en el botón enviar código SMS para generar un nuevo código
+								</p>
+								<!-- /ko -->
+							</div>
+							<p class="c-form__txt">
+								Por tu seguridad, hemos
+								<strong>generado un código SMS</strong>
+								enviado al número que registraste.
+							</p>
+							<button
+								type="button"
+								id="send-code-btn"
+								class="o-btn o-btn_sm o-btn_primary_dark-blue o-btn_w255 js-timer-btn"
+								data-bind="enable: viewTimerAlert, click: generateCodeSms"
+							>
+								Enviar código SMS
+							</button>
+							<!-- /ko -->
+						</fieldset>
+						<div>
+							<!-- ko if: statusValidateNumber -->
+							<button
+								type="button"
+								id="code-submit"
+								data-bind="enable: viewTimerSeconds, click: validateCode"
+								class="o-btn c-form__btn u-margin-top-16 o-btn_height56 o-btn_height40_mb o-btn_w255"
+							>
+								Siguiente
+							</button>
+							<!-- /ko -->
+							<!-- ko ifnot: statusValidateNumber -->
+							<button
+								type="button"
+								id="number-submit"
+								data-bind="click: validateNumber, enable: enableSubmitNumber"
+								class="o-btn c-form__btn o-btn_height56 o-btn_height40_mb o-btn_w255"
+							>
+								Siguiente
+							</button>	
+							<!-- /ko -->
+							<div class="u-margin-top-16">
+								<p class="o-txt">¿Ya tienes cuenta?</p>
+								<a class="o-link" href="/checkout/">Ingresa aquí</a>
+							</div>
+						</div>
+					</form>
+					<!-- /ko -->
+					<!-- ko if: stepThree -->
+					<!-- FORMULARIO PASO 3 ESTADOS -->
+					<form class="c-form u-padding-both-0 u-text-center" data-bind="submit: function() {return false}, event: {keyup: validateRegister}">
+
+						<header class="c-form__header">
+							<h1 class="c-form__headline c-form__headline_fw300">Regístrate</h1>
+						</header>
+
+						<!-- Pasos del formulario -->
+						<div class="c-horizontal-bars">
+							<div class="c-horizontal-bars__box">
+								<span class="c-horizontal-bar__element">
+									<span class="u-hidden">Paso 1</span>
+								</span>
+								<span class="c-horizontal-bar__element">
+									<span class="u-hidden">Paso 2</span>
+								</span>
+								<span class="c-horizontal-bar__element is-active">
+									<span class="u-hidden">Paso 3</span>
+								</span>
+							</div>
+						</div>
+		
+						<fieldset
+							class="c-form__fieldset"
+						>
+							<!--  Correo electrónico -->
+							<div class="c-form__box" id="email-box">
+								<!-- Clase que indica el campo check: is-field-check, se agrega a la par de c-form__field -->
+								<div class="c-form__field" id="email-field">
+									<span class="c-form__icon i-mail">
+										<span class="u-hidden">
+											Icono informativo
+										</span>
+									</span>
+		
+									<input
+										id="mail"
+										name="mail"
+										class="c-form__input"
+										type="email"
+										data-bind="value: valueEmail, valueUpdate: 'input'"
+										maxlength="50"
+										required
+									>
+									<label
+										class="c-form__label"
+										for="mail"
+									>
+										Correo electrónico    
+									</label>
+		
+								</div>
+								<!-- ko ifnot: showRegisterResponse -->
+								<span class="c-form__error-text">Revisa el correo electrónico</span>
+								<!-- /ko -->
+								<!-- ko if: showRegisterResponse -->
+								<span class="c-form__error-text">El correo electrónico ya se encuentra registrado</span>
+								<!-- /ko -->
+
+							</div>
+
+							<!--  Contraseña -->
+							<!-- la clase .is-error se aplica al papá .c-form__box cuando hay mensaje de error -->
+							<div class="c-form__box" id="password-box">
+								<!-- Clase que indica el email check: is-email-check, se agrega a la par de c-form__field -->
+								<div class="c-form__field js-password-target" id="password-field">
+
+									<button
+										class="c-form__icon i-eye-slash js-password-btn"
+										type="button"
+									>
+										<span class="u-hidden">
+											Icono informativo
+										</span>
+									</button>
+
+									<input
+										id="user-password"
+										name="password"
+										class="c-form__input"
+										type="password"
+										autocomplete="off"
+										data-bind="value: valuePassword, valueUpdate: 'input'"
+										maxlength="50"
+										required
+									>
+
+									<label
+										class="c-form__label label"
+										for="user-password"
+									>
+										Contraseña
+									</label>
+
+								</div>
+
+								<span class="c-form__error-text u-text-left">
+									No cumple con los requisitos mínimos para crear una contraseña, incluir mayúsculas, minúsculas, números y debe ser igual o superior a 8 caracteres.
+								</span>
+
+							</div>
+
+							<!--  Confirmar Contraseña -->
+							<!-- la clase .is-error se aplica al papá .c-form__box cuando hay mensaje de error -->
+							<div class="c-form__box" id="password-confirm-box">
+								<!-- Clase que indica el email check: is-email-check, se agrega a la par de c-form__field -->
+								<div class="c-form__field js-password-target" id="password-confirm-field">
+
+									<button
+										class="c-form__icon i-eye-slash js-password-btn"
+										type="button"
+									>
+										<span class="u-hidden">
+											Icono informativo
+										</span>
+									</button>
+
+									<input
+										id="user-password-confirm"
+										name="user-password-confirm"
+										class="c-form__input"
+										type="password"
+										autocomplete="off"
+										data-bind="value: valueConfirmPassword, valueUpdate: 'input'"
+										maxlength="50"
+										required
+									>
+
+									<label
+										class="c-form__label label"
+										for="user-password-confirm"
+									>
+										Confirmar contraseña
+									</label>
+
+								</div>
+
+								<span class="c-form__error-text">No coinciden las contraseñas</span>
+								
+							</div>
+		
+						</fieldset>
+		
+						<!-- Call to actions form -->
+						<div>
+		
+							<button
+								id="register-submit"
+								data-bind="click: sendRegister, enable: enableSubmitRegister"
+								type="button"
+								class="o-btn c-form__btn o-btn_height56 o-btn_height40_mb"
+							>
+								Continuar
+							</button>
+		
+							<div class="u-margin-top-16">
+								<p class="o-txt">¿Ya tienes cuenta?</p>
+								<a class="o-link" href="/checkout/">Ingresa aquí</a>
+							</div>
+						</div>
+					</form>
+					<!-- /ko -->
+					<!-- ko if: stepRegisterSuccessful -->
+					<div class="o-message o-message_height450 o-message_success">
+						<header class="o-message__header i-check-square">
+							<h2 class="o-message__title">¡Bienvenido!</h2>
+							<p class="o-message__txt o-message__txt_regular">Hemos revisado tus datos completamente</p>
+						</header>
+						<a href="/checkout/" class="o-btn o-message__btn o-btn_height56 o-btn_height40_mb">Ir a la tienda</a>
+					</div>
+					<!-- /ko -->
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"validate-register": {
+					"component": "Vass_Register/js/validate-register"
+				}
+			}
+		}
+	}
+}
+</script>

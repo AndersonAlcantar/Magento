@@ -1,0 +1,80 @@
+.c-callout {
+    display: none;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 2);
+    border: 1px solid $c-red-error;
+    @include rgba-background($c-red-error, 0.3);
+    @include px-to-rem(padding, 20px 18px);
+    @include px-to-rem(border-radius, 4px);
+    color: $c-gray-6;
+    &::before {
+        @include px-to-rem(font-size, 9px);
+        color: $c-red-error;
+    }
+    .is-active & {
+        @include flexbox;
+    }
+}
+.c-callout.is-callout-hidden {
+    display: none;
+}
+//modifires .c-callout
+.c-callout_w920 {
+    @include px-to-rem(max-width, 920px);
+    margin-left: auto;
+    margin-right: auto;
+}
+.c-callout_w730 {
+    @include px-to-rem(max-width, 730px);
+}
+
+.c-callout_white {
+    @include px-to-rem(column-gap, $gutter * 4);
+    @include px-to-rem(padding, 20px 52px);
+    border: none;
+    background-color: $c-neutro;
+    color: $c-gray-5;
+    &::before {
+        @include px-to-rem(font-size, 33px);
+        color: $c-yellow-5;
+        transform: rotate(180deg);
+    }
+}
+.c-callout_sm {
+    @include align-items(flex-start);
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(padding, $gutter * 2);
+    margin-top: 0;
+    @include px-to-rem(font-size, 14px);
+
+    &::before {
+        @include px-to-rem(font-size, 22px);
+    }
+}
+.c-callout__green {
+    border-color: $c-green-normal;
+    @include rgba-background($c-green-normal, 0.3);
+    &::before {
+        color: $c-green-normal;
+    }
+
+}
+.c-callout__text {
+    text-align: left;
+}
+.c-callout__btn {
+    padding: 0;
+    margin-left: auto;
+    &::after {
+        color: $c-green-normal;
+        @include px-to-rem(font-size, 14px);
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    //modifires .c-callout
+    .c-callout_direction-column {
+        @include flex-direction(column);
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+}

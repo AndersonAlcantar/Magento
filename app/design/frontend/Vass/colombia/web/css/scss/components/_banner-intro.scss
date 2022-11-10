@@ -1,0 +1,150 @@
+.banner {
+    width: 100%;
+    @include px-to-rem(margin-bottom, $gutter * 3);
+
+    // Only for slider of intro hero
+    .swiper {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+}
+
+.c-banner-intro {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(border-radius, 4px);
+    @include px-to-rem(column-gap, $gutter * 2);
+    width: 100%;
+    color: $c-neutro;
+    background: linear-gradient(
+        43.34deg,
+        #00a6f8 13.77%,
+        #01acfc 41.86%,
+        #01a5f8 51.33%,
+        #019df4 56.48%
+    );
+    overflow: hidden;
+}
+
+.c-banner-intro__picture {
+    @include align-self(flex-end);
+}
+
+.c-banner-intro__img {
+    width: 100%;
+    height: 100%;
+}
+
+.c-banner-intro__title,
+.c-banner-intro__text {
+    line-height: 1.2;
+}
+
+.c-banner-intro__text {
+    @include px-to-rem(margin-bottom, $gutter);
+}
+
+.c-banner-intro__btn {
+    @include px-to-rem(min-width, 208px);
+    transition: all .4s ease-in;
+}
+
+/*------------------------------------*\
+  Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 460px) {
+    .c-banner-intro__btn {
+        min-width: fit-content;
+        @include px-to-rem(margin-bottom, $gutter);
+        @include px-to-rem(margin-right, $gutter);
+    }
+}
+@media screen and (max-width: 739px) {
+    .c-banner-intro__picture {
+        @include flex(1 1 45%);
+        @include px-to-rem(margin-top, $gutter);
+        height: auto;
+    }
+
+    .c-banner-intro__header {
+        @include flex(1 1 55%);
+    }
+
+    .c-banner-intro__title {
+        @include px-to-rem(margin-bottom, $gutter);
+        @include px-to-rem(font-size, 20px);
+    }
+
+    .c-banner-intro__text {
+        @include px-to-rem(padding-right, $gutter * 4);
+        font-weight: $f-regular;
+        @include px-to-rem(font-size, 14px);
+    }
+}
+
+/*------------------------------------*\
+  Media querys intermediates
+\*------------------------------------*/
+@media screen and (min-width: 739px) {
+    .c-banner-intro {
+        @include px-to-rem(padding-right, $gutter * 3);
+        @include px-to-rem(padding-left, $gutter * 3);
+        @include px-to-rem(column-gap, 18px);
+    }
+
+    .c-banner-intro__picture,
+    .c-banner-intro__header {
+        @include flex(1 1 50%);
+    }
+
+    .c-banner-intro__picture {
+        @include px-to-rem(margin-top, $gutter * 2);
+    }
+
+    .c-banner-intro__title,
+    .c-banner-intro__text {
+        @include px-to-rem(margin-bottom, $gutter);
+    }
+
+    .c-banner-intro__title {
+        @include px-to-rem(font-size, 22px);
+    }
+
+    .c-banner-intro__text {
+        @include px-to-rem(max-width, 266px);
+        @include px-to-rem(font-size, 18px);
+    }
+}
+
+/*------------------------------------*\
+  Media querys desktop
+\*------------------------------------*/
+@media screen and (min-width: 1023px) {
+    .c-banner-intro {
+        @include px-to-rem(padding-right, $gutter * 5);
+        @include px-to-rem(padding-left, $gutter * 5);
+    }
+
+    .c-banner-intro__picture {
+        @include px-to-rem(max-width, 300px);
+    }
+
+    .c-banner-intro__header {
+        @include flexbox;
+        @include justify-content(space-evenly);
+        @include align-items(center);
+        @include px-to-rem(column-gap, 18px);
+    }
+
+    .c-banner-intro__title {
+        margin-bottom: 0;
+        @include px-to-rem(font-size, 28px);
+    }
+
+    .c-banner-intro__text {
+        @include px-to-rem(max-width, 400px);
+        @include px-to-rem(margin-top, $gutter * 2);
+        @include px-to-rem(font-size, 20px);
+    }
+}

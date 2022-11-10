@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="c-card-summary__amount">
+
+    <h4
+        class="mark"
+        scope="row"
+        data-bind="text: title">
+    </h4>
+
+    <p class="amount">
+        <span
+            class="price"
+            data-bind ="text: getValue(), attr:{'data-label': title}"
+        >
+        </span>
+        <!-- ko foreach: elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </p>
+</div>

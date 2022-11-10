@@ -1,0 +1,468 @@
+<?php
+
+/** @var $viewModel \Vass\Fija\ViewModel\DataCustomer */
+$viewModel = $block->getViewModel();
+
+?>
+
+<section class="o-section" id="datos-personales-component">
+
+    <div class="o-layout-2-columns">
+        <div class="c-card-checkout-cta">
+            <!--<a
+                href="/hogar/cobertura"
+                class="i-arrow-left c-card-checkout-cta__link"
+            >
+                Volver
+            </a>-->
+
+            <button
+                type="button"
+                class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+            >
+                Resumen de tu compra
+            </button>
+        </div>
+          <!-- ko scope: 'dataCustomer' -->
+        <form method="post" class="c-form c-form_w723 c-form_transparent" id="datos-personales-form">
+
+            <header class="c-form__header u-text-left">
+                <h2 class="c-form__title c-form__title_big">
+                    ¡Valida tu identidad!
+                </h2>
+                <p class="c-form__lead c-form__lead_gray">*Para continuar ingresa tus datos personales</p> 
+            </header> 
+
+            <!-- Fieldset para datos personales -->
+            <fieldset class="c-form__fieldset">
+
+                <div class="c-form__field-canvas">
+
+                    <!-- Campo nombres -->
+                    <div 
+                        class="c-form__box u-width-100"
+                        data-bind="attr: {class: textFieldNamesBoxClass()}">
+                        <div 
+                        class="c-form__field is-field-check"
+                        data-bind="attr: {class: textFieldNamesClass()}">
+                            <span class="c-form__icon i-user-plus">
+                                <span class="u-hidden"> Icono informativo </span>
+                            </span>
+
+                            <input
+                                type="text"
+                                id="names"
+                                name="names"
+                                class="c-form__input"
+                                maxlength="20"
+                                data-bind="value: names, valueUpdate: 'keyup', event: {keyup: validateText}"
+                                required
+                            />
+
+                            <label class="c-form__label label" for="names">
+                                Nombres
+                            </label>
+                        </div>
+
+                        <span class="c-form__error-text">Introduzca nombre de usuario en el formato correcto</span>
+                    </div>
+
+                    <!-- Campo apellidos -->
+                    <div 
+                        class="c-form__box u-width-100"
+                        data-bind="attr: {class: textFieldLastNamesBoxClass()}">
+                        <div 
+                            class="c-form__field"
+                            data-bind="attr: {class: textFieldLastNamesClass()}">
+                            <span class="c-form__icon i-user-plus">
+                                <span class="u-hidden"> Icono informativo </span>
+                            </span>
+
+                            <input
+                                type="text"
+                                id="lastnames"
+                                name="lastnames"
+                                class="c-form__input"
+                                maxlength="20"
+                                data-bind="value: lastnames, valueUpdate: 'keyup', event: {keyup: validateTextLastName}"
+                                required
+                            />
+
+                            <label class="c-form__label label" for="lastnames">
+                                Apellidos
+                            </label>
+                        </div>
+
+                        <span class="c-form__error-text">Introduzca nombre de usuario en el formato correcto</span>
+                    </div>
+
+                </div>
+
+                <div class="c-form__field-canvas">
+
+                    <!-- Campo correo electrónico -->
+                    <div 
+                        class="c-form__box u-width-100"
+                        data-bind="attr: {class: textFieldEmailBoxClass()}"
+                        >
+                        <div 
+                        class="c-form__field"
+                        data-bind="attr: {class: textFieldEmailClass()}"
+                        >
+                            <span class="c-form__icon i-mail">
+                                <span class="u-hidden"> Icono informativo </span>
+                            </span>
+
+                            <input
+                                type="mail"
+                                id="mail"
+                                name="mail"
+                                class="c-form__input"
+                                maxlength="60"
+                                data-bind="value: email, valueUpdate: 'keyup', event: {keyup: validateEmail}"
+                                required
+                            />
+
+                            <label class="c-form__label label" for="mail">
+                                Correo electrónico
+                            </label>
+                        </div>
+
+                        <span class="c-form__error-text">Introduzca la dirección de correo electrónico en el formato correcto</span>
+                    </div>
+
+                    <!-- Campo telefono -->
+                    <div 
+                        class="c-form__box u-width-100"
+                        data-bind="attr: {class: numberFieldPhonBoxClass()}">
+                        <div 
+                            class="c-form__field"
+                            data-bind="attr: {class: numberFieldPhonClass()}">
+                            <span class="c-form__icon i-phone">
+                                <span class="u-hidden"> Icono informativo </span>
+                            </span>
+
+                            <input
+                                type="number"
+                                id="numberphone"
+                                name="numberphone"
+                                class="c-form__input"
+                                data-bind="value: phone, valueUpdate: 'keyup', event: {keyup: validatePhoneNumber}"
+                                required
+                            />
+
+                            <label class="c-form__label label" for="numberphone">
+                                Teléfono
+                            </label>
+                        </div>
+
+                        <span class="c-form__error-text">Ingrese un numero de móvil valido</span>
+                    </div>
+
+                </div>
+
+            </fieldset>
+            <!-- Fin fieldset datos personales -->
+
+            <!-- Fieldset para documento identidad -->
+            <fieldset class="c-form__fieldset">
+
+                <!--  Este bloque usa Alpine -->
+                <div class="c-form__field-canvas" x-data="targetCredentialCard()">
+
+                    <div class="u-width-100">
+
+                        <!--  Campo tipo documento -->
+                        <div 
+                            class="c-form__box u-margin-bottom-24">
+                            <div class="c-form__field">
+
+                                <span class="c-form__icon c-form__icon_select i-inverted-triangle">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <select
+                                    id="documentype"
+                                    name="documentype"
+                                    class="c-form__input c-form__select"
+                                    required
+                                >   
+                                    <option value=" " selected>Seleccione</option>
+                                    <option value="cc" selected>Cedula de Ciudadania</option>
+                                </select>
+        
+                                <label class="c-form__label label" for="documentype">
+                                    Tipo de Documento
+                                </label>
+
+                            </div>
+
+                            <span class="c-form__error-text">Tipo de documento no es valido</span>
+                        </div>
+
+                        <!-- Campo número documento -->
+                        <div 
+                            class="c-form__box u-width-100 u-margin-bottom-24"
+                            data-bind="attr: {class: numberFieldIdBoxClass()}">
+                            <div 
+                                class="c-form__field"
+                                data-bind="attr: {class: numberFieldIdClass()}">
+                                <span class="c-form__icon i-credit-card-stroke">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <input
+                                    type="number"
+                                    id="document"
+                                    name="document"
+                                    class="c-form__input"
+                                    maxlength="10"
+                                    data-bind="value: documentid, valueUpdate: 'keyup', event: {keyup: validateDocumentId}"
+                                    required
+                                    @keyup="addPoints"
+                                />
+
+                                <label class="c-form__label label" for="document">
+                                    Número de documento
+                                </label>
+                            </div>
+
+                            <span class="c-form__error-text">Ingrese un número de identificación valido</span>
+                        </div>
+
+                        <!-- Campo fecha expedición -->
+                        <div class="c-form__box u-width-100 u-margin-bottom-24">
+                            <div class="c-form__field">
+                                <span class="c-form__icon i-calendar">
+                                    <span class="u-hidden"> Icono informativo </span>
+                                </span>
+
+                                <input
+                                    type="text"
+                                    id="date"
+                                    name="date"
+                                    class="c-form__input c-form__input_label-top"
+                                    data-bind="attr: {'autocomplete': 'off'}, value: expeditionDidDate, datepicker: date"
+                                    required
+                                    autocomplete="off"
+                                    @focus="backFlipCard"
+                                    @blur="frontFlipCard"
+                                    @change="changeDate(event)"
+                                />
+
+                                <label class="c-form__label label" for="date">
+                                    Fecha de Expedición
+                                </label>
+                            </div>
+                            <span class="c-form__error-text">Seleccionar fecha válida</span>
+                        </div>
+
+                        <p class="c-form__lead_gray4 u-margin-bottom-16 u-text-left">Recibir contrato o modificaciones en:</p>
+
+                        <div class="c-form__inputs-inline">
+                          <div>
+                            <label class="c-form__radio-button-label" for="email">
+                                <input class="c-form__radio-button" type="radio" id="email" name="notificationtype" data-bind="value: 'email', checked: notificationType">
+                                E-mail
+                            </label>
+                          </div>
+                          <div>
+                            <label class="c-form__radio-button-label" for="envio_fisico">
+                                <input class="c-form__radio-button" type="radio" id="envio_fisico" name="notificationtype" data-bind="value: 'shipping', checked: notificationType">
+                                Envío Físico
+                            </label>
+                          </div>
+                          <div>
+                            <label class="c-form__radio-button-label" for="sms">
+                                <input class="c-form__radio-button" type="radio" id="sms" name="notificationtype" data-bind="value: 'sms', checked: notificationType">
+                                SMS
+                            </label>
+                          </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Tarjeta identificación -->
+                    <div class="c-form__card">
+
+                        <div
+                            class="o-identification-card"
+                            x-ref="refTargetIdentificationCard"
+                            :class="isCardChangeSide ? 'is-change-side' : ''"
+                        >
+
+                            <figure class="o-identification-card__side">
+
+                                <img
+                                    src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/card.svg'))?>"
+                                    alt="Logo Movistar"
+                                    class="o-identification-card__img"
+                                >
+                                <figcaption
+                                    class="o-identification-card__number" 
+                                    x-ref="refDocumentNumber"
+                                    data-bind="text: documentid"
+                                >
+                                </figcaption>
+
+                            </figure>
+    
+                            <figure class="o-identification-card__side o-identification-card__side_back">
+                                <img
+                                    src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/fija/card_back.svg'))?>"
+                                    alt="Logo Movistar"
+                                    class="o-identification-card__img"
+                                >
+                                <figcaption class="o-identification-card__date js-date-replace" x-ref="refDateReplace">28 MAR 2014</figcaption>
+                            </figure>
+
+                        </div>
+                        
+                    </div> 
+                    <!-- Fin tarjeta identificación -->
+
+                </div>
+
+            </fieldset>
+            <!-- Fin fieldset para documento identidad -->
+
+            <div class="c-form__actions c-form__actions_right">
+                <input name="context" type="hidden" value="checkout" />
+
+                <!--
+                    1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+                    2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+                -->
+                <button
+                    type="submit"
+                    class="o-btn o-btn_height56 o-btn_height40_mb c-form__btn c-form__btn_full"
+                    data-bind="click: submitForm"
+                    
+                >
+                    Continuar
+                </button>
+            </div>
+        </form>
+         <!-- /ko -->        
+        <!-- Detalle del producto -->
+        <div
+            id="checkout-summary"
+            
+            class="c-card-summary__wrap"
+        >
+
+            <div
+                class="c-card-summary c-card-summary_space-bottom js-target-summary"
+                
+            >
+                <h3 class="c-card-summary__title c-card-summary__title_border">Detalles del producto</h3>
+
+                <div>
+
+                    <div class="c-card-summary__amount">
+                        <h4 class="mark" scope="row" >
+                            Plan Trío Megas
+                        </h4>
+                    </div>
+
+                    <div class="c-card-summary__box">
+                        <div class="c-card-summary__amount c-card-summary__amount_before">
+                            <h4 class="mark" scope="row">
+                                Antes
+                            </h4>
+
+                            <span class="c-card-summary__amount-trough">
+                                $130.990
+                            </span>
+                        </div>
+
+                        <div class="c-card-summary__amount">
+                            <h4 class="mark" scope="row">
+                                Ahora
+                            </h4>
+
+                            <strong class="amount">
+                                $67.495
+                            </strong>
+                        </div>
+
+                        <ul class="c-card-summary__details">
+                            <li><strong>RV_14885, 50% dto mes 2 - 4 - 6 - 8</strong></li>
+                            <li>Línea Básica (Voz Nacional 200 Mn LDI) </li>
+                            <li> TV (Plan IPTV Fibra Trío RV_14874)</li>
+                            <li>Internet Fibra (500 Mbps Trío BA)</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="c-card-summary__box">
+                      <h4 class="c-card-summary__subtitle">Detalle de instalación</h4>
+
+                      <table class="c-card-summary__table">
+                        <thead class="c-card-summary__table-head">
+                          <tr>
+                            <td>Dirección</td>
+                            <td>Municipio</td>
+                            <td>Ciudad</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="c-card-summary__table-row">
+                            <td class="c-card-summary__table-cell">TV CL 11A - 55 JULIO FLOREZ - SUBA APARTAMENTO 402</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="c-card-summary__amount c-card-summary__total">
+                        <h4 class="mark" scope="row">
+                            <strong >Total</strong>
+                        </h4>
+
+                        <p
+                            class="amount"
+                           
+                            data-th="Total"
+                        >
+                            <strong>$67.496</strong>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="c-card-summary__message i-information u-padding-bottom-32">
+                    <p>Recuerda que si tu plan tiene descuentos los verás reflejado en tu factura.
+                        Para los planes de Fibra Óptica el equipo Repetidor WiFi Base Port será facturado
+                        mensualmente por un valor de $4.000 IVA incluido por 48 meses
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Fin detalle del producto -->
+
+    </div>
+
+</section>
+<script type="text/x-magento-init">
+    {
+        "#datos-personales-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "dataCustomer": {
+                        "component": "Vass_Fija/js/dataCustomer"
+                    }
+                }
+            }
+        }
+
+        
+    }
+
+    
+    </script>
+
+<script src="<?php echo $this->getViewFileUrl('js/fija/copy_credential.js'); ?>"></script>

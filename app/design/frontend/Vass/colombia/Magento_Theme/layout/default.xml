@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<page layout="3columns"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="js-target-class"/>
+        <!-- logo settings -->
+        <referenceBlock name="logo" remove="true"/>
+
+
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true" />
+        <referenceBlock name="page.main.title" remove="true"/>
+
+
+        <!--Redeclara el header-->
+        <referenceContainer name="header.container" htmlClass="c-header">
+
+            <container name="menu.top.header" htmlTag="div" before="header.content" htmlClass="c-menu-top-bg">
+                <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/toplinks.phtml" name="movistar.top.link" before="-"/>
+            </container>
+
+            <container name="header.wrapper" as="header_wrapper" after="header.row.container.toplinks" htmlTag="div" htmlClass="c-main-menu c-menu-bg">
+                <container name="header.row.container" as="header_row_container" before="-" htmlTag="div" htmlClass="o-canvas">
+                    <container name="header.row" as="header_row" before="-" htmlTag="div" htmlClass="c-main-menu__content">
+                        <block class="Magento\Framework\View\Element\Template" name="topbar.scripts" template="Magento_Theme::html/header-menu.phtml"/>
+                    </container>
+                </container>
+
+            </container>
+
+            
+
+            <referenceBlock name="catalog.compare.link" remove="true"/>
+            <referenceBlock name="header.panel.wrapper" remove="true" />
+
+        </referenceContainer>
+
+        <referenceContainer name="search">
+            <!-- tollbar search -->
+            <container name="header.search" as="header_search" after="header.container" htmlTag="div" htmlClass="search-tabs">
+                <container name="header.search.container" as="header_search_container" before="-" htmlTag="div" htmlClass="o-canvas">
+                    <container name="header.search.container.tabs" as="header_search_container_tabs" before="-" htmlTag="div" htmlClass="c-tabs">
+                        <container name="header.search.container.tabs.tabs__content" as="header_search_container_tabs_tabs__content" before="-" htmlTag="div" htmlClass="c-tabs__content">
+                            <block class="Magento\Framework\View\Element\Template" template="Vass_Custom::search/toolbar.phtml" name="search.toolbar" before="-" />
+                        </container>
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="logo" destination="header.row.container.branding" as="logo" after="-"/>
+        <move element="header.row.container.toplinks" destination="header.row.container.mainmenu" as="header.row.container.toplinks" before="-"/>
+        <move element="navigation.sections" destination="header.wrapper.mainmenu2" as="navigation.sections" after="-"/>
+        <move element="wrapper.menu.mobile" destination="header.wrapper.mainmenu2" as="wrapper.menu.mobile" after="navigation.sections"/>
+        <move element="store_language" destination="header.row.container.toplinks" as="store_language" before="-"/>
+        <move element="minicart" destination="header.row.container.toplinks" as="minicart" after="-"/>
+        <move element="top.search" destination="header.search.container.tabs.tabs__content" as="top.search" before="search.toolbar"/>
+        
+        <referenceBlock name="minicart" remove="true"/>
+        <referenceContainer name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="container"/>
+        <move element="breadcrumbs" destination="main.content" before="-"/>
+
+        <referenceContainer name="footer-container">
+            <block class="Magento\Theme\Block\Html\Footer" name="footer" template="html/footer-home.phtml"/>
+        </referenceContainer>
+
+    </body>
+</page>
+
+

@@ -1,0 +1,27 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div>
+    <h3 class="c-card-summary__title c-card-summary__title_ico i-car">Tu orden fue creada</h3>
+</div>
+<div class="c-card-summary__box">
+
+    <div class="actions-toolbar" if="maxCartItemsToDisplay < getCartLineItemsCount()">
+        <div class="secondary">
+            <a class="action viewcart" data-bind="attr: {href: cartUrl}">
+                <span data-bind="i18n: 'View and Edit Cart'"></span>
+            </a>
+        </div>
+    </div>
+
+</div>
+<div class="content minicart-items" data-role="content">
+    <div class="minicart-items-wrapper">
+        <each args="items()">
+            <each args="$parent.elems()" render=""></each>
+        </each>
+    </div>
+</div>

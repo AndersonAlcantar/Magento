@@ -1,0 +1,60 @@
+.c-card-ico {
+    height: auto;
+    @include px-to-rem(column-gap, $gutter * 3);
+    @include px-to-rem(max-width, 200px);
+    @include px-to-rem(min-width, 160px);
+    @include px-to-rem(padding, 12px 20px);
+    @include px-to-rem(border-radius, $gutter * 2);
+    background-color: $c-neutro;
+}
+
+.c-card-ico__ico {
+    display: block;
+
+    &::before {
+        @include px-to-rem(font-size, $gutter * 5);
+        color: $c-primary;
+    }
+}
+
+.c-card-ico__title {
+    margin: 0;
+    @include px-to-rem(font-size, 18px);
+    font-weight: $f-regular;
+    line-height: 1;
+    color: $c-secondary;
+}
+
+.c-card-ico__value {
+    color: $c-gray-5;
+    @include truncatechars(14px, 1.2, 2);
+}
+
+@media screen and (max-width: 1023px) {
+    .c-card-ico {
+        @include flexbox;
+        @include align-items(center);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .c-card-ico-wrapper {
+        @include flex-wrap(wrap);
+        @include justify-content(center);
+        @include px-to-rem(column-gap, $gutter * 4);
+        @include px-to-rem(row-gap, $gutter * 2);
+    }
+
+    .c-card-ico {
+        @include px-to-rem(max-width, 160px);
+        margin-right: 0 !important;
+        text-align: center;
+    }
+
+    .c-card-ico__ico {
+        @include px-to-rem(margin-bottom, $gutter);
+    }
+    .c-card-ico__value {
+        @include px-to-rem(max-width, 160px);
+    }
+}

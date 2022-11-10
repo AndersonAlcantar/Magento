@@ -1,0 +1,91 @@
+<?php 
+    $_product = $block->getProduct();
+    $_helper = $this->helper('Vass\Custom\Helper\Data');
+    $attributesDetail = explode(',',$_helper->getAttributes());
+    $attributeSetName = $_helper->getAttributeSetName($_product->getAttributeSetId());
+    $attributesDetailIcon = 'icon_';
+    $attributesProduct = $_product->getAttributes();
+    foreach($attributesProduct as $a)
+    {
+        $attributesProductName [] = $a->getName();
+    }
+    $counterAttributes = 0;
+    if($attributeSetName == 'Equipos'):       
+?>
+
+    <section>
+        <div class="o-canvas">
+
+            <div class="swiper js-slider-caracterizticas">
+                <div class="c-card-ico-wrapper swiper-wrapper">
+
+                <?php 
+                foreach ($attributesDetail as $key => $attributes):  
+                    //Obtiene los valores por cada atributo
+                    $attributeValue =$_product->getResource()->getAttribute($attributes)->getFrontend()->getValue($_product);
+                    $attributeLabel =$_product->getResource()->getAttribute($attributes)->getFrontend()->getLabel($_product);
+                    if(in_array($attributesDetailIcon.$attributes, $attributesProductName)):
+                        $attributeIcon =$_product->getResource()->getAttribute($attributesDetailIcon.$attributes)->getFrontend()->getValue($_product);
+                        $attributeLabel = ucwords(str_replace('_', ' ',$attributeLabel));
+                        //Valida si el atributo cuenta con un valor y con un icono
+                        if($attributeValue != '' && $attributeIcon != '' ):
+            ?>
+                           <!--Sección que muestra la información y icono de un atributo-->
+
+                        <div class="c-card-ico swiper-slide">
+
+                            <!--Icono del atributo-->
+                            <i class="c-card-ico__ico <?=$attributeIcon?>">
+                                <span class="u-hidden">Icono <?=$attributeLabel?></span>
+                            </i>
+
+                            <header>
+                                <!-- Nombre del atributo -->
+                                <h4 class="c-card-ico__title"><?=$attributeLabel?></h4>
+
+                                <!-- Valor del attributo -->
+                                <?php if (strlen($attributeValue) > 30) {?>
+
+                                    <div class="o-tooltip o-tooltip_bottom">
+
+                                        <span
+                                            class="c-card-ico__value o-tooltip__btn"
+                                            type="button"
+                                        >
+                                            <?=$attributeValue?>
+                                        </span>
+
+                                        <span class="o-tooltip__text o-tooltip__text_right">
+                                            <?=$attributeValue?>
+                                        </span>
+
+                                    </div>
+                                
+                                <?php } else { ?>
+
+                                    <p class="c-card-ico__value"><?=$attributeValue?></p>
+
+                                <?php }  ?>
+                            </header>
+
+                        </div>
+
+            <?php 
+                            $counterAttributes++;
+                            if($counterAttributes == 6):
+                                break;
+                            endif;
+                        endif;
+                    endif;
+                endforeach; 
+            ?>
+                </div>
+
+            <div>
+
+        <div>
+    </section>
+
+<?php 
+    endif;
+?>

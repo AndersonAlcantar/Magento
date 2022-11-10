@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">sort_elements_sortofferts.sort_elements_sortofferts_data_source</item>
+            <item name="deps" xsi:type="string">sort_elements_sortofferts.sort_elements_sortofferts_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Información del Menu Item</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">sort_elements_sortofferts</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+
+        <deps>
+            <dep>sort_elements_sortofferts.sort_elements_sortofferts_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="sort_elements_sortofferts_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            
+            
+        </settings>
+        <dataProvider class="Vass\Menu\Model\DataProviderMenuItem" name="sort_elements_sortofferts_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>item_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="vass_menu_items">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Offerts Level</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="type_id" formElement="select"  component="Vass_Fija/js/components/sort_offerts">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filterOptions" xsi:type="boolean">false</item>
+                    <item name="multiple" xsi:type="boolean">false</item>
+                    <item name="showCheckbox" xsi:type="boolean">true</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="mapper" xsi:type="object">Vass\Fija\Model\Mapper</item>
+                    <item name="sortOrder" xsi:type="number">9</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">List Elements</label>
+               
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Vass\Fija\Model\Config\Source\CategoryOffertGroups"/>
+
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

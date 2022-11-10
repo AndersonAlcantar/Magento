@@ -1,0 +1,43 @@
+{
+    "vass_migration_legalescategory": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "pagebuilder": true,
+            "order": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "VASS_MIGRATION_LEGALESCATEGORY_NAME": true,
+            "VASS_MIGRATION_LEGALESCATEGORY_PAGEBUILDER": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "vass_migration_legalessubcategory": {
+        "column": {
+            "id": true,
+            "type_id": true,
+            "parent_id": true,
+            "subcategory_parent_id": true,
+            "name": true,
+            "description": true,
+            "pagebuilder": true,
+            "order": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "VASS_MIGRATION_LEGALESSUBCATEGORY_NAME": true,
+            "VASS_MIGRATION_LEGALESSUBCATEGORY_PAGEBUILDER": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

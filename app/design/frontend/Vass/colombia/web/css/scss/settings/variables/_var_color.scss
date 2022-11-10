@@ -1,0 +1,244 @@
+//-*------------------------------------*\
+//-    Variables Color Template
+//-    Referente del sistema de color:
+//-    https://material.io/design/color/the-color-system.html
+//-*------------------------------------*/
+
+//-*------------------------------------*\
+//-    Primary
+//-    se muestra con mayor frecuencia en las pantallas y componentes
+//-*------------------------------------*/
+
+/**
+ * $c-primary
+ * @color
+ * @section Primary
+ */
+
+$c-primary: #019DF4;
+
+$c-secondary: #0B2739;
+
+$c-secondary-opacity: #0B273998;
+
+
+//-*------------------------------------*\
+//-    On
+//-    Color de textos, encima de las superficies:
+//-    Tipografía y colores de iconografía.
+//-    $c-on-primary
+//-*------------------------------------*/
+
+/**
+ * $c-on-primary-gray
+ * @color
+ * @section On
+ */
+
+$c-on-primary-gray: #86888C;
+
+
+
+//-*------------------------------------*\
+//-    Background - Surface
+//-    Aparece detrás del contenido. 
+//-    Fondos, bordes
+//-    ej: $c-bg-surface: #fff;
+//-*------------------------------------*/
+
+/**
+ * $c-gray
+ * @color
+ * @section Surface
+ */
+
+$c-gray-2: #D3D4D3;
+
+
+//-*------------------------------------*\
+//-    Color Less: Blanco
+//-*------------------------------------*/
+
+/**
+ * $c-neutro
+ * @color
+ * @section Color Less
+ */
+
+$c-neutro: #fff;
+
+//-*------------------------------------*\
+//-    Text palete
+//-*------------------------------------*/
+
+/**
+  * $c-gray-0
+  * @color
+  * @section Neutro
+*/
+$c-gray-0: #E0E0E0;
+
+/**
+  * $c-gray-2
+  * @color
+  * @section Neutro
+*/
+$c-gray-1: #F5F5F5;
+
+/**
+  * $c-gray-3
+  * @color
+  * @section Neutro
+*/
+$c-gray-3: #B6B7B7;
+
+/**
+  * $c-gray-4
+  * @color
+  * @section Neutro
+*/
+$c-gray-4: #86888C;
+
+/**
+  * $c-gray-5
+  * @color
+  * @section Neutro
+*/
+$c-gray-5: #50535A;
+
+/**
+  * $c-gray-6
+  * @color
+  * @section Neutro
+*/
+$c-gray-6: #313235;
+
+/**
+  * $c-gray-7
+  * @color
+  * @section Neutro
+*/
+$c-gray-7: #CDD3DD;
+
+/**
+  * $c-gray-8
+  * @color
+  * @section Neutro
+*/
+$c-gray-8: #C4C4C4;
+
+/**
+  * $c-gray-9
+  * @color
+  * @section Neutro
+*/
+$c-gray-9: #D4D4D4;
+
+/**
+  * $c-gray-10
+  * @color
+  * @section Neutro
+*/
+$c-gray-10: #999999;
+
+
+//-*------------------------------------*\
+//-    High light
+//-*------------------------------------*/
+
+/**
+  * $c-yellow
+  * @color
+  * @section Yellow
+*/
+$c-yellow-5: #F28D15;
+
+
+
+/**
+  * $c-blue-inactive
+  * @color
+  * @section Neutro
+*/
+$c-blue-inactive: #80CEF9;
+
+/**
+  * $c-blue-normal
+  * @color
+  * @section Neutro
+*/
+$c-blue-normal: #019DF4;
+
+/**
+  * $c-blue-dark
+  * @color
+  * @section Neutro
+*/
+$c-blue-dark: #008EDD;
+
+/**
+  * $c-blue-dark
+  * @color
+  * @section Neutro
+*/
+$c-blue-dark-80: #424B5A;
+
+/**
+  * $c-green-inactive
+  * @color
+  * @section Neutro
+*/
+$c-green-inactive: #ADDA8A;
+
+/**
+  * $c-green-normal
+  * @color
+  * @section Neutro
+*/
+$c-green-normal: #5CB615;
+
+/**
+  * $c-green-selected
+  * @color
+  * @section Neutro
+*/
+$c-green-selected: #499110;
+
+/**
+  * $c-orange-10
+  * @color
+  * @section Neutro
+*/
+$c-orange-50: #FFC076;
+
+$c-orange-60: #EC624B;
+
+/**
+  * $c-orange-10
+  * @color
+  * @section Neutro
+*/
+$c-orange-80: #815028;
+
+/**
+  * $c-red-error
+  * @color
+  * @section Neutro
+*/
+$c-red-error: #FF374A;
+
+
+
+
+
+//-*------------------------------------*\
+//-    elevations palete
+//-*------------------------------------*/
+
+/**
+  * $c-elevation-primary
+  * @color
+  * @section Neutro
+*/
+
+$c-elevation-primary: 0px 2px 4px rgba(0, 0, 0, 0.1);

@@ -1,0 +1,118 @@
+<?php
+$isLoggedIn = $block->isLoggedIn();
+if (!$isLoggedIn) {
+	header('Location: ' . $block->getBaseUrl());
+	die;
+}
+?>
+<div class="o-canvas o-canvas_max-width918">
+	<div class="is-active">
+		<header class="o-header-img u-margin-top-56 u-margin-bottom-56">
+			<img 
+				class="o-header-img__brand o-header-img__brand_w255" 
+				alt="Personas conectadas a internet" 
+				src="<?= $this->getViewFileUrl('images/people-mobil.svg') ?>"
+			>
+			<h3 class="o-header-img__text o-header-img__text_font40">¡Felicidades!</h3>
+			<h1 class="o-header-img__intro">
+				<span class="o-header-img__intro_strong">Tu nueva compra estará contigo dentro de los próximos días hábiles.</span> 
+				En breve te contactaremos para coordinar la entrega .</h1>
+		</header>
+
+		<ul class="c-figures-columns u-margin-bottom-56">
+			<li class="c-figures-columns__column">
+				<span class="c-figures-columns__figure i-lock-code"></span>
+				<p class="c-figures-columns__text">Tu código de seguimiento es: <span class="u-text-blue">1432</span></p>
+			</li>
+			<li class="c-figures-columns__column">
+				<span class="c-figures-columns__figure i-pin-way"></span>
+				<p class="c-figures-columns__text">Puedes seguir tu pedido desde tu perfil de ususario</p>
+			</li>
+			<li class="c-figures-columns__column">
+				<span class="c-figures-columns__figure i-phone-message"></span>
+				<p class="c-figures-columns__text">Para mayor información comunícate al <a class="o-link" href="tel:+570963330030">096 333 0030</a></p>
+			</li>
+		</ul>
+
+		<div class="c-callout c-callout_white c-callout_w920 u-margin-bottom-56 c-callout_direction-column i-information">
+			<p class="c-callout__text">
+				Recuerda que por tu seguridad, <strong>al momento de la entrega, debe estar presente el titular de la tarjeta</strong> de crédito/débito y presentar su cédula de identidad
+			</p>
+		</div>
+
+		<!-- un boton -->
+		<!-- <div class="u-text-center">
+			<a class="o-btn o-btn_full o-btn_w392 o-btn_height60" href="#">Ver más ofertas</a>
+		</div> -->
+
+		<!-- dos botones -->
+		<div class="o-section-double-elements u-margin-bottom-56">
+			<a class="o-btn o-btn_height56 o-btn_full o-btn_w255" href="<?= $block->getBaseUrl() ?>">Ver más ofertas</a>
+			<a class="o-btn o-btn_primary_dark-blue o-btn_height56 o-btn_full o-btn_w255" href="https://atencionalcliente.movistar.co/Rastrea_el_envio_de_tu_equipo/">Rastrea tu pedido</a>
+		</div>
+		<section class="u-margin-bottom-56">
+			<h2 class="o-title">Resumen de tu compra</h2>
+			<div class="o-section-double-elements o-section-double-elements_spacebetween o-section-double-elements_row-gap">
+				<div>					
+					<dl class="c-definition-list">
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Producto:</dt>
+							<dd class="c-definition-list__def"><?= $block->getProductName() ?></dd>
+						</div>
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Nombre:</dt>
+							<dd class="c-definition-list__def"><?= $block->getCustomerFullName() ?></dd>
+						</div>
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Documento:</dt>
+							<dd class="c-definition-list__def"><?= $block->getCustomerDocument() ?></dd>
+						</div>
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Pedido N°:</dt>
+							<dd class="c-definition-list__def">#<?= $block->getOrderNumber() ?></dd>
+						</div>
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Fecha de compra:</dt>
+							<dd class="c-definition-list__def"><?= $block->getOrderDate() ?></dd>
+						</div>
+						<div class="c-definition-list__box">
+							<dt class="c-definition-list__term">Medio de pago:</dt>
+							<dd class="c-definition-list__def"><?= $block->getOrderPayment() ?></dd>
+						</div>				
+					</dl>
+				</div>		
+				<div>
+					<div class="c-card-summary c-card-summary_margin-top is-summary-show">
+						<div class="c-card-summary__amount">
+							<h4>Subtotal</h4>
+							<p>$<?= $block->getOrderSubTotal() ?></p>
+						</div>
+						<!--
+						<div class="c-card-summary__amount">
+							<h4 class="u-uppercase">Iva</h4>
+							<p>9,90</p>
+						</div>
+						-->
+						<div class="c-card-summary__box c-card-summary__amount">
+							<h4>Envío</h4>
+							<p>Gratis</p>
+						</div>
+						<div class="c-card-summary__amount c-card-summary__total">
+							<h4 class="u-uppercase">Total</h4>
+							<p><strong>$<?= $block->getOrderTotal() ?></strong></p>
+						</div>
+					</div>
+					<!--
+					<form class="c-input-email u-margin-top-32">
+						<h4 class="c-input-email__title">Deseas una copia de tu factura</h4>
+						<div class="c-input-email__box i-mail">
+							<input class="c-input-email__input" type="email" placeholder="Ingresa tu correo electrónico">
+							<button class="o-btn c-input-email__btn" type="sumbit">Enviar</button>
+						</div>
+					</form>
+					-->
+				</div>
+			</div>
+		</section>
+	</div>
+</div>

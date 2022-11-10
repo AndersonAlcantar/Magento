@@ -1,0 +1,287 @@
+//-*------------------------------------*
+//-   .u- clases de Utilities BEMIT.
+//-   Tiene una función muy específica a menudo proporciona una sola declaración
+//-   y no debe vincularse ni modificarse.
+//-   Reutilizable y no está vinculada a un componente UI específicamente.
+//-   Único lugar donde se permite usar !important
+//-   Ej: .u-none, .u-block, .u-hidden
+//-*------------------------------------*
+
+/**
+ * Class: u-hidden, display none
+ * @atom Ocultar elemento
+ * @section Utils
+ * @markup
+ *  <a href="#" class="i-twitter">
+ *    <span class="u-hidden">Twitter</span>
+ *  </a>
+ */
+
+.u-hidden {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.u-position-relative {
+    position: relative;
+    transition: all 0.2s ease;
+}
+.u-display-block {
+    display: block;
+}
+.u-display-inline {
+    display: inline;
+}
+.u-width-100 {
+    width: 100%;
+}
+
+.u-text-left {
+    text-align: left;
+}
+
+.u-text-right {
+    text-align: right;
+}
+
+.u-text-center {
+    text-align: center;
+}
+
+.u-text-light {
+    font-weight: $f-light;
+}
+
+.u-text-regular {
+    font-weight: $f-regular;
+}
+.u-text-blue {
+    color: $c-primary;
+}
+
+.u-box-align-center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.u-margin-both-0 {
+    margin: 0;
+}
+
+.u-margin-top-0 {
+    margin-top: 0;
+}
+
+.u-margin-both-24 {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+}
+
+.u-margin-top-8 {
+    @include px-to-rem(margin-top, $gutter);
+}
+
+.u-margin-top-16 {
+    @include px-to-rem(margin-top, $gutter * 2);
+}
+
+.u-margin-top-24 {
+    @include px-to-rem(margin-top, $gutter * 3);
+}
+
+.u-margin-top-32 {
+    @include px-to-rem(margin-top, $gutter * 4);
+}
+
+.u-margin-top-40 {
+    @include px-to-rem(margin-top, $gutter * 5);
+}
+
+.u-margin-top-56 {
+    @include px-to-rem(margin-top, $gutter * 7);
+}
+
+.u-margin-bottom-0 {
+    margin-bottom: 0;
+}
+
+.u-margin-bottom-8 {
+    @include px-to-rem(margin-bottom, $gutter);
+}
+
+.u-margin-bottom-16 {
+    @include px-to-rem(margin-bottom, $gutter * 2);
+}
+
+.u-margin-bottom-24 {
+    @include px-to-rem(margin-bottom, $gutter * 3);
+}
+
+.u-margin-bottom-32 {
+    @include px-to-rem(margin-bottom, $gutter * 4);
+}
+
+.u-margin-bottom-40 {
+    @include px-to-rem(margin-bottom, $gutter * 5);
+}
+
+.u-margin-bottom-56 {
+    @include px-to-rem(margin-bottom, $gutter * 7);
+}
+
+.u-margin-left-8 {
+    @include px-to-rem(margin-left, $gutter);
+}
+
+.u-padding-both-0 {
+    padding: 0;
+}
+
+.u-padding-top-16 {
+    @include px-to-rem(padding-top, $gutter * 2);
+}
+
+.u-padding-both-24 {
+    @include px-to-rem(padding-top, $gutter * 3);
+    @include px-to-rem(padding-bottom, $gutter * 3);
+}
+
+.u-padding-both-40 {
+    @include px-to-rem(padding, $gutter * 5 0);
+}
+
+.u-padding-bottom-32 {
+    @include px-to-rem(padding-bottom, $gutter * 4);
+}
+
+.u-skeleton {
+    position: relative;
+    font-size: 0;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        left: $gutter;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        min-width: 104px;
+        max-width: 184px;
+        border-radius: 50px;
+        background: $c-gray-2;
+        height: 10px;
+        margin: auto 0;
+    }
+
+    &::before {
+        top: 0;
+    }
+
+    &::after {
+        display: none;
+    }
+}
+
+.u-skeleton_double {
+    &::before {
+        top: -$gutter * 2;
+    }
+
+    &::after {
+        display: block;
+        top: $gutter * 2;
+        width: 104px;
+    }
+}
+.u-border-top {
+    border-top: 1px solid $c-gray-2;
+    @include px-to-rem(padding-top, $gutter * 2);
+}
+.u-row-gap {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 2);
+}
+
+.u-list-style-none {
+    list-style: none;
+}
+
+/**
+ * Class: u-hidden-mb, display none
+ * @atom Ocultar elemento en Mobile
+ * @section Utils
+ * @markup
+ *  <a href="#" class="i-twitter">
+ *    <span class="u-hidden-mb">Twitter</span>
+ *  </a>
+ */
+
+@media only screen and (max-width: 768px) {
+    .u-hidden-mb {
+        display: none;
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/**
+ * Class: u-inherit, Color de texto heredado del color especificado para el texto del bloque padre.
+ * @atom Color heredado
+ * @section Utils
+ * @markup
+ *  <p href="#" class="u-inherit">
+ *    Color de texto heredado
+ *  </p>
+ */
+
+.u-inherit {
+    color: inherit;
+}
+
+/**
+ * Class: u-inline, Elemento display inline-block
+ * @atom Elemento Inline block
+ * @section Utils
+ * @markup
+ *  <p href="#" class="u-inline">
+ *    Elemento inline Block
+ *  </p>
+ */
+
+.u-inline {
+    display: inline-block;
+}
+
+.u-reverse {
+    @include flexbox;
+    @include flex-direction(row-reverse);
+    @include justify-content(space-between);
+    @include align-items(center);
+}
+
+.u-uppercase {
+    text-transform: uppercase;
+}
+
+.error_border{
+    border: 1px solid #db5b5b !important;
+}
+.error_input{
+    font-size: .8rem!important;
+    margin-top: 7px;
+    color: #e02b27;
+}
+
+/**
+ * Class: modals-wrapper, Elemento modal default magento 
+ * 
+ */
+.img_mini_offer{
+    padding: 0.5rem;
+}
+.text_mini_offert{
+    padding: 0.5rem;
+}

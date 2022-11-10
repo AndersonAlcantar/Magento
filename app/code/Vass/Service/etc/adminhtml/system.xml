@@ -1,0 +1,732 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="vassservicios" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Services</label>
+            <tab>vass</tab>
+            <resource>Vass_Service::services_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="warehouseId" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Warehouse Id Online</label>
+                    <comment>Warehouse Id by services.</comment>                    
+                </field>
+            </group>
+            <group id="telefonica" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Credentials Telelefonica</label>
+                <field id="redhatdomain" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Domain (RedhatDomain)</label>
+                    <comment>Example : "https://ocpdesa.telefonicacolwebsites.com/"</comment>                    
+                </field>
+                <field id="redhatauthkey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Key (RedhatAuthKey)</label>             
+                </field>
+                <field id="redhatauthiv" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth IV (RedhatAuthIV)</label>             
+                </field>
+                <field id="redhatauthscope" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Scope (RedhatAuthScope)</label>             
+                </field>
+                <field id="redhatauthclientsecret" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Client Secret (RedhatAuthClientSecret)</label>             
+                </field>
+                <field id="redhatauthclientid" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Client ID (RedhatAuthClientId)</label>             
+                </field>
+                <field id="redhatauthgranttype" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auth Grant Type (RedhatAuthGrantType)</label>             
+                </field>
+                <field id="redhattokenurl" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Toker Url (RedhatTokenUrl)</label>             
+                </field>
+                <field id="redhatchannel" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Channel (RedhatChannel)</label>             
+                </field>
+            </group>
+            <group id="enc_data" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Credentials ENC_DATA</label>
+                <field id="client_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID  (client_id)</label>                   
+                </field>
+                <field id="client_secret" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret  (client_secret)</label>                   
+                </field>
+                <field id="grant_type" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Grant Type  (grant_type)</label>                   
+                </field>
+                <field id="scope" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Scope  (scope)</label>                   
+                </field>
+            </group>
+            <group id="azure" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Credentials AZURE</label>
+                <field id="tenant" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tenant</label>                   
+                </field>
+                <field id="client_id" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Id (client_id)</label>                   
+                </field>
+                <field id="extension" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Extension</label>                   
+                </field>
+                <field id="user_flow" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>User Flow (user_flow)</label>                   
+                </field>
+            </group>
+            <group id="graph" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Credentials GRAPH</label>
+                <field id="endpoint_users" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>EndPoint User (endpoint_users)</label>                   
+                </field>
+                <field id="grant_type" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Grant Type (grant_type)</label>                   
+                </field>
+                <field id="scope" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Scope (scope)</label>                   
+                </field>
+                <field id="client_secret" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client Secret (client_secret)</label>                   
+                </field>
+            </group>
+            <group id="adb2c" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Configuration ADB2C</label>
+                <field id="grant_type" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Grant Type (grant_type)</label>                   
+                </field>
+                <field id="response_type" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Response Type (response_type)</label>                   
+                </field>
+            </group>
+            <group id="checkavibility" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Check Aviability Service</label>
+                <field id="checkavibilityselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="checkavibilityproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Check Aviability URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/check-availability"</comment>                    
+                </field>
+                <field id="checkavibilitytest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Check Aviability URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/check-availability"</comment>                    
+                </field>
+                <field id="checkavibilityplantcode" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Plant Code</label>
+                    <comment>Example : "CO24"</comment>                    
+                </field>
+            </group>
+            <group id="regionlist" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Region List Service</label>
+                <field id="regionlistselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="regionlistproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Region List URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/regionlist"</comment>                    
+                </field>
+                <field id="regionlisttest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Region List URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/regionlist"</comment>                    
+                </field>
+            </group>
+            <group id="generatepinsms" translate="label" type="text" sortOrder="19" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Generar Pin Sms Service</label>
+        
+                <field id="generatepinsmsselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="generatepinsmsproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Pin Sms URL</label>
+                    <comment>Example : "magento/api/generate_pin_sms"</comment>                    
+                </field>
+                <field id="generatepinsmstest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Pin Sms URL</label>
+                    <comment>Example : "magento/api/generate_pin_sms"</comment>                    
+                </field>
+            </group>
+            <group id="validatepinsms" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Validate Pin Sms Service</label>
+                <field id="validatepinsmsselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="validatepinsmsproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Validate Pin Sms URL</label>
+                    <comment>Example : "magento/api/validate_sms"</comment>                    
+                </field>
+                <field id="validatepinsmstest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Validate Pin Sms URL</label>
+                    <comment>Example : "magento/api/validate_sms"</comment>                    
+                </field>
+                <field id="validatepinmockup" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mockup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pinmockup" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pin Mockup</label>
+                    <comment>Example : "0155"</comment>                    
+                </field>
+            </group>
+            <group id="getlinescustomer" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Get List Of Lines Subscribed By Customer Service</label>
+                <field id="getlinescustomerselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="getlinescustomerproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Get List Of Lines URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/SubscriberListByCustomerAction"</comment>                    
+                </field>
+                <field id="getlinescustomertest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Get List Of Lines URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/SubscriberListByCustomerAction"</comment>                    
+                </field>
+                <field id="getlinescustomermockup" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mockup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="validatecustomer" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Validate Customer Service</label>
+                <field id="validatecustomerselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="validatecustomerproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Validate Customer URL</label>
+                    <comment>Example : "magento/api/ValidaCliente"</comment>                    
+                </field>
+                <field id="validatecustomertest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Validate Customer URL</label>
+                    <comment>Example : "magento/api/ValidaCliente"</comment>                    
+                </field>
+                <field id="validatecustomermockup" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mockup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+             <group id="verifyaddress" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Check Verify Address </label>
+                <field id="verifyaddressselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="verifyaddressproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Validate Customer URL</label>
+                    <comment>Example : "magento/v1/verify-address/telefonica/service/v1/verify-address"</comment>                    
+                </field>
+                <field id="verifyaddresstest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Validate Customer URL</label>
+                    <comment>Example : magento/v1/verify-address/telefonica/service/v1/verify-address"</comment>                    
+                </field>
+            </group>
+            <group id="checkblacklist" translate="label" type="text" sortOrder="23" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Check Black List Service</label>
+                <field id="checkblacklistselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="checkblacklistproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Check Black List URL</label>
+                    <comment>Example : "customer/v1/checkBlackList"</comment>                    
+                </field>
+                <field id="checkblacklisttest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Check Black List URL</label>
+                    <comment>Example : "customer/v1/checkBlackList"</comment>                    
+                </field>
+            </group>
+            <group id="checkpersonpco" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Check Person PCO Service</label>
+                <field id="checkpersonpcoselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="checkpersonpcoproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready Check Person PCO URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/checkPersonPCO"</comment>                    
+                </field>
+                <field id="checkpersonpcotest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready Check Person PCO  URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/checkPersonPCO"</comment>   
+                </field>
+            </group>   
+            <group id="customerinformation" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Customer Informarion</label>
+                <field id="customerinformationselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="customerinformationproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/customerDetail"</comment>                    
+                </field>
+                <field id="customerinformationtest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/customerDetail"</comment>   
+                </field>
+            </group>   
+            <group id="contaclog" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Contact Log</label>
+                <field id="contaclogselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="contaclogproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/createInteraction"</comment>                    
+                </field>
+                <field id="contaclogtest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/customer/v1/createInteraction"</comment>   
+                </field>
+                <field id="contaclogrenotermsdescription" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Terms and Conditions (Reno Repo) </label>
+                    <comment>Example : ""Se hace una prueba para validación del servicio."</comment>   
+                </field>
+                <field id="contaclogrenotermsinteraction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Interaction Terms and Conditions (Reno Repo) </label>
+                    <comment>Example : "Fidelización Contacto Efectivo Habitual-Acepta..."</comment>   
+                </field>
+                <field id="contaclogrenocontractdescription" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Contract(Reno Repo) </label>
+                    <comment>Example : ""Se hace una prueba para validación del servicio."</comment>   
+                </field>
+                <field id="contaclogrenocontractinteraction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Interaction Contract (Reno Repo) </label>
+                    <comment>Example : "Fidelización Contacto Efectivo Habitual-Acepta..."</comment>   
+                </field>
+
+                <field id="contaclogfijatermsdescription" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Terms and Conditions (Fija) </label>
+                    <comment>Example : ""Se hace una prueba para validación del servicio."</comment>   
+                </field>
+                <field id="contaclogfijatermsinteraction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Interaction Terms and Conditions (Fija) </label>
+                    <comment>Example : "Fidelización Contacto Efectivo Habitual-Acepta..."</comment>   
+                </field>
+                <field id="contaclogfijacontractdescription" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Description Contract(Fija) </label>
+                    <comment>Example : ""Se hace una prueba para validación del servicio."</comment>   
+                </field>
+                <field id="contaclogFijacontractinteraction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Interaction Contract (Fija) </label>
+                    <comment>Example : "Fidelización Contacto Efectivo Habitual-Acepta..."</comment>   
+                </field>
+
+            </group>   
+            <group id="busihalllist" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Busi Hall List</label>
+                <field id="busihalllistselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="busihalllistproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/busi-hall-list"</comment>                    
+                </field>
+                <field id="busihalllisttest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/busi-hall-list"</comment>   
+                </field>
+            </group>  
+            <group id="subscriberdetail" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Subscriber Detail</label>
+                <field id="subscriberdetailselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="subscriberdetailproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/subscriber/v1/subscriberDetail"</comment>                    
+                </field>
+                <field id="subscriberdetailtest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/subscriber/v1/subscriberDetail"</comment>   
+                </field>
+            </group> 
+            <group id="warehouselist" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Warehouse List</label>
+                <field id="warehouselistselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="warehouselistproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/resource/v1/ware-house-list"</comment>                    
+                </field>
+                <field id="warehouselisttest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/resource/v1/ware-house-list"</comment>
+                </field>
+            </group> 
+            <group id="arrivaltime" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Arrival Time</label>
+                <field id="arrivaltimeselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="arrivaltimeproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/logistics/arrival-time"</comment>                    
+                </field>
+                <field id="arrivaltimetest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/logistics/arrival-time"</comment>   
+                </field>
+            </group> 
+            <group id="holiday" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Holi Day</label>
+                <field id="holidayselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="holidayproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/holiday"</comment>                    
+                </field>
+                <field id="holidaytest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/holiday"</comment>   
+                </field>
+            </group>
+            <group id="offerfee" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Offer Fee</label>
+                <field id="offerfeeselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="offerfeeproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/offerFee"</comment>
+                </field>
+                <field id="offerfeetest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/offerFee"</comment>
+                </field>
+            </group>
+            <group id="offerinstall" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Offer Install</label>
+                <field id="offerinstallselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="offerinstallproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/resource/v1/offer/Installment"</comment>
+                </field>
+                <field id="offerinstalltest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/resource/v1/offer/Installment"</comment>
+                </field>
+            </group>
+            <group id="firstpayment" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Calculate First Payment</label>
+                <field id="firstpaymentselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="firstpaymentproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/calculateFirstPaymentForInstallment"</comment>
+                </field>
+                <field id="firstpaymenttest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/calculateFirstPaymentForInstallment"</comment>
+                </field>
+            </group>
+            <group id="city" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Region List City</label>
+                
+                <field id="1486464778355460239" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AMAZONAS</label>
+                </field>
+                <field id="1486464778355391000" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ANTIOQUIA</label>
+                </field>
+                <field id="1486464778355405270" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ARAUCA</label>
+                </field>
+               <field id="2020090310000000001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA</label>
+                </field>
+                <field id="1486464778355210001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ATLANTICO</label>
+                </field>
+                <field id="1486464778355100001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOGOTA DC</label>
+                </field>
+                <field id="1486464778355210002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOLIVAR</label>
+                </field>
+                <field id="1486464778355405263" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOYACA</label>
+                </field>
+                <field id="1486464778355391001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CALDAS</label>
+                </field>
+                <field id="1486464778355405264" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CAQUETA</label>
+                </field>
+                <field id="1486464778355405271" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CASANARE</label>
+                </field>
+                <field id="1486464778355500001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CAUCA</label>
+                </field>
+                <field id="1486464778355210003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CESAR</label>
+                </field>
+                <field id="1486464778355391002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CHOCO</label>
+                </field>
+                <field id="1486464778355210004" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CORDOBA</label>
+                </field>
+                <field id="1486464778355101603" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CUNDINAMARCA</label>
+                </field>
+                <field id="1486464778355460350" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GUAINIA</label>
+                </field>
+                <field id="1486464778355460394" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GUAVIARE</label>
+                </field>
+                <field id="1486464778355405265" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>HUILA</label>
+                </field>
+                <field id="1486464778355210005" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LA GUAJIRA</label>
+                </field>
+                <field id="1486464778355210006" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>MAGDALENA</label>
+                </field>
+                <field id="1486464778355405266" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>META</label>
+                </field>
+                <field id="1486464778355500002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NARIÑO</label>
+                </field>
+                <field id="1486464778355405267" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NORTE DE SANTANDER</label>
+                </field>
+                <field id="1486464778355460001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PUTUMAYO</label>
+                </field>
+                <field id="1486464778355391003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>QUINDIO</label>
+                </field>
+                <field id="1486464778355391004" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>RISARALDA</label>
+                </field>
+                <field id="1486464778355405268" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SANTANDER</label>
+                </field>
+                <field id="1486464778355210007" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SUCRE</label>
+                </field>
+                <field id="1486464778355405269" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>TOLIMA</label>
+                </field>
+                <field id="1486464778355500003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VALLE DEL CAUCA</label>
+                </field>
+                <field id="1486464778355460439" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VAUPES</label>
+                </field>
+                <field id="1486464778355460467" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VICHADA</label>
+                </field>
+            </group>
+            <group id="muni" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Region List Municipality</label>
+                <field id="1486464778355460239" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>AMAZONAS</label>
+                </field>
+                <field id="1486464778355391000" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ANTIOQUIA</label>
+                </field>
+                <field id="1486464778355405270" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ARAUCA</label>
+                </field>
+               <field id="2020090310000000001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ARCHIPIELAGO DE SAN ANDRES, PROVIDENCIA Y SANTA CATALINA</label>
+                </field>
+                <field id="1486464778355210001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>ATLANTICO</label>
+                </field>
+                <field id="1486464778355100001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOGOTA DC</label>
+                </field>
+                <field id="1486464778355210002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOLIVAR</label>
+                </field>
+                <field id="1486464778355405263" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOYACA</label>
+                </field>
+                <field id="1486464778355391001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CALDAS</label>
+                </field>
+                <field id="1486464778355405264" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CAQUETA</label>
+                </field>
+                <field id="1486464778355405271" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CASANARE</label>
+                </field>
+                <field id="1486464778355500001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CAUCA</label>
+                </field>
+                <field id="1486464778355210003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CESAR</label>
+                </field>
+                <field id="1486464778355391002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CHOCO</label>
+                </field>
+                <field id="1486464778355210004" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CORDOBA</label>
+                </field>
+                <field id="1486464778355101603" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>CUNDINAMARCA</label>
+                </field>
+                <field id="1486464778355460350" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GUAINIA</label>
+                </field>
+                <field id="1486464778355460394" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>GUAVIARE</label>
+                </field>
+                <field id="1486464778355405265" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>HUILA</label>
+                </field>
+                <field id="1486464778355210005" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LA GUAJIRA</label>
+                </field>
+                <field id="1486464778355210006" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>MAGDALENA</label>
+                </field>
+                <field id="1486464778355405266" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>META</label>
+                </field>
+                <field id="1486464778355500002" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NARIÑO</label>
+                </field>
+                <field id="1486464778355405267" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>NORTE DE SANTANDER</label>
+                </field>
+                <field id="1486464778355460001" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>PUTUMAYO</label>
+                </field>
+                <field id="1486464778355391003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>QUINDIO</label>
+                </field>
+                <field id="1486464778355391004" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>RISARALDA</label>
+                </field>
+                <field id="1486464778355405268" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SANTANDER</label>
+                </field>
+                <field id="1486464778355210007" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SUCRE</label>
+                </field>
+                <field id="1486464778355405269" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>TOLIMA</label>
+                </field>
+                <field id="1486464778355500003" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VALLE DEL CAUCA</label>
+                </field>
+                <field id="1486464778355460439" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VAUPES</label>
+                </field>
+                <field id="1486464778355460467" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>VICHADA</label>
+                </field>
+            </group>
+            <group id="serviceabilityorch" translate="label" type="text" sortOrder="27" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Ability Orch</label>
+                <field id="serviceabilityorchselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="serviceabilityorchproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/serviceabilityorch"</comment>
+                </field>
+                <field id="serviceabilityorchtest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/serviceabilityorch"</comment>
+                </field>
+            </group>
+            <group id="requestquestions" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Request Confronta Questions</label>
+                <field id="requestquestionsselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="requestquestionsproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/request-multiple-choice-questions/telefonica/service/v1/request-multiple-choice-questions"</comment>                    
+                </field>
+                <field id="requestquestionstest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/request-multiple-choice-questions/telefonica/service/v1/request-multiple-choice-questions"</comment>   
+                </field>
+            </group> 
+            <group id="verifyquestions" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Verify Confronta Questions</label>
+                <field id="verifyquestionsselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="verifyquestionsproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/verify-multiple-choice-questions/telefonica/service/v1/verify-multiple-choice-questions"</comment>                    
+                </field>
+                <field id="verifyquestionstest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/verify-multiple-choice-questions/telefonica/service/v1/verify-multiple-choice-questions"</comment>   
+                </field>
+                <field id="verifyquestionsmsgsuccess" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mensaje de Validacion Correcta</label>
+                    <comment>Example : Validación correcta, puedes continuar con la compra de tu servicio.</comment>   
+                </field>
+                <field id="verifyquestionsmsgfail" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Mensaje de Validacion fallida</label>
+                    <comment>Example : Validación incorrecta, intentalo de nuevo.</comment>   
+                </field>
+            </group> 
+             <group id="createorder4fmc" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Create Order 4 FMC</label>
+                <field id="createorder4fmcselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="createorder4fmcproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/create-order-4-fmc"</comment>
+                </field>
+                <field id="createorder4fmctest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/create-order-4-fmc"</comment>
+                </field>
+            </group>
+             <group id="createorder4fixed" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Service Create Order 4 FIXED</label>
+                <field id="createorder4fixedfmcselect" translate="label" type="select" showInDefault="1" canRestore="1">
+                    <label>Status Service</label>
+                    <source_model>Vass\Service\Model\Config\Source\StatusService</source_model>
+                </field>
+                <field id="createorder4fixedfmcproduction" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/createorder4fixed"</comment>
+                </field>
+                <field id="createorder4fixedfmctest" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Ready URL</label>
+                    <comment>Example : "magento/telefonica/service/v1/createorder4fixed"</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

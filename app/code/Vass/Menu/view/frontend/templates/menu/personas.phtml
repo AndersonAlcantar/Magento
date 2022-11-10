@@ -1,0 +1,183 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Vass\Menu\Helper\Data'); 
+
+$marcas = $helper->getListMarcas();
+$entret = $helper->getListEntret();
+
+$menu_personas= $helper->getMenu(1);
+
+// params config
+$enable_marcas = $helper->getConfigValue('vassmenu/general/enable_marcas');
+$enable_entrete = $helper->getConfigValue('vassmenu/general/enable_entrete');
+
+?>
+
+            
+                
+                <ul class="c-main-menu__list">
+                  <?php
+                  foreach ($menu_personas as $item) {
+
+                    if(isset($item['submenu'])){
+
+                    ?>
+                    <li class="c-main-menu__item js-btn-main-menu"><a class="c-main-menu__link i-after-chevron-down js-sibling-btn"><?php echo $item['name']; ?></a>
+                      <div class="c-megamenu"> 
+                        <div class="c-megamenu__header"><a class="c-megamenu__header-btn i-chevron-left js-return-megamenu"><?php echo $item['name']; ?></a></div>
+                        <nav class="c-submenu"> 
+                          <ul class="c-submenu__list"> 
+                            <?php
+                              foreach ($item['submenu'] as $submenu) {
+
+                                if(isset($submenu['submenu'])){
+                            ?>
+                            <li class="c-submenu__item js-target-third-menu">
+                              <div class="c-submenu__item-wrap">
+                                <a class="c-submenu__link i-after-chevron-right <?php echo $submenu['class']; ?> js-btn-third-menu"><?php echo $submenu['name']; ?> </a>
+                                <span class="c-submenu__paragraph"><?php echo $submenu['description']; ?></span>
+                                <div class="c-sumenu-third-level">
+                                  <div class="c-sumenu-third-level__wrap">
+
+                                    <div class="c-sumenu-third-level__header is-third-level">
+                                      <a class="c-megamenu__header-btn i-chevron-left js-return-megamenu"><?php echo $submenu['name']; ?> </a>
+                                    </div>
+                                    <ul class="c-sumenu-third-level__list <?php echo $submenu['class_menu']; ?>"> 
+                                    <?php
+                                      foreach ($submenu['submenu'] as $submenu_) {
+
+                                        if(isset($submenu_['submenu'])){
+                                        
+                                    ?>
+                                      <li class="c-sumenu-third-level__item">
+                                        <div class="c-sumenu-third-level__item-wrap js-target-dropdown">
+                                          <span class="c-sumenu-third-level__link i-after-chevron-down <?php echo $submenu_['class']; ?> o-dropdown__btn js-btn-dropdown"><?php echo $submenu_['name']; ?></span>
+                                          <div class="o-dropdown__content">
+                                            <ul class="c-submenu-fourth-level__list">
+
+                                            <?php
+                                              foreach ($submenu_['submenu'] as $submenu__) {
+                                            ?>
+                                              <li class="c-submenu-fourth-level__item">
+                                                <a href="<?= $block->escapeHtmlAttr(($submenu__['link']) ?  : '#')?>" class="c-submenu-fourth-level__link"> 
+                                                  <?= $block->escapeHtml($submenu__['name']); ?>
+                                                </a>
+                                              </li>                                          
+                                            <?php
+                                              }
+                                            ?>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      </li>
+                                      
+                                    <?php
+                                        }else{
+                                    ?>
+                                      <li class="c-sumenu-third-level__item">
+                                        <div class="c-sumenu-third-level__item-wrap">
+                                          <a class="c-sumenu-third-level__link <?= $block->escapeHtmlAttr($submenu_['class']); ?>" href="<?= $block->escapeHtmlAttr(($submenu_['link']) ?  : '#')?>" >
+                                            <?= $block->escapeHtml($submenu_['name']); ?> 
+                                            <?php if ($submenu_['discount_text']!=''): ?>  
+                                              <span class="o-tag"><?= $block->escapeHtml($submenu_['discount_text']); ?></span> 
+                                            <?php endif; ?>
+                                          </a>
+                                          <span class="c-sumenu-third-level__paragraph"><?= $block->escapeHtml($submenu_['description']); ?></span>
+                                        </div>
+                                      </li>
+                                    <?php
+                                        }
+                                      }
+                                    ?>                                    
+                                    </ul>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <?php
+                                }else{
+                            ?>
+                            <li class="c-submenu__item"> 
+                              <div class="c-submenu__item-wrap"> 
+                                <a href="<?=$block->escapeHtmlAttr(($submenu['link']) ?  : '#')?>" class="c-submenu__link <?= $block->escapeHtmlAttr($submenu['class']); ?>">
+                                    <?= $block->escapeHtml($submenu['name']); ?>
+                                    <?php if ($submenu['discount_text']!=''): ?>  
+                                      <span class="o-tag"><?= $block->escapeHtml($submenu['discount_text']); ?></span> 
+                                    <?php endif; ?> 
+                                </a>
+                                <span class="c-sumenu-third-level__paragraph"><?= $block->escapeHtml($submenu['description']); ?></span>
+                              </div>
+                            </li>
+                            <?php
+                                }
+                              }
+                            ?>                            
+                          </ul>
+                        </nav>
+
+                        <?php
+                        // opciones logos marcas
+                        if($item['name'] == 'Equipos' && $enable_marcas == true ){
+                        ?>
+                        <ul class="c-megamenu__content-brands">
+                          <?php
+                          foreach($marcas as $marca){
+                          ?>
+                          
+                          <li class="c-megamenu__brand">
+                            <a  href="<?= $block->escapeHtmlAttr(($marca['link']) ?  : '#')?>" class="c-megamenu__brand-link <?=  $block->escapeHtmlAttr($marca->getClass()); ?>"></a>                          
+                          </li>                             
+                          <?php
+                          }
+                          ?>
+                        </ul>
+                        <a class="c-megamenu__link i-after-chevron-right">Ver más equipos </a>
+                        <?php
+                        }
+                        ?>
+
+
+                        <?php
+                         // opciones logos entretenimiento
+                        if($item['name'] == 'Entretenimiento' && $enable_entrete == true){
+                        ?>
+                        <ul class="c-megamenu__content-brands">
+                          <?php
+                          foreach($entret as $item){
+                          ?>
+                            <li class="c-megamenu__brand">
+                              <a class="c-megamenu__brand-link c-megamenu__brand_size <?php echo $item->getClass(); ?>"></a>
+                            </li>                            
+                          <?php
+                          }
+                          ?>                        
+                          
+                        </ul>
+                        <a class="c-megamenu__link i-after-chevron-right">Ver más</a>
+                        <?php
+                        }
+                        ?>
+
+                      </div>
+                    </li>
+                  <?php
+                  }else{
+                  ?>
+                    <li class="c-main-menu__item">
+                      <a class="c-main-menu__link c-main-menu__link_display"href="<?= $block->escapeHtmlAttr(($item['link']) ?  : '#')?>">
+                        <?= $block->escapeHtml($item['name']); ?>
+                      </a>
+                    </li>
+
+                  <?php
+                    } //end if
+                  }//end foreach menu category
+                  ?>
+                
+
+                </ul>
+                
+
+

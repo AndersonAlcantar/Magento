@@ -1,0 +1,101 @@
+<?php
+/**
+ * @var \Vass\Checkout\ViewModel\Services $viewModelServices
+ */
+$viewModelServices = $block->getServices();
+$link = $viewModelServices->getlink();
+$userLines = $viewModelServices->getSubscriberListByCustomerAction();
+?>
+<button id="openModalErrorGeneral" data-modal="modal-error-general" class="open-modal u-hidden" type="button"></button>
+
+<div class="c-card-checkout-cta">
+	<a class="i-arrow-left c-card-checkout-cta__link" id="back-link">
+		Volver
+	</a>
+
+	<button
+		type="button"
+		class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+		>
+			Resumen de tu compra
+	</button>
+</div>
+<!-- ko scope: 'customer-lines' -->
+<form method="post" class="c-form c-form_w687">
+
+	<header class="c-form__header c-form_w365 u-box-align-center">
+		<h2
+			class="c-form__title c-form__title_margin-bottom"
+		>
+			¡Hola, para continuar selecciona la línea de tu preferencia!
+		</h2>
+	</header>
+
+	<div class="c-form__inner">
+
+		<figure class="c-form__figure">
+			<img
+				class="c-form__img"
+				src="<?= $escaper->escapeHtml($this->getViewFileUrl('images/layout-login-bg/women_phone.png')) ?>"
+				alt="Mujer caminando con un celular"
+			>
+		</figure>
+
+		<div class="c-form__group-radios c-form__group-radios_w423">
+		
+			<p class="c-form__lead c-form__lead_gray u-text-right">
+				Número de cédula:
+				<strong id="document-number"><?= $viewModelServices->getCustomerIdentication() ?></strong>
+			</p>
+			<?php if ($userLines) : ?>
+				<fieldset class="c-form__fieldset c-form__fieldset_scrollbar">
+					<?php foreach ($userLines as $line) : ?>
+						<div class="c-form__radio c-form__radio_justify-end">
+							<input
+								type="radio"
+								class="c-form__radio-input"
+								value="<?= $block->escapeHtmlAttr($line->serviceNumber) ?>"
+								data-bind="checked: lineValue, click: setLine"
+							/>
+							<div class="c-form__radio-box">
+								<label
+									class="c-form__radio-label i-phone"
+									for="<?= $block->escapeHtmlAttr($line->serviceNumber) ?>"
+								>
+									<?= $block->escapeHtml($line->serviceNumber) ?>
+								</label>
+							</div>
+						</div>
+					<?php endforeach ?>
+				</fieldset>
+				<div class="c-form__actions c-form__actions_margin-top40">
+					<input name="context" type="hidden" value="checkout">
+					<button
+						type="submit"
+						data-bind="click: submitLine, enable: enableSubmitLine"
+						class="o-btn o-btn_height56 c-form__btn"
+					>
+						Continuar
+					</button>
+				</div>
+			<?php endif ?>
+
+		</div>
+
+	</div>
+
+</form>
+<!-- /ko -->
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"customer-lines": {
+					"component": "Vass_Checkout/js/customer-lines"
+				}
+			}
+		}
+	}
+}
+</script>

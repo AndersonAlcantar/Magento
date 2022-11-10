@@ -1,0 +1,31 @@
+.o-item-selected {
+    @include flexbox;
+    @include align-items(center);
+
+    &:not(:last-child) {
+        @include px-to-rem(margin-bottom, $gutter * 2);
+    }
+}
+
+.o-item-selected__close {
+    @include px-to-rem(padding, 0 12px 0 0);
+    @include px-to-rem(font-size, 12px);
+    line-height: 1;
+    color: $c-on-primary-gray;
+    transition: all .2 ease-in;
+
+    &:hover {
+      transform: scale(.9)
+    }
+}
+
+.o-item-selected__figure {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    width: 100%;
+}
+
+.o-item-selected__img {
+    @include px-to-rem(max-height, 23px);
+}

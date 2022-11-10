@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:app/etc/routes.xsd">
+  <router id="admin">    
+    <route id="ordenar" frontName="ordenar">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+    <route id="menuitems" frontName="menuitems">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+    <route id="category" frontName="category">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+    <route id="marcas" frontName="marcas">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+    <route id="entretenimientos" frontName="entretenimientos">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+    <route id="redessociales" frontName="redessociales">
+        <module name="Vass_Menu" before="Magento_Adminhtml"/>
+    </route>
+  </router>
+</config>

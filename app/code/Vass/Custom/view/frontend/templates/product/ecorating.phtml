@@ -1,0 +1,48 @@
+<?php 
+     $_product = $block->getProduct();
+     $_helper = $this->helper('Vass\Custom\Helper\Data');
+     $attributeSetName = $_helper->getAttributeSetName($_product->getAttributeSetId());
+     $attrTextEcorating =$_product->getResource()->getAttribute('ecorating')->getFrontend()->getValue($_product);
+     $attrTextUrlEcorating =$_product->getCustomAttribute('url_ecorating');
+    if($attrTextEcorating && $attributeSetName == 'Equipos'):
+        $displayContent = "flex";
+        if($_product->getTypeId() == "configurable"):
+            $displayContent = "none";
+        endif;
+
+?>
+        <div style="display: <?=$displayContent?>" class="c-section-eco-bg ecorating-data">
+            <div class="o-canvas">
+            
+
+                <div class="c-section-eco">
+                    <!--Sección de texto-->
+                    <div class="c-section-eco__content">
+                        <h2 class="c-section-eco__title">Una forma inteligente de pensar en tu teléfono celular</h2>
+                        <p class="c-section-eco__paragraph">Eco Rating es un sello que evalúa el impacto medioambiental de todo el proceso de producción, uso y eliminación de tu teléfono celular</p>
+                        <div class="c-section-eco__cta">
+                            <a class="c-section-eco__btn o-btn" 
+                                href="<?= (!empty($attrTextUrlEcorating)) ? $attrTextUrlEcorating->getValue() : "#"?>">
+                                Quiero conocer más
+                            </a> 
+                        </div>    
+                    </div>
+
+                    <!--Sección que muestra porcentaje ecorating-->
+                    <div class="c-section-eco__percent">
+                        <div class="c-section-eco__wrap">
+                            <p class="c-section-eco__desc">Eco Rating</p>
+                            <img
+                                class="c-section-eco__img"
+                                src="<?php echo $block->getViewFileUrl('images/ecorating.svg') ?>">
+                            <p class="c-section-eco__num">
+                                <span id="ecorating-value"><?=(!$attrTextEcorating) ? '': $attrTextEcorating?></span> /100
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<?php 
+    endif;
+?>

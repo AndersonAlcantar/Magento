@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Vass\Custom\Block\Crumbblock" name="crumbs" as="crumbs" template="Vass_Custom::breadcrumbs.phtml" before="product.info.media">
+                <arguments>
+                    <argument name="catalogcategory" xsi:type="object">Vass\Custom\ViewModel\CatalogCategory</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="messages" remove="true"/>
+            <block class="Magento\Framework\View\Element\Messages" name="messagesProduct" template="Vass_Custom::product/messages.phtml"/>
+            <block name="modal_financingn" template="Vass_Custom::modals/financing.phtml" after="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="modal_stores" template="Vass_Custom::modals/stores.phtml" before="modal_financingn" />
+            <block name="attention_alert" template="Vass_Custom::modals/attention_alert.phtml" before="modal_financingn" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.attributes_featured" template="Vass_Custom::product/attributes_featured.phtml" before="product.information" />
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.information" template="Vass_Custom::product/information.phtml" before="product.ecorating">
+                <arguments>
+                    <argument name="at_call" xsi:type="string">getDescription</argument>
+                    <argument name="at_code" xsi:type="string">description</argument>
+                    <argument name="css_class" xsi:type="string">description</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
+                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View" name="product.ecorating" template="Vass_Custom::product/ecorating.phtml" before="product.list.suggestion" />
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="product.list.suggestion" template="Vass_Custom::product/list/suggestion.phtml" after="-" />
+            <block class="Magento\Catalog\Block\Product\View" name="product.service" template="Vass_Custom::main/service.phtml" after="-" />
+        </referenceContainer>
+    </body>
+</page>

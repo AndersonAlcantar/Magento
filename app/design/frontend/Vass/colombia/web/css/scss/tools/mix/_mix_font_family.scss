@@ -1,0 +1,67 @@
+/**
+ * Incluye fuentes iconos para before en los elementos 
+ * que no tienen selector i-
+ * @mixin
+ * @section Utils
+ * @param $ico Variable icono
+ * @example
+ *  .foo {
+ *		Propiedades...
+ *		&:before {
+ *    	@include font-family-ico($i-checked);
+ *		}
+ *  }
+ */
+@mixin font-family-ico($ico){
+	content: '#{$ico}';
+	font-family: '#{$font-family-ico}' !important;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+//*----------------------------------------------------*\
+    //-  Google-font easy
+//*----------------------------------------------------*/
+
+// Font family
+// use: .foo {
+//			@include font-family('default','regular');
+//		}
+// Depende de MAP: font family, font weight
+
+@mixin font-family($family, $weight,  $i:false) {
+
+	@if map-get($font-family, $family) {
+
+		@each $family-name, $family-value in $font-family {
+
+			@if $family-name == $family {
+				font-family: $family-value;
+			}
+		}
+
+	} @else {
+
+		font-family: $family;
+	}
+
+
+	@each $weight-name, $weight-value in $font-weight {
+
+		@if $weight-name == $weight {
+			font-weight: $weight-value;
+		}
+	}
+
+	@if $i == italic {
+        font-style: italic;
+    }
+}
+
+
+

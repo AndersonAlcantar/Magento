@@ -1,0 +1,314 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var \Vass\Custom\ViewModel\CatalogCategory $catalogCategory
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $block->getData('outputHelper');
+$helperCuotas = $this->helper(Vass\Config\Helper\Data::Class);
+$helperBanners = $this->helper(Vass\Banners\Helper\Data::Class);
+$banner = $helperBanners->getBannerById(2); //Obtener el banner middle con el id '2'
+$cuotas = $helperCuotas->getCuotas();
+$counter_product = 0;
+$request = $block->getRequest();
+$params = $request->getParams();
+$params = array_filter($params);  
+$routeName = $request->getRouteName();
+$action = $request->getFullActionName();
+$currentCategory = false;
+$catalogCategory = $block->getCatalogcategory();
+$showBannerCurrentCategory = false;
+if($routeName !='catalogsearch'){
+    $currentCategory = $catalogCategory->getCurrentCategory()->getUrlPath();
+    if( $currentCategory == "celulares"  ){
+        $showBannerCurrentCategory = true;
+    }
+}   
+
+?>
+<?php if (!$_productCollection->count()): ?>
+   <div class="message info empty">
+       <div><?= $escaper->escapeHtml(__('We can\'t find products matching the selection.')) ?></div>
+   </div>
+<?php else: ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() === 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+   /**
+    * Position for actions regarding image size changing in vde if needed
+    */
+    $pos = $block->getPositioned();
+    ?>
+
+    <!-- Products grid -->
+    <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+        <ol class="c-card-grid">
+
+            <?php
+                $index = 0;
+                /** @var $_product \Magento\Catalog\Model\Product */
+            ?>
+
+            <?php foreach ($_productCollection as $_product) :
+                $counter_product = $counter_product + 1;
+                $price = $_product->getPriceInfo()->getPrice('regular_price')->getValue();
+                $sprice = $_product->getPriceInfo()->getPrice('final_price')->getValue();
+                        ?>
+
+            <li class="c-card">
+                <a
+                    class="c-card__link"
+                    id="product-item-info_<?= /* @noEscape */ $_product->getId() ?>"
+                    data-container="product-<?= /* @noEscape */ $viewMode ?>"
+                    data-product-name="<?= /* @noEscape */ $_product->getName() ?>"
+                    data-product-id="<?= /* @noEscape */ $_product->getId() ?>"
+                    data-product-price="<?= /* @noEscape */ $_product->getFinalPrice() ?>"
+                    data-product-brand="<?= /* @noEscape */ $_product->getData('marca') ?>"
+                    data-product-category="Equipo"
+                    data-product-variant=""
+                    data-product-dimension18="catalogo-general-Terminal Libre"
+                    data-product-dimension26="<?= /* @noEscape */ abs(round((($sprice - $price) / $price) * 100, 0)) ?>"
+                    data-product-dimension27="<?= /* @noEscape */ $_product->getName() ?>"
+                    data-product-position="<?= /* @noEscape */ (string)(++$index) ?>"
+                    data-is-viewed="n"
+                    href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                    title="Ver detalle de <?= $escaper->escapeUrl($_product->getName()) ?>"
+                >
+
+                    <?php
+                        $productImage = $block->getImage(
+                            $_product,
+                            $imageDisplayArea
+                        );
+                        if ($pos != null) {
+                            $position = 'left:' .
+                            $productImage->getWidth() . 'px;' . 'top:' . $productImage->getHeight()
+                            . 'px;';
+                        }
+                    ?>
+
+                    <?php // Product Image ?>
+                    <div class="c-card__photo" tabindex="-1">
+                        <?= $productImage->toHtml() ?>
+                    </div>
+
+                    <div class="c-card__content">
+                        <?php
+                           $attrTextDctoValue =$_product->getResource()
+                           ->getAttribute('text_dcto')
+                           ->getFrontend()->getValue($_product);
+                        if (!empty($attrTextDctoValue) && $attrTextDctoValue!=''):
+                            ?>
+                            <span class="c-card__tag"><?= $escaper->escapeHtml($attrTextDctoValue)?></span>
+                            <?php
+                            endif;
+                        ?>
+                        <?php $_productNameStripped = $block->stripTags(
+                            $_product->getName(),
+                            null,
+                            true
+                            );
+                        ?>
+
+                        <h4 class="c-card__name">
+                            <?=/* @noEscape */ $_helper->productAttribute(
+                                $_product,
+                                $_product->getName(),
+                                'name'
+                            ) ?>
+                        </h4>
+
+                        <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        <?php
+                        if ($cuotas >= 1):
+                                $dueprice = round(($sprice) / $cuotas, 2);
+                            ?>
+                            <p class="c-card__text">Hasta <?=$escaper->escapeHtml($cuotas)?> cuotas de:</p>
+
+                        <h3 class="c-card__dues" data-dynamic="plazos">
+                            <?= "$" .  $escaper->escapeHtml(number_format(abs($dueprice), 0, ",", "."))?>
+                        </h3>
+
+                            <?php
+                            endif;
+                        ?>
+                        <p class="c-card__text c-card__text_sm">Precio desde:</p>
+
+                        <div class="c-card__price">
+
+                                    $<?=$escaper->escapeHtml(number_format($sprice, 0, ",", "."))?>
+
+                                    <?php if ($price>$sprice) { ?> 
+
+                                    <small class="c-card__price-previous">
+                                        $<?=$escaper->escapeHtml(number_format($price, 0, ",", "."))?>            
+                                    </small>
+
+
+                                    <?php    } ?>
+
+                        </div>
+
+                        <ul class="c-card__schema">
+                            <?= $block->getProductDetailsHtml($_product) ?>
+                        </ul>
+
+                        <!-- <div class="product-item-inner u-hidden">
+                            <div class="product actions product-item-actions">
+                                <div class="actions-primary">
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <?php $postParams = $block->getAddToCartPostParams($_product);
+                                        ?>
+                                        <form data-role="tocart-form" 
+                                        data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>" 
+                                        action="<?= $escaper->escapeUrl($postParams['action']) ?>" method="post">
+                                        <?php $optionsData = $block->getData('viewModel')->getOptionsData($_product);
+                                        ?>
+                                        <?php foreach ($optionsData as $optionItem): ?>
+                                            <input type="hidden" 
+                                            name="<?= $escaper->escapeHtml($optionItem['name']) ?>" 
+                                            value="<?= $escaper->escapeHtml($optionItem['value']) ?>" />
+                                        <?php endforeach; ?>
+                                        <input type="hidden" name="product" value="<?= /* @noEscape */ $postParams['data']['product'] ?>" />
+                                        <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?=
+                                                                                                                                    /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
+                                                                                                                                    ?>" />
+                                        <?= $block->getBlockHtml('formkey') ?>
+                                        <button type="submit" title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary" disabled>
+                                            <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                        </button>
+                                        </form>
+                                    <?php else: ?>
+                                        <?php if ($_product->isAvailable()): ?>
+                                        <div class="stock available">
+                                            <span><?= $escaper->escapeHtml(__('In stock')) ?></span>
+                                        </div>
+                                        <?php else: ?>
+                                        <div class="stock unavailable">
+                                            <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+                                        </div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <?= ($pos && strpos($pos, $viewMode . '-primary')) ?
+                                    /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                        $position,
+                                        'product-item-info_' . $_product->getId() . ' div.actions-primary'
+                                    ) : '' ?>
+                                <div data-role="add-to-links" class="actions-secondary">
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                    <?php endif; ?>
+                                </div>
+                                <?= ($pos && strpos($pos, $viewMode . '-secondary')) ?
+                                    /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                        $position,
+                                        'product-item-info_' . $_product->getId() . ' div.actions-secondary'
+                                    ) : '' ?>
+                            </div>
+
+                            <?php if ($showDescription): ?>
+                                <div class="product description product-item-description">
+                                <?= /* @noEscape */ $_helper->productAttribute(
+                                    $_product,
+                                    $_product->getShortDescription(),
+                                    'short_description'
+                                ) ?>
+                                <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>" 
+                                title="<?= /* @noEscape */ $_productNameStripped ?>"
+                                 class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
+                                </div>
+                            <?php endif; ?>
+                        </div> -->
+
+                    </div>
+
+                </a>
+                
+                <?= ($pos && strpos($pos, $viewMode . '-actions')) ?
+                /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                    $position,
+                    'product-item-info_' . $_product->getId() . ' div.product-item-actions'
+                ) : '' ?>
+            </li>
+
+                <?php
+            // banner middle
+                if ($counter_product == 6 && $routeName!='catalogsearch' && $showBannerCurrentCategory && count($params) == 1) {
+            ?>
+
+                <li class="c-card-grid__banner">
+                    <!-- TODO: Eliminar imagenes dummy cuando sea administrable el banner. -->
+                    <picture
+                        class="c-banner-grid"
+                    >
+                        <!-- mobile -->
+                        <source
+                            srcset="<?= $escaper->escapeHtml($helperBanners->getMediaUrl()).
+                            'banners/'. 
+                            $escaper->escapeHtml($banner->getMobileImage())?>"
+                            media="(max-width: 740px)"
+                        >
+
+                        <!-- intermediates -->
+                        <source
+                            srcset="<?= $escaper->escapeHtml($helperBanners->getMediaUrl()).
+                            'banners/'.
+                            $escaper->escapeHtml($banner->getTabletImage()) ?>"
+                            media="(max-width: 1024px)"
+                        >
+
+                        <!-- desktop -->
+                        <img
+                            class="c-banner-intro__img"
+                            src="<?= $escaper->escapeHtml($helperBanners->getMediaUrl()).
+                            'banners/'.
+                            $escaper->escapeHtml($banner->getDesktopImage())?>"
+                            alt="Banner beneficios movistar"
+                        >
+                    </picture>
+
+                </li>
+
+            <?php } ?>
+
+            <?php endforeach; ?>
+        </ol>
+    </div>
+        <?= $block->getChildBlock('toolbar')->setIsBottom(true)->toHtml() ?>
+   <script type="text/x-magento-init">
+   {
+       "[data-role=tocart-form], .form.map.checkout": {
+           "catalogAddToCart": {
+               "product_sku": "<?= $escaper->escapeJs($_product->getSku()) ?>"
+           }
+       }
+   }
+   </script>
+<?php endif; ?>

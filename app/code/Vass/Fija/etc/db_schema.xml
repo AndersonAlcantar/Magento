@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Created By : MagentoExplore
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="vass_fija_email_blacklist" resource="default" engine="innodb" comment="Vass Fija Email BlackList">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="Email BlackList ID" />
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name Email BlackList" />
+        <column xsi:type="smallint" name="status" nullable="false" comment="Status"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>      
+   </table>
+   <table name="vass_fija_offerttvdecos" resource="default" engine="innodb" comment="Vass Fija Offerttvdecos">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="Offerttvdecos ID" />
+        <column xsi:type="smallint" name="status" nullable="false" comment="Status"/>
+        <column xsi:type="smallint" name="decos" nullable="false" comment="Decos"/>
+        <column xsi:type="smallint" name="offert_id" nullable="false" comment="Offert Id"/>
+        <column xsi:type="smallint" name="price" nullable="false" comment="Price"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>  
+   </table>
+   <table name="vass_fija_ciclos" resource="default" engine="innodb" comment="Vass Fija Offerttvdecos">
+        <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="Offerttvdecos ID" />
+        <column xsi:type="varchar" name="dia" length="255" nullable="false" comment="Dia venta del mes"/>
+        <column xsi:type="varchar" name="ciclo" length="255" nullable="false" comment="Ciclo Asignado"/>
+        <column xsi:type="smallint" name="status" nullable="false" comment="Status"/>
+        <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+        <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id" />
+        </constraint>  
+   </table>
+   <table name="vass_banners_fija" resource="default" engine="innodb" comment="Vass Banners table">
+      <column xsi:type="int" name="id" padding="6" unsigned="true" nullable="false" identity="true" comment="Banner ID" />
+      <column xsi:type="varchar" name="scheduled" nullable="true"  comment="Banner title" />
+      <column xsi:type="smallint" name="id_cat" nullable="false"    comment="Category ID" />
+      <column xsi:type="smallint" name="id_subcat" nullable="false"    comment="SubCategory ID" />
+      <column xsi:type="varchar" name="banner_title" nullable="false" length="255" comment="Banner title" />
+      <column xsi:type="varchar" name="description" nullable="false" length="255" comment="Banner description" />
+      <column xsi:type="varchar" name="desktop_image" nullable="false" length="255" comment="Desktop image" />
+      <column xsi:type="varchar" name="tablet_image" nullable="false" length="255" comment="Tablet image" />
+      <column xsi:type="varchar" name="mobile_image" nullable="false" length="255" comment="Mobile image" />
+      <column xsi:type="varchar" name="link" nullable="false" length="255" comment="Banner link" />
+      <column xsi:type="varchar" name="text_button" nullable="false" length="255" comment="Text Button" />
+      <column xsi:type="int" name="status" unsigned="true" nullable="false"  comment="Status"/>      
+      <column xsi:type="varchar" name="type" nullable="false" length="255" comment="Type" />      
+      <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+      <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>        
+   </table>
+   <table name="vass_fija_offerts" resource="default" engine="innodb" comment="Vass Offers">
+      <column xsi:type="int" name="id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID" />
+      <column xsi:type="int" name="id_offert"  nullable="false" comment="Offert ID" />
+      <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Nombre" />
+      <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Titulo" />
+      <column xsi:type="varchar" name="subtitle" nullable="false" length="255" comment="Subtitulo" />
+      <column xsi:type="varchar" name="months" nullable="false" length="255" comment="Meses" />
+      <column xsi:type="varchar" name="message_exclusive" nullable="false" length="255" comment="Mensaje Exclusivo" />
+      <column xsi:type="decimal" name="price" nullable="false"  comment="Precio" />
+      <column xsi:type="smallint" name="discount" nullable="false"  comment="Descuento" />
+      <column xsi:type="smallint" name="recommended" nullable="false"  comment="Recomendado" />
+      <column xsi:type="varchar" name="message_information" nullable="false" length="255"   comment="Recomendado" />
+      <column xsi:type="smallint" name="id_cat" nullable="false"    comment="Category ID" />
+      <column xsi:type="smallint" name="id_subcat" nullable="false"    comment="SubCategory ID" />
+      <column xsi:type="text" name="components" nullable="false"   comment="Componentes" />
+      <column xsi:type="int" name="order" unsigned="true" nullable="false"  comment="Order"/>      
+      <column xsi:type="decimal" name="normal_price" unsigned="true" nullable="false"  comment="Precio Normal"/>  
+      <column xsi:type="varchar" name="offert_image" nullable="true" length="255" comment="Image Offert" />    
+      <column xsi:type="int" name="status" unsigned="true" nullable="false"  comment="Status"/>      
+      <column name="created_at" nullable="false" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="false"/>
+      <column name="updated_at" nullable="true" xsi:type="datetime" default="CURRENT_TIMESTAMP" on_update="true"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>        
+   </table>
+</schema>

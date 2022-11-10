@@ -1,0 +1,92 @@
+<?php
+$request = $this->getRequest();
+
+$routeName = $request->getRouteName();
+$helperBanners = $this->helper('Vass\Banners\Helper\Data');
+$banner = $helperBanners->getBannerById(1); //Obtener el banner top con el id '1'
+?>
+
+
+<?php
+if($routeName!='catalogsearch'){
+?>
+<!-- Slider banner intro -->
+<div class="swiper js-swiper-banner">
+  <div class="swiper-wrapper">
+
+    <div class="swiper-slide">
+
+      <!-- Banner intro component -->
+      <?php if(!empty($banner->getTextButton())):?>
+        <div
+          class="c-banner-intro">
+
+          <picture
+            class="c-banner-intro__picture"
+          >
+            <!-- desktop -->
+            <source
+              srcset="<?php echo $helperBanners->getMediaUrl().'banners/'. $banner->getMobileImage() ?>"
+              media="(max-width: 740px)"
+            >
+
+            <!-- intermediates -->
+            <source
+              srcset="<?php echo $helperBanners->getMediaUrl(). 'banners/'. $banner->getTabletImage() ?>"
+              media="(max-width: 1024px)"
+            >
+
+            <!-- mobile -->
+            <img
+              class="c-banner-intro__img"
+              src="<?php echo $helperBanners->getMediaUrl().'banners/'. $banner->getDesktopImage()?>"
+              alt=""
+            >
+          </picture>
+
+          <header class="c-banner-intro__header">
+
+            <div>
+
+              <h3 class="c-banner-intro__title">
+                <?=$banner->getBannerTitle()?>
+              </h3>
+            <?php if(!empty($banner->getDescription())):?>
+                <p class="c-banner-intro__text">
+                  <?=$banner->getDescription()?>
+                </p>
+            <?php 
+              endif;
+            ?> 
+            </div>
+              <a
+                href="<?=$banner->getLink()?>" 
+                class="c-banner-intro__btn o-btn o-btn_light"
+              >
+              <?=$banner->getTextButton()?>
+              </a>
+          </header>
+
+        </div>
+      <?php endif; ?>
+
+    </div>
+
+  </div>
+
+  <!-- Navigation buttons -->
+  <span class="o-swiper-chevron swiper-button-prev">
+    <span class="u-hidden">
+      Slider anterior
+    </span>
+  </span>
+  <span class="o-swiper-chevron swiper-button-next">
+    <span class="u-hidden">
+      Slider siguiente
+    </span>
+  </span>
+
+</div>
+<?php
+}
+?>

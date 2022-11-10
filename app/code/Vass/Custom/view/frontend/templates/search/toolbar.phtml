@@ -1,0 +1,35 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get('Vass\Menu\Helper\Data'); 
+
+// url parse
+$urlInterface = $objectManager->get('Magento\Framework\UrlInterface');
+$url_parts = $helper->getUrlParts($urlInterface->getCurrentUrl());
+
+
+//helper custom
+$helper_custom = $objectManager->get('Vass\Custom\Helper\Data');
+?>
+<nav class="c-tabs__nav c-tabs__nav_center">
+    <?php /** En caso de que venga una sola tab poner el modificador c-tabs__link_with en la etiqueta a */?>
+    <a class="c-tabs__link c-tabs__link_active c-tabs__link_with" href="">
+        <span class="c-tabs__text">
+            Renovar Equipo 
+        </span>
+    </a>
+    <a class="c-tabs__link u-hidden" href="">
+        <span class="c-tabs__text">
+            Renueva con tu plan
+        </span>
+    </a>
+    <a class="c-tabs__link u-hidden" href="">
+        <span class="c-tabs__text">
+            Cambiate a movistar
+        </span>
+    </a>
+    <a class="c-tabs__link u-hidden" href="">
+        <span class="c-tabs__text">
+            Pasate a un plan
+        </span>
+    </a>
+</nav>

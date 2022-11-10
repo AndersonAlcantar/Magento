@@ -1,0 +1,21 @@
+.c-horizontal-bars {
+    @include px-to-rem(margin, $gutter * 3 0);
+}
+.c-horizontal-bars__box {
+    @include flexbox;
+    @include px-to-rem(column-gap, $gutter);
+    width: fit-content;
+    margin: 0 auto;
+    .is-active {
+        background-color: $c-primary;
+    }
+}
+.c-horizontal-bar__element {
+    display: block;
+    @include px-to-rem(min-width, 58px);
+    @include px-to-rem(height, 6px);
+    @include px-to-rem(border-radius, 5px);
+    background-color: $c-gray-2;
+    
+    
+}

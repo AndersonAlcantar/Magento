@@ -1,0 +1,29 @@
+.o-list-file {
+  @include flexbox;
+  @include justify-content(space-evenly);
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 3);
+  @include px-to-rem(row-gap, $gutter * 3);
+  list-style: none;
+}
+
+.o-list-file__item {
+  transition: all .2 ease-in;
+
+  &:hover {
+    opacity: .5;
+  }
+}
+
+.o-list-file__img {
+  @include px-to-rem(width, 60px);
+  @include px-to-rem(min-width, 60px);
+  @include px-to-rem(max-width, 60px);
+}
+
+.o-list-file__caption {
+  @include px-to-rem(max-width, 130px);
+  @include px-to-rem(margin-top, $gutter);
+  line-height: 1.2;
+  color: $c-gray-5;
+}

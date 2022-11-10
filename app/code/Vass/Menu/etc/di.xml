@@ -1,0 +1,55 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="marcas_listing_data_source" xsi:type="string">Vass\Menu\Model\ResourceModel\Marca\Grid\Collection</item>
+                <item name="entretenimientos_listing_data_source" xsi:type="string">Vass\Menu\Model\ResourceModel\Entretenimiento\Grid\Collection</item>
+                <item name="redessociales_listing_data_source" xsi:type="string">Vass\Menu\Model\ResourceModel\RedSocial\Grid\Collection</item>
+                <item name="menucategorys_listing_data_source" xsi:type="string">Vass\Menu\Model\ResourceModel\MenuCategory\Grid\Collection</item>
+                <item name="menuitems_listing_data_source" xsi:type="string">Vass\Menu\Model\ResourceModel\MenuItems\Grid\Collection</item>
+            </argument>
+            
+        </arguments>
+    </type>
+    <type name="Vass\Menu\Ui\Component\DataProvider">
+        <arguments>
+            <argument name="additionalFilterPool" xsi:type="array">
+                <item name="fulltext" xsi:type="object">Vass\Menu\Ui\Component\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Vass\Menu\Model\ResourceModel\Marca\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_menu_marca</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Menu\Model\ResourceModel\Marca</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Menu\Model\ResourceModel\Entretenimiento\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_menu_entretenimiento</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Menu\Model\ResourceModel\Entretenimiento</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Menu\Model\ResourceModel\RedSocial\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_menu_redsocial</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Menu\Model\ResourceModel\RedSocial</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Menu\Model\ResourceModel\MenuCategory\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_menu_category</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Menu\Model\ResourceModel\MenuCategory</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Vass\Menu\Model\ResourceModel\MenuItems\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">vass_menu_items</argument>
+            <argument name="resourceModel" xsi:type="string">Vass\Menu\Model\ResourceModel\MenuItems</argument>
+        </arguments>
+    </virtualType>
+</config>

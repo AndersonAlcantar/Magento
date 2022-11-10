@@ -1,0 +1,34 @@
+.c-float-button {
+    display: grid;
+    place-items: center;
+    position: fixed;
+    @include px-to-rem(right, 32px);
+    @include px-to-rem(bottom, 50px);
+    @include px-to-rem(height, 41px);
+    @include px-to-rem(width, 41px);
+    background-color: $c-blue-normal;
+    @include px-to-rem(border-radius, 60px);
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.c-float-button__icon {
+    &::before {
+        display: block;
+        @include px-to-rem(font-size, 25px);
+        color: $c-neutro;
+    }
+}
+
+@include media-query(medium) {
+    .c-float-button {
+        @include px-to-rem(bottom, 250px);
+    }
+}
+
+@include media-query(wide) {
+    .c-float-button {
+        @include px-to-rem(bottom, 202px);
+    }
+}

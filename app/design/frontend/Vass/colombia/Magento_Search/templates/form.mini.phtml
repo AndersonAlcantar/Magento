@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $escaper \Magento\Framework\Escaper */
+/** @var $configProvider \Magento\Search\ViewModel\ConfigProvider */
+$configProvider = $block->getData('configProvider');
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $configProvider->getSearchHelperData();
+$allowedSuggestion = $configProvider->isSuggestionsAllowed();
+$quickSearchUrl = $allowedSuggestion ? $escaper->escapeUrl($helper->getSuggestUrl()) : '';
+?>
+<div class="c-tabs__search">
+	<form
+		class="form minisearch" id="search_mini_form"
+		action="<?= $escaper->escapeUrl($helper->getResultUrl()) ?>" method="get"
+	>
+
+		<div class="c-tabs__field field search i-search">
+
+			<input
+				id="search"
+				data-mage-init='{
+					"quickSearch": {
+						"formSelector": "#search_mini_form",
+						"destinationSelector": "#search_autocomplete",
+						"minSearchLength": "<?= $escaper->escapeHtml($helper->getMinQueryLength()) ?>",
+						"url": "<?= /* @noEscape */ $quickSearchUrl ?>"
+					}
+				}'
+				type="text"
+				name="<?= $escaper->escapeHtmlAttr($helper->getQueryParamName()) ?>"
+				value="<?= /* @noEscape */ $helper->getEscapedQueryText() ?>"
+				placeholder="<?= $escaper->escapeHtmlAttr(__('Search entire store here...')) ?>"
+				class="c-tabs__input"
+				maxlength="<?= $escaper->escapeHtmlAttr($helper->getMaxQueryLength()) ?>"
+				minlength="<?= $escaper->escapeHtmlAttr($helper->getMinQueryLength()) ?>"
+				role="combobox"
+				aria-haspopup="false"
+				aria-autocomplete="both"
+				aria-expanded="false"
+				autocomplete="off"
+				required
+			/>
+
+		</div>
+
+		<div id="search_autocomplete" class="c-resultlist search-autocomplete"></div>
+
+	</form>
+</div>
+<script>
+require([
+	'jquery',
+	'domReady!'
+], function ($) {
+	var searchForm = $('#search_mini_form');
+	var minLength = <?= $escaper->escapeHtmlAttr($helper->getMinQueryLength()) ?>;
+	$('#search').keydown(function (e) {
+		if (e.which === 13) {
+			e.preventDefault();
+			if ($(this).val().length < minLength) {
+				searchForm[0].reportValidity();
+			}
+		}
+	});
+});
+</script>

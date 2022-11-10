@@ -1,0 +1,55 @@
+//-*----------------------------------*
+//-  Objects: Styles for text
+//-*----------------------------------*
+
+/**
+ * Class: o-text | body
+ * @description  estilos de texto generales para el body
+ *  ♣ Propiedades: Lato | 16px | 1.6
+ * @atom Body copy
+ * @section 03. Estilos textos
+ * @markup
+ *  <p class="o-text">@{lipsum:1:paragraphs}</p>
+ */
+
+body,
+.o-text {
+    line-height: 1.6;
+    @include px-to-rem(font-size, 16px);
+    font-family: $f-default;
+    color: $c-gray-5;
+}
+
+.o-text_primary {
+    color: $c-primary;
+}
+
+.o-bold {
+    font-weight: $f-bold;
+}
+
+.o-light {
+    font-weight: $f-light;
+}
+
+.o-text-ico {
+    display: inline-flex;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(row-gap, $gutter);
+
+    &::before {
+        @include px-to-rem(font-size, $gutter * 3);
+        color: $c-blue-normal;
+    }
+}
+.o-text_gray4 {
+    color: $c-gray-4;
+}
+.o-text_gray5 {
+    color: $c-gray-5;
+}
+.o-text_fs14 {
+    @include px-to-rem(font-size, 14px);
+}

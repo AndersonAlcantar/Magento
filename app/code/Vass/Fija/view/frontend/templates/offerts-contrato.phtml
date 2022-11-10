@@ -1,0 +1,197 @@
+<?php
+
+/** @var $viewModel \Vass\Fija\ViewModel\DataCustomer */
+$viewModel = $block->getViewModel();
+
+?>
+
+<section class="o-section">
+
+    <div class="o-layout-2-columns">
+        <div class="c-card-checkout-cta">
+            <button
+                type="button"
+                class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+            >
+                Resumen de tu compra
+            </button>
+        </div>
+
+        <form method="post" class="c-form c-form_w723 c-form_transparent">
+
+            <header class="c-form__header u-text-left">
+                <h2 class="c-form__title c-form__title_big">
+                    ¡Genial, ya casi está!
+                </h2>
+                <p class="c-form__lead c-form__lead_gray">
+                    Para nosotros es muy importante que estés informado,  aquí puedes ver tu contrato.
+                </p> 
+            </header> 
+
+            <fieldset class="c-form__fieldset">
+                <h5 class="o-dropdown__btn o-dropdown__btn_border">Contrato</h5>
+
+                <div class="u-margin-top-56 u-margin-bottom-56">
+                    <div class="u-download-link-ico">
+                        <i class="u-download-link-ico__ico i-paper-movistar">
+                            <span class="u-hidden">Icono contrato movistar</span>
+                        </i>
+                        <a class="u-download-link-ico__link i-paperclip" href="">
+                            <span class="u-download-link-ico__txt">Descarga tu contrato</span>
+                        </a>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <div class="is-active">
+                <div
+                    class="
+                        c-callout
+                        c-callout_sm
+                        c-callout_white
+                        u-margin-bottom-40
+                        i-information
+                    "
+                >   <div class="u-text-left">
+                        <strong class="c-callout__text">POR FAVOR TEN EN CUENTA:</strong>
+                        <p class="c-callout__text">
+                            Para garantizar tu orden debes aceptar y firmar
+                            el contrato digitalmente haciendo clic en el campo de selección.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="c-form__actions c-form__actions_column">
+                <input name="context" type="hidden" value="checkout" />
+
+                <div class="c-form__checkbox c-form__checkbox_w292">
+                    <input class="c-form__checkbox-input" type="checkbox">
+                    <label class="c-form__checkbox-label u-text-left">
+                        <span>
+                            Al hacer click en el checkbox aceptas el contrato digital del servicio
+                        </span>
+                    </label>
+                </div> 
+                <!--
+                    1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+                    2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+                -->
+                <button
+                    type="submit"
+                    class="o-btn c-form__btn"
+                    disabled
+                    
+                >
+                    Finalizar
+                </button>
+            </div>
+            
+        </form>
+
+        <!-- Detalle del producto -->
+        <div
+            id="checkout-summary"
+            
+            class="c-card-summary__wrap"
+        >
+
+            <div
+                class="c-card-summary c-card-summary_space-bottom js-target-summary"
+                
+            >
+                <h3 class="c-card-summary__title c-card-summary__title_border">Detalles del producto</h3>
+
+                <div>
+
+                    <div class="c-card-summary__amount">
+                        <h4 class="mark" scope="row" >
+                            Plan Trío Megas
+                        </h4>
+                    </div>
+
+                    <div class="c-card-summary__box">
+                        <div class="c-card-summary__amount c-card-summary__amount_before">
+                            <h4 class="mark" scope="row">
+                                Antes
+                            </h4>
+
+                            <span class="c-card-summary__amount-trough">
+                                $130.990
+                            </span>
+                        </div>
+
+                        <div class="c-card-summary__amount">
+                            <h4 class="mark" scope="row">
+                                Ahora
+                            </h4>
+
+                            <strong class="amount">
+                                $67.495
+                            </strong>
+                        </div>
+
+                        <ul class="c-card-summary__details">
+                            <li><strong>RV_14885, 50% dto mes 2 - 4 - 6 - 8</strong></li>
+                            <li>Línea Básica (Voz Nacional 200 Mn LDI) </li>
+                            <li> TV (Plan IPTV Fibra Trío RV_14874)</li>
+                            <li>Internet Fibra (500 Mbps Trío BA)</li>
+                        </ul>
+
+                    </div>
+
+                    <div class="c-card-summary__box">
+                      <h4 class="c-card-summary__subtitle">Detalle de instalación</h4>
+
+                      <table class="c-card-summary__table">
+                        <thead class="c-card-summary__table-head">
+                          <tr>
+                            <td>Dirección</td>
+                            <td>Municipio</td>
+                            <td>Ciudad</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="c-card-summary__table-row">
+                            <td class="c-card-summary__table-cell">TV CL 11A - 55 JULIO FLOREZ - SUBA APARTAMENTO 402</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                            <td class="c-card-summary__table-cell">Bogotá D.C.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div class="c-card-summary__amount c-card-summary__total">
+                        <h4 class="mark" scope="row">
+                            <strong >Total</strong>
+                        </h4>
+
+                        <p
+                            class="amount"
+                           
+                            data-th="Total"
+                        >
+                            <strong>$67.496</strong>
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="c-card-summary__message i-information u-padding-bottom-32">
+                    <p>Recuerda que si tu plan tiene descuentos los verás reflejado en tu factura.
+                        Para los planes de Fibra Óptica el equipo Repetidor WiFi Base Port será facturado
+                        mensualmente por un valor de $4.000 IVA incluido por 48 meses
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Fin detalle del producto -->
+
+    </div>
+
+</section>
+
+<script src="<?php echo $this->getViewFileUrl('js/fija/copy_credential.js'); ?>"></script>

@@ -1,0 +1,151 @@
+<div class="c-card-checkout-cta">
+	<a class="i-arrow-left c-card-checkout-cta__link" id="back-link">
+		Volver
+	</a>
+	<button
+		type="button"
+		class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+	>
+		Resumen de tu compra
+	</button>
+</div>
+<!-- ko scope: 'checkout-login' -->
+<form
+	id="login-form"
+	data-bind="event: { input: validateLoginForm }"
+	class="c-form c-form_w365 form contact form form-login"
+	data-mage-init='{"validation":{}}'
+	style="visibility: hidden"
+>
+
+	<header class="c-form__header c-form__header_w260">
+		<h2 class="c-form__title">Para comprar ingresa tu correo y contraseña</h2>
+		<!-- <h3 class="c-form__lead">Para comprar tú celular ingresa tu contraseña</h3> -->
+	</header>
+
+	<fieldset
+		class="c-form__fieldset"
+	>
+		<?= $block->getBlockHtml('formkey') ?>
+		<!--  Correo electrónico -->
+		<div class="c-form__box" id="email-box">
+
+			<!-- Clase que indica el email check: is-email-check, se agrega a la par de c-form__field -->
+			<div class="c-form__field" id="email-field">
+
+				<span class="c-form__icon i-mail">
+					<span class="u-hidden">
+						Icono informativo
+					</span>
+				</span>
+
+				<input
+					id="user-email"
+					name="username"
+					class="c-form__input"
+					type="email"
+					autocomplete="off"
+					data-bind="value: valueEmail, valueUpdate: 'input'"
+					maxlength="50"
+					required
+				>
+				<label
+					class="c-form__label label"
+					for="user-email"
+				>
+					<!-- <span data-bind="i18n: 'Email Address'">Correo electrónico</span> -->
+					Correo electrónico
+				</label>
+
+			</div>
+
+			<span class="c-form__error-text">Revisa el correo electrónico</span>
+
+		</div>
+
+		<!--  Contraseña -->
+		<!-- la clase .is-error se aplica al papá .c-form__box cuando hay mensaje de error -->
+		<div class="c-form__box" id="password-box">
+			<!-- Clase que indica el email check: is-email-check, se agrega a la par de c-form__field -->
+			<div class="c-form__field js-password-target" id="password-field">
+				<button
+					class="c-form__icon i-eye-slash js-password-btn"
+					type="button"
+				>
+					<span class="u-hidden">
+						Icono informativo
+					</span>
+				</button>
+
+				<input
+					id="user-password"
+					name="password"
+					class="c-form__input"
+					type="password"
+					autocomplete="off"
+					data-bind="value: valuePassword, valueUpdate: 'input'"
+					maxlength="50"
+					required
+				>
+
+				<label
+					class="c-form__label label"
+					for="user-password"
+				>
+					<!-- <span data-bind="i18n: 'Email Address'">Correo electrónico</span> -->
+					Contraseña
+				</label>
+
+			</div>
+
+			<div>
+				<span class="c-form__error-text">Contraseña incorrecta</span>
+				<a href="#" class="o-link o-link_block o-link_gray u-margin-bottom-32 u-margin-top-16">¿Olvidaste tu contraseña?</a>
+			</div>
+
+		</div>
+
+	</fieldset>
+
+	<div>
+		<span class="c-form__error-text" id="response"></span>
+		<div class="c-form__captcha">
+			<?= $block->getChildHtml('form_additional_info') ?>
+		</div>
+		<input name="context" type="hidden" value="checkout">
+		<!--
+				1. Para ver los estilos del botón habilitado eliminar el atributo disabled en este button
+				2. La clase is-form-load activa el preload para este button, va a la par de c-form__btn
+		-->
+		<button
+			type="submit"
+			class="c-form__btn o-btn o-btn_full o-btn_w350 o-btn_height56"
+			data-bind="enable: statusSendFormLogin, click: checkUserLogin"
+			disabled
+		>
+			Continuar
+		</button>
+
+	</div>
+
+</form>
+<div class="c-preloader">
+	<div class="c-preloader__box">
+		<div class="c-preloader__circle"></div>
+		<div class="c-preloader__text">Cargando datos</div>
+	</div>
+</div>
+<!-- /ko -->
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"checkout-login": {
+					"component": "Vass_Checkout/js/checkout-login"
+				}
+			}
+		}
+	}
+}
+</script>

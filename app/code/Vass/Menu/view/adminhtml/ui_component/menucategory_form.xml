@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">menucategory_form.menucategory_form_data_source</item>
+            <item name="deps" xsi:type="string">menucategory_form.menucategory_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Información del Menu Category</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">menucategory_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="Magento\Customer\Block\Adminhtml\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Vass\Menu\Block\Adminhtml\Form\SaveButton"/>
+            <button name="reset" class="Magento\Customer\Block\Adminhtml\Edit\ResetButton"/>
+            <button name="back" class="Magento\Customer\Block\Adminhtml\Edit\BackButton"/>
+        </buttons>
+        <deps>
+            <dep>menucategory_form.menucategory_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="menucategory_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            
+            <submitUrl path="category/menucategory/save"/>
+        </settings>
+        <dataProvider class="Vass\Menu\Model\DataProviderMenuCategory" name="menucategory_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="vass_menu_category">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Category Menu Details</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+            <field name="status" formElement="checkbox">
+            <settings>
+                <label translate="true">Menu Category Enable</label>
+                <tooltip>
+                    <description translate="true">Enable or disable menu category</description>
+                </tooltip>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <prefer>toggle</prefer>
+                        <valueMap>
+                             <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="menu_category_name">
+            <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Vass\Menu\Model\DataProviderMenuCategory</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu Category Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vass_menu_category</item>
+                    <item name="dataScope" xsi:type="string">name</item>
+                </item>
+            </argument>
+        </field>
+        <field name="menu_category_type_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Vass\Menu\Model\Config\Source\MenuType</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu Category Type</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">vass_menu_category</item>
+                    <item name="dataScope" xsi:type="string">type_id</item>
+                </item>
+            </argument>
+        </field>
+        <field name="menu_category_link">
+            <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Vass\Menu\Model\DataProviderMenuCategory</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu Category Link</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vass_menu_category</item>
+                    <item name="dataScope" xsi:type="string">link</item>
+                </item>
+            </argument>
+        </field>
+        <field name="menu_category_class">
+            <argument name="data" xsi:type="array">
+            <item name="options" xsi:type="object">Vass\Menu\Model\DataProviderMenuCategory</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Menu Category Class CSS </item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">vass_menu_category</item>
+                    <item name="dataScope" xsi:type="string">class</item>
+                </item>
+            </argument>
+        </field>
+        <field name="menu_category_description">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="cols" xsi:type="number">15</item>
+                    <item name="rows" xsi:type="number">5</item>
+                    <item name="label" translate="true" xsi:type="string">Menu Category Description</item>
+                    <item name="dataType" translate="true" xsi:type="string">text</item>
+                    <item name="source" xsi:type="string">vass_menu_category</item>
+                    <item name="dataScope" xsi:type="string">description</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+
+</form>

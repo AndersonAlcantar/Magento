@@ -1,0 +1,53 @@
+.c-card-info {
+    flex: 1 1 38%;
+}
+.c-card-info__header {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter * 2);
+    @include px-to-rem(padding, 13px 24px);
+    background-color: $c-primary;
+    color: $c-neutro;
+    font-weight: $f-bold;
+    &::before {
+        @include px-to-rem(font-size, 20px);
+    }
+}
+.c-card-info__list {
+    list-style-type: none;
+    background-color: $c-neutro;
+    text-align: left;
+    @include px-to-rem(padding, 24px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.c-card-info__item {
+    border-bottom: 1px solid $c-gray-2;
+    @include px-to-rem(padding-bottom, 16px);
+    @include px-to-rem(padding-top, 16px);
+    &:last-of-type {
+        border: none;
+        padding-bottom: 0;
+    }
+    &:first-of-type {
+        padding-top: 0;
+    }
+}
+.c-card-info__item-title {
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-4;
+}
+.c-card-info__item-text {
+    @include px-to-rem(font-size, 14px);
+    color: $c-gray-5;
+}
+.c-card-info__item-link {
+
+}
+
+@media screen and (max-width: 600px) {
+    .c-card-info {
+        width: 100%;
+        @include px-to-rem(margin-top, $gutter * 4);
+    }
+}

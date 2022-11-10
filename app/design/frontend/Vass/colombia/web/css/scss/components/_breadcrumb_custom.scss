@@ -1,0 +1,29 @@
+.c-breadcrumb {
+    @include px-to-rem(margin-top, $gutter * 3);
+    @include px-to-rem(margin-bottom, $gutter * 3);
+}
+.c-breadcrumb__list {
+    @include flexbox;
+    @include align-items(center);
+    list-style-type: none;
+    overflow-x: auto;
+}
+.c-breadcrumb__item {
+    color: $c-on-primary-gray;
+    white-space: nowrap;
+    &::after {
+        @include px-to-rem(font-size, 9px);
+        color: $c-primary;
+    }
+}
+
+.c-breadcrumb__list,
+.c-breadcrumb__item {
+    @include flexbox;
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+}  
+
+.is-current {
+    color: rgba($c-secondary, $alpha: .9);
+}

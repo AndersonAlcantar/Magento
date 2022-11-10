@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<page  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    <referenceBlock name="breadcrumbs" remove="true" />
+      <referenceBlock name="product.info.addtocart">
+          <action method="setTemplate">
+              <argument name="template" xsi:type="string">Magento_Catalog::product/view/addtocart.phtml</argument>
+          </action>
+          <arguments>
+              <argument name="services" xsi:type="object">Vass\Custom\ViewModel\Services</argument>
+              <argument name="jsLayout" xsi:type="array">
+                  <item name="components" xsi:type="array">
+                      <item name="test" xsi:type="array">
+                          <item name="component" xsi:type="string">Vass_Custom/js/service</item>
+                          <item name="displayArea" xsi:type="string">service</item>
+                      </item>
+                  </item>
+              </argument>
+          </arguments>
+      </referenceBlock>
+      <referenceBlock name="product.price.final" remove="true"/>
+
+      <referenceContainer name="content">
+          <container name="product.essential" htmlTag="div" htmlClass="product-view">
+          <container name="product.essential.contproduct" htmlTag="div" htmlClass="cont-product">
+            <container name="product.essential.container" htmlTag="div" htmlClass="container o-section u-margin-bottom-40 u-margin-top-8" before="-">
+              <container name="product.essential.container.row" htmlTag="div" htmlClass="row o-layout__detail-product" >
+              </container>
+            </container>
+          </container>
+        </container>
+        <referenceContainer name="product.info.main" htmlClass="product-info-main col-sm-6 c-preloader_position">
+              <block class="Magento\Catalog\Block\Product\View" name="product.custom.name" template="Magento_Catalog::product/view/custom_name.phtml" before="-" />
+          </referenceContainer>
+          <referenceContainer name="product.info.media" htmlClass="product-info_media col-sm-6"/>
+      </referenceContainer>
+      <referenceBlock name="page.main.title" remove="true" />
+
+
+
+      <referenceBlock name="product.info.review" remove="true" />
+      <referenceContainer name="product.info.stock.sku" remove="true" />
+      <referenceContainer name="product.info.description" remove="true" />
+      <referenceContainer name="product.info.overview" remove="true" />
+
+      <move element="product.info.media" destination="product.essential.container.row" as="product.info.media" before="-"/>
+      <move element="product.info.main" destination="product.essential.container.row" as="product.info.main" after="product.info.media"/>
+      <referenceBlock name="product.info.details" remove="true"/>
+      <referenceBlock name="product.info.social" remove="true"/>
+
+
+      <referenceBlock name="product.info.social" remove="true"/>
+      <referenceContainer name="product.info.details.after.wrapper" remove="true" />
+
+      <referenceContainer name="header.container" >
+        <referenceBlock name="header.search" remove="true"/>
+      </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,41 @@
+<?php 
+
+$crumbs = $block->getCrumbs(); 
+$catalogCategory = $block->getCatalogcategory();
+$linkHome = true;
+$currentCategory = $catalogCategory->getCurrentCategory();
+if( $currentCategory ){
+    $currentCategory = $currentCategory->getUrlPath();
+    $currentCategory = explode("/", $currentCategory);
+    if( $currentCategory[0] == "celulares" && count($crumbs) == 2 ){
+        $linkHome = false;
+    }
+}   
+
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+    <div class="breadcrumbs">
+        <ul class="items">
+            <?php
+            foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+                <li class="item <?php echo $crumbName == 0 ? "home" : ""; ?>">
+                    <?php if ($crumbInfo['link']) : ?>
+                        <?php if(!$linkHome ) : ?>
+                            <span>
+                             <?= $block->escapeHtml($crumbInfo['label']) ?>
+                            </span>
+                        <?php else: ?>
+                            <a  href="<?= $block->escapeUrl($crumbInfo['link'])?>"
+                                title="<?= $block->escapeHtml($crumbInfo['title']) ?>">
+                                <?= $block->escapeHtml($crumbInfo['label']) ?>
+                            </a>
+                        <?php endif;?>
+                    <?php else: ?>
+                        <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                    <?php endif; ?>
+                </li>
+            <?php
+            endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>	

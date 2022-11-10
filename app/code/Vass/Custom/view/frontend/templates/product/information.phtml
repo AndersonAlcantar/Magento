@@ -1,0 +1,118 @@
+<?php 
+     $_product = $block->getProduct();
+     $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+     $_helperCustom = $this->helper('Vass\Custom\Helper\Data');
+?>
+
+<section class="o-section o-section__bg-withe">
+    
+    <div>
+
+        <div class="o-canvas">
+
+            <!--Titulos de los tabs-->
+            <div id="tab_element">
+                <ul class="tabs-horiz c-tabs-content__actions c-tabs-content__actions_border">
+                    <li class="c-tabs-content__action c-tabs-content__action_bottom">
+                        <a href="#caracteristicas">Características destacadas</a>
+                    </li>
+                    <li class="c-tabs-content__action c-tabs-content__action_bottom">
+                        <a href="#especificaciones">Especificaciones técnicas</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="o-canvas-dk" id="tab_element_content">
+            <!--Inicia sección sobre caracteristicas destacadas-->
+            <div id="caracteristicas">
+                <?php 
+                    $_call = $block->getAtCall();
+                    $_code = $block->getAtCode();
+                    $_attributeAddAttribute = $block->getAddAttribute();
+                    $renderLabel = true;
+                        $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
+                ?>
+                <?php if ($_attributeValue) :?>
+                    <!--Renderiza la descripcion destacada sobre el producto-->
+                <div class="product attribute description">
+                    <div class="value" <?= /* @noEscape */ $_attributeAddAttribute ?>><?= /* @noEscape */ $_attributeValue ?></div>
+                </div>
+                <?php endif; ?>
+            </div>
+
+            <!--Inicia sección sobre especificaciones tecnicas-->
+            <div class="o-canvas c-especifications" id="especificaciones">
+                <div class="c-especifications__intro">
+                    <p><?=$_product->getShortDescription()?></p>
+                </div>
+                
+                    <?php
+                        $arrayCategories = $_helperCustom->getAttributesCategories();
+                        foreach ($arrayCategories as $key => $category):
+                            $arrayAttributesForCategory = $_helperCustom->getAttributesForCategory($key);
+                    ?>
+                            <!--Titulo principal por sección Ej: Tamaño y Peso-->
+                            <div class="c-especifications__wrap">
+                                <h3 class="o-headline"><?=$category?></h3>
+                                <dl class="c-especification__list">
+                                    <?php 
+                                        foreach ($arrayAttributesForCategory as $keyattrKey => $attribute):
+                                            $attrText =$_product->getResource()->getAttribute($attribute)->getFrontend()->getValue($_product);
+                                            $attributeLabel =$_product->getResource()->getAttribute($attribute)->getFrontend()->getLabel($_product);
+                                            $attributeLabel = ucwords(str_replace('_', ' ',$attributeLabel));
+                                    ?>
+                                            <!--Renderiza las especificaciones tecnicas sobre el producto-->
+                                            <div class="c-especification__item">
+                                                <!--Nombre del atributo-->
+                                                <dt class="c-especification__attribute"><?=$attributeLabel?></dt>
+
+                                                <!--Valor del atributo o '--' en caso de que el atributo no contenga valor -->
+                                                <?php 
+                                                    if($attribute == "memoria_interna" ){
+                                                        $lastChar = substr($attribute, -1);
+                                                    }
+                                                ?>
+                                                <dd id="<?=$escaper->escapeHtml($attribute)?>" class="c-especification__text"><?=(!$attrText) ? '--' : $attrText?></dd>
+                                            </div>
+                                    <?php 
+                                        endforeach; 
+                                    ?>
+                                </dl>
+                            </div>
+                    <?php 
+                        endforeach;
+                    ?>
+                
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<script>
+    require(["jquery","mage/backend/tabs"], function($){
+        $(function() {
+            $('#tab_element').tabs({
+                active: 'caracteristicas',  // active tab elemtn id
+                destination: '#tab_element_content', // tab content destination element id
+                shadowTabs: []        
+            });
+        });
+    });
+</script>
+<script>
+   require([
+    'jquery',
+    'Magento_Catalog/js/price-box'
+    ], 
+    function($){
+        $(document).on('click', '.catalog-product-view .product-options-wrapper .memoria_interna .swatch-option.text', function(){
+            let valueCapacidad =  $(this).html();
+            $("#memoria_interna").html(valueCapacidad);
+        });
+    });
+ </script>

@@ -1,0 +1,50 @@
+/*------------------------------------*\
+  Media querys mobile
+\*------------------------------------*/
+@media screen and (max-width: 739px) {
+    .f-c-header-step__brand {
+        background-color: $c-neutro;
+        box-shadow: $c-elevation-primary;
+    }
+
+    .f-c-header-step__content,
+    .f-c-header-step__brand-inner {
+        width: $canvas-with; //80%
+        @include px-to-rem(max-width, $canvas-max-with); //1108px
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .f-c-header-step__brand-inner {
+        @include px-to-rem(padding, $gutter * 2 0);
+    }
+
+    .f-c-header-step__content {
+        @include px-to-rem(margin-top, $gutter * 7);
+    }
+}
+
+/*------------------------------------*\
+  Media querys Desktop
+\*------------------------------------*/
+@media screen and (min-width: 740px) {
+    .f-c-header-step {
+        background-color: $c-neutro;
+        box-shadow: $c-elevation-primary;
+    }
+
+    .f-c-header-step__wrap {
+        @include flexbox;
+        @include align-items(center);
+        width: $canvas-with; //80%
+        @include px-to-rem(column-gap, $gutter * 5);
+        @include px-to-rem(max-width, $canvas-max-with); //1108px
+        margin-left: auto;
+        margin-right: auto;
+        @include px-to-rem(padding, $gutter * 2 0);
+    }
+
+    .f-c-header-step__content {
+        margin: 0 auto;
+    }
+}

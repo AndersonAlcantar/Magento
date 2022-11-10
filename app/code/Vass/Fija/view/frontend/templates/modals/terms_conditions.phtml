@@ -1,0 +1,44 @@
+<div
+    id="modal-terms" data-modal-type="modal-small"
+    class="o-modal o-modal_w800 modal u-hidden"
+>   
+
+    <button class="o-modal__btn-close close-modal i-close" data-modal="modal-terms">
+        <span class="u-hidden">Cerrar</span>
+    </button>
+
+    <div class="o-modal__content">
+        <header class="o-modal__header u-text-center">
+            <h3 class="o-title u-margin-bottom-40">
+                Términos y Condiciones
+            </h3>
+        </header>
+        <div class="o-modal__text-box">
+        <?php
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('terminos_condiciones_fija')
+            ->toHtml();
+            ?>
+        </div>
+
+        <footer class="o-modal__footer u-text-center">
+            <button
+                class="
+                    o-btn
+                    o-btn_full
+                    o-btn_w225
+                    o-btn_height56
+                    o-modal__btn
+                    o-modal__btn_w260
+                    o-modal__btn_margin0
+                    close-modal
+                "
+                data-modal="modal-terms"
+            >
+                Aceptar y Continuar
+            </button>
+        </footer> 
+    </div>
+
+</div>

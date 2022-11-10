@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Vass_Config::menu_index"
+             title="Vass Config"
+             module="Vass_Config"
+             sortOrder="10"
+             resource="Vass_Config::menu_index"/>
+
+        <add id="Vass_Config::vass_menu"
+             title="Menu"
+             module="Vass_Config"
+             sortOrder="20"
+             parent="Vass_Config::menu_index"
+             resource="Vass_Menu::vass_menu"/>       
+
+        <add id="Vass_Config::vass_productos_index"
+            title="Products"
+            module="Vass_Config"
+            sortOrder="2"
+            parent="Vass_Config::menu_index"
+            resource="Vass_Config::vass_productos_index" />
+
+        <add id="Vass_Config::vass_ImportExporCustom_index"
+            title="Import"
+            module="Vass_Config"  sortOrder="2"
+            action="adminhtml/Import/Index"
+            parent="Vass_Config::menu_index"
+            resource="Vass_ImportExporCustom::vass_Import_index" />
+
+        <add id="Vass_Config::cuotassetings" 
+            title="Configure Quotas"
+            module="Vass_Config" sortOrder="1"
+            action="adminhtml/system_config/edit/section/vassproductos"
+            resource="Vass_Config::vass_productos_index"
+            parent="Vass_Config::vass_productos_index"/>
+
+    </menu>
+</config>

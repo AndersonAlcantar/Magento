@@ -1,0 +1,60 @@
+.o-alert {
+    position: fixed;
+    @include rgba-background($c-secondary, 0.7);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+    .is-visible & {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+    }
+}
+
+.o-alert__close-btn {
+    position: relative;
+    top: -44px;
+    left: 20px;
+    width: fit-content;
+    margin-left: auto;
+    &::before {
+        @include px-to-rem(font-size, 14px);
+        color: $c-gray-4;
+    }
+}
+
+.o-alert__wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include flexbox;
+    @include flex-direction(column);
+    @include justify-content(center);
+    @include px-to-rem(min-height, 412px);
+    max-height: 80%;
+    width: 80%;
+    @include px-to-rem(max-width, 620px);
+    @include px-to-rem(padding, $gutter * 6);
+    @include px-to-rem(border-radius, 12px);
+    background-color: $c-neutro;
+}
+.o-alert__content {
+    overflow: auto;
+    height: inherit;
+}
+
+.o-alert__footer {
+    @include px-to-rem(margin-top, $gutter * 4);
+}
+
+.o-alert__text,
+.o-alert__footer {
+    text-align: center;
+}

@@ -1,0 +1,72 @@
+<?php
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$helper = $objectManager->get(Vass\Menu\Helper\Data::Class);
+
+$menu_atencion = $helper->getMenu(5);
+
+$link_base = $helper->getBaseUrl();
+
+$class_personas = '';
+$class_pymes = '';
+$class_empresas = '';
+
+
+$urlInterface = $objectManager->get(Magento\Framework\UrlInterface::Class);
+$url_parts = $helper->getUrlParts($urlInterface->getCurrentUrl());
+
+if ($url_parts[0] == 'pymes') {
+    $class_pymes = 'is-active';
+} elseif ($url_parts[0] == 'empresas') {
+    $class_empresas = 'is-active';
+} else {
+    $class_personas = 'is-active';
+}
+
+
+?>
+
+    <div class="o-canvas">
+        <nav class="c-menu-top">
+            <div class="c-menu-top__list">
+                <a class="c-menu-top__link <?= $escaper->escapeHtml($class_personas)?> " 
+                    href="<?= $escaper->escapeHtml($link_base)?>">Personas
+                </a>
+                <a class="c-menu-top__link <?= $escaper->escapeHtml($class_pymes)?> " 
+                    href="<?= $escaper->escapeHtml($this->getUrl('pymes')) ?>">
+                    Pymes
+                </a>
+                <a class="c-menu-top__link <?= $escaper->escapeHtml($class_empresas)?> " 
+                    href="<?= $escaper->escapeHtml($this->getUrl('empresas')) ?>">
+                    Empresas 
+                </a>
+                <a class="c-menu-top__link " href="#">Corporaciones</a>
+            </div>
+            <div class="c-menu-top__list c-menu-top__list_display">
+            <div class="c-menu-top__dropdown js-target-dropdown">
+                <button class="c-menu-top__link o-dropdown__btn js-btn-dropdown i-after-chevron-down" 
+                type="button">Información importante para el usuario</button>
+                <div class="c-megamenu c-menu-top__dropdown-content o-dropdown__content">
+                <nav class="c-submenu">
+                    <ul class="c-submenu__list">
+                    <?php
+                    foreach ($menu_atencion as $item) {
+                    ?>
+                        <li class="c-submenu__item">
+                            <div class="c-submenu__item-wrap"><a class="c-submenu__link" 
+                            href="<?= $item['link']; ?>" target="_blank">
+                            <?= $escaper->escapeHtml($item['name'])?></a></div>
+                        </li>
+                    <?php
+                    }
+                    ?>                        
+                    </ul>
+                </nav>
+                </div>
+            </div>
+            <a class="c-menu-top__link i-after-chevron-right" href="#">Accesibilidad</a>
+            <a class="c-menu-top__link i-after-chevron-right" href="#">Radica / Consulta PQR</a>
+            </div>
+        </nav>
+    </div>
+

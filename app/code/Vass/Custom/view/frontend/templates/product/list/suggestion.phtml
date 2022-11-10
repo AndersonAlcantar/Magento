@@ -1,0 +1,164 @@
+<?php 
+
+$_product = $block->getProduct();
+$helperVass = $this->helper('Vass\Config\Helper\Data');
+$cuotas = $helperVass->getCuotas();
+$_helper = $block->getData('outputHelper');
+$products = $helperVass->getProductsBrand($_product->getMarca(), $_product->getId());
+$image = 'related_products_list';
+if ($block->getMode() === 'grid') {
+    $viewMode = 'grid';
+    $imageDisplayArea = 'category_page_grid';
+    $showDescription = false;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+} else {
+    $viewMode = 'list';
+    $imageDisplayArea = 'category_page_list';
+    $showDescription = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+}
+$pos = $block->getPositioned();
+if($products->count() > 0):
+?>
+
+    <section class="o-section">
+        <div class="o-canvas">
+
+            <div>
+        
+                <h4 class="o-title o-title__light">Otros celulares que podrían interesarte</h4>
+        
+                <div class="js-slider-product-wrap u-position-relative">
+                    <div class="c-slider-products swiper js-swiper-cards-product">
+                        
+                        <div class="swiper-wrapper">
+
+                            <?php 
+                                $index = 0;
+                                foreach ($products as $key => $product): 
+                                    $price = $product->getPriceInfo()->getPrice('regular_price')->getValue();
+                                    $sprice = $product->getPriceInfo()->getPrice('final_price')->getValue();   
+                                    //$product = $helperVass->getProductAllOptions($product->getId());    
+                            ?>
+                
+                                <div class="c-card-slide swiper-slide">
+
+                                    <article class="c-card">
+                                        <a
+                                            class="c-card__link"
+                                            id="product-item-info_<?= /* @noEscape */ $product->getId() ?>"
+                                            data-container="product-<?= /* @noEscape */ $viewMode ?>"
+                                            data-product-name="<?= /* @noEscape */ $product->getName() ?>"
+                                            data-product-id="<?= /* @noEscape */ $product->getId() ?>"
+                                            data-product-price="<?= /* @noEscape */ $product->getFinalPrice() ?>"
+                                            data-product-brand="<?= /* @noEscape */ $product->getData('marca') ?>"
+                                            data-product-category="Equipo"
+                                            data-product-variant=""
+                                            data-product-dimension18="catalogo-general-Terminal Libre"
+                                            data-product-dimension26="<?= /* @noEscape */ abs(round((($sprice - $price) / $price) * 100, 0)) ?>"
+                                            data-product-dimension27="<?= /* @noEscape */ $product->getName() ?>"
+                                            data-product-position="<?= /* @noEscape */ (string)(++$index) ?>"
+                                            data-is-viewed="n"
+                                            href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>"
+                                            title="Ver detalle de <?= $escaper->escapeUrl($product->getName()) ?>"
+                                        >
+                                            <?php
+                                                    $productImage = $block->getImage(
+                                                        $product,
+                                                        $imageDisplayArea
+                                                    );
+                                                    if ($pos != null) {
+                                                        $position = 'left:' .
+                                                        $productImage->getWidth() . 'px;' . 'top:' . $productImage->getHeight()
+                                                        . 'px;';
+                                                    }
+                                            ?>
+                                            <div class="c-card__photo" tabindex="-1">
+                                                <?= $productImage->toHtml() ?>
+                                            </div>
+                                            <div class="c-card__content">
+                                            <?php 
+                                                $attrTextDctoValue =$product->getResource()->getAttribute('text_dcto')->getFrontend()->getValue($product);
+                                                if(!empty($attrTextDctoValue)&&$attrTextDctoValue!=''):
+                                            ?>
+                                                <span class="c-card__tag"><?=$attrTextDctoValue?></span>
+                                            <?php 
+                                                endif;
+                                            ?>
+                                                <?php $productNameStripped = $block->stripTags(
+                                                        $product->getName(),
+                                                        null,
+                                                        true
+                                                        );
+                                                ?>
+                                                <h4 class="c-card__name">
+                                                    <?=
+                                                        $product->getName()  
+                                                    ?>
+                                                </h4>
+                                                <?= $block->getReviewsSummaryHtml($product, $templateType) ?>
+                                                <?php 
+                                                    if($cuotas >= 1):
+                                                        $dueprice = round(($sprice) / $cuotas, 2);
+                                                ?>
+                                                        <p class="c-card__text">Hasta <?=$cuotas?> cuotas de:</p>
+                
+                                                        <h3 class="c-card__dues" data-dynamic="plazos">
+                                                        <?php echo "$" .  number_format(abs($dueprice),0, ",", ".")?>
+                                                        </h3>
+                                                <?php 
+                                                    endif;
+                                                ?>
+                                                <p class="c-card__text c-card__text_sm">Precio total:</p>
+                
+                                                <div class="c-card__price">
+                                                    $<?=number_format($sprice,0, ",", ".")?>
+                                                    <?php if ($price>$sprice) { ?> 
+                                                        <small class="c-card__price-previous">
+                                                            $<?=number_format($price,0, ",", ".")?>            
+                                                        </small>
+                
+                                                    <?php    } ?>
+                                                </div>
+                
+                                                <ul class="c-card__schema">
+                                                        <?php 
+                                                            $swatchBlock = $this->getLayout()->createBlock("Magento\Swatches\Block\Product\Renderer\Listing\Configurable")->setTemplate("Magento_Swatches::product/listing/renderer_custom.phtml");
+                                                            echo $swatchBlock->setProduct($product)->toHtml();    
+                                                        ?>
+                                                </ul>
+                                            </div>
+                                        </a>
+                                    </article>
+
+                                </div>
+
+                            <?php
+                                endforeach;
+                            ?>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Navigation buttons -->
+                    <span class="o-swiper-chevron o-swiper-chevron_bg swiper-button-prev">
+                        <span class="u-hidden">
+                        Slider anterior
+                        </span>
+                    </span>
+                    <span class="o-swiper-chevron o-swiper-chevron_bg swiper-button-next">
+                        <span class="u-hidden">
+                        Slider siguiente
+                        </span>
+                    </span>
+                </div>
+
+            </div>
+
+        </div>   
+    </section>
+
+<?php 
+endif;
+?>

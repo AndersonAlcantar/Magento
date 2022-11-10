@@ -1,0 +1,70 @@
+//-*------------------------------------*
+//-   .o- class Objects Enlaces.
+//-*------------------------------------*
+
+a {
+  text-decoration: none;
+  color: inherit;
+  outline-width: 0;
+  cursor: pointer;
+  transition: all 0.6s;
+}
+
+// /**
+//  * Class: o-link
+//  * @modifiers
+//  *  .o-link_ico Enlace con icono 
+//  *  .o-link_primary Enlace de color primario 
+//  *  .o-link_dark Enlace de color oscuro
+//  *  .o-link_neutro Enlace de color blanco
+//  * @atom Link
+//  * @section 06.Enlaces
+//  * @markup
+//  *   <div class="sg-modifires">
+//  *      <a class="o-link" href="#">Texto enlace</a>
+//  *   </div>
+//  *   <div class="sg-modifires">
+//  *      <a class="o-link o-link_ico i-chat" href="#">Texto enlace</a>
+//  *   </div>
+//  *   <div class="sg-modifires">
+//  *      <a class="o-link o-link_primary" href="#">Texto enlace</a>
+//  *   </div>
+//  *   <div class="sg-modifires">
+//  *      <a class="o-link o-link_dark" href="#">Texto enlace</a>
+//  *   </div>
+//  *   <div class="sg-modifires">
+//  *      <a class="o-link o-link_neutro" href="#">Texto enlace</a>
+//  *   </div>
+//  */
+
+.o-link {
+  position: relative;
+  padding: 0;
+  @include px-to-rem(font-size, 16px);
+  text-decoration: underline;
+  text-underline-position: under;
+  line-height: 1;
+  color: $c-primary;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+}
+.o-link_fs14 {
+  @include px-to-rem(font-size, 14px);
+}
+
+.o-link_block {
+  display: block;
+}
+
+.o-link_gray {
+  text-align: right;
+  color: $c-gray-10;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}

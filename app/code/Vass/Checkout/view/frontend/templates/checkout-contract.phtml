@@ -1,0 +1,144 @@
+<button id="openModalError" data-modal="modal-error-general"  class="open-modal u-hidden" type="button">Error</button>
+<button id="openModalTermsAndConditions" data-modal="modal-terms_conditions"  class="open-modal u-hidden" type="button"></button>
+<button id="openModalProcesingPersonalData" data-modal="modal-processing_personal_data"  class="open-modal u-hidden" type="button"></button>
+
+<div class="c-card-checkout-cta">
+	<a 
+		class="i-arrow-left c-card-checkout-cta__link"
+		href="<?=$escaper->escapeUrl('/checkout/lineas')?>">
+		
+		Volver
+
+	</a>
+   
+    
+    <button
+        type="button"
+        class="c-card-checkout-cta__btn i-chevron-down js-summary-btn"
+    >
+        Resumen de tu compra
+    </button>
+
+</div>
+<!-- ko scope: 'validate-contract' -->
+<form method="post" class="c-form c-form_w723 is-active" data-bind="event: { input: validateForm }">
+
+    <header class="c-form__header">
+        <h2 class="c-form__title">Finaliza tu compra</h2>
+    </header>
+
+    
+    <fieldset class="c-form__fieldset c-form__fieldset_margin js-target-dropdown is-dropdown-active">
+
+		<h5 class="o-dropdown__btn o-dropdown__btn_border i-after-chevron-down js-btn-dropdown">
+			Contrato
+        </h5>
+
+		<div class="o-dropdown__content o-dropdown__content_border">
+			<div class="c-btn-download u-margin-bottom-32 u-margin-top-32">
+				<span class="c-btn-download__icon i-paper-movistar"></span>
+				<a 
+					class="o-btn o-btn-icon o-btn_full o-btn_w392 c-btn-download__button o-btn_height60 i-download" 
+					href="https://telefonicacorp.sharepoint.com/sites/COL-Magento.TMHNH/Shared%20Documents/General/Historias%20de%20Usuario/contrato%20(1).pdf" 
+					download="contrato">
+
+					Descargar contrato
+
+				</a>
+			</div>
+
+			<div class="c-callout c-callout_white u-margin-top-32 i-information">
+                <p class="c-callout__text">
+					<strong>POR FAVOR TEN EN CUENTA:</strong>
+					Para garantizar tu orden debes aceptar y firmar el contrato digitalmente.
+                </p>
+            </div>
+			
+		</div>
+
+    </fieldset>
+
+	<!-- checkbox forma contrato y términos y condiciones -->
+	<!-- la clase .is-disable se deja a la par de c-form__checkbox  -->
+	<div class="u-row-gap">
+		<div class="c-form__checkbox-wrap">
+			<div class="c-form__checkbox is-disable">
+				<input
+					type="checkbox"
+					class="c-form__checkbox-input"
+					disabled="disabled" 
+					checked 
+				>
+				<label class="c-form__checkbox-label"></label>
+			</div> 
+			<p class="c-form__checkbox-text">Acepto y firmo contrato</p>
+		</div> 
+
+		<div class="c-form__checkbox-wrap">
+			<div class="c-form__checkbox is-disable">
+				<input
+					type="checkbox"
+					class="c-form__checkbox-input"
+					data-bind="checked: checkboxStatus"
+					disabled="disabled" 
+					checked 
+				>
+				<label class="c-form__checkbox-label"></label>
+			</div> 
+			<p class="c-form__checkbox-text">Al continuar aceptas el 
+			<a data-bind="click: openModalProcesingPersonalData"  class="o-link" href="#">tratamiento de datos personales</a>, los 
+			<a data-bind="click: openModalTermsAndConditions"  class="o-link" href="#">términos y condiciones</a> 
+			y posible consulta de información relativa al cumplimiento de tus obligaciones.</p>
+		</div> 
+	</div>
+
+	
+	<div class="c-form__actions u-text-right">
+        <input name="context" type="hidden" value="checkout">
+
+        <button
+            type="submit"
+            class="o-btn c-form__btn o-btn_height56 o-btn_full o-btn_w255"
+			data-bind="click: validateContactlog, enable: enableSubmitOrder"
+        >
+			Comprar ahora
+        </button>
+
+	</div>
+
+</form>
+<!-- /ko -->
+<!-- para mostrar las alertas se añade la clase .is-visible al papá de .o-alert y la clase por default ._has-modal en el body para quitar el scroll-->
+<!-- modal -->
+<div class="">
+	<div class="o-alert">
+		<div class="o-alert__wrap">
+			<button class="o-alert__close-btn i-close" type="button">
+				<span class="u-hidden">Cerrar modal</span>
+			</button>
+			<div class="o-alert__content">
+				<header class="o-alert__header">
+					<h3 class="o-title-ico o-title-ico__red i-information">Aceptas la firma del contrato</h3>
+				</header>
+				<p class="o-alert__text">el tratamiento de datos y/o términos y condiciones para continuar.</p>                   
+			</div>
+			<footer class="o-alert__footer">
+				<button class="o-btn o-alert__cta o-btn_w290">Continuar</button>
+			</footer>
+		</div>
+	</div>
+</div>
+
+<script type="text/x-magento-init">
+{
+	"*": {
+		"Magento_Ui/js/core/app": {
+			"components": {
+				"validate-contract": {
+					"component": "Vass_Checkout/js/validate-contract"
+				}
+			}
+		}
+	}
+}
+</script>

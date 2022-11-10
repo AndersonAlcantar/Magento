@@ -1,0 +1,225 @@
+@font-face {
+  font-family: 'ico-logos-movistar';
+  src:  url('../fonts/ico-logos-movistar.eot?4xu1yx');
+  src:  url('../fonts/ico-logos-movistar.eot?4xu1yx#iefix') format('embedded-opentype'),
+    url('../fonts/ico-logos-movistar.ttf?4xu1yx') format('truetype'),
+    url('../fonts/ico-logos-movistar.woff?4xu1yx') format('woff'),
+    url('../fonts/ico-logos-movistar.svg?4xu1yx#ico-logos-movistar') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+.glyph-:before,
+[class^=glyph-]:before,
+[class*=" glyph-"]:before,
+.ag-o-ico:before {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ico-logos-movistar' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyph-after-:after,
+[class^=glyph-after-]:after,
+[class*=glyph-after-]:after {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "ico-logos-movistar" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+* @icon .glyph-apple
+* @markup
+*   <span class="glyph-apple"></span>
+*/
+.glyph-apple:before {
+  content: "\e901";
+}
+
+/**
+* @icon .glyph-lg
+* @markup
+*   <span class="glyph-lg"></span>
+*/
+.glyph-lg:before {
+  content: "\e902";
+}
+
+/**
+* @icon .glyph-amazon-prime
+* @markup
+*   <span class="glyph-amazon-prime"></span>
+*/
+.glyph-amazon-prime:before {
+  content: "\e900";
+}
+
+/**
+* @icon .glyph-hbo
+* @markup
+*   <span class="i-hbo"></span>
+*/
+.glyph-hbo:before {
+  content: "\f900";
+}
+
+/**
+* @icon .glyph-win-sports
+* @markup
+*   <span class="i-win-sports"></span>
+*/
+.glyph-win-sports:before {
+  content: "\f901";
+}
+/**
+* @icon .glyph-telefonica 
+* @markup
+*   <span class="i-telefonica"></span>
+*/
+.glyph-telefonica:before {
+  content: "\f902";
+}
+
+/**
+* @icon .glyph-telefonica 
+* @markup
+*   <span class="i-telefonica"></span>
+*/
+.glyph-after-telefonica:after {
+  content: "\f902";
+}
+
+/**
+* @icon .glyph-disney
+* @markup
+*   <span class="i-disney"></span>
+*/
+.glyph-disney:before {
+  content: "\f903";
+}
+
+/**
+* @icon .glyph-star-channel
+* @markup
+*   <span class="i-star-channel"></span>
+*/
+.glyph-star-channel:before {
+  content: "\f904";
+}
+
+/**
+* @icon .glyph-netflix
+* @markup
+*   <span class="i-netflix"></span>
+*/
+.glyph-netflix:before {
+  content: "\f905";
+}
+
+/**
+* @icon .glyph-motorola
+* @markup
+*   <span class="i-motorola"></span>
+*/
+.glyph-motorola:before {
+  content: "\f906";
+}
+
+/**
+* @icon .glyph-huawei
+* @markup
+*   <span class="i-huawei"></span>
+*/
+.glyph-huawei:before {
+  content: "\f907";
+}
+
+/**
+* @icon .glyph-samsung
+* @markup
+*   <span class="i-samsung"></span>
+*/
+.glyph-samsung:before {
+  content: "\f908";
+}
+
+/**
+* @icon .glyph-xiaomi
+* @markup
+*   <span class="i-xiaomi"></span>
+*/
+.glyph-xiaomi:before {
+  content: "\f909";
+}
+
+/**
+* @icon .glyph-nokia
+* @markup
+*   <span class="i-nokia"></span>
+*/
+.glyph-nokia:before {
+  content: "\f90a";
+}
+
+/**
+* @icon .glyph-alcatel
+* @markup
+*   <span class="i-alcatel"></span>
+*/
+.glyph-alcatel:before {
+  content: "\f90b";
+}
+
+/** V 2.0 **/
+.glyph-dell:before {
+  content: "\e903";
+}
+.glyph-hp:before {
+  content: "\e904";
+}
+.glyph-lenovo:before {
+  content: "\e905";
+}
+.glyph-nexxt:before {
+  content: "\e906";
+}
+.glyph-pontis:before {
+  content: "\e907";
+}
+.glyph-sony:before {
+  content: "\e908";
+}
+.glyph-tcl:before {
+  content: "\e909";
+}
+
+/** V 2.1 **/
+.glyph-zte:before {
+  content: "\e90a";
+}
+.glyph-microsoft:before {
+  content: "\e90b";
+}
+.glyph-vivo:before {
+  content: "\e90c";
+}
+.glyph-realme:before {
+  content: "\e90d";
+}
+.glyph-oppo:before {
+  content: "\e90e";
+}

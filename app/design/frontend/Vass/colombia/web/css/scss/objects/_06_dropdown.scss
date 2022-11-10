@@ -1,0 +1,39 @@
+.o-dropdown__btn {
+    cursor: pointer;
+
+    &::after {
+        display: inline-block;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .is-dropdown-active & {
+        &::after {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.o-dropdown__btn_border {
+    @include flexbox;
+    @include justify-content(space-between);
+    @include align-items(center);
+    @include px-to-rem(padding, $gutter * 2 0);
+    @include px-to-rem(font-size, $gutter * 2);
+    border-bottom: 1px solid $c-gray-2;
+}
+
+.o-dropdown__content {
+    max-height: 0;
+    transition: all 0.2s ease;
+    overflow-y: hidden;
+
+    .is-dropdown-active & {
+        @include px-to-rem(max-height, 2000px);
+    }
+}
+
+.o-dropdown__content_border {
+    .is-dropdown-active & {
+        @include px-to-rem(padding, $gutter * 3 0);
+    }
+}

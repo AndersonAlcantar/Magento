@@ -1,0 +1,236 @@
+<?php
+$service = $this->helper('Vass\Service\Helper\Service');
+$regionList = $service->getListDepartament(2);
+?>
+<div class="o-modal modal u-hidden" id="modal-stores" data-modal-type="modal-large">
+	<button class="o-modal__btn-close close-modal i-close" data-modal="modal-stores">
+		<span class="u-hidden">Cerrar</span>
+	</button>
+	<div class="o-modal__content">
+		<div class="o-modal__content_center o-modal__content_w400">
+			<header class="o-modal__header o-modal__header-marginb u-margin-bottom-24">
+				<h3 class="o-headline o-headline__line-height u-margin-bottom-16">Ver disponibilidad del equipo</h3>
+				<p class="o-modal__txt">Selecciona el Centro de Experiencia en el que quieres recoger tu equipo</p>
+			</header>
+			<!-- Select departamento -->
+			<div class="c-form__box">
+				<div class="c-form__field is-field-check">
+					<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+						<span class="u-hidden">Icono informativo</span>
+					</span>
+					<select id="departament" name="departament" class="c-form__input c-form__select" required>
+						<option>Selecciona</option>
+						<?php
+						foreach ($regionList as $region) {
+							echo '<option value="'.$region['regionId'].'">'.$region['name'].'</option>';
+						}
+						?>
+					</select>
+					<label for="department" class="c-form__label label">Departamento</label>
+				</div>
+			</div>
+			<!-- Select ciudad -->
+			<div class="c-form__box">
+				<div class="c-form__field">
+					<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+						<span class="u-hidden">Icono informativo</span>
+					</span>
+					<select disabled id="city" name="city" class="c-form__input c-form__select" required>
+						
+					</select>
+					<label for="city" class="c-form__label label">Ciudad</label>
+				</div>
+			</div>
+			<!-- Select centro experiencia -->
+			<!-- la clase .is-error se aplica al papá .c-form__box cuando hay mensaje de error -->
+			<div id="contentExperienceCenter" class="c-form__box">
+				<div class="c-form__field">
+					<span class="c-form__icon c-form__icon_select i-inverted-triangle" type="button">
+						<span class="u-hidden">Icono informativo</span>
+					</span>
+					<select disabled id="centro_experiencia" class="c-form__input c-form__select" required>
+						
+					</select>
+					<label for="centro_experiencia" class="c-form__label label">Centro de experiencia</label>
+				</div>
+				<span class="c-form__error-text" id ="text-error">No hay equipo vuelve a intentarlo</span>
+
+			</div>			
+			<button disabled="disabled" id="btnSubmitBuy" class="c-card-detail__btn c-card-detail__btn_margin-bottom0 o-btn o-modal__btn_w260 o-btn" type="sumbit">Continuar</button>
+
+		</div>
+	</div>
+	<!-- para agregar el preload se agrega la clase .is-preload a la par de .o-modal -->
+	<div class="c-preloader">
+		<div class="c-preloader__box">
+			<div class="c-preloader__circle"></div>
+			<div class="c-preloader__text">Cargando datos</div>
+		</div>
+	</div>
+</div>
+
+<script>
+require([
+	'jquery',
+	'Magento_Customer/js/customer-data'
+], function($, customerData) {
+	var experienceCenterList;
+	var experienceCenterSelect;
+	var wareHouseList;
+	$('#btnSubmitBuy').click(function() {
+		$('#btnSubmitBuy').prop('disabled', true);
+		//$("#typePurchase").val("store");
+		let storeSelect = {
+			'departament': $('#departament').val(),
+			'city': $('#city').val(),
+			'centro_experiencia': $('#centro_experiencia').val()
+		};
+		let addressSelect = {
+			'region': $('#departament option:selected').text(),
+			'street': $('#centro_experiencia option:selected').text(),
+			'city': $('#city option:selected').text()
+		};
+		let checkoutData = customerData.get('purchase')();
+		checkoutData.type = 'store';
+		checkoutData.store = storeSelect;
+		checkoutData.address = addressSelect;
+		checkoutData.experienceCenterSelect = experienceCenterSelect;
+		checkoutData.wareHouseList = wareHouseList;
+		customerData.set('purchase', checkoutData);
+		$('#product_addtocart_form').submit();
+	});
+	$('#departament').change(function() {
+		resetSelectCenterExperiences();
+		$('#btnSubmitBuy').prop('disabled', true);
+		$.ajax({
+			method: 'POST',
+			url: '<?= $block->getUrl('service/ajax/') ?>',
+			data: {
+				type: 'regionList',
+				value: $(this).val(),
+				region_code : 2
+			},
+			dataType: 'json',
+			beforeSend: function() {
+				$('#modal-stores').addClass('is-preload');
+			}
+		}).done(function(data) {
+			$('#modal-stores').removeClass('is-preload');
+			let select = $('#city');
+			let parent = select.parent();
+			parent.addClass('is-field-check')
+			select.removeAttr('disabled');
+			let regions = data;
+			let items = '<option>Selecciona</option>';
+			$.each(regions, function(index, element) {
+				region = JSON.parse(element.region);
+				items += '<option value=' + element.regionId + '>' + region.es_CO + '</option>';
+			});
+			select.html(items);
+			let select_centro = $('#centro_experiencia');
+			let items_centro = '';
+			let parent_centro = select_centro.parent();
+			parent_centro.removeClass('is-field-check');
+			select_centro.attr('disabled');
+			select_centro.html(items_centro);
+		});
+	});
+	$('#city').change(function() {
+		resetSelectCenterExperiences();
+		$('#btnSubmitBuy').prop('disabled', true);
+		$.ajax({
+			method: 'POST',
+			url: '<?= $block->getUrl('service/ajax/') ?>',
+			data: {
+				type: 'busiHallList',
+				region: $(this).val()
+			},
+			dataType: 'json',
+			beforeSend: function() {
+				$('#modal-stores').addClass('is-preload');
+			}
+		}).done(function(data) {
+			$('#modal-stores').removeClass('is-preload');
+			let select = $('#centro_experiencia');
+			let parent = select.parent();
+			let items = '<option>Selecciona</option>';
+			select.removeAttr('disabled');
+			if(data.message == "ok"){
+				parent.addClass('is-field-check')
+				experienceCenterList = data.regions;
+				let regions = data.regions;
+				$.each(regions, function(index, element) {
+					items += '<option  id='+index+' value=' + element.orgId + '>' + element.orgName + '</option>';
+				});
+				
+			}else{
+				$("#contentExperienceCenter").addClass("is-error");
+				$("#text-error").html("No hay tiendas disponibles vuelve a intentarlo");
+			}
+			select.html(items);	
+		});
+	});
+	$('#centro_experiencia').change(function() {
+		resetSelectCenterExperiences();
+		experienceCenter = $('#centro_experiencia option[value='+$(this).val()+']');
+		experienceCenterSelect = experienceCenterList[experienceCenter.attr('id')];
+		$.ajax({
+			method: 'POST',
+			url: '<?= $block->getUrl('service/ajax/') ?>',
+			data: {
+				type: 'wareHouseList',
+				value: $(this).val()
+			},
+			dataType: 'json',
+			beforeSend: function() {
+				$('#modal-stores').addClass('is-preload');
+			}
+		}).done(function(data) {
+			$('#modal-stores').removeClass('is-preload');
+			if(data.message  == "ok"){
+				wareHouseList = data.smWareHouseVO[0];
+				$("#idWareHouse").val(wareHouseList.warehouseId);
+				checkAvailability(wareHouseList.warehouseId);
+				$('#btnSubmitBuy').prop('disabled', false);
+			}else{
+				$("#contentExperienceCenter").addClass("is-error");
+				$("#text-error").html("No hay equipo vuelve a intentarlo");
+				$('#btnSubmitBuy').prop('disabled', true);
+			}
+		});
+		
+	});
+	function resetSelectCenterExperiences(){
+		$("#idWareHouse").val(0);
+		$("#contentExperienceCenter").removeClass("is-error");
+	}
+	function checkAvailability(wareHouseList){
+		$.ajax({
+			method: 'POST',
+			url: '<?= $block->getUrl('service/ajax/') ?>',
+			data: {
+				type: 'checkAvailability',
+				sku: $("#skuProduct").val(),
+				wareHouseList: wareHouseList
+			},
+			dataType: 'json',
+			beforeSend: function() {
+				$('#modal-stores').addClass('is-preload');
+			}
+		}).fail(function(){
+			alert("Error al conectar con el servicio CheckAvailability")
+		})
+		.done((function(response) {
+			$("#qtyWareHouse").val(response.amountInventory);
+			if(response.amountInventory == 0){
+				$("#contentExperienceCenter").addClass("is-error");
+				$("#text-error").html("No hay equipo vuelve a intentarlo");
+				$('#btnSubmitBuy').prop('disabled', true);
+			}else{
+				$('#btnSubmitBuy').prop('disabled', false);
+			}
+			$('#modal-stores').removeClass('is-preload');
+		}).bind(this));
+	}
+});
+</script>

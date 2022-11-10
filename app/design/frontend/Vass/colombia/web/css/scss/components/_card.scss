@@ -1,0 +1,223 @@
+.c-card {
+  @include px-to-rem(border-radius, 4px);
+  transition: all .2s ease-in;
+}
+
+.c-card-grid {
+  @include px-to-rem(margin-top, $gutter * 2);
+  list-style: none;
+}
+
+.c-card__link {
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 3);
+  width: 100%;
+  @include px-to-rem(max-width, 324px);
+  height: 100%;
+  margin: 0 auto;
+  border: 1px solid transparent;
+  @include px-to-rem(border-radius, 4px);
+  @include px-to-rem(padding-top, 12px);
+  @include px-to-rem(padding-right, $gutter * 2);
+  @include px-to-rem(padding-bottom, 12px);
+  @include px-to-rem(padding-left, $gutter * 2);
+  color: $c-gray-6;
+  background-color: $c-neutro;
+
+  &:hover {
+    border-color: $c-gray-3;
+  }
+}
+
+.c-card__schema {
+  @include flexbox;
+  @include px-to-rem(column-gap, $gutter * 2);
+  list-style: none;
+}
+
+.c-card__schema-color {
+  @include px-to-rem(width, 20px);
+  @include px-to-rem(height, 20px);
+  border-radius: 50%;
+  border: 1px solid $c-gray-2;
+  cursor: pointer;
+}
+
+.c-card__tag {
+  display: inline-block;
+  @include px-to-rem(margin, $gutter * 2 0 $gutter 0);
+  @include px-to-rem(border-radius, 2px);
+  @include px-to-rem(padding, 0 10px);
+  font-weight: $f-bold;
+  @include px-to-rem(font-size, 14px);
+  color: $c-neutro;
+  background-color: $c-yellow-5;
+}
+
+.c-card__photo {
+
+  .product-image-photo {
+    width: 100%;
+    @include px-to-rem(max-width, 152px);
+    height: auto;
+  }
+
+}
+
+.c-card__text,
+.c-card__name {
+  font-weight: $f-regular;
+}
+
+.c-card__name {
+  font-weight: $f-light;
+  @include ellipsis-multiline(18px, 1.2, 3);
+}
+
+.c-card__text {
+  @include px-to-rem(font-size, 14px);
+}
+.c-card__text_sm {
+  @include px-to-rem(font-size, 10px);
+  color: $c-gray-5;
+}
+
+.c-card__dues {
+  @include px-to-rem(font-size, 28px);
+  font-weight: $f-bold;
+  line-height: 1.2;
+}
+
+.c-card__price {
+  @include flexbox;
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 2);
+}
+
+.c-card__price-previous {
+  text-decoration: line-through;
+  color: $c-on-primary-gray;
+}
+
+.c-card__content {
+  position: relative;
+}
+
+.c-card-grid__banner {
+  @include flex(1 1 100%);
+}
+
+.c-slider-products {
+  position: relative;
+  width: 100%;
+  @include px-to-rem(margin-bottom, $gutter * 5);
+  overflow: hidden;
+}
+
+.c-card-slide {
+  height: auto;
+  text-align: left;
+}
+.c-card {
+  .c-card-slide & {
+    height: 100%;
+  }
+}
+
+// Mobile
+@media (max-width: 719px) {
+  
+  .c-card {
+    @include px-to-rem(max-width, 324px);
+    @include px-to-rem(margin, 0 auto $gutter * 2 auto);
+  }
+
+  .c-card-grid__banner {
+    @include px-to-rem(margin-bottom, $gutter * 2);
+  }
+
+  .c-card__link {
+    @include px-to-rem(padding, 12px $gutter * 2);
+  }
+
+  .c-card__photo,
+  .c-card__content {
+    @include flex(1 50%);
+  }
+
+  .c-card__schema {
+    @include px-to-rem(margin-top, $gutter);
+  }
+
+}
+
+// Tablet
+@media (min-width: 720px) {
+
+  .c-card-grid {
+    @include flexbox;
+    @include flex-wrap(wrap);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(column-gap, 30px);
+    width: 100%;
+  }
+
+  .c-card__name {
+    @include px-to-rem(margin-bottom, 4px);
+  }
+
+}
+@media (min-width: 720px) and (max-width: 1023px) {
+
+  .c-card {
+    @include flex(0 1 47%);
+    max-width: 47%;
+
+    .c-card-slide & {
+      max-width: initial;
+    }
+  }
+}
+
+// Desktop
+@media (min-width: 1024px) {
+
+  .c-slider-products {
+    @include px-to-rem(padding, 0 33px);
+  }
+  
+  .c-card {
+    @include flex(1 1 25%);
+  }
+
+  .c-card__link {
+    @include justify-content(space-between);
+    @include flex-direction(column);
+    @include px-to-rem(max-width, 255px);
+    @include px-to-rem(padding-top, 20px);
+    @include px-to-rem(padding-bottom, 20px);
+  }
+
+  .c-card__content {
+    width: 100%;
+    @include flexbox;
+    @include flex-direction(column);
+  }
+
+  .c-card__tag {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .c-card__schema {
+    @include justify-content(center);
+    @include px-to-rem(margin, 12px 0);
+    order: -7;
+  }
+
+  .c-card__name {
+    @include px-to-rem(margin-bottom, $gutter);
+  }
+
+}

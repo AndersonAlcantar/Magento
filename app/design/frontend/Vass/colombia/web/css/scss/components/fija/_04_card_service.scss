@@ -1,0 +1,245 @@
+.f-c-service-card {
+    @include px-to-rem(border-radius, 4px);
+    @include px-to-rem(padding-top, $gutter * 2);
+    @include px-to-rem(padding-right, $gutter * 2);
+    @include px-to-rem(padding-bottom, $gutter * 2);
+    @include px-to-rem(padding-left, $gutter * 2);
+    background: $c-neutro;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.12);
+    transition: all .2s ease-in-out;
+
+    &.is-card-active {
+        border: 1px solid $c-primary;
+    }
+}
+
+.f-c-service-card-flag {
+    position: relative;
+    border: 1px solid $c-primary;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: -1px;
+        right: -1px;
+        bottom: -1px;
+        @include px-to-rem(border-radius, 4px);
+        background: $c-gray-1;
+        z-index: 2;
+        opacity: 0.5;
+    }
+}
+
+.f-c-service-card__flag {
+    position: absolute;
+    top: -12px;
+    right: 0;
+    left: 0;
+    @include px-to-rem(width, 120px);
+    margin: 0 auto;
+    border-radius: 4px;
+    @include px-to-rem(padding, 2px 0);
+    @include px-to-rem(font-size, 13px);
+    font-weight: $f-bold;
+    color: $c-neutro;
+    background: $c-primary;
+}
+
+.f-c-service-card__img {
+    width: auto;
+    height: auto;
+}
+
+.f-c-service-card__footer {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 2);
+    @include px-to-rem(max-width, 203px);
+}
+
+.f-c-service-card__txt {
+    @include px-to-rem(font-size, 12px);
+}
+
+.f-c-service-card__amount {
+    line-height: 1;
+
+    .f-c-plan__price-normal {
+        @include px-to-rem(font-size, 11px);
+        color: $c-gray-2;
+    }
+}
+
+.f-c-service-card__price-offert {
+    display: block;
+    @include px-to-rem(font-size, $gutter * 3);
+    font-weight: $f-light;
+}
+
+.f-c-service-card__btn {
+    position: relative;
+    @include px-to-rem(padding, $gutter $gutter * 2);
+    @include px-to-rem(font-size, 14px);
+    z-index: 10;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 739px) {
+    .f-c-service-wrap {
+        @include flex-direction(column);
+        @include align-items(center);
+        @include px-to-rem(row-gap, $gutter * 3);
+    }
+
+    .f-c-service-card {
+        @include px-to-rem(max-width, 340px);
+    }
+
+    .f-c-service-card__inner {
+        @include flexbox;
+        @include justify-content(space-between);
+        @include align-items(center);
+
+        .f-c-service-card-flag & {
+            @include align-items(flex-start);
+        }
+    }
+
+    .f-c-service-card__figure {
+        &:not(.f-c-service-card-flag &) {
+            @include px-to-rem(max-width, 68px);
+        }
+    }
+
+    .f-c-service-card__header {
+        &:not(.f-c-service-card-flag &) {
+            position: relative;
+            @include px-to-rem(min-width, 200px);
+            text-align: left;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                @include px-to-rem(right, 6px);
+                bottom: 0;
+                @include px-to-rem(width, 1px);
+                height: 100%;
+                margin: auto;
+                background: $c-gray-2;
+            }
+        }
+
+        .f-c-service-card-flag & {
+            @include px-to-rem(padding-top, $gutter * 2);
+        }
+    }
+
+    .f-c-service-card__txt {
+        &:not(.f-c-service-card-flag &) {
+            @include px-to-rem(margin-top, 4px);
+            @include px-to-rem(padding-right, $gutter * 2);
+        }
+
+        .f-c-service-card-flag & {
+            @include px-to-rem(margin-bottom, $gutter);
+        }
+    }
+
+    .f-c-service-swiper__btn,
+    .f-c-service-swiper > .o-swiper-bullets {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 740px) {
+    .f-c-service-wrap {
+        .is-centered & {
+            @include justify-content(center);
+        }
+    }
+
+    .f-c-service-card {
+        @include px-to-rem(max-width, 148px);
+        height: auto;
+        @include px-to-rem(min-height, 250px);
+        @include px-to-rem(padding-right, $gutter);
+        @include px-to-rem(padding-left, $gutter);
+    }
+
+    .f-c-service-card__flag {
+        width: max-content;
+        @include px-to-rem(padding, 1px 6px);
+        @include px-to-rem(font-size, 12px);
+    }
+
+    .f-c-service-card__inner {
+        &:not(.f-c-service-card-flag &) {
+            @include flexbox;
+            @include flex-direction(column);
+            @include justify-content(space-between);
+            height: 100%;
+        }
+    }
+
+    .f-c-service-card__header {
+        .f-c-service-card-flag & {
+            @include flexbox;
+            @include justify-content(center);
+            @include align-items(center);
+            height: 70px;
+            @include px-to-rem(margin-bottom, $gutter * 2);
+            border-bottom: 1px solid $c-gray-2;
+        }
+    }
+
+    .f-c-service-card__header-inner {
+        @include flexbox;
+        @include justify-content(center);
+        @include align-items(center);
+        @include px-to-rem(height, 70px);
+        @include px-to-rem(margin-bottom, $gutter * 2);
+        border-bottom: 1px solid $c-gray-2;
+    }
+
+    .f-c-service-card__figure {
+        @include px-to-rem(max-width, 78px);
+    }
+
+    .f-c-service-card__txt {
+        @include px-to-rem(margin-bottom, $gutter * 2);
+    }
+
+    .f-c-service-swiper {
+        @include px-to-rem(padding-right, $gutter * 3);
+        @include px-to-rem(padding-left, $gutter * 2);
+    }
+    .f-c-service-swiper__btn {
+        top: 0;
+        @include px-to-rem(width, 33px);
+        height: 100%;
+        background: $c-gray-1;
+        z-index: 1;
+
+        &::after {
+            position: absolute;
+            @include flexbox;
+            @include justify-content(center);
+            @include align-items(center);
+            @include px-to-rem(width, 28px);
+            @include px-to-rem(height, 28px);
+            border-radius: 50%;
+            color: $c-neutro;
+            background-color: $c-primary;
+        }
+
+        &.swiper-button-prev {
+            left: -28px;
+        }
+
+        &.swiper-button-next {
+            right: -16px;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<?php 
+    if (!empty($block->getLinkButtonSocial()) && !empty($block->getIconButtonSocial()) ):
+?>
+        <a class="c-float-button" target="_blank" href="<?=$block->escapeHtmlAttr($block->getLinkButtonSocial())?>">
+            <i class="c-float-button__icon <?=$block->escapeHtmlAttr($block->getIconButtonSocial())?>"></i>
+        </a>
+<?php 
+    endif;
+?> 

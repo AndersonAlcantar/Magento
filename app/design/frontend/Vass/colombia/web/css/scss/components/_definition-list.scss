@@ -1,0 +1,28 @@
+.c-definition-list {
+    width: fit-content;
+}
+.c-definition-list__box {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(padding-top, $gutter * 2);
+    @include px-to-rem(padding-bottom, $gutter * 2);
+    @include px-to-rem(font-size, 14px);
+    border-bottom: 1px solid $c-gray-2;
+    &:first-of-type {
+        padding-top: 0;
+    }
+    &:last-of-type {
+        padding-bottom: 0;
+        border: none;
+    }
+}
+.c-definition-list__term {
+    font-weight: $f-bold;
+}
+
+@include media-query(small-m) {
+    .c-definition-list__box {
+        @include px-to-rem(font-size, 18px);
+    }
+}

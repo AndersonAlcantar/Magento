@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Created By : MagentoExplore
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="vass_region_departament" resource="default" engine="innodb" comment="Departament Region">
+      <column xsi:type="smallint" name="id" padding="6" unsigned="false" nullable="false" identity="true" comment="ID" />
+      <column xsi:type="int" name="zone" unsigned="false" nullable="false"  comment="zone" />
+      <column xsi:type="varchar" name="zone_info" nullable="false" length="255" comment="zoneinfo" />
+      <column xsi:type="varchar" name="zone_code" nullable="false" length="255" comment="zoneCode" />
+      <column xsi:type="varchar" name="region_id" nullable="false" length="255" comment="regionId" />
+      <column xsi:type="int" name="regional_divisions" unsigned="false" nullable="false"  comment="regionalDivisions" />
+      <column xsi:type="smallint" name="region_code" unsigned="false" nullable="false"  comment="regionCode" />
+      <column xsi:type="varchar" name="region" nullable="false" length="255" comment="region"/>
+      <column xsi:type="varchar" name="post_sales_type" nullable="false" length="255" comment="region"/>      
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="id" />
+      </constraint>      
+   </table>
+</schema>

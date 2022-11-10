@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<title>Servicios Complementarios</title>
+	</head>
+	<body>
+		<referenceContainer name="content">
+			<block name="offerts_services" template="Vass_Fija::offerts-services.phtml">
+				<arguments>
+					<argument name="services" xsi:type="object">Vass\Fija\ViewModel\Offerts\Services</argument>
+				</arguments>
+			</block>
+			<referenceBlock name="div.sidebar.additional" remove="true" />
+			<referenceBlock name="page.main.title" remove="true" />	
+			
+			<block name="cobertura.errormodal" template="Vass_Fija::modals/error.phtml"/>
+			<!-- <block name="cobertura.modaldecos" template="Vass_Fija::modals/modal_decos.phtml"/> -->
+			<block name="cobertura.modalservicios" template="Vass_Fija::modals/modal_servicios.phtml">
+				<arguments>
+					<argument name="services" xsi:type="object">Vass\Fija\ViewModel\Offerts\Services</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+
+		<referenceContainer name="header.container" htmlClass="checkout-header">
+			<referenceBlock name="menu.top.header" remove="true"/>
+			<referenceBlock name="header.wrapper" remove="true"/>
+			<referenceBlock name="header.search" remove="true"/>
+			<block name="header-pasos"  template="Vass_Fija::html/header.phtml">
+				<arguments>
+					<argument name="header" xsi:type="object">Vass\Fija\ViewModel\Header</argument>					
+				</arguments>
+			</block>
+		</referenceContainer>
+
+	</body>
+</page>

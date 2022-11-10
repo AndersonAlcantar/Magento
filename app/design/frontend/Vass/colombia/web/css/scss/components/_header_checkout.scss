@@ -1,0 +1,97 @@
+.c-simple-header_bg {
+    background-color: $c-neutro;
+}
+.c-simple-header {
+    @include flexbox;
+    @include align-items(center);
+    @include justify-content(space-between);
+    @include px-to-rem(column-gap, $gutter * 2);
+    @include px-to-rem(padding-top, 30px);
+    @include px-to-rem(padding-bottom, 30px);
+}
+.c-simple-header__brand-img {
+    @include px-to-rem(min-width, 48px);
+}
+.c-simple-header__menu {
+    position: relative;
+    @include px-to-rem(right, $gutter * 2);
+}
+
+.c-simple-header__list {
+    position: absolute;
+    right: -15px;
+    @include px-to-rem(min-width, 140px);
+    @include px-to-rem(padding-left, 16px);
+    @include px-to-rem(padding-top, 8px);
+    @include px-to-rem(padding-bottom, 16px);
+    @include px-to-rem(padding-right, 16px);
+    background-color: $c-neutro;
+    list-style-type: none;
+    border-radius: 4px;
+    box-shadow: $c-elevation-primary;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .4s;
+    .active & {
+        visibility: visible;
+        opacity: 1
+    }
+}
+
+.c-simple-header__button-user {
+    position: relative;
+    display: grid;
+    place-items: center;
+    @include px-to-rem(height, 40px);
+    @include px-to-rem(width, 40px);
+    background-color: $c-gray-1;
+    border-radius: 50%;
+    &:before {
+        color: $c-blue-normal;
+        @include px-to-rem(font-size, 20px);
+    }
+
+    &::after {
+        position: absolute;
+        left: 48px;
+        top: 45%;
+        @include px-to-rem(font-size, 6px);
+        color: $c-on-primary-gray;
+        transition: all 0.4s;
+
+        .active & {
+            color: $c-blue-normal;
+            transform: rotate(180deg);
+        }
+    }
+
+    &:hover {
+        &::after {
+            color: $c-blue-normal;
+            transform: rotate(180deg);
+        } 
+    }
+}
+
+.c-simple-header__item {
+    border-bottom: 1px solid $c-gray-1;
+}
+.c-simple-header__link  {
+    display: block;
+    @include flexbox;
+    @include justify-content(center);
+    @include align-items(center);
+    @include px-to-rem(column-gap, $gutter);
+    @include px-to-rem(padding-top, 8px);
+    @include px-to-rem(padding-bottom, 8px);
+    color: $c-blue-normal;
+    &::after {
+        color: $c-blue-normal;
+        @include px-to-rem(font-size, 20px);
+    }
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+

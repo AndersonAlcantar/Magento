@@ -1,0 +1,32 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get(Magento\Customer\Model\Session::Class); ?>
+<div class="custom-mobile-top-links">
+    <?php if ($customerSession->isLoggedIn()) { ?>
+        <ul class="list-registered-user">
+            <li><?=$escaper->escapeHtml(('Hello'))?>, 
+            <?= $escaper->escapeHtml($customerSession->getCustomer()->getName()) ?></li>
+            <ul>
+                <li>
+                    <a href="<?= $this->getUrl('customer/account') ?>"><?=$escaper->escapeHtml(('My Account')) ?></a>
+                </li>
+                <li>
+                    <a href="<?= $this->getUrl('sales/order/history') ?>"><?= $escaper->escapeHtml(('My Orders')) ?></a>
+                </li>
+                <li>
+                    <a href="<?= $this->getUrl('wishlist') ?>"><?= $escaper->escapeHtml(('My Wishlist')) ?></a>
+                </li>
+                <li>
+                    <a href="<?= $this->getUrl('customer/account/logout') ?>"><?= $escaper->escapeHtml(('Sign Out')) ?></a>
+                </li>
+            </ul>
+        </ul>
+        <!--
+        <span data-bind="scope: 'wishlist'" class="link wishlist">
+            <a href="<?= $this->getUrl('wishlist') ?>">
+                <?= __('My Wishlist') ?><span data-bind="text: wishlist().counter" class="counter qty"></span>
+            </a>
+        </span>
+        -->
+    <?php } ?>
+</div>

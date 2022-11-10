@@ -1,0 +1,41 @@
+.c-figures-columns {
+    @include flexbox;
+    @include justify-content(center);
+    @include px-to-rem(max-width, 925px);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    @include px-to-rem(column-gap, $gutter * 2);
+    list-style-type: none;
+}
+
+.c-figures-columns__figure {
+    display: block;
+    @include px-to-rem(margin-bottom, $gutter * 3);
+    &::before {
+        @include px-to-rem(font-size, 48px);
+        color: $c-primary;
+    }
+}
+
+
+@include media-query(medium) {
+    .c-figures-columns {
+        @include px-to-rem(column-gap, $gutter * 4);
+    }
+}
+
+@include media-query(wide) {
+    .c-figures-columns {
+        @include px-to-rem(column-gap, $gutter * 8);
+    }
+    .c-figures-columns__column {
+        @include flexbox;
+        @include align-items(center);
+        text-align: left;
+        @include px-to-rem(column-gap, $gutter * 2);
+    }
+    .c-figures-columns__figure {
+        margin-bottom: 0;
+    }
+}

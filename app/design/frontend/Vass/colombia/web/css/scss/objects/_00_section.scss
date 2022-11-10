@@ -1,0 +1,46 @@
+//-*------------------------------------*
+//-   .o- class Objects Section, Background.
+//-   o-section: elementos de seccionamiento, contiene una parte de un documento temáticamente definida.
+//-   o-bg: define los estilos de las superficies de las secciones
+//-*------------------------------------*
+
+.o-section {
+  margin-top: $gutter * 5;
+  margin-bottom: $gutter * 10;
+}
+
+.o-section__bg-withe {
+  @include px-to-rem(padding-top, $gutter * 5);
+  @include px-to-rem(padding-bottom, $gutter * 10);
+  margin-bottom: 0;
+  background-color: $c-neutro;
+}
+
+.o-bg-gray {
+  background-color: $c-gray-1;
+}
+
+// contenedor flex para dos elementos
+.o-section-double-elements {
+  @include flexbox;
+  @include justify-content(center);
+  @include align-items(center);
+  @include px-to-rem(column-gap, $gutter * 4);
+}
+.o-section-double-elements_spacebetween {
+  @include justify-content(space-between)
+}
+.o-section-double-elements_flex-start {
+  @include align-items(flex-start);
+}
+
+@media only screen and (max-width: 768px) {
+  .o-section-double-elements {
+    @include flexbox;
+    @include flex-direction(column);
+    @include px-to-rem(row-gap, $gutter * 4);
+  }
+  .o-section-double-elements_row-gap {
+    @include px-to-rem(row-gap, $gutter * 6);
+  }
+}

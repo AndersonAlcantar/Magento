@@ -1,0 +1,29 @@
+.c-especifications {
+	@include px-to-rem(max-width, 730px);
+	margin: 0 auto;
+	@include px-to-rem(padding-bottom, 40px);
+	@include px-to-rem(margin-bottom, $gutter * 5);
+	@include px-to-rem(margin-top, $gutter * 5);
+}
+.c-especifications__intro {
+	@include px-to-rem(margin-bottom, $gutter * 6);
+}
+.c-especifications__wrap {
+	@include px-to-rem(margin-top, $gutter * 5);
+	@include px-to-rem(padding-bottom, $gutter * 4);
+	border-bottom: 1px solid $c-gray-2;
+}
+.c-especification__item {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	@include px-to-rem(column-gap, $gutter * 3);
+	@include px-to-rem(margin-bottom, $gutter * 4);
+}
+.c-especification__attribute {
+	@include px-to-rem(font-size, 18px);
+	color: $c-gray-6;
+	font-weight: $f-bold;
+}
+.c-especification__text {
+	color: $c-gray-5;
+}
